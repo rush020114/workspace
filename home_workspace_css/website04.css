@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.menu {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.content > h2 {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+  background-color: #f1f1ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  width: 1200px;
+  background-color: white;
+  box-shadow: 10px 10px 10px 1px #cccccc;
+}
+
+.menu{
+  border-bottom: 1px solid #cccccc;
+  padding: 30px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu > div:first-child{
+  color: #283582;
+  display: flex;
+  gap: 40px;
+}
+
+.menu span{
+  font-size: 2rem;
+}
+
+.menu ul{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.menu a{
+  color: #283582;
+  text-decoration: none;
+}
+
+.menu button{
+  border-radius: 30px;
+  padding: 8px 25px;
+}
+
+.menu button:first-child{
+  background-color: white;
+  color: #283582;
+  border: 2px solid black;
+}
+
+.menu button:last-child{
+  background-color: #283582;
+  color: white;
+  border: 2px solid #283582;
+  margin-left: 7px;
+}
+
+.content{
+  padding: 15px 150px;
+}
+
+.content > h2{
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.first-div{
+  width: 200px;
+  text-align: center;
+  margin-left: 30px;
+}
+
+.content p{
+  line-height: 30px;
+}
+
+.content p:first-of-type{
+  color: #0078b9;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.content span{
+  font-size: 2.5rem;
+}
+
+.last-div{
+  margin-left: 30px;
+  text-align: center;
+  display: flex;
+  gap: 50px;
+}
+
+.last-div > div{
+  width: 200px;
+}

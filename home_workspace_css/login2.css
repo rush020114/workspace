@@ -1,0 +1,53 @@
+*{
+  box-sizing: border-box;
+}
+
+.container{
+  margin: 30px auto;
+  width: 300px;
+  border: 1px solid #eeeeee;
+  border-radius: 7px;
+  padding: 10px 20px;
+}
+
+h2{
+  margin-top: 30px;
+}
+
+hr{
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.container > div{
+  margin: 7px 0px;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #bbbbbb;
+}
+
+input[type="button"] {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0px;
+  border: none;
+  background-color: dodgerblue;
+  color: white;
+}
+
+span{
+  font-size: 0.75rem;
+}
+
+span > span{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.link-div{
+  text-align: center;
+  font-size: 0.9rem;
+}

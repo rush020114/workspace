@@ -1,0 +1,94 @@
+.container{
+  width: 350px;
+  margin: 150px auto;
+}
+
+.title{
+  display: flex;
+  align-items: center;
+}
+
+.title > div{
+  margin-top: 3px;
+  margin-right: 10px;
+}
+.title > div > div{
+  height: 15px;
+}
+
+.title > h1{
+  color: #79bbd9;
+  font-weight: 400;
+}
+
+.content{
+  margin-top: 10px;
+}
+
+.button{
+  display: flex;
+}
+
+.button > button{
+  width: 100%;
+  background-color: #f8f8f8;
+  border: 1px solid #dcdcdc;
+  padding: 13px 0px;
+}
+
+.button > button:focus{
+  background-color: white;
+  outline: 1.5px solid #79bbd9; 
+  border: none;
+  z-index: 2;
+}
+
+.info{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info > input{
+  padding: 12px;
+}
+
+.info > input[type="text"], .info > input[type="password"]{
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+}
+
+.info > div{
+  font-size: 0.8rem;
+}
+
+.info > div > input{
+  scale: 1.5;
+  margin-right: 10px;
+}
+
+.info > input:nth-of-type(3){
+  padding: 10px;
+  background-color: #79bbd9;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.1rem;
+}
+
+.info > input:nth-of-type(4){
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  font-size: 1.1rem;
+}
+
+.search{
+  font-size: 0.8rem;
+  padding-top: 20px;
+  margin-top: 20px;
+  text-align: center;
+  border-top: 1px solid #dcdcdc;
+}

@@ -1,0 +1,25 @@
+.container{
+  border: 1px solid black;
+  width: 600px;
+  height: 400px;
+  margin: 30px;
+
+  display: grid;
+  /* grid-template-columns: 100px 200px 150px; */
+  /* grid-template-columns: 20% 30% 40%; */
+  /* fr은 배율 */
+  /* grid-template-columns: 1fr 2fr 1fr; */
+  /* 
+	  repeat속성값 
+	  앞: 지정하고 싶은 열의 개수
+	  뒤: px, %, fr의 값
+  */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  align-content: start;
+}
+
+.item{
+  border: 1px solid red;
+}

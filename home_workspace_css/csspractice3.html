@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      margin: auto; /* 좌우 여백 동일하게 설정 */
+      width: 800px;
+    }
+    table{
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    tr, td{
+      border: 1px solid black;
+    }
+    .input-large{
+      width: 160px;
+    }
+    .input-normal{
+      width: 120px;
+    }
+    .input-small{
+      width: 80px;
+    }
+    .btn-div{
+      text-align: center;
+      margin-top: 20px;
+    }
+    .red{
+      color: red;
+    }
+    .blue{
+      background-color: skyblue;
+      text-align: center;
+    }
+    textarea{
+      resize: none;
+    }
+    tr > td:first-child{
+      text-align: center
+    }
+  </style>
+</head>
+<body>
+  <!--
+   따로따로 영역을 나누되 전체를 한 번에 컨트롤 할 수 있는 div태그를 겉에 감싸서 전체 영역을 관리하면 과정이 줄어들어 아주 편리하다.
+   영역부터 정하는 습관을 반드시 들여라.
+   -->
+  <!-- 
+   margin은 일단 여백을 주는 것으로 알고 있는다.
+   부모요소는 포함하는 태그, 자식요소는 포함되는 태그 
+   블록요소 중앙 정렬은 자신에게 margin: auto, 단 너비 조절 필요(한페이지 100%차지하기 때문)
+   인라인, 인라인블록 요소 중앙 정렬은 부모요소에 text-align속성 부여
+   -->
+  <div class="container">
+    <!-- 테이블 영역 -->
+    <div>
+      <table>
+        <colgroup>
+          <col width="20%">
+          <col width="80%">
+        </colgroup>
+        <tbody>
+          <tr class="blue">
+            <td colspan="2">
+              <span class="red">(*필수입력)</span>회원 기본 정보
+            </td>
+          </tr>
+          <tr>
+            <td><span class="red">*</span>아이디:</td>
+            <td>
+              <input type="text" placeholder="4~12글자" class="input-normal">
+              <button type="button">아이디 검사</button>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="red">*</span>비밀번호:</td>
+            <td>
+              <input type="password">
+              4~12자의 영문
+            </td>
+          </tr>
+          <tr>
+            <td><span class="red">*</span>비밀번호 확인:</td>
+            <td>
+              <input type="password">
+              <input type="button" value="비밀번호 확인">
+            </td>
+          </tr>
+          <tr>
+            <td>생일:</td>
+            <td>
+              <input type="text" class="input-small">년
+              <input type="text" class="input-small">월
+              <input type="text" class="input-small">일
+            </td>
+          </tr>
+          <tr>
+            <td>주소:</td>
+            <td>
+              <div>
+                <input type="text">
+                <input type="button" value="우편번호 찾기">
+              </div>
+              <div>
+                <input type="text" class="input-large">
+                <input type="text" class="input-large">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>자기소개:</td>
+            <td>
+              <textarea></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 버튼 영역 -->
+    <div class="btn-div">
+      <input type="button" value="회원 가입">
+      <input type="button" value="다시 입력">
+    </div>
+  </div>
+</body>
+</html>

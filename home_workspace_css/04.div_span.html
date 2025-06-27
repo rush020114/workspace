@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .div-1{
+      background-color: aqua;
+    }
+    .div-2{
+      background-color: lightgray;
+    }
+    .div-3{
+      background-color: lightpink;
+    }
+    span{
+      border: 1px solid black;
+      width: 200px;
+    }
+    .div-4{
+      border: 1px solid black;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    div태그와 span태그는 화면 레이아웃 구상에 사용함.
+    div태그는 화면 너비만큼의 크기를 갖는다.
+    span태그는 안의 내용만큼의 크기만 갖는다.(영역의 크기를 아는 것은 곧 디자인과 관련되므로 모두 매우 중요)
+  -->
+  <!-- 
+    div 태그는 정말로 많이 쓰인다.
+    span태그는 특정 영역만 디자인하고 싶은 것에 태그를 씌우기 위함(선택자 만들기)이다. 
+   -->
+  <!-- 
+  사실 inline요소와 block요소가 영역을 나타내는 중요한 요소이다. div와 span은 그 요소에 포함될 뿐이다. 그리고 inline요소와 block요소를 합친 inline block요소도 있다. 
+  -->
+  <!-- block태그는 너비가 변형될 수 있다. 하지만 공간이 남아도 같은 줄에 다른 것이 못 오는 성질을 가진다.
+  inline태그는 너비값이라는 개념이 없기 때문에 너비를 조정할 수 없다. 
+  inline block태그는 너비가 조정가능하면서 한 줄에 쓸 수가 있다(대표적으로 input태그).
+  -->
+  <div class="div-1">
+    <h2>div와 span 태그</h2>
+  </div>
+
+  <div class="div-2">
+    <h3>자기소개</h3>
+    <p>저는 울산에 사는 홍길동입니다</p>
+  </div>
+
+  <div class="div-3">
+    <h3>학력</h3>
+    <p>저는 그린아케데미 대학을 졸업했습니다</p>
+  </div>
+
+  <div class="div-4">hi</div>
+  <div>hello</div>
+
+  <hr>
+
+  <span>안녕</span>
+  <span>반가워</span>
+
+  <p>
+    Lorem ipsum dolor sit amet <span>consectetur</span> adipisicing elit. Soluta assumenda debitis corrupti ea ipsam, beatae ut doloribus aperiam laudantium quibusdam laborum. Accusantium perspiciatis rem atque aspernatur quia alias eum ipsam!
+  </p>
+
+
+</body>
+</html>

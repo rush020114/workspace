@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body{
+  background-color: #f0f0ee;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  width: 900px;
+  box-shadow: 10px 10px 10px 1px #cccccc;
+  background-color: white;
+}
+
+.header{
+  display: flex;
+  padding: 0px 5px;
+  align-items: center;
+}
+
+.header > h1{
+  color: #7cbfde;
+  font-weight: 500;
+}
+
+.header > div{
+  margin-left: auto;
+  font-size: 0.6rem;
+  margin-right: 7px;
+  display: flex;
+  gap: 10px;
+}
+
+.header > div > button{
+  font-size: 0.6rem;
+  color: #7cbfde;
+  border: none;
+  background-color: white;
+}
+
+.title{
+  height: 180px;
+  background-color: #7cbfde;
+  color: white;
+  padding: 0px 250px;
+  margin-bottom: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.title > h1{
+  font-weight: 1000;
+}
+
+.title > p{
+  font-size: 0.6rem;
+  line-height: 15px;
+}
+
+.title > div{
+  width: 100%;
+  position: relative;
+}
+
+.title > div >input{
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 30px;
+}
+
+.title > div > input:focus{
+  outline: 1px solid #777777;
+}
+
+.title > div > span{
+  color: #cccccc;
+  position: absolute;
+  top: 3px;
+  left: 7px;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.content > div:first-child{
+  display: flex;
+  gap: 15px;
+}
+
+.content > div:first-child > input{
+  background-color: white;
+  color: #7cbfde;
+  border: 1px solid #7cbfde;
+  font-size: 0.6rem;
+  padding: 8px 120px;
+}
+
+.content > div:first-child > input:hover{
+  cursor: pointer;
+}
+
+.content > div:first-child > input:active{
+  background-color: rgb(250, 250, 250);
+}
+
+.content > div:last-child{
+  width: 500px;
+  color: #7cbfde;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.content > div:last-child > h2{
+  font-weight: 700;
+}
+
+.content > div:last-child > p{
+  font-weight: 700;
+  font-size: 0.6rem;
+}
+
+.content > div:last-child > select{
+  color: #777777;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+}
+
+select:focus{
+  outline: none;
+}
+

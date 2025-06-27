@@ -1,0 +1,51 @@
+<!-- 
+  HTML : 웹 페이지의 뼈대를 구성하는 언어
+  CSS : HTML로 구현된 웹 페이지에 디자인을 적용시키는 언어
+
+  CSS 코드는 HTML 파일 안의 title 태그 다음에 작성한다.
+  CSS 코드는 style 태그 안에 작성한다.
+
+  CSS는 선택자와 속성으로 이루어져 있다.
+  선택자 : 디자인이 적용될 태그
+  속성 : 선택자에 부여될 디자인
+
+  css 적용 문법
+  선택자 {
+    속성 : 속성값;
+    속성 : 속성값;
+    ...
+  }
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 이것은 css주석입니다 */
+    
+    /* 태그명 선택자 : 태그이름으로 디자인 적용 태그를 지정 */
+    h1{
+      color: silver; /* 글자색 */
+      background-color: rgb(175, 154, 154); /* 배경색 */
+    }
+    h2{
+      border: 1px solid red; /* 테두리 */
+    }
+    p{
+      font-size: 24px; /* 글자크기(기본값 : 16px) */
+      font-weight: bold; /* 굵은 글씨체 */
+      font-style: italic; /* 기울임체 */
+    }
+  </style>
+</head>
+<body>
+  <h1>첫번째 제목 태그</h1> 
+  <h1>두번째 제목 태그</h1>
+  <h2>세번째 제목 태그</h2> 
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat asperiores officiis, perferendis quas nihil eligendi! At quas id possimus perferendis officia, iure aliquid voluptates ipsum, commodi consequuntur voluptatibus ea amet!
+  </p>
+</body>
+</html>

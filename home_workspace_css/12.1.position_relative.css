@@ -1,0 +1,14 @@
+.img-div{
+  position: relative;
+  width: 700px;
+}
+
+img{
+  width: 100%;
+}
+
+.heart{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="first-exam1.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 회원가입 -->
+    <div>
+      <h3>회원 가입</h3>
+      <table>
+        <colgroup>
+          <col width="15%">
+          <col width="85%">
+        </colgroup>
+        <tbody>
+          <tr>
+            <td>회원구분<span>*</span></td>
+            <td>
+              <div class="radio-div" checked>
+                <input type="radio" name="member" checked>
+                <div>개인회원</div>
+                <input type="radio" name="member">
+                <div>외국인회원(foreigner)</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 기본정보 -->
+    <div>
+      <div class="flex-div">
+        <h3>기본정보</h3>
+        <div>
+          <span style="padding-right: 3px;">*</span>필수입력사항
+        </div>
+      </div>
+      <table>
+        <colgroup>
+          <col width="15%">
+          <col width="85%">
+        </colgroup>
+        <tbody>
+          <tr>
+            <td>아이디<span>*</span></td>
+            <td>
+              <input type="text">
+              (영문소문자/숫자, 4~16자)
+            </td>
+          </tr>
+          <tr>
+            <td>비밀번호<span>*</span></td>
+            <td>
+              <input type="password"> (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)
+            </td>
+          </tr>
+          <tr>
+            <td>비밀번호 확인<span>*</span></td>
+            <td>
+              <input type="password">
+            </td>
+          </tr>
+          <tr>
+            <td>이름<span>*</span></td>
+            <td>
+              <input type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>주소</td>
+            <td class="address-div">
+              <div>
+                <input type="text" class="length-medium">
+                <button type="button">
+                  우편번호 <b>></b>
+                </button>
+              </div>
+              <div>
+                <input type="text" class="length-long"> 기본주소
+              </div>
+              <div>
+                <input type="text" class="length-long"> 나머지주소(선택입력가능)
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>일반전화</td>
+            <td>
+              <div class="tel-div">
+                <select class="tel-select">
+                  <option>
+                    02
+                  </option>
+                </select> -
+                <input type="text" class="length-medium"> -
+                <input type="text" class="length-medium">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>휴대전화<span>*</span></td>
+            <td>
+              <div class="tel-div">
+                <select class="tel-select">
+                  <option>
+                    010
+                  </option>
+                </select> -
+                <input type="text"class="length-medium"> -
+                <input type="text"class="length-medium">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>SMS 수신여부<span>*</span></td>
+            <td>
+              <div class="checkbox-div" style="margin-bottom: 3px;">
+                <input type="checkbox">
+                <div>동의함</div>
+              </div>
+              <div>쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받을 수 있습니다.</div>
+            </td>
+          </tr>
+          <tr>
+            <td>이메일<span>*</span></td>
+            <td>
+              <input type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>이메일 수신여부<span>*</span></td>
+            <td>
+              <div class="checkbox-div" style="margin-bottom: 3px;">
+                <input type="checkbox">
+                <div>동의함</div>
+              </div>
+              <div>쇼핑몰에서 제공하는 유익한 이벤트 소식을 이메일로 받을 수 있습니다.</div>
+            </td>
+          </tr>
+          <tr>
+            <td>평생회원</td>
+            <td>
+              <div class="radio-div">
+                <input type="radio" name="last-member">
+                <div>동의함</div>
+                <input type="radio" name="last-member" checked>
+                <div>동의안함</div>
+              </div>
+              <div style="margin-top: 3px; margin-bottom: 4px;">
+                - 평생회원으로 가입하시면 <b style="font-weight: 700;">스타일맨</b> 회원 탈퇴시까지는 휴먼회원으로 전환되지 않으며, 고객님의 개인정보가 탈퇴시까지 안전하게 보관됩니다.
+              </div>
+              <div>
+                - 지금 평생회원으로 가입하시면 쿠폰혜택을 드립니다.(쿠폰혜택을 받으신 경우, 3개월간 평생회원을 유지하셔야 합니다.)
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 추가정보 -->
+    <div>
+      <h3>추가정보</h3>
+      <table>
+        <colgroup>
+          <col width="15%">
+          <col width="85%">
+        </colgroup>
+        <tbody>
+          <tr>
+            <td>생년월일<span>*</span></td>
+            <td>
+              <div class="birth-div">   
+                <input type="text" class="length-medium2"> <div>년</div>
+                <input type="text" class="length-short"> <div>월</div>
+                <input type="text" class="length-short"> <div>일</div>
+                <div class="radio-div">
+                  <input type="radio" name="birth" checked>
+                  <div>양력</div>
+                  <input type="radio" name="birth">
+                  <div>음력 (14세 미만 회원가입을 제한하고 있습니다.)</div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>성별</td>
+            <td>
+              <div class="radio-div">
+                <input type="radio" name="gender">
+                <div>남자</div>
+                <input type="radio" name="gender">
+                <div>여자</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>상의 사이즈</td>
+            <td>
+              <div class="checkbox-div">
+                <input type="checkbox">
+                <div>90~95</div>
+                <input type="checkbox">
+                <div>100~105</div>
+                <input type="checkbox">
+                 <div>110~115</div>
+                <input type="checkbox">
+                 <div>120~125</div>
+                <input type="checkbox">
+                <div>130~</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>하의 사이즈</td>
+            <td>
+              <div class="checkbox-div">
+                <input type="checkbox">
+                <div>~30</div>
+                <input type="checkbox">
+                <div>32</div>
+                <input type="checkbox">
+                <div>33</div>
+                <input type="checkbox"> 
+                <div>34</div>
+                <input type="checkbox"> 
+                <div>35</div>
+                <input type="checkbox"> 
+                <div>36</div>
+                <input type="checkbox"> 
+                <div>37</div>
+                <input type="checkbox"> 
+                <div>38</div>
+                <input type="checkbox"> 
+                <div>39</div>
+                <input type="checkbox"> 
+                <div>40</div>
+                <input type="checkbox"> 
+                <div>42~</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

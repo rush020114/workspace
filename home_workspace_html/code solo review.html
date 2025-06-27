@@ -1,0 +1,135 @@
+<html> <!-- 태그는 소문자 작성이 기본 -->
+  <head> <!-- 들여쓰기를 하는 이유 : 들여쓰기를 하기 위해서이다.(tab은 들여쓰기, shift+tab은 내어쓰기) -->
+    <meta> <!-- meta는 데이터를 설명하는 데이터이다(책 앞에 있는 발행연도 등을 나타내는 것과 비슷). meta는 마감태그가 없다. vs code는 특수기호 없이 태그만 치고 엔터를 누르면 마감코드가 있는지 없는지 알려준다.  -->
+    <title>25. 5. 29 coding solo review</title> <!-- 파일명은 영문으로 작성한다 -->
+    <style>
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      tr, td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body> <!-- body태그는 우리가 보는 화면을 나타내준다 -->
+    <h1>big title</h1>
+    <h2>second big title</h2>
+    <h3>third big title</h3>
+    
+    first line <br><hr> second line <br><br>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quos ea dicta vero ullam dolores explicabo corrupti eos maxime dolore in aut beatae consequuntur, facilis, numquam repellendus sed qui enim.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate voluptas eveniet quaerat iste, doloribus ratione deserunt minus a recusandae aliquid architecto. Neque porro facilis minima nostrum, id officiis libero aut.</p>
+
+    <hr>
+
+    <h1>네이버와 구글</h1>
+    <h2>어지러운 표 작성</h2>
+    <p>이것은 네이버와 구글에 대한 표이다. <br>이 표는 굉장히 복잡하다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <td rowspan="2">
+            <img src="네이버.png" alt="" width="200px">
+          </td>
+          <td>
+            <button>네이버</button>
+          </td>
+          <td>
+            <input type="checkbox">네이버
+          </td>
+          <td colspan="2">
+            네이버
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="2">
+            <a href="https://www.naver.com">naver</a>
+          </td>
+          <td colspan="2">
+            <input type="button" value="naver">
+          </td>
+          <td>
+            <input type="checkbox">naver
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://www.naver.com">네이버</a>
+          </td>
+          <td>네</td>
+          <td>이</td>
+          <td>버</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="2" rowspan="2">
+            <img src="구글.png" alt="">
+          </td>
+          <td>
+            <button>구글</button>
+          </td>
+          <td>
+            <input type="checkbox">구글
+          </td>
+          <td>
+            구글
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https:www.google.co.kr">구글</a>
+          </td>
+          <td colspan="2" rowspan="3">
+            <ol>
+              <li>네이버
+                <ul>
+                  <li>naver</li>
+                  <li>spdlqj</li>
+                </ul>
+              </li>
+              <li>구글
+                <ul>
+                  <li>google</li>
+                  <li>rnrmf</li>
+                </ul>
+              </li>
+            </ol>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://www.google.co.kr">google</a>
+          </td>
+          <td>구</td>
+          <td>글</td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="2">
+            <textarea rows="4" cols="30"></textarea> <br>
+            이것은 텍스트이다.
+          </td>
+          <td>
+            <input type="text">네이버 <br>
+            <input type="text">구글
+          </td>
+        </tr>
+        <tr>
+          <td><b>java</b></td>
+          <td><i>html</i></td>
+          <td><u>css<u></td>
+        </tr>
+      </tbody>    
+    </table>
+    
+    <hr>
+
+    ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="아이디를 입력해주세요."> <br>
+    Password: <input type="password">
+    <textarea placeholder="텍스트를 입력해주세요." rows="5" cols="90"></textarea>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.menu-div{
+  width: 1000px;
+  height: 100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul{
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+}
+
+li{
+  font-weight: 550;
+}
+
+li:hover{
+  color: #df933f;
+  cursor: pointer;
+}
+
+li:active{
+  color: rgb(218, 142, 78);
+}
+
+a{
+  color: black;
+  font-weight: 550;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #df933f;
+  cursor: pointer;
+}
+
+.menu-div > div{
+  width: 300px;
+  position: relative;
+}
+
+.menu-div i{
+  color: #df933f;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 5px;
+  right: 7px;
+}
+
+.menu-div i:hover{
+  cursor: pointer;
+}
+
+.menu-div i:active{
+  color: rgb(218, 142, 58);
+}
+
+input{
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #e2e2e2;
+}
+
+input:focus{
+  outline: 1px solid #e2e2e2;
+}
+
+.img-div1{
+  height: 400px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.img-div1 > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-div1 > div{
+  position: absolute;
+  top: 100px;
+}
+
+.img-div1 h1{
+  color: #df933f;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.img-div1 p{
+  color: white;
+  margin: 10px 0px;
+}
+
+button{
+  color: white;
+  background-color: #df933f;
+  border: none;
+  padding: 10px 50px;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+button:active{
+  background-color: rgb(218, 142, 58);
+}
+
+.ribbon-div1{
+  text-align: center;
+  margin-top: 150px;
+}
+
+.ribbon-div1 > h1, .ribbon-div2 > h1{
+  margin-bottom: 10px;
+  font-weight: 450;
+}
+
+.icon-div{
+  width: 1300px;
+  margin: 150px auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.icon-div i{
+  color: #df933f;
+  border: 25px solid #df933f;
+  font-size: 2rem;
+  border-radius: 50%;
+  padding: 30px;
+  margin: 30px;
+}
+
+.icon-div p:first-of-type{
+  margin-top: 80px;
+  font-weight: 700;
+}
+
+.icon-div p:last-of-type{
+  font-size: 0.9rem;
+  color: #666666;
+  margin: 15px 0px;
+  line-height: 25px;
+}
+
+.ribbon-div2{
+  text-align: center;
+}
+
+.img-div2{
+  width: 1300px;
+  margin: 100px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-div2 > div{
+  position: relative;
+}
+
+.img-div2 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-div2 > div > div{
+  background-color: rgb(0, 0, 0, 0.7);
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 15px;
+  padding-top: 25px;
+}
+
+.img-div2 > div p:first-child{
+  color: white;
+  font-weight: bold;
+}
+
+.img-div2 > div p:last-child{
+  color: #df933f;
+}

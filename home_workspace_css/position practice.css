@@ -1,0 +1,16 @@
+.img-div{
+  position: relative;
+  width: 200px;
+}
+
+i{
+  position: absolute;
+  top: 55px;
+  left: 40px;
+  font-size: 0.8rem;
+  color: white;
+}
+
+img{
+  width: 100%;
+}

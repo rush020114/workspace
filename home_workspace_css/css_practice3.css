@@ -1,0 +1,86 @@
+.container{
+  width: 700px;
+  margin: 30px auto;
+  padding: 0px 30px;
+  border: 1px solid #eeeeee;
+  box-shadow:  0 1px 1px rgba(0,0,0,0.12), 
+              0 2px 2px rgba(0,0,0,0.12), 
+              0 4px 4px rgba(0,0,0,0.12), 
+              0 8px 8px rgba(0,0,0,0.12),
+              0 16px 16px rgba(0,0,0,0.12);
+}
+
+h1{
+  margin: 15px 0px;
+}
+
+input{
+  color: white;
+  background-color: #5ea0b4;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 3px;
+  margin: 10px 0px;
+}
+
+table{
+  width: 100%;
+}
+
+thead{
+  color: white;
+  background-color: black;
+  font-weight: bold;
+}
+
+thead td{
+  padding: 10px 0px;
+  padding-left: 10px;
+}
+
+tbody td{
+  padding: 10px 0px;
+  padding-left: 10px;
+  
+}
+
+tbody > tr:nth-child(odd){
+  background-color: #f2f2f2;
+}
+
+tbody td:first-child{
+  color: #507bf4;
+  padding-left: 10px;
+}
+
+ul{
+  margin: 20px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+li{
+  border: 1px solid #eeeeee;
+  color: #507bf4;
+  padding: 5px 10px;
+}
+
+li:first-child{
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  color: black;
+}
+
+li:last-child{
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+li:first-child, li:last-child{
+  padding: 5px 15px;
+}
+
+li:nth-child(3){
+  color: white;
+  background-color: #507bf4;
+}

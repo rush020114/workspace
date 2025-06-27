@@ -1,0 +1,44 @@
+.container{
+  width: 600px;
+  margin: 30px auto;
+}
+
+h1{
+  background-color: #5e90f6;
+  color: white;
+  text-align: center;
+}
+
+.container > div:first-of-type{
+  background-color: #e16d51;
+  color: white;
+  margin-top: 30px;
+  padding: 20px 25px;
+}
+
+.container > div:last-of-type{
+  background-color: #edeaea;
+  margin-top: 20px;
+  padding: 20px 10px;
+  padding-bottom: 10px;
+}
+
+h3{
+  margin-bottom: 20px;
+}
+
+textarea{
+  border-left: 3px solid #74c94e;
+  width: 100%;
+  resize: none;
+  vertical-align: middle;
+  margin-bottom: 20px;
+}
+
+input{
+  color: white;
+  background-color: #70ac5c;
+  border: none;
+  border-radius: 0px;
+  padding: 7px 10px;
+}

@@ -1,0 +1,82 @@
+/*
+ 가상클래스 : 가상의 선택자, 실제로 존재하지 않는 요소나, 상태, 조건에 따라 스타일을 적용할 때 사용.
+ 
+ 가상클래스는 디테일하게 말하면 가사요소와 가상클래스로 구분
+ 가상요소 : 실제로 존재하지 않는 요소에 스타일 적용
+ 가상클래스 : 요소의 상태가 조건에 따라 스타일 적용
+*/
+.d1, .d2{
+  width: 150px;
+  height: 150px;
+  background-color: crimson;
+  color: white;
+  margin: 20px;
+  text-align: center;
+  line-height: 150px;
+
+  /* 변환 */
+  transition: all 1s;
+}
+
+.d1:hover{
+  background-color: aqua;
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+}
+
+input{
+  width: 150px;
+  margin-left: 20px;
+  transition: all 2s;
+}
+
+/* 태그가 클릭됐을 때 */
+input:focus{
+  width: 250px;
+}
+
+/* 첫번째 자식 */
+ul > li:first-child{
+  background-color: bisque;
+}
+
+/* 마지막 자식 */
+ul > li:last-child{
+  background-color: brown;
+}
+
+/* 두번째 자식 */
+ul > li:nth-child(2){
+  background-color: chartreuse;
+}
+
+/* even : 짝수, odd : 홀수 */
+ul > li:nth-child(even){
+  color: red;
+}
+
+ul > li:nth-child(odd){
+  color: darkcyan;
+}
+
+/*
+ first-child는 태그의 종류보다 순서를 더 우선시한다.(자식태그가 동일할 때 사용)
+ 첫번째 자식이 span일 때만 적용!
+*/
+.d3 > span:first-child{
+  color: red; /* 적용 안 됨*/
+}
+
+/* 자식이 다양하면 밑에처럼 쓴다. */
+.d3 > span:first-of-type{
+  color: blue;
+}
+
+.d3 > span:last-of-type{
+  color: aquamarine;
+}
+
+.d3 > p:nth-of-type(2){
+  color: tomato;
+}

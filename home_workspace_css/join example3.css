@@ -1,0 +1,85 @@
+.container{
+  width: 600px;
+  margin: 200px auto;
+}
+
+h1{
+  color: #735d8a;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.content-div{
+  background-color: #f6f5f7;
+  padding-top: 50px;
+}
+
+.content-div > div:first-child{
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-div > div > div{
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.content-div > div > div:first-child{
+  justify-content: space-around;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.content-div > div > div:nth-of-type(2){
+  width: 45%;
+  margin-left: 30px;
+}
+
+input[type="text"], input[type="password"]{
+  padding: 8px;
+  border: 1px solid #bbbbbb;
+}
+
+input[type="text"]:focus, input[type="password"]:focus{
+  outline: 1px solid lightskyblue;
+}
+
+input[type="button"]{
+  width:110%;
+  height: 100%;
+  color: white;
+  background-color: #735d8a;
+  border: none;
+  font-size: 0.75rem;
+  padding: 0px 15px;
+}
+
+div[style="position: relative;"] > div{
+  position: absolute;
+  bottom: -20px;
+  display: flex;
+  gap: 3px;
+}
+
+.btn-div{
+  border-top: 1px solid #735d8a;
+  width: 90%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+button{
+  color: #735d8a;
+  background-color: white;
+  border: 1px solid #735d8a;
+  width: 150px;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}

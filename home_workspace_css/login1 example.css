@@ -1,0 +1,32 @@
+*{
+  box-sizing: border-box;
+}
+
+.container{
+  background-color: #eeeeee;
+  border: 2px solid #dddddd;
+  border-radius: 5px;
+  width: 350px;
+  margin: 250px auto;
+  padding: 20px 10px;
+}
+
+h1{
+  margin: 10px;
+  text-align: center;
+}
+
+input{
+  width: 100%;
+  border: 2px solid #dddddd;
+  border-radius: 20px;
+  padding: 7px 15px;
+  margin: 5px 0px;
+}
+
+input[type="button"] {
+  background-color: black;
+  color: white;
+  border: 0px;
+}
+

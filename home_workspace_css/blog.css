@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  background-color: #f1f1f0;
+}
+
+.container{
+  width: 1000px;
+  margin: auto;
+  padding: 20px 0px;
+}
+
+.header{
+  background-color: white;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.header > h1{
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.header > p{
+  padding: 20px 0px;
+}
+
+.navi{
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu{
+  width: 35%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.menu > li{
+  width: 100%;
+  height: 100%;
+  line-height: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.menu > li:hover{
+  background-color: #e59136;
+}
+
+.menu > li > a{
+  color: white;
+  text-decoration: none;
+}
+
+.menu > li > ul{
+  width: 150%;
+  background-color: #f9f9f9;
+  position: absolute;
+  top: 50px;
+  display: none;
+  box-shadow: 0px 3px 5px 1px gray;
+}
+
+.menu > li:hover > ul{
+  display: block;
+}
+
+.menu > li > ul a{
+  color: black;
+  text-decoration: none;
+}
+
+.menu > li > ul a:hover{
+  font-weight: 700;
+}
+
+.navi button{
+  height: 100%;
+  border: none;
+  background-color: #e59136;
+  color: white;
+  padding: 0px 25px;
+  font-weight: 700;
+}
+
+.navi button:hover{
+  cursor: pointer;
+}
+
+.navi button:active{
+  background-color: rgb(224, 140, 49);
+}
+
+.contents{
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.contents p{
+  font-size: 0.9rem;
+}
+
+.left-column{
+  width: 80%;
+  padding: 30px 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.left-column > h2, .left-column > p:first-of-type{
+  font-weight: 700;
+}
+
+.left-column > img{
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.right-column{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-column > div{
+  background-color: white;
+  padding: 20px;
+  height: 100%;
+}
+
+.right-column h2, .right-column h3{
+  font-weight: 700;
+}
+
+.right-column img{
+  width: 100%;
+  height: 100px;
+  margin: 20px 0px;
+  object-fit: cover;
+}

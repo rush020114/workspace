@@ -1,0 +1,86 @@
+body{
+  background: linear-gradient(#364b6a, #a6b7d0);
+  height: 100vh;
+}
+
+.container{
+  background-color: white;
+  width: 500px;
+  margin: 50px auto;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+h3{
+  margin-bottom: 20px;
+}
+
+.container > div:first-of-type input{
+  width: 100%;
+  padding: 5px 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.container > div:nth-of-type(1){
+  font-size: 0.8rem;
+}
+
+.name-div{
+  display: flex;  
+  justify-content: space-between;
+}
+
+.name-div > div:first-child{
+  width: 47%;
+}
+
+.name-div > div:last-child{
+  width: 47%;
+}
+
+span{
+  color: #757575;
+}
+
+.flex-div{
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-div > div:first-child{
+  width: 65%;
+}
+.flex-div > div:last-child{
+  width: 30%;
+}
+
+.checkbox-div{
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 15px 0px;
+}
+
+input[type="checkbox"]{
+  margin: 0px;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+button{
+  width: 100%;
+  background-color: #567ff2;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 7px 0px;
+}
+
+.icon{
+  text-align: center;
+  font-size: 0.75rem;
+}

@@ -8,7 +8,7 @@ package apple;
 // 멤버변수는 무조건 private 붙인다!
 // 메서드는 무조건 public 쓴다.
 // 지역변수에는 접근제한자를 사용 못함.
-// 클래스에는 public, default만 사용 가능
+// 클래스에는 public, default만 사용 가능!
 public class Apple {
   public String name;
   private int price;

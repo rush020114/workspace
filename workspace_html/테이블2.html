@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 400px;
+        text-align: center;
+      }
+      tr, td {
+        border: 1px solid black;
+      }
+    </style>
+</head>
+<body>
+  <h2>행과 열 병합</h2>
+
+  <table>
+    <tr>
+      <td>1</td>
+      <td colspan="2">2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td rowspan="2">10</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <table>
+    <tr>
+      <td rowspan="2">Empno</td>
+      <td colspan="4">Marks</td>
+    </tr>
+    <tr>
+      <td>Sec A</td>
+      <td>Sec B</td>
+      <td>Sec C</td>
+      <td>Total</td>
+    </tr>
+    <tr>
+      <td>1001</td>
+      <td>45</td>
+      <td>20</td>
+      <td>30</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>1002</td>
+      <td>15</td>
+      <td>5</td>
+      <td>10</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>1003</td>
+      <td>40</td>
+      <td>15</td>
+      <td>10</td>
+      <td>65</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <table>
+    <tr>
+      <td rowspan="3">Day</td>
+      <td colspan="3">Seminar</td>
+    </tr>
+    <tr>
+      <td colspan="2">Schedule</td>
+      <td rowspan="2">Topic</td>
+    </tr>
+    <tr>
+      <td>Begin</td>
+      <td>End</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Monday</td>
+      <td rowspan="2">8:00 a.m.</td>
+      <td rowspan="2">5:00 p.m.</td>
+      <td>Introduction to XML</td>
+    </tr>
+    <tr>
+      <td>Validity: DTD and Relax NG</td>
+    </tr>
+    <tr>
+      <td rowspan="3">Tuesday</td>
+      <td>8:00 a.m.</td>
+      <td>11:00 a.m.</td>
+      <td>X path</td>
+    </tr>
+    <tr>
+      <td>11:00 a.m.</td>
+      <td>2:00 p.m.</td>
+      <td rowspan="2">XSL Transformations</td>
+    </tr>
+    <tr>
+      <td>2:00p.m.</td>
+      <td>5:00p.m.</td>
+    </tr>
+    <tr>
+      <td>Wednesday</td>
+      <td>8:00 a.m.</td>
+      <td>12:00 p.m.</td>
+      <td>XSL Formatting objects</td>
+    </tr>
+  </table>
+  
+  <hr>
+
+  <table>
+    <tr>
+      <td colspan="2">1</td>
+      <td rowspan="2">2</td>
+    </tr>
+    <tr>
+      <td rowspan="2">3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td colspan="2">5</td>
+    </tr>
+  </table>
+</body>
+</html>

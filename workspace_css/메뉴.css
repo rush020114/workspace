@@ -1,0 +1,15 @@
+.header{
+  background-color: black;
+  height: 100px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+ul{
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}

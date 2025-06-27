@@ -1,0 +1,78 @@
+body{
+  background-color: #eeeeee;
+}
+
+.menu{
+  padding-left: 20px;
+  height: 100px;
+  background-color: #4431bf;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.menu > li{
+}
+
+.menu > li > a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.login{
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px 1px gray;
+}
+
+.login > div{
+  font-size: 0.8rem;
+}
+
+h2{
+  color: #4431bf;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login input:not([type="button"]){
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #4431bf;
+  border-radius: 5px;
+}
+
+.login input:focus:not([type="button"]){
+  outline: 1px solid #4431bf;
+}
+
+.login input[type="button"]{
+  width: 100%;
+  padding: 10px;
+  background-color: #4431bf;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.login input[type="button"]:hover{
+  cursor: pointer;
+}
+
+.login input[type="button"]:active{
+  background-color: rgb(63, 44, 186);
+}
+
+.login > div:last-child{
+  text-align: center;
+  margin-top: 20px;
+}
+

@@ -1,0 +1,22 @@
+div{
+  color: white;
+}
+
+.container{
+  background-color: black;
+  height: 150px;
+  display: flex;
+}
+
+.container > div:first-child{
+  width: 70%;
+  line-height: 150px;
+  padding-left: 15px;
+}
+
+.container > div:last-child{
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

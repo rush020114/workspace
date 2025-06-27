@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.content {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body{
+  background-color: #6665ff;
+}
+
+.container{
+  width: 350px;
+  margin: 100px auto;
+  background-color: #eeeeee;
+  box-shadow: 0px 30px 100px 1px #222222;
+  padding: 5px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.header > div{
+  width: 100%;
+  text-align: center;
+}
+
+.header > div:last-child{
+  text-align: end;
+}
+
+.header > div:first-child{
+  display: flex;
+  align-items: center;
+  font-size: 0.6rem;
+  font-weight: 1000;
+}
+
+.content{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title{
+  display: flex;
+  gap: 10px;
+}
+
+.title > div{
+  margin-top: 8px;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title > div > div{
+  border: 1.5px solid black;
+}
+
+.menu{
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu > li:focus{
+  font-weight: 450;
+  color: #6665ff;
+  border-bottom: 2px solid #6665ff;
+}
+
+.menu > li {
+  color: #b2b9c2;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.date{
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.schedule{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.schedule > div{
+  background-color: white;
+  box-shadow: 0px 1px 5px 0px #cccccc;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.schedule > div > p:last-child{
+  color: #b2b9c2;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.icon-span{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 35px;
+  left: 125px;
+  text-align: center;
+}
+
+.icon-span > span{
+  font-size: 1.5rem;
+  background-color: #6665ff;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  box-shadow: 0px 5px 10px 0px rgb(97, 96, 250);
+}
+
+.schedule > p{
+  color: #6665ff;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 0.9rem;
+}

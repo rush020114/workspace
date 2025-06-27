@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="css회원가입.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 제목 -->
+    <div>
+      <h2>회원가입</h2>
+      <p class="p1">회원이 되어 다양한 혜택을 경험해 보세요!</p>
+    </div>
+    <!-- 내용 -->
+    <div>
+      <p>아이디<span>*</span></p>
+      <div class="flex-div1">
+        <input type="text" placeholder="아이디 입력(6~20자)">
+        <input type="button" value="중복 확인">
+      </div>
+      <p>비밀번호<span>*</span></p>
+      <input type="password" placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 8~20자)">
+      <p>비밀번호 확인<span>*</span></p>
+      <input type="password" placeholder="비밀번호 재입력">
+      <p>이름<span>*</span></p>
+      <input type="text" placeholder="이름을 입력해주세요">
+      <p>주소<span>*</span></p>
+      <div class="flex-div2">
+        <input type="text" placeholder="주소를 입력해주세요">
+        <input type="text" placeholder="상세주소">
+      </div>
+      <p>전화번호<span>*</span></p>
+      <input type="text" placeholder="휴대폰 번호 입력 ('-'제외 11자리 입력)">
+      <p>이메일 주소<span>*</span></p>
+      <div class="flex-div3">
+        <input type="text" placeholder="이메일 주소">
+        <div>@</div>
+        <input type="text">
+        <select class="select1">
+          <option>선택</option>
+        </select>
+      </div>
+      <p>생년월일</p>
+      <div class="flex-div4">
+        <select>
+          <option>년도</option>
+        </select>
+        <select>
+          <option>월</option>
+        </select>
+        <select>
+          <option>일</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <div type="button">가입완료</div>
+      <div type="button">가입취소</div>
+    </div>
+  </div>
+</body>
+</html>

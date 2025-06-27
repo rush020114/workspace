@@ -1,0 +1,33 @@
+.container{
+  border: 1px solid black;
+  width: 600px;
+  height: 400px;
+  margin: 30px;
+
+  display: grid;
+  /* grid-template-columns: 100px 200px 150px; */
+  /* grid-template-columns: 20% 30% 40%; */
+  /* fr은 배율 */
+  /* grid-template-columns: 1fr 2fr 1fr; */
+  /* grid는 열과 행을 같이 써줘야 크기와 개수를 완전하게 지정할 수 있다. */
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+  /* 세로 정렬 */
+  align-content: center;
+  /* 가로 정렬 */
+  justify-content: center;
+  /* 아이템 안에서의 세로 정렬 */
+  align-items: center;
+  /* 아이템 안에서의 가로 정렬 */
+  justify-items: start;
+}
+
+.item{
+  border: 1px solid red;
+}
+
+.d1{ 
+  justify-self: center;
+  align-self: end;
+}

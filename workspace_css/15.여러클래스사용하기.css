@@ -1,0 +1,27 @@
+.input-basic{
+  padding: 4px;
+  border: 1px solid blueviolet;
+  border-radius: 6px;
+}
+
+.small{
+  width: 80px;
+}
+
+.normal{
+  width: 120px;
+}
+
+.btn{
+  padding: 6px 16px;
+  color: white;
+  border: none;
+}
+
+.btn-primary{
+  background-color: blue;  
+}
+
+.btn-success{
+  background-color: greenyellow;
+}

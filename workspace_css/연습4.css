@@ -1,0 +1,24 @@
+*{
+  box-sizing: border-box;
+}
+.container{
+  margin: auto;
+  text-align: center;
+  width: 300px;
+  border: 1px solid gainsboro;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+.input{
+  width: 200px;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+}
+.btn{
+  width: 200px;
+  color: white;
+  border: 1px solid black;
+  background-color: black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}

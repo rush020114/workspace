@@ -1,0 +1,51 @@
+*{
+  box-sizing: border-box;}
+
+.container{
+  border: 1px solid black;
+  width: 300px;
+  margin: auto;
+  border-radius: 10px;
+}
+.title-div{
+  font-size: 2rem;
+  padding: 40px 0px;
+}
+.center-div{
+  text-align: center;
+}
+.center-div > input{
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  border: solid gainsboro;
+}
+.margin-div{
+  margin: 0px 5%;
+}
+hr{
+  width: 90%;
+}
+.btn-div{
+  text-align: center;
+}
+button{
+  width: 90%;
+  background-color: cornflowerblue;
+  color: white;
+  padding: 10px;
+  border: 0px;
+  border-radius: 5px;
+  margin: 15px;
+}
+a{
+  text-align: center;
+}
+.font{
+  font-weight: bold;
+  text-decoration: underline;
+}
+.font-small{
+  font-size: 0.7rem;
+}

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.container{
+  background-color: #f9f9f9;
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+}
+
+.login-div{
+  padding: 30px 50px;
+  border: 2px solid #eaeaea;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.login-div > h1{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-div input{
+  padding: 10px;
+  border: 1.5px solid #eaeaea;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.login-div input:focus{
+  outline: 2px solid #9a9a9a;
+}
+
+.login-div button{
+  background-color: #55a1ff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.login-div button:hover{
+  cursor: pointer;
+}
+
+.login-div button:active{
+  background-color: rgb(80, 156, 250);
+}
+
+.login-div > div:first-of-type{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-div > div:nth-of-type(2){
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.login-div hr{
+  width: 40%;
+  align-self: flex-end;
+  border: 1px solid #9a9a9a;
+}
+
+.or-span{
+  width: 20%;
+  text-align: center;
+  color: #9a9a9a;
+  padding-bottom: 3px;
+  font-weight: 700;
+}
+
+.login-div > div:last-of-type{
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  color: #4a48a1;
+  margin-top: 20px;
+}
+
+.login-div p:hover{
+  cursor: pointer;
+}
+
+.sign-div{
+  border: 2px solid #eaeaea;
+  background-color: white;
+  border-radius: 3px;
+  padding: 30px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sign-div > p:first-child{
+  color: gray;
+  font-weight: 550;
+}
+
+.sign-div a{
+  text-decoration: none;
+  font-weight: 550;
+}

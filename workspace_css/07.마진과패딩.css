@@ -1,0 +1,32 @@
+.d1{
+  border: 1px solid black;
+  /* 안쪽 여백 (상하좌우) */
+  padding: 20px;
+}
+
+.d2{
+  border: 1px solid black;
+  /* 앞은 상하 여백, 뒤는 좌우 여백 */
+  padding: 20px 50px ;
+}
+.d3{
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-right: 30px;
+  padding-bottom: 40px;
+}
+
+.d4{
+  border: 1px solid black;
+  margin: 20px;
+  /* 앞은 상하 여백, 뒤는 좌우 여백 */
+  /* margin은 위아래로 큰 여백 하나만 적용된다. */
+  margin: 20px 40px;
+  margin-left: 100px;
+}
+.d5{
+  border: 1px solid black;
+  padding: 30px;
+  margin: 50px
+}

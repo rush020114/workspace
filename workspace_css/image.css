@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body{
+  background-color: beige;
+}
+
+.container{
+  width: 800px;
+  margin: 100px auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px 1px #cccccc;
+}
+
+.header{
+  background-color: #eeeeee;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.header > h1{
+  background-color: pink;
+  color: white;
+  width: 200px;
+  margin: 10px auto;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.content{
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.content img{
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  transition: all 0.5s;
+}
+
+.content > div{
+  overflow: hidden;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 1px 5px 5px 1px #cccccc;
+}
+
+.content > div > div{
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  padding: 10px;
+  transition: all 0.5s;
+}
+
+.content > div:hover > div{
+  opacity: 1;
+  cursor: pointer;
+}
+
+.content > div:hover > img{
+  scale: 1.2;
+}
+
+.content h4{
+  margin-bottom: 5px;
+}

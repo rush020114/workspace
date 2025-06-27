@@ -1,0 +1,24 @@
+.container{
+  margin: 20px 10px;
+}
+
+.ul-div{
+  background-color: #108015;
+  height: 100px;
+}
+
+ul{
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+li{
+  color: white;
+}
+
+h2{
+  margin-top: 15px;
+}

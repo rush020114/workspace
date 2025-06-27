@@ -1,0 +1,21 @@
+.container{
+  width: 500px;
+}
+
+.relative{
+  position: relative;
+}
+
+img{
+  width: 500px;
+}
+
+span{
+  font-size: 1.7rem;
+  color: red;
+
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+

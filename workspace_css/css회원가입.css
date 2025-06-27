@@ -1,0 +1,142 @@
+/* 
+  container(div)의 부모태그에 flex를 주어 주축으로 중앙정렬시키고 교차축 정렬을 가운데로 시킴  
+*/
+body{
+  background-color: #d9fdff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  width: 450px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0.5px 0.1px 2px 1px #cccccc;
+  padding: 50px 60px;
+}
+
+p{
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: 7px;
+  margin-bottom: 3px;
+}
+
+.container > div:first-child{
+  margin-bottom: 30px;
+}
+
+.p1{
+  font-weight: 400;
+}
+
+span{
+  color: red;
+}
+
+input:not([type="button"]){
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #eeeeee;
+  width: 100%;
+}
+
+input:not([type="button"]):focus{
+  outline: 1px solid #eeeeee;
+}
+
+input::placeholder{
+  font-size: 0.7rem;
+}
+
+select{
+  width: 100%;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  color: #999999;
+  padding: 0px 10px;
+  font-size: 0.7rem;
+}
+
+.flex-div1{
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+input[type="button"]{
+  width: 50%;
+  background-color: #00b6ef;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.7rem;
+}
+
+.flex-div2{
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.flex-div3{
+  display: flex;
+  gap: 5px;
+}
+
+.flex-div3 > div{
+  align-self: center;
+}
+
+.flex-div3 > input:last-of-type{
+  background-color: #f5f5f5;
+}
+
+.flex-div4{
+  display: flex;
+  height: 35px;
+  gap: 20px;
+}
+
+.container > div:last-child{
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+div[type="button"]{
+  box-shadow: 1px 1px 3px 1px #cccccc;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 25px;
+  color: white;
+  font-size: 0.6rem;
+}
+
+input[type="button"]:hover, div[type="button"]:hover{
+  cursor: pointer;
+}
+
+input[type="button"]:active{
+  background-color: rgb(0, 178, 234);
+}
+
+div[type="button"]:first-child{
+  background-color: #00b6ef;
+}
+
+div[type="button"]:last-child{
+  background-color: #efc900;
+}
+
+div[type="button"]:first-child:active{
+  background-color: rgb(0, 178, 234);
+}
+
+div[type="button"]:last-child:active{
+  background-color: rgb(234, 196, 0);
+}

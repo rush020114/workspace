@@ -1,0 +1,47 @@
+.container{
+  margin: 30px auto;
+  width: 800px;
+}
+
+h2{
+  text-align: center;
+  background-color: crimson;
+  color: white;
+  font-weight: unset;
+  border-radius: 5px;
+  margin: 20px 0px;
+}
+
+table{
+  text-align: center;
+  width: 100%;
+}
+
+thead{
+  background-color: dodgerblue;
+  color: white;
+  font-size: 1.1rem;
+  border: 3px solid black;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+thead td{
+  padding: 5px;
+}
+
+tbody td{
+  vertical-align: middle;
+  display: table-cell;
+  padding: 15px;
+}
+
+tbody > tr, tbody td{
+  border: 1px solid #dddddd;
+  color: #555555;
+}
+
+.text{
+  text-align: start;
+}

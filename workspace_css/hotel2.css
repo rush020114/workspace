@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  background-color: lightcyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container{
+  width: 360px;
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.detail-div{
+  padding: 10px;
+}
+
+.img-div{
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-div > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: all 0.5s;
+}
+
+.img-div > img:hover{
+  scale: 1.1;
+}
+
+.heart{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: white;
+}
+
+.heart:hover{
+  color: red;
+}
+
+.detail-3 img{
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid #eeeeee;
+}
+
+.detail-1 > p:nth-child(1){
+  font-weight: bold;
+}
+
+.detail-1 > p:nth-child(2){
+  font-size: 2rem;
+  color: orange;
+  font-weight: 550;
+  margin: 4px 0px;
+}
+
+.detail-1 > p:nth-child(3){
+  color: gray;
+}
+
+.detail-2{
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  padding: 20px 0px;
+  margin: 12px 0px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.info{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.info > button{
+  border: none;
+  background-color: green;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 6px;
+  margin-left: auto;
+}

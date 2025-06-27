@@ -1,0 +1,44 @@
+body{
+  background-color: #caf4ff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 300px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+body > div{
+  background-color: white;
+  width: 100%;
+  margin-top: 14px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  transition: all 1s;
+}
+
+body > div:hover{
+  scale: 1.2;
+}
+
+body > div > div:last-child{
+  padding: 15px;
+}
+
+body > div > div > div:first-child{
+  font-weight: bold;
+}
+
+body > div > div > div:last-child{
+  color: #999999;
+}
+
+img{
+  width: 75px;
+  border-radius: 50%;
+  border: 1px solid #cccccc;
+}
+
+

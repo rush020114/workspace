@@ -11,8 +11,10 @@ public class Student {
 
   // 멤버 변수
   // 멤버 변수는 메인 메서드가 아닌 다른 메서드에서도 사용할 수 있고 다른 클래스에서도 사용 가능하다.
-  String name;
+  public String name;
   int score;
+  public int firstScore;
+  public int secondScore;
 
   // 접근제한자 : 외부에 공개할 정보와 그렇지 않은 정보를 구분하여 외부로부터의 접근을 제한하기 위해 사용.
   // private score; <- score 변수에 대한 모든 접근을 차단
@@ -23,11 +25,63 @@ public class Student {
   // 즉 생성자를 통해 클래스로부터 객체를 생성할 수 있으며, 초기화까지 진행할 수 있다.
   Student(){
     System.out.println("---> Student 객체 생성");
+    name = "둘리";
+    score = 93;
+  }
+
+  // 지역 변수만 사용하는 메서드
+  // 더해주는 기능만 필요하여 매개변수가 필요없다.
+  public void forTest(){
+    int sum = 0;
+    for(int i = 1 ; i < 101 ; i++){
+      sum += i;
+    }
+    System.out.println("1 ~ 100까지의 합 : " + sum);
   }
 
   // 메서드
   // 메서드는 기능이다.
+  // 멤버변수만 사용하는 메서드
   void printInfo(){
     System.out.println(name +  "의 점수 : " + score);
+  }
+
+  // 멤버 변수와 지역변수(매개 변수)를 모두 사용하는 메서드
+  public void printAvg(int javaScore, int pythonScore, int sqlScore){
+    System.out.println("printAvg(int, int, int) 호출");
+    int sumScore = javaScore + pythonScore + sqlScore;
+    int avgScore = sumScore / 3;
+    System.out.println(name + "의 세 과목의 평균 점수 : " + avgScore);
+  }
+
+
+  // return 키워드를 이용하면 호출한 쪽으로 수행결과를 반환한다. 반환한 자료형과 리턴타입이 동일해야 함.
+  public int forReturn(){
+    int sum = 0;
+    for(int i = 1 ; i < 101 ; i++){
+      sum += i;
+    }
+    return sum;
+  }
+
+  int printReturnInfo(){
+    System.out.println(name +  "의 점수 : " + score);
+    return score;
+  }
+
+  int printAvg(int javaScore, int pythonScore){
+    int sumScore = javaScore + pythonScore;
+    int avgScore = sumScore / 2;
+    return avgScore;
+  }
+  int printAvg(int javaScore, double pythonScore, int sqlScore){
+    int sumScore = javaScore + (int)pythonScore + sqlScore;
+    int avgScore = sumScore / 3;
+    return avgScore;
+  }
+  int printAvg(double javaScore, int pythonScore){
+    int sumScore = (int)javaScore + pythonScore; // 또 다른 두 과목의 평균을 강제 형병환을 통해 가능하게 만듦(대신 매개변수로 소수를 입력해야 함)
+    int avgScore = sumScore / 2;
+    return avgScore;
   }
 }

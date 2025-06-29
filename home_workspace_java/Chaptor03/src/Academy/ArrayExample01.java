@@ -1,4 +1,4 @@
-package Academy;
+package academy;
 // 로또 중복 없는 문제
 
 public class ArrayExample01 {

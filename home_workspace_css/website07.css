@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body{
+  background-color: #f1f1ef;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  width: 1200px;
+  background-color: white;
+  box-shadow: 10px 10px 10px 1px #cccccc;
+}
+
+.menu{
+  font-weight: 700;
+  padding: 7px 0px;
+  padding-left: 5px;
+  padding-right: 10px;
+  display: flex;
+  font-size: 0.8rem;
+}
+
+.menu-div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-div > span{
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.menu-div > span > i{
+  font-size: 1.5rem;
+}
+
+
+.login-div{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-div > select{
+  border: none;
+  font-weight: 700;
+}
+
+.login-div > span{
+  font-weight: 100;
+  color: #cccccc;
+  font-size: 0.9rem;
+}
+
+.login-div > button{
+  background-color: #c66b60;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 7px 10px;
+}
+
+.content{
+  width: 900px;
+  margin: auto;
+  display: flex;
+}
+
+.left-content{
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.left-content > h1{
+  font-size: 3rem;
+}
+
+.left-content > p{
+  color: #777777;
+}
+
+.left-content > p:first-of-type{
+  font-size: 1.15rem;
+}
+
+.left-content > div{
+  border-radius: 3px;
+  background-color: #f8f5f2;
+  padding: 20px 0px;
+  padding-right: 20px;
+}
+
+.left-content > div > ul{
+  margin-left: 30px;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.left-content li:first-child, .left-content li:nth-child(2){
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 10px;
+}
+
+.left-content > p:last-child a{
+  color: #777777;
+  font-size: 0.9rem;
+}
+
+.right-content{
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.right-content input,.right-content select{
+  width: 100%;
+  padding: 7px 3px;
+  border-radius: 3px;
+  color: #777777;
+  border: 1px solid #cccccc;
+}
+
+.info-div{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-div p{
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.name-div{
+  display: flex;
+  gap: 15px;
+}
+
+.position-div{
+  position: relative;
+}
+
+.position-div > span{
+  color: #777777;
+  position: absolute;
+  right: 5px;
+  top: 6px;
+}
+
+.info-div textarea{
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  width: 100%;
+  padding: 5px;
+}
+
+.right-content-bottom{
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.right-content-bottom a{
+  color: black;
+}
+
+.right-content-bottom > button{
+  color: white;
+  background-color: #c66b60;
+  border: none;
+  border-radius: 3px;
+  padding: 7px 40px;
+}

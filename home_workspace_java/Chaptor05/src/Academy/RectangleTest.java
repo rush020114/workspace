@@ -1,4 +1,4 @@
-package Academy;
+package academy;
 
 public class RectangleTest {
   public static void main(String[] args){

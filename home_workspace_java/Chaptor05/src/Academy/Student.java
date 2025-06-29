@@ -1,4 +1,4 @@
-package Academy;
+package academy;
 
 public class Student {
   private String name;

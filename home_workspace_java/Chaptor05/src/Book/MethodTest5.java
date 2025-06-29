@@ -1,4 +1,4 @@
-package Book;
+package book;
 
 public class MethodTest5 {
   public static void main(String[] args){

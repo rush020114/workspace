@@ -1,4 +1,4 @@
-package Academy;
+package academy;
 // 3, 6, 9 배열 문제
 public class ArrayExample02 {
   public static void main(String[] args) {

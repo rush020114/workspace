@@ -1,4 +1,4 @@
-package Academy;
+package academy;
 
 // 형변환
 public class 자료형_2 {

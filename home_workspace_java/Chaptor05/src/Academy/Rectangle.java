@@ -1,4 +1,4 @@
-package Academy;
+package academy;
 
 public class Rectangle {
   private int x1;

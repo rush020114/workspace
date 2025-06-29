@@ -1,4 +1,4 @@
-package Yoon;
+package yoon;
 
 // 기능을 위한 설계도를 만들어놓기 위해선 데이터와 기능이 필요하다.
 public class BankAccount {

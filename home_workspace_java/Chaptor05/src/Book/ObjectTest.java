@@ -1,4 +1,4 @@
-package Book;
+package book;
 
 public class ObjectTest {
   public static void main(String[] args){

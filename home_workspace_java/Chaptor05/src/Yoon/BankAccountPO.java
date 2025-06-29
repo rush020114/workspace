@@ -1,4 +1,4 @@
-package Yoon;
+package yoon;
 
 public class BankAccountPO {
   // 프로그램은 데이터와 기능들이 모여 형성된다.

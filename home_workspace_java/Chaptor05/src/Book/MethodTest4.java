@@ -1,4 +1,4 @@
-package Book;
+package book;
 
 public class MethodTest4 {
   // 메서드 오버로딩 : 하나의 클래스에 같은 이름의 메서드를 중복 선언할 수 있음.

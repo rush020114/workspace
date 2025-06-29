@@ -1,4 +1,4 @@
-package Yoon;
+package yoon;
 
 public class Conversion {
   public static void main(String[] args){

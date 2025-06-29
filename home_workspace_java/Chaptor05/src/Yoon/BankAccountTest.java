@@ -1,4 +1,4 @@
-package Yoon;
+package yoon;
 
 public class BankAccountTest { // 지금의 클래스는 main메서드를 담기 위한 클래스이지 데이터와 기능을 묶기위한 클래스는 아니다.
   public static void main(String[] args){

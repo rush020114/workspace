@@ -1,4 +1,4 @@
-package Book;
+package book;
 
 public class MethodTest3 {
   private String name;

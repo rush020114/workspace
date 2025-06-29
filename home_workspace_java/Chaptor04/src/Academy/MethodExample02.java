@@ -1,4 +1,4 @@
-package Academy;
+package academy;
 
 public class MethodExample02 {
   public static void main(String[] args){

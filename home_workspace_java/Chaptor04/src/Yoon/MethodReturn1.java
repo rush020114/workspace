@@ -1,4 +1,4 @@
-package Yoon;
+package yoon;
 
 public class MethodReturn1 {
   public static void main(String[] args){

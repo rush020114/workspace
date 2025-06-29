@@ -12,4 +12,12 @@ public class CustomerInfo {
     this.tel = tel;
     this.accountInfo = accountInfo;
   }
+
+  public AccountInfo getAccountInfo(){
+    return accountInfo;
+  }
+
+  public void getCustomerInfo(){
+    System.out.println("이름 : " + name + " 주번 : " + idenNum + " 연락처 : " + tel + " 계좌번호 : " + accountInfo.getAccNum() + " 예금액 : " + accountInfo.getBalance());
+  }
 }

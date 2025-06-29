@@ -1,4 +1,4 @@
-package Book;
+package book;
 
 public class MethodTest1 {
   // 메서드는 기능을 담당한다.

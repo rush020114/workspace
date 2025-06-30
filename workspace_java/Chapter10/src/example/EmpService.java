@@ -49,7 +49,37 @@ public class EmpService {
 
   // 월급 정보 출력
   public void printPay(){
+    System.out.print("부서명 : ");
+    String dept = sc.next();
+    System.out.println("==개발부 월급 현황==");
+    int sum = 0;
+    int cnt = 0;
     for(int i = 0 ; i < empList.size() ; i++){
+      if(empList.get(i).getDept().equals(dept)){
+        System.out.println("이름 : " + empList.get(i).getName() + ", 월급 : " + empList.get(i).getPay());
+        sum += empList.get(i).getPay();
+        cnt++;
+      }
     }
+    double avg = sum / (double)cnt;
+    System.out.println(dept + "서의 월급 총액은 " + sum + "원이며, 평균 급여는 " + avg + "원입니다.");
+  }
+
+  // 부서 월급 인상
+  public void upPay(){
+    System.out.print("부서명 : ");
+    String dept = sc.next();
+    System.out.print("인상급여 : ");
+    int pay = sc.nextInt();
+    System.out.println(dept + " 각 사원의 급여가 각각 " + pay + "원씩 인상됩니다.");
+    System.out.println("==월급 인상 후 개발부 월급 현황==");
+    for(Emp e : empList){
+      if(e.getDept().equals(dept)){
+        int rePay = e.getPay() + pay;
+        e.setPay(rePay);
+        System.out.println("이름 : " + e.getName() + " 월급 : " + rePay);
+      }
+    }
+
   }
 }

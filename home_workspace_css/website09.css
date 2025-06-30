@@ -14,5 +14,39 @@ body{
 }
 
 .menu{
+  height: 70px;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+}
 
+.menu > h1 > span{
+  border-bottom: 2px solid #8cc2e5;
+}
+
+.menu > div{
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+}
+
+.menu > div > a{
+  text-decoration: none;
+  color: black;
+  font-size: 0.8rem;
+}
+
+.img{
+  position: relative;
+}
+
+img{
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.title{
+  position: absolute;
+  top: 0px;
 }

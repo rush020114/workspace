@@ -1,4 +1,4 @@
-package account;
+package account1;
 
 public class CustomerInfo {
   private String name;
@@ -21,3 +21,4 @@ public class CustomerInfo {
     System.out.println("이름 : " + name + " 주번 : " + idenNum + " 연락처 : " + tel + " 계좌번호 : " + accountInfo.getAccNum() + " 예금액 : " + accountInfo.getBalance());
   }
 }
+

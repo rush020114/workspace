@@ -1,4 +1,4 @@
-package account;
+package account1;
 
 public class AccountInfo {
   private String accNum;

@@ -1,7 +1,5 @@
 package student;
 
-import 실습.Stu;
-
 import java.util.Scanner;
 
 public class StudentManager {

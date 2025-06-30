@@ -1,10 +1,8 @@
-package account;
+package account1;
 
 import java.util.Scanner;
 
 public class Banking {
-  private AccountInfo accountInfo;
-  private CustomerInfo customerInfo;
   private CustomerInfo[] customerInfos;
   int cnt;
   Scanner sc;
@@ -94,9 +92,9 @@ public class Banking {
     System.out.print("계좌번호 : ");
 
     // 계좌번호를 입력하면 AccountInfo에 계좌가 등록되면서 10000원 입금
-    accountInfo = new AccountInfo(sc.next());
+    AccountInfo accountInfo = new AccountInfo(sc.next());
     // 계좌번호가 입력되면서 customerInfo에 고객 정보를 등록할 수 있게 됨.
-    customerInfo = new CustomerInfo(name, idenNum, tel, accountInfo);
+    CustomerInfo customerInfo = new CustomerInfo(name, idenNum, tel, accountInfo);
     return customerInfo;
   }
 }

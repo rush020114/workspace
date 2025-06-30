@@ -1,4 +1,4 @@
-package account1;
+package account;
 
 public class CustomerInfo {
   private String name;

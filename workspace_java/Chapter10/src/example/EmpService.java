@@ -50,7 +50,6 @@ public class EmpService {
   // 월급 정보 출력
   public void printPay(){
     for(int i = 0 ; i < empList.size() ; i++){
-      if()
     }
   }
 }

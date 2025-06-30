@@ -1,4 +1,5 @@
-package account1;
+package account;
+
 
 import java.util.Scanner;
 

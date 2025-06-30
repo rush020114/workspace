@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bfc9aa2d-1a15-47c5-9197-0f2fa5d7ad62" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2yeqbrtcjWrNkOfX8IlPGNpIK4f" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.A04배열값읽고쓰기.executor": "Run",
+    "Application.A05배열과반복문.executor": "Run",
+    "Application.Break_01.executor": "Run",
+    "Application.Break_Continue_01.executor": "Run",
+    "Application.Break문제01.executor": "Run",
+    "Application.Break문제02.executor": "Run",
+    "Application.Break문제03.executor": "Run",
+    "Application.Break문제04.executor": "Run",
+    "Application.Break문제05.executor": "Run",
+    "Application.Break문제06.executor": "Run",
+    "Application.ForEach.executor": "Run",
+    "Application.For_1.executor": "Run",
+    "Application.While_1.executor": "Run",
+    "Application.무한루프_1.executor": "Run",
+    "Application.무한루프문제01.executor": "Run",
+    "Application.반복문문제01.executor": "Run",
+    "Application.반복문문제01_1.executor": "Run",
+    "Application.반복문문제02.executor": "Run",
+    "Application.반복문문제02_2.executor": "Run",
+    "Application.반복문문제03_2.executor": "Run",
+    "Application.반복문문제04.executor": "Run",
+    "Application.반복문문제04_1.executor": "Run",
+    "Application.반복문문제05_1.executor": "Run",
+    "Application.반복문문제06.executor": "Run",
+    "Application.반복문문제06_1.executor": "Run",
+    "Application.반복문문제07.executor": "Run",
+    "Application.반복문문제07_1.executor": "Run",
+    "Application.반복문문제08.executor": "Run",
+    "Application.반복문문제08_1.executor": "Run",
+    "Application.반복문문제1.executor": "Run",
+    "Application.반복문문제11.executor": "Run",
+    "Application.반복문문제11_1.executor": "Run",
+    "Application.반복문문제11_2.executor": "Run",
+    "Application.반복문문제12.executor": "Run",
+    "Application.반복문문제12_1.executor": "Run",
+    "Application.반복문문제13.executor": "Run",
+    "Application.반복문문제2.executor": "Run",
+    "Application.반복문문제3.executor": "Run",
+    "Application.반복문문제3_1.executor": "Run",
+    "Application.반복문문제4.executor": "Run",
+    "Application.반복문문제5.executor": "Run",
+    "Application.반복문문제_13_1.executor": "Run",
+    "Application.배열값읽고쓰기.executor": "Run",
+    "Application.배열문제05.executor": "Run",
+    "Application.배열문제06.executor": "Run",
+    "Application.배열문제07.executor": "Run",
+    "Application.배열문제08.executor": "Run",
+    "Application.배열문제09.executor": "Run",
+    "Application.배열문제09_1.executor": "Run",
+    "Application.배열문제10.executor": "Run",
+    "Application.배열문제10_1.executor": "Run",
+    "Application.배열문제11.executor": "Run",
+    "Application.배열문제11_1.executor": "Run",
+    "Application.배열문제12.executor": "Run",
+    "Application.배열문제12_1.executor": "Run",
+    "Application.배열문제12_2.executor": "Run",
+    "Application.배열문제2_1.executor": "Run",
+    "Application.배열문제2_2.executor": "Run",
+    "Application.배열문제2_2_2.executor": "Run",
+    "Application.배열문제2_3.executor": "Run",
+    "Application.배열문제2_3_2.executor": "Run",
+    "Application.배열문제2_4.executor": "Run",
+    "Application.배열문제2_4_1.executor": "Run",
+    "Application.배열문제2_5.executor": "Run",
+    "Application.배열문제2_6.executor": "Run",
+    "Application.배열문제2_7.executor": "Run",
+    "Application.배열문제2_8.executor": "Run",
+    "Application.배열문제2_9.executor": "Run",
+    "Application.배열문제3_1.executor": "Run",
+    "Application.초기값을갖는배열.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "project.propCompiler"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bfc9aa2d-1a15-47c5-9197-0f2fa5d7ad62" name="Changes" comment="" />
+      <created>1750205462392</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750205462392</updated>
+    </task>
+    <servers />
+  </component>
+</project>

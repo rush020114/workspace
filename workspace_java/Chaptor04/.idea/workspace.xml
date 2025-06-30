@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8aed6558-073d-4142-9b82-41d5f5469714" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2ysxfOmegeIyxDbfWK1JHqJfFok" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.매서드_6.executor": "Run",
+    "Application.매서드문제1.executor": "Run",
+    "Application.매서드문제1_1_7.executor": "Run",
+    "Application.매서드문제1_8.executor": "Run",
+    "Application.매서드문제1_8_15.executor": "Run",
+    "Application.메서드3.executor": "Run",
+    "Application.메서드_1.executor": "Run",
+    "Application.메서드_2.executor": "Run",
+    "Application.메서드_3.executor": "Run",
+    "Application.메서드_4.executor": "Run",
+    "Application.메서드_5.executor": "Run",
+    "Application.메서드_6.executor": "Run",
+    "Application.메서드_배열.executor": "Run",
+    "Application.메서드문제2.executor": "Run",
+    "Application.메서드문제2_1.executor": "Run",
+    "Application.메서드문제3.executor": "Run",
+    "Application.메서드문제3_1.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "project.propCompiler"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8aed6558-073d-4142-9b82-41d5f5469714" name="Changes" comment="" />
+      <created>1750637185577</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750637185577</updated>
+    </task>
+    <servers />
+  </component>
+</project>

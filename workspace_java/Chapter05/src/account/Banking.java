@@ -10,7 +10,7 @@ public class Banking {
 
   public Banking(){
     cnt = 0;
-    customerInfos = new CustomerInfo[10];
+    customerInfos = new CustomerInfo[5];
     sc = new Scanner(System.in);
   }
 

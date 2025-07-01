@@ -1,3 +1,5 @@
+package yoon;
+
 public class Continue {
   public static void main(String[] args) {
     int i = 0;

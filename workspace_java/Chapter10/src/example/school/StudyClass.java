@@ -9,13 +9,11 @@ public class StudyClass {
   private String className;
   private String teacher;
   private List<Student> studentList;
-  private Student student;
 
-  public StudyClass(String className, String teacher, Student student){ // 생성자 : 객체 생성 시 멤버변수를 초기화하며 기능을 실행.
-    sc = new Scanner(System.in);
-    studentList = new ArrayList<>();
+  public StudyClass(String className, String teacher, List<Student> studentList){ // 생성자 : 객체 생성 시 멤버변수를 초기화하며 기능을 실행.
     this.className = className;
     this.teacher = teacher;
+    this.studentList = studentList;
   }
 
   public List<Student> getStudentList() {

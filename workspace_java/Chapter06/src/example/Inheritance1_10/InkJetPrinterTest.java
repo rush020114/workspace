@@ -4,7 +4,7 @@ public class InkJetPrinterTest {
   public static void main(String[] args) {
     InkJetPrinter inkJetPrinter = new InkJetPrinter();
     inkJetPrinter.getAllLeft();
-    inkJetPrinter.printInkJet();
+    inkJetPrinter.print();
     inkJetPrinter.getAllLeft();
   }
 }

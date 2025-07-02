@@ -4,7 +4,7 @@ public class LaserPrinterTest {
   public static void main(String[] args){
     LaserPrinter laserPrinter = new LaserPrinter();
     laserPrinter.getAllLeft();
-    laserPrinter.printLaser();
+    laserPrinter.print();
     laserPrinter.getAllLeft();
   }
 

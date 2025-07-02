@@ -21,8 +21,8 @@ public class InkJetPrinter extends Printer{
     System.out.println("남은 종이 : " + getLeftPage());
   }
 
-  public void printInkJet(){
+  public void print(){
     inkLeft -= 5;
-    print();
+    super.print();
   }
 }

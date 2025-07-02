@@ -1,3 +1,5 @@
+package academy;
+
 public class LoopExample01 {
   public static void main(String[] args){
     int cnt = 0;

@@ -6,6 +6,5 @@ public class ChefTest {
     c.makeCook();
     MasterChef mc = new MasterChef();
     mc.makeCook();
-    
   }
 }

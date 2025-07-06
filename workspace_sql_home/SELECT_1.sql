@@ -30,3 +30,5 @@ WHERE EMPNO >= 1005; # EMP 테이블에서 사번이 1005이상인 사번, 사�
  SELECT *
  FROM emp 
  WHERE JOB != '사원' AND SAL >= 300 AND COMM IS NULL; # EMP 테이블에서 직급이 사원이 아니면서 급여가 300 이상이고 보너스가 NULL이 아닌 모든 정보를 조회
+ 
+ 

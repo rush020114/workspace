@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body{
+  background-color: #f1f1ef;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  background-color: white;
+  width: 1000px;
+  box-shadow: 10px 10px 10px 1px #cccccc;
+}
+
+.header{
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 15px;
+}
+
+.left-header{
+  color: #9a6f7c;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+}
+
+.left-header > span{
+  color: white;
+  font-size: 2rem;
+}
+
+
+.right-header{
+  padding-bottom: 3px;
+  display: flex;
+  gap: 15px;
+}
+
+.right-header a{
+  font-size: 0.6rem;
+  color: white;
+  text-decoration: none;
+}
+
+.content{
+  padding: 20px ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.content-1 > h1{
+  text-align: center;
+  font-weight: 700;
+}
+
+.content > div > p{
+  font-size: 0.6rem;
+}
+
+.position-div{
+  width: 300px;
+  position: relative;
+}
+
+.position-div > input{
+  width: 100%;
+  padding: 3px;
+  margin-top: 3px;
+}
+
+.position-div > span{
+  position: absolute;
+  right: 3px;
+  top: 11px;
+  font-size: 0.6rem;
+  color: #777777;
+}
+
+.content-3{
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.footer{
+  background-color: #eadfcc;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.footer > p{
+  font-size: 0.6rem;
+}

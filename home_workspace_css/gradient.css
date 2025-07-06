@@ -1,0 +1,61 @@
+.container{
+  margin-top: 30px;
+  margin-left: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.container > div{
+  width: 150px;
+  height: 150px;
+  border: 1px solid gray;
+}
+
+/* 그라데이션 위로 올라가면서 흰색에서 검정으로 그라데이션 */
+.div1 { 
+  background: linear-gradient(to top, white, black);
+}
+
+/* 북동쪽으로 빨간색에서 파란색으로 */
+.div2{
+  background: linear-gradient(to top right, red , blue)
+}
+
+/* 남서쪽으로 파란색에서 빨간색으로 */
+.div3{
+  background: linear-gradient(to left bottom, blue, red);
+}
+
+/* 65도 각도로 노란색에서 초록색으로 */
+.div4{
+  background: linear-gradient(60deg,yellow, green);
+}
+
+/* 점원을 시작으로 보라색에서 분홍색으로 */
+/* 그림자도 안쪽으로 */
+.div5{
+  background: radial-gradient(purple, pink);
+  box-shadow: inset 10px 10px 60px 1px red;
+}
+
+/* 기본값은 to bottom */
+.div6{
+  background: linear-gradient(gray, wheat);
+}
+
+/* 90도 회전하여 주황색에서 라임색으로 */
+.div7{
+  background: linear-gradient(90deg, orange, lime);
+}
+
+/* 남동쪽으로 회색에서 파란색으로 */
+.div8{
+  background: linear-gradient(to bottom right, lightgray, skyblue);
+}
+
+/* 안쪽으로 그림자 */
+.div9{
+  box-shadow: inset 0px 5px 5px 1px #cccccc;
+}

@@ -1,0 +1,9 @@
+# 테이블 생성
+
+# 학생 정보를 저장하는 테이블 생성문
+CREATE TABLE STUDENT(
+	STU_NUM INT PRIMARY KEY,
+	STU_NAME VARCHAR(10),
+	KOR_SCORE INT,
+	MATH_SCORE INT
+);

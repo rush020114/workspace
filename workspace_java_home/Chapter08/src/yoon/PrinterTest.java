@@ -13,6 +13,5 @@ public class PrinterTest {
     prn1.print(doc);
     Printable prn2 = new LPrinterDriver();
     prn2.print(doc);
-
   }
 }

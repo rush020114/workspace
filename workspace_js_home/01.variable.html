@@ -9,6 +9,43 @@
   <h2>변수</h2>
   <script>
     console.log('hi');
+    console.log("java");
+    console.log('java');
+    console.log(10 + 20);
+    console.log('java' + "python"); // 문자열을 통상적으로 홀따옴표로 감쌈
+    console.log('java' + 10 + 20); // 문자열이 되므로 java1020출력
+
+    // 자바스크립트는 자료형을 신경쓰지 않아도 무방
+    // let은 값이 변하는 변수를 선언
+    // const는 값이 변하지 않는 변수를 선언
+    let num = 10;
+    let name = 'javascript';
+    let avg = 10.5;
+    avg = 50.5;
+    console.log(avg);
+    avg = 3;
+    console.log(avg);
+    avg = 'python';
+    console.log(avg); // 아무 자료형이나 저장할 수 있다.
+
+    const num1 = 10;
+    // num1 = 'no'; num1은 const로 선언되었으므로 더 이상 값을 저장할 수 없다.
+
+    // 백틱(backtick)을 문자열에 감싸면 그 안에서 변수를 ${}로 감싸면 변수와 함께 사용할 수 있다.
+    console.log(`${name}와 ${avg}는 다른 프로그래밍 언어이다.`);
+
+    // 자바스크립트는 정수의 나눗셈에서 실수를 반환한다.
+    console.log(10 / 4);
+
+    // '=='연산자는 데이터만 비교한다.(정확도 낮음)
+    // '==='연산자는 데이터뿐만 아니라 자료형까지 비교한다.(정확도 높음)
+    console.log(5 == 5);
+    console.log(5 == '5');
+    console.log(5 === '5');
+
+    for(let i = 0 ; i < 3 ; i++){ // for문의 변수는 let을 선언한다.(변수에 저장되는 값이 바뀌므로)
+      console.log('gg' + '\n')
+    }
   </script>
 </body>
 </html>

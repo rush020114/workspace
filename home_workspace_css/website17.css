@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
+* {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -8,7 +8,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
-.header > h2 {
+.header-1 > h2 {
   font-family: "Dancing Script", cursive;
   font-optical-sizing: auto;
   font-style: normal;
@@ -20,4 +20,183 @@ h1 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+body{
+  background-color: #f1f1ef;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  background-image: url(blogpost3.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 1200px;
+}
+
+.header{
+  color: white;
+  font-size: 0.7rem;
+  padding: 10px;
+}
+
+.header a{
+  color: white;
+  text-decoration: none;
+  font-size: 0.7rem;
+}
+
+.header-1{
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-1 > ul{
+  display: flex;
+  gap: 10px;
+}
+
+.search-menu{
+  display: flex; 
+  align-items: center;
+  gap: 15px;
+}
+
+.search-position{
+  position: relative;
+}
+
+.search-position > input{
+  padding: 3px 5px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 1px solid white;
+  
+}
+
+.search-position > input::placeholder{
+  color: white;
+}
+
+.search-position > span{
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.header-2{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-weight: 700;
+}
+
+.content{
+  position: relative;
+}
+
+.main-info{
+  color: white;
+  padding-top: 200px;
+  padding-bottom: 170px;
+  margin-left: 150px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.main-info > h1{
+  font-size: 2.5rem;
+  line-height: 45px;
+}
+
+.main-info > p{
+  font-size: 0.75rem;
+  line-height: 18px;
+}
+
+.btn-div > button{
+  padding: 7px 10px;
+}
+
+.btn-div > button:first-child{
+  background-color: white;
+  border: 1px solid white;
+}
+
+.btn-div > button:last-child{
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  color: white;
+}
+
+.sub-info{
+  border: 1px solid black;
+}
+
+.position-1{
+  width: 200px;
+  padding: 8px;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  background-color: #fbfbfb;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.position-1 > p > span{
+  font-size: 1rem;
+  border: 1px ;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.position-2{
+  width: 230px;
+  font-size: 0.8rem;
+  background-color: white;
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.position-2-header{
+  text-align: center;
+  background-color: #333333;
+  padding: 3px;
+  color: white;
+  position: relative;
+}
+
+.position-2-header > span{
+  position: absolute;
+  right: 5px;
+}
+
+.position-2-content{
+  border: 1px solid black;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.position-2-content > div{
+  width: 100%;
+}
+
+.position-2-content input, .position-2-content textarea{
+  width: 100%;
 }

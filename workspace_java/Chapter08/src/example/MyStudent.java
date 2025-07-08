@@ -26,23 +26,30 @@ public class MyStudent implements StudentUtil{
   // 평균 < 70 -> "D"
   @Override
   public String getGradeByStudentName(Student[] students, String name) {
-    String grade = "";
+    String grade = "학생없음";
     for(Student e : students){
       if(e.getName().equals(name)){
-        double sum = (getTotalScore(e)) / 3.0;
-        if(sum > 90 && sum <= 100)
-          grade = "A";
-
-        else if(sum > 80 && sum <= 90)
-          grade = "B";
-
-        else if(sum > 70 && sum <= 80)
-          grade = "C";
-
-        else
-          grade = "D";
+        double avg = (getTotalScore(e)) / 3.0;
+        grade = getGradeByAvg(avg);
       }
     }
+    return grade;
+  }
+
+  //  평균으로 등급을 결정 후 리턴
+  public String getGradeByAvg (double avg){
+    String grade;
+    if(avg > 90 && avg <= 100)
+      grade = "A";
+
+    else if(avg >= 80)
+      grade = "B";
+
+    else if(avg >= 70)
+      grade = "C";
+
+    else
+      grade = "D";
     return grade;
   }
 }

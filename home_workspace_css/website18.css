@@ -19,6 +19,12 @@ body{
   width: 1200px;
   background-color: white;
   box-shadow: 10px 10px 10px 1px #cccccc;
+  height: 800px;
+  overflow: hidden;
+}
+
+button{
+  cursor: pointer;
 }
 
 .menu1{
@@ -68,7 +74,6 @@ body{
 .content{
   background-color: #446a83;
   color: white;
-  padding: 100px;
   padding-top: 50px;
 }
 
@@ -76,6 +81,83 @@ body{
   text-align: center;
 }
 
+.info > h1{
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 45px;
+}
+
 .info-flex{
   display: flex;
+  justify-content: center;
+}
+
+.info-flex > div{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-flex > div > h2{
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.info-flex > div > p:nth-child(2){
+  font-size: 0.9rem;
+}
+
+.info-flex > div > p{
+  line-height: 25px;
+}
+
+.info-flex a{
+  color: white;
+}
+
+.info-flex > p{
+  font-size: 9rem;
+  font-weight: 100;
+}
+
+.info > button{
+  margin-top: 5px;
+  background-color: #efd073;
+  font-size: 1rem;
+  font-weight: 550;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+}
+
+.position-div{
+  margin: 0px 100px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.position-div > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.position-div > div{
+  border: 1px solid #7eb5e1;
+  color: #7eb5e1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.position-div h2{
+  font-size: 2rem;
+  font-weight: 400;
 }

@@ -1,4 +1,4 @@
-package list;
+package theory.list;
 
 public class Fruit {
   private String name;

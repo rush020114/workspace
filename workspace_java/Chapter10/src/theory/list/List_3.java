@@ -1,4 +1,4 @@
-package list;
+package theory.list;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package list;
+package theory.list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +44,5 @@ public class list_1 {
 
     // 실수를 여러개 저장할 수 있는 List 통
     List<Double> list2 = new ArrayList<>();
-
   }
 }

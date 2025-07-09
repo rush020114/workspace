@@ -25,11 +25,11 @@ const phone = {
   modelName : 's10', 
   price : 1000,
   color : 'white'
-}
+};
 
 // phone 객체의 모델명은 s20으로 변경하세요
 phone.modelName = 's20';
-console.log(phone)
+console.log(phone);
 
 const students = [
   {
@@ -68,7 +68,7 @@ for(let i = 0 ; i < students.length ; i++){
 }
 
 // 5. students 배열에 저장된 학생들의 국어점수의 합을 출력
-let sum = 0
+let sum = 0;
 for(const e of students){
   sum += e.korScore;
 }
@@ -82,15 +82,14 @@ for(let i = 0 ; i < students.length ; i++){
 console.log(3);
 // 7. 국어와 영어점수의 총합이 가장 높은 학생의 이름을 출력
 let max = students[0].korScore + students[0].engScore;
-let cnt = 0
+let cnt = 0;
 for(let i = 0 ; i < students.length ; i++){
   if(max < students[i].korScore + students[i].engScore){
-    max = students[i].korScore + students[i].engScore;
-    cnt++;
+    max = students[i].korScore + students[i].engScore
+    cnt = i;
+    console.log(cnt);
   }
 }
-console.log(max)
-console.log(cnt)
 console.log(students[cnt].name);
 
 // 8. 모든 학생에 총점 데이터를 추가해보세요. 총점의 key는 totalScore로 지정하고,

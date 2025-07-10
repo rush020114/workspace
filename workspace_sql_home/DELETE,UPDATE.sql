@@ -60,7 +60,7 @@ WHERE ITEM_PRICE > 10000;
 # SET
 # 컬럼명 = 변경한 값,
 # 컬럼명 = 변경한 값
-# [WHERE 조건]
+# [WHERE 조건];
 
 # 상품의 가격과 구매자명 변경 쿼리
 UPDATE sale_info

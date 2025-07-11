@@ -30,3 +30,45 @@ const student = {
 // 변수 이름을 반드시 객체의 key와 동일하게 선언해야 함.
 const {age, score, name} = student;
 console.log(age);
+
+// 매개변수로 크기가 3인 배열이 전달되면 
+// 배열 모든 요소의 합을 리턴
+
+function f1(arr){
+  return arr[0] + arr[1] + arr[2];
+}
+
+const arr5 = [1, 3, 5];
+
+console.log(f1(arr5))
+
+function f2([a, b, c]){ // const [a, b, c] = arr5;
+  return a + b + c;
+}
+
+console.log(f2(arr5));
+
+const phone = {
+  name : 's10',
+  price : 1000,
+  color : 'white'
+};
+
+// 매개변수로 phone 객체가 전달되면 해당 폰의 이름과 가격과 색상을 출력하는 함수
+
+function f3(p){
+  console.log(p.name, p.price, p.color); // 출력문에 쉼표를 사용하면 나열된다.
+}
+
+f3(phone);
+
+function f4 ({name, price, color}){ // const {name, price, color} = phone;
+  console.log(name, price, color);
+}
+
+f4(phone);
+
+
+const f7 = ([a,b,c]) => a + b + c;
+
+console.log(f7(arr5));

@@ -27,3 +27,25 @@ const myName = student.name;
 // 객체는 자료구조 방식이 key값을 사용한다.
 // 저장될 변수가 key값과 다르고 저장될 공간이 있다면 값을 저장할 수 없어 undefined가 된다.
 const {name, age, score} = student;
+
+// 구조분해할당을 함수로 작성할 수 있다.
+// 매개변수자리에 저장될 값을 생각하면 문법이 그려지고
+// 매개변수자리에 들어오는 값과 매개변수를 합쳤을 때
+// 구조분해할당 문법이 나오면 구조분해할당이 되므로
+// 매개변수자리에 들어갈 배열들을 작성하면 구조분해할당을 할 수 있는 함수가 완성된다. 
+const f1 = ([a1, b1, c1,]) => a1 + b1 + c1; 
+console.log(f1([1,2,3]))
+
+// 배열뿐만 아니라 객체도 가능하다.
+// 출력문에 쉼표를 넣으면 나열된다.
+const f2 = ({name, age, score}) => console.log(name, age, score);
+
+f2({name: 'kim', age: 20, score: 80});
+
+const stu = {
+  name: 'lee',
+  age: 30,
+  score: 90
+};
+
+f2(stu); // 객체를 구조분해할당해주어 각 value를 나열하여 출력해주는 함수 호출문.

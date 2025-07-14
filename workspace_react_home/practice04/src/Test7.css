@@ -1,0 +1,23 @@
+.test7_container{
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.test7_container > div{
+  width: 500px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.top{
+  background-color: lightcoral;
+}
+
+.bottom{
+  background-color: lightskyblue;
+}

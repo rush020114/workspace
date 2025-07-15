@@ -1,0 +1,31 @@
+.cartList_container > table{
+  width: 500px;
+  height: 200px;
+  margin: 50px auto;
+  border-collapse: collapse;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 10px 10px 10px 1px #cccccc;
+  color: #555555;
+  overflow: hidden;
+}
+
+.cartList_container thead{
+  background-color: pink;
+}
+
+.cartList_container thead td{
+  padding: 15px 0px;
+}
+
+.cartList_container tbody{
+  background-color: wheat;
+}
+
+.cartList_container tbody td:first-child{
+  background-color: #cccccc;
+}
+
+.cartList_container tbody td{
+  padding: 10px 0px;
+}

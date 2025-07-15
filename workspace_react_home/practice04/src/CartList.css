@@ -1,0 +1,12 @@
+.cartlist_container{
+  margin: 30px;
+}
+
+.cartlist_container > table{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.cartlist_container tr, .cartlist_container td{
+  border: 1px solid black;
+}

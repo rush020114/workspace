@@ -1,0 +1,19 @@
+.blog_container > div:first-child{
+  color: white;
+  background-color: black;
+  padding: 30px;
+  font-weight: 700;
+}
+
+.blog_container > div{
+  padding: 30px;
+  border-bottom: 1px solid #777777;
+}
+
+.blog_container button{
+  background-color: crimson;
+  border: none;
+  border-radius: 5px;
+  padding: 3px 12px;
+  color: white;
+}

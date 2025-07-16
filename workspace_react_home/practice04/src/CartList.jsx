@@ -59,7 +59,8 @@ const CartList = () => {
               // return 안에는 html코드를 적을 수 있다.
               // map함수는 배열의 길이만큼 반복을 해주기 때문에 현재는 5번 반복한다.
               return (
-                <tr key={i}> {/* 똑같은 태그가 반복되면 고유한 key값을 넣어준다. */}
+                // 똑같은 태그가 반복되면 고유한 key값을 넣어준다. 
+                <tr key={i}> 
                   <td>{i + 1}</td>
                   <td>{e.category}</td>
                   <td>{e.itemName}</td>

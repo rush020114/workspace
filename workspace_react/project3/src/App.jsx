@@ -8,6 +8,7 @@ import Test3 from './Test3'
 import Test4 from './Test4'
 import Test5 from './Test5'
 import CartList from './CartList'
+import Blog from './Blog'
 
 function App() {
 
@@ -20,16 +21,15 @@ function App() {
       {/* <Test3 /> */}
       {/* <Test4 /> */}
       {/* <Test5 /> */}
-
-      <CartList />
-
-      {
+      {/* <CartList /> */}
+      <Blog />
+      {/* {
         arr.map((e, i) => {
           return(
             <div key={i}>{e}</div>
           )
         })
-      }
+      } */}
 
     </>
   )

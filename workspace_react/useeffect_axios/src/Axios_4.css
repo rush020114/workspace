@@ -1,0 +1,46 @@
+.container{
+  width: 800px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button{
+  align-self: flex-end;
+  padding: 8px 30px;
+  background-color: lightskyblue;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-weight: 700;
+}
+
+table{
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+thead{
+  background-color: lightskyblue;
+  color: white;
+  font-size: 1.2rem;
+  border-bottom: 5px solid white;
+  font-weight: 700;
+}
+
+tr, td{
+  border: 1px solid white;
+  padding: 8px;
+  font-size: 1.2rem;
+}
+
+tbody > tr:nth-child(odd){
+  background-color: #cccccc;
+}
+
+tbody > tr:nth-child(even){
+  background-color: #eeeeee;
+}

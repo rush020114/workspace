@@ -1,0 +1,11 @@
+.blog_container > div:first-child{
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.blog_container > div{
+  padding: 30px;
+  border-bottom: 1px solid #777777;
+}

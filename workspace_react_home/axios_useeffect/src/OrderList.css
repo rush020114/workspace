@@ -1,0 +1,35 @@
+.orderList_container{
+  width: 800px;
+  margin: 30px auto;
+  text-align: center; 
+}
+
+h1{
+  font-weight: 500;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.2rem;
+}
+
+thead{
+  background-color: #5a71be;
+  border-bottom: 3px solid white;
+  color: white;
+  font-weight: 700;
+}
+
+tr, td{
+  border: 1px solid white;
+  padding: 5px 0px;
+}
+
+tbody > tr:nth-child(odd){
+  background-color: #d1d4e8;
+}
+
+tbody > tr:nth-child(even){
+  background-color: #eaebf4;
+}

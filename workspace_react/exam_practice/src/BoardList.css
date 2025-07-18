@@ -1,0 +1,31 @@
+.boardList_container{
+  width: 800px;
+  margin: 100px auto;
+}
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+thead{
+  background-color: brown;
+  border-bottom: 3px solid white;
+}
+
+tr, td{
+  border: 1px solid white;
+  padding: 10px 0px;
+}
+
+tbody{
+  background-color: green;
+}
+
+tbody td:nth-child(2):hover{
+  cursor: pointer;
+  text-decoration: underline;
+}

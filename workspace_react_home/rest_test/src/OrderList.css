@@ -1,0 +1,31 @@
+.orderList-container{
+  width: 800px;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.list-table{
+  width: 100%;
+  margin-top: 30px;
+  font-size: 1.2rem;
+}
+
+.list-table > thead{
+  background-color: #5a71be;
+  color: white;
+  border-bottom: 3px solid white;
+}
+
+.list-table tr, .list-table td{
+  border: 1px solid white;
+  padding: 7px 0px;
+}
+
+.list-table > tbody > tr:nth-child(odd){
+  background-color: #d1d4e8;
+}
+
+.list-table > tbody > tr:nth-child(even){
+  background-color: #eaebf4;
+}

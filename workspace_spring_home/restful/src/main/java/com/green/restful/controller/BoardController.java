@@ -1,6 +1,10 @@
 package com.green.restful.controller;
 
+import com.green.restful.dto.BoardDTO;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // REST : 상태를 나타내는 url 작성 규칙
 // REST를 따르면 url의 명명이 훨씬 간결해진다.
@@ -12,8 +16,14 @@ public class BoardController {
   // 이후 get(조회), post(삽입), put(수정), delete(삭제)에 대한 어노테이션을 생성해 요청을 받아올 수 있다.
   // 이를 모두 사용하면 스프링에 대한 API 코드 구현을 마칠 수 있다.
   @GetMapping("/boards") // 조회를 위한 어노테이션
-  public String getBoardList(){
-    return "게시판 목록 조회 완료";
+  public List<BoardDTO> getBoardList(){
+    List<BoardDTO> boardDTOList = new ArrayList<>();
+    boardDTOList.add(new BoardDTO(1, "제목1", "김", "내용1", 1));
+    boardDTOList.add(new BoardDTO(2, "제목2", "이", "내용2", 5));
+    boardDTOList.add(new BoardDTO(3, "제목3", "박", "내용3", 2));
+    boardDTOList.add(new BoardDTO(4, "제목4", "최", "내용4", 3));
+    boardDTOList.add(new BoardDTO(5, "제목5", "정", "내용5", 10));
+    return boardDTOList;
   }
 
   @GetMapping("/boards/{boardNum}") // url로 변수를 받아 url에서 원하는 주소를 입력해도 받을 수 있게 되었다.

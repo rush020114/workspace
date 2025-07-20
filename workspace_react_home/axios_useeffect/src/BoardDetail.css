@@ -1,0 +1,38 @@
+.detail-container{
+  width: 800px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.detail-container > h1{
+  font-weight: 500;
+  color: #2a2a2a;
+}
+
+.detail-table{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.2rem;
+  margin-top: 25px;
+  border: 1px solid white;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.detail-table > thead{
+  border-bottom: 3px solid white;
+  background-color: #f9dfe9;
+  color: #2a2a2a;
+  font-weight: 700;
+
+}
+
+.detail-table > tbody{
+  background-color: #fef5f9;
+  color: #3a3a3a; 
+}
+
+.detail-table tr, .detail-table td{
+  border: 1px solid white;
+  padding: 7px 0px;
+}

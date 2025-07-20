@@ -1,21 +1,21 @@
-package com.green.restful.controller;
+package com.green.restful.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Order {
+public class OrderDTO {
   private int itemNum;
   private String itemName;
   private int itemPrice;
   private int itemCnt;
   private String buyerId;
 
-  public Order(){
+  public OrderDTO(){
   }
 
-  public Order(int itemNum, String itemName, int itemPrice, int itemCnt, String buyerId){
+  public OrderDTO(int itemNum, String itemName, int itemPrice, int itemCnt, String buyerId){
     this.itemNum = itemNum;
     this.itemName = itemName;
     this.itemPrice = itemPrice;

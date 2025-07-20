@@ -3,13 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import OrderInfo from './OrderInfo'
-import BoardInfo from './BoardInfo'
 
 function App() {
+
   return (
     <>
-      {/* <OrderInfo /> */}
-      <BoardInfo />
+      <OrderInfo />
     </>
   )
 }

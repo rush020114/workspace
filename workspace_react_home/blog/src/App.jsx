@@ -9,7 +9,8 @@ function App() {
   const [title, setTitle] = useState(['남자코트 추천','강남 우동 맛집', '파이썬독학']);
   const [goodCnt, setGoodCnt] = useState([0,0,0]);
   const [modal, setModal] = useState(false);
-  const [selectedTitle, setSelectedTitle] = useState('')
+  const [selectedTitle, setSelectedTitle] = useState('');
+  const [insertValue, setInsertValue] = useState('');
 
   console.log(title);
   return (
@@ -25,7 +26,8 @@ function App() {
               <h4 onClick={() => {
                 setModal(true)
                 setSelectedTitle(e)
-              }}>{e} <span onClick={() => {
+              }}>{e} <span onClick={e => {
+                  e.stopPropagation( )
                   const newGoodCnt = [...goodCnt]
                   newGoodCnt[i]++;
                   setGoodCnt(newGoodCnt)
@@ -35,6 +37,9 @@ function App() {
           )
         })
       }
+
+      <input type="text" value={insertValue} onChange={e => setInsertValue(e.target.value)} />
+      <button type='button' onClick={e => {setTitle(title.push(insertValue))}}></button>
 
       {
         modal

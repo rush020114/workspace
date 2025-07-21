@@ -1,0 +1,42 @@
+.list-container{
+  width: 1000px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.list-container > h1{
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.list-table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid white;
+  font-size: 1.2rem;
+}
+
+.list-table > thead{
+  font-weight: 700;
+  background-color: #4471c4;
+  color: white;
+  border-bottom: 3px solid white;
+}
+
+.list-table tr, .list-table td{
+  border: 1px solid white;
+  padding: 8px 0px;
+}
+
+.list-table > tbody > tr:nth-child(odd){
+  background-color: #cfd4ea;
+}
+
+.list-table > tbody > tr:nth-child(even){
+  background-color: #e9ebf5;
+}
+
+.list-table > tbody tr:hover{
+  cursor: pointer;
+  background-color: rgb(197, 202, 224);
+}

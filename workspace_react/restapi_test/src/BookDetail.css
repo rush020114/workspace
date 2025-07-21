@@ -1,0 +1,38 @@
+.detail-container{
+  width: 1000px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.detail-container > h1{
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.detail-table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid white;
+  font-size: 1.2rem;
+}
+
+.detail-table tr, .detail-table td{
+  border: 1px solid white;
+  padding: 8px 0px;
+}
+
+.detail-table td:nth-child(odd){
+  background-color: #dae2f3;  
+}
+
+.detail-table td:nth-child(even){
+    background-color: #e9ebf5;
+}
+
+.summary-tr{
+  height: 100px;
+}
+
+.summary-tr > td{
+  vertical-align: middle;
+}

@@ -29,7 +29,7 @@ const OrderDetail = ({selectedOrder}) => {
             <td>주문자ID</td>
             <td>{selectedOrder.buyerId}</td>
             <td>구매금액</td>
-            <td>{selectedOrder.itemPrice * selectedOrder.itemCnt}</td>
+            <td>{selectedOrder.itemPrice * selectedOrder.itemCnt}원</td>
           </tr>
         </tbody>
       </table>

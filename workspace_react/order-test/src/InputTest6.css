@@ -1,0 +1,47 @@
+.input6-container{
+  width: 800px;
+  margin: 50px auto;
+}
+
+.input6-table{
+  width: 100%;
+  border: 1px solid black;
+}
+
+.input6-table tr, .input6-table td{
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.input6-table tr:first-child, .input6-table tr:nth-child(7){
+  background-color: #cee3f6;
+  text-align: center;
+  font-weight: 700;
+}
+
+.title-span{
+  color: red;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.input6-table td:first-child{
+  vertical-align: middle;
+}
+
+.flex-div{
+  display: flex;
+  gap: 5px;
+}
+
+.input6-table textarea{
+  resize: none;
+  width: 100%;
+}
+
+.btn-div{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}

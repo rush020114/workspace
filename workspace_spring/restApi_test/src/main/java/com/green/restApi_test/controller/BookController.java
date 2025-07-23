@@ -1,6 +1,6 @@
 package com.green.restApi_test.controller;
 
-import com.green.restApi_test.dto.BookDTO;
+import com.green.restApi_test.BookDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.green.restApi_test.dto;
+package com.green.restApi_test;
 
 import lombok.Getter;
 import lombok.Setter;

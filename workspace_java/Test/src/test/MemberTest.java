@@ -8,5 +8,7 @@ public class MemberTest {
     member.showInfo();
     member.isLogin("java", "1234");
     member.isLogin("java", "1111");
+
+    System.out.println(member.isLogin("java", "1234") ? "로그인 가능" : "로그인 불가능");
   }
 }

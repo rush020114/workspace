@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Test {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    int[] gameArr = new int[4];
+    int[] gameArr = new int[5];
     int[] newGameArr = new int[gameArr.length];
     int gameCnt = 1;
 

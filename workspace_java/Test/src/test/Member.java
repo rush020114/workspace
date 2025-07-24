@@ -24,14 +24,6 @@ public class Member {
   }
 
   public boolean isLogin(String id, String pw){
-    if(this.id.equals(id) && this.pw.equals(pw)){
-      System.out.println("로그인 가능");
-      return true;
-    }
-
-    else{
-      System.out.println("로그인 불가능");
-      return false;
-    }
+    return this.id.equals(id) && this.pw.equals(pw);
   }
 }

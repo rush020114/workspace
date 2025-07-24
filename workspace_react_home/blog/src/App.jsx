@@ -12,6 +12,8 @@ function App() {
   const [selectedTitle, setSelectedTitle] = useState('');
   const [insertValue, setInsertValue] = useState('');
 
+  console.log(title)
+
   console.log(title);
   return (
     <div className='app'>
@@ -39,7 +41,11 @@ function App() {
       }
 
       <input type="text" value={insertValue} onChange={e => setInsertValue(e.target.value)} />
-      <button type='button' onClick={e => {setTitle(title.push(insertValue))}}></button>
+      <button type='button' onClick={e => {
+          const copy = [...title]
+          copy.push(insertValue)
+          setTitle(copy)
+        }}></button>
 
       {
         modal

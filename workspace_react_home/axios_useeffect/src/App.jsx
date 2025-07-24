@@ -5,13 +5,17 @@ import './App.css'
 import OrderInfo from './OrderInfo'
 import BoardInfo from './BoardInfo'
 import InputTest01 from './InputTest01'
+import InputTest02 from './InputTest02'
+import FormPractice01 from './FormPractice01'
 
 function App() {
   return (
     <>
       {/* <OrderInfo /> */}
       {/* <BoardInfo /> */}
-      <InputTest01 />
+      {/* <InputTest01 /> */}
+      {/* <InputTest02 /> */}
+      <FormPractice01 />
     </>
   )
 }

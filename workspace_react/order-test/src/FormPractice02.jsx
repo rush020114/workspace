@@ -106,7 +106,7 @@ const FormPractice02 = () => {
          value={deliveryInfo.addr}
          name="addr"
          onChange={e => handleDeliveryInfo(e)}
-         >
+        >
           <option value="">동을 선택하세요.</option>
           <option value="삼산동">삼산동</option>
           <option value="달동">달동</option>

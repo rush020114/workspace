@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<!-- 밑의 mapper는 Mapper어노테이션이 있는 인터페이스와 연결할 수 있게 해준다. -->
+<mapper namespace="com.green.basic_board.mapper.BoardMapper">
+    <!-- 쿼리문에 *를 쓰지 않는다. -->
+	<select id="getBoardList">
+        SELECT
+            TITLE
+            , WRITER
+            , CONTENT
+            , READ_CNT
+            , CREATE_DATE
+        FROM BASIC_BOARD
+    </select>
+
+    <select id="getBoard">
+        SELECT
+            TITLE
+            , WRITER
+            , CONTENT
+        FROM BASIC_BOARD
+        WHERE BOARD_NUM = 1
+    </select>
+
+    <insert id="insertBoard">
+        INSERT INTO BASIC_BOARD (
+            TITLE
+            , WRITER
+            , CONTENT
+        ) VALUES (
+            '제목3'
+            , '작성자3'
+            , '내용3'
+        )
+    </insert>
+
+    <update id="updateBoard">
+        UPDATE BASIC_BOARD
+        SET
+            CONTENT = '내용7'
+            , READ_CNT = READ_CNT + 3
+        WHERE BOARD_NUM = 2
+    </update>
+
+    <delete id="deleteBoard">
+        DELETE FROM BASIC_BOARD
+        WHERE BOARD_NUM = 1
+    </delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

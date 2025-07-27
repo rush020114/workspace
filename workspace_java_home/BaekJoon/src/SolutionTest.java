@@ -1,14 +1,19 @@
 public class SolutionTest {
   public static void main(String[] args) {
-    String str = "java";
-    System.out.println(str.substring(1,2));
-    System.out.println(str.length());
-    System.out.println("a" + "v" + "a" + "j");
-    String str2 = "";
-    for(int i = str.length() - 1 ; i > -1 ; i++){
-      str2 = str.substring(i, i + 1);
+    int n = 930211;
+    int cnt = 0;
+    int index = 1;
+    int sum =0;
+    while(true){
+      if(n / index <= 0){
+        break;
+      }
+      index *= 10;
+      cnt++;
     }
+    System.out.println(cnt);
+    for(int i = 0 ; i < cnt ; i++){
 
-    System.out.println(str2);
+    }
   }
 }

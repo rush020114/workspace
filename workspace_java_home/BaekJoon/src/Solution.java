@@ -1,16 +1,21 @@
 class Solution {
-  public int solution(String str1, String str2) {
-    int answer = 0;
-    for(int i = 0 ; i <= str1.length() - str2.length() ; i++){
-      if(str1.substring(i, i + str2.length()).equals(str2)){
-        System.out.println(str1.substring(i, i + str2.length()));
-        answer = 1;
-        break;
-      }
-      else{
-        answer = 2;
+  public int solution(int[] numbers) {
+    int index = 0;
+    int[] newNumbers = new int[numbers.length * numbers.length - 1];
+    for(int i = 0 ;  i < numbers.length ; i++){
+      for(int j = 0 ; j < i ; j++){
+        newNumbers[index++] = numbers[i] * numbers[j];
       }
     }
-    return answer;
+    int max = newNumbers[0];
+    if(numbers[0] * numbers[1] < 0){
+      max = numbers[0] * numbers[1];
+    }
+    for(int i = 0 ; i < newNumbers.length ; i++){
+      if(max < newNumbers[i]){
+        max = newNumbers[i];
+      }
+    }
+    return max;
   }
 }

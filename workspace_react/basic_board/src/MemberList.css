@@ -1,0 +1,16 @@
+.member-container{
+  width: 800px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.member-table{
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.member-table tr, .member-table td{
+  border: 1px solid black;
+  padding: 8px;
+}

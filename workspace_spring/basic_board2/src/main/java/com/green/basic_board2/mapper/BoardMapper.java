@@ -3,6 +3,8 @@ package com.green.basic_board2.mapper;
 import com.green.basic_board2.dto.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 // 쿼리의 빈 값은 메서드의 매개변수로 전달함
 // 빈 값이 여러 개라도 매개변수로 하나의 데이터만 전달
 
@@ -19,4 +21,10 @@ public interface BoardMapper {
 
   // 게시글 삭제 쿼리 실행 추상메서드
   int deleteBoard(int boardNum);
+
+  List<BoardDTO> getBoardList();
+
+  BoardDTO getBoardListDetail(int boardNum);
+
+  List<BoardDTO> getBoardListTitle(String title);
 }

@@ -1,0 +1,34 @@
+.detail-container{
+  width: 500px;
+  margin: 50px auto;
+  text-align: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-div{
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-table{
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  font-size: 1.2rem;
+}
+
+.detail-table tr, .detail-table td{
+  padding: 8px;
+  border: 1px solid white;
+}
+
+.detail-table > tbody > tr:nth-child(odd){
+  background-color: #cfd5ea;
+}
+
+.detail-table > tbody > tr:nth-child(even){
+  background-color: #e9ebf5;
+}

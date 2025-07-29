@@ -5,6 +5,15 @@
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <mapper namespace="com.green.basic_board2.mapper.BoardMapper">
 
+    <resultMap id="board" type="com.green.basic_board2.dto.BoardDTO">
+        <id column="BOARD_NUM" property="boardNum" />
+        <result column="TITLE" property="title" />
+        <result column="WRITER" property="writer" />
+        <result column="CONTENT" property="content" />
+        <result column="READ_CNT" property="readCnt" />
+        <result column="CREATE_DATE" property="createDate" />
+    </resultMap>
+
     <!-- 게시글 등록 쿼리 -->
 	<insert id="insertBoard">
         INSERT INTO BASIC_BOARD (
@@ -32,4 +41,35 @@
         DELETE FROM BASIC_BOARD
         WHERE BOARD_NUM = #{boardNum}
     </delete>
+
+    <select id="getBoardList" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
+            , WRITER
+            , TO_CHAR(CREATE_DATE, 'YYYY.MM.DD HH24:MI:SS') CREATE_DATE
+            , READ_CNT
+        FROM BASIC_BOARD
+        ORDER BY CREATE_DATE DESC
+    </select>
+
+    <select id="getBoardListDetail" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
+            , WRITER
+            , CONTENT
+            , READ_CNT
+            , CREATE_DATE
+        FROM BASIC_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
+
+    <select id="getBoardListTitle" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
+            , WRITER
+            , CREATE_DATE
+            , READ_CNT
+        FROM BASIC_BOARD
+        WHERE TITLE LIKE CONCAT('%', #{title}, '%')
+    </select>
 </mapper>

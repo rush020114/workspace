@@ -6,6 +6,10 @@ import RegForm from './RegForm'
 import UpdateForm from './UpdateForm'
 import DeleteForm from './DeleteForm'
 import Sign01 from './Sign01'
+import MemberList from './MemberList'
+import BoardList from './BoardList'
+import BoardDetail from './BoardDetail'
+import SearchBoardList from './SearchBoardList'
 
 function App() {
 
@@ -14,7 +18,11 @@ function App() {
       {/* <RegForm /> */}
       {/* <UpdateForm /> */}
       {/* <DeleteForm /> */}
-      <Sign01 />
+      {/* <Sign01 /> */}
+      {/* <MemberList /> */}
+      {/* <BoardList /> */}
+      {/* <BoardDetail /> */}
+      <SearchBoardList />
     </>
   )
 }

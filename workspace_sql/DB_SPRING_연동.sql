@@ -18,6 +18,24 @@ VALUES ('제목2', '작성자2', '내용2');
 INSERT INTO BASIC_BOARD (TITLE, WRITER, CONTENT)
 VALUES ('제목3', '작성자3', '내용3');
 
+INSERT INTO basic_board(
+	TITLE
+	, WRITER
+	, CONTENT
+) VALUES (
+	'java 고급'
+	, '작성자7'
+	, '내용7'
+);
+
+SELECT BOARD_NUM
+   , TITLE
+   , WRITER
+   , CREATE_DATE
+   , READ_CNT
+FROM BASIC_BOARD
+WHERE TITLE LIKE '%java%';
+
 COMMIT;
 ROLLBACK;
 
@@ -25,7 +43,8 @@ CREATE TABLE BASIC_MEMBER (
 	MEM_ID VARCHAR(20) PRIMARY KEY,
 	MEM_PW VARCHAR(20) NOT NULL,
 	MEM_NAME VARCHAR(10),
-	MEM_AGE INT
+	MEM_AGE INT,
+	BIRTHDAY DATETIME
 );
 
 SELECT *
@@ -35,4 +54,6 @@ FROM basic_member;
 SELECT *
 FROM basic_member WHERE mem_id = 'admin';
 
-DROP TABLE basic_member;
+SELECT MEM_NAME
+FROM basic_member
+WHERE MEM_ID = 'korea';

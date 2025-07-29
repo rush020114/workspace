@@ -5,49 +5,82 @@
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <mapper namespace="com.green.basic_board2.mapper.MemberMapper">
 
+    <!-- resultMap : 조회된 데이터를 자바로 가져오는 정의를 생성 -->
+    <!-- type : 조회된 데이터를 가져올 클래스을 작성 -->
+    <!-- property : 조회된 데이터를 자바로 가져올 클래스의 멤버변수 -->
+    <!-- 순서 : 컬럼이 조회가 되면 해당 DTO에 있는 멤버변수로 받겠다. -->
+    <resultMap id="member" type="com.green.basic_board2.dto.MemberDTO">
+        <id     column="MEM_ID"     property="memId" />
+        <result column="MEM_PW"     property="memPw" />
+        <result column="MEM_NAME"   property="memName" />
+        <result column="MEM_AGE"    property="memAge" />
+        <result column="BIRTHDAY"   property="birthday" />
+    </resultMap>
+
     <insert id="insertMember">
         INSERT INTO BASIC_MEMBER (
             MEM_ID
             , MEM_PW
             , MEM_NAME
             , MEM_AGE
+            , BIRTHDAY
         ) VALUES (
             #{memId}
             , #{memPw}
             , #{memName}
             , #{memAge}
+            , NOW()
         );
     </insert>
 
+    <!--
+        select 태그는 반드시 조회 데이터를 가져올 수 있는 자료형을 선언!
+        자료형 선언은 resultType 속성이나 resultMap 속성 중 하나를 사용한다.
+        resultType : 조회된 데이터 중 하나의 행 데이터를 가져올 수 있는 자료형으로 선언
+                     resultType은 자바가 기본적으로 제공하는 자료형을 사용할 때 적용!
+        resultMap : 조회된 데이터 중 하나의 행 데이터를 가져올 수 있는 자료형으로 선언
+                    우리가 만든 자료형(class)으로 데이터를 받아올 때 사용!
+    -->
+    <select id="getMemberName" resultType="String">
+        SELECT MEM_NAME
+        FROM BASIC_MEMBER
+        WHERE MEM_ID = 'korea'
+    </select>
+
+    <select id="getMemberNameAll" resultType="String">
+        SELECT MEM_NAME
+        FROM BASIC_MEMBER
+    </select>
+
+    <select id="getMemberAge" resultType="int">
+        SELECT MEM_AGE
+        FROM BASIC_MEMBER
+        WHERE MEM_ID = 'korea'
+    </select>
+
+    <select id="getMember" resultMap="member">
+        SELECT MEM_ID
+            , MEM_PW
+            , MEM_NAME
+            , MEM_AGE
+            , BIRTHDAY
+        FROM BASIC_MEMBER
+        WHERE MEM_ID = 'korea'
+    </select>
+
+    <select id="getMemberAll" resultMap="member">
+        SELECT MEM_ID
+            , MEM_NAME
+            , MEM_AGE
+        FROM BASIC_MEMBER
+    </select>
+
+    <select id="getMemberAll2" resultMap="member">
+        SELECT MEM_ID
+            , MEM_NAME
+            , MEM_AGE
+        FROM BASIC_MEMBER
+        WHERE MEM_AGE > #{memAge}
+    </select>
+
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

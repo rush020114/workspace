@@ -5,6 +5,8 @@ import com.green.basic_board2.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardService {
   private BoardMapper boardMapper;
@@ -29,5 +31,17 @@ public class BoardService {
   // 게시글 삭제 메서드
   public int deleteBoard(int boardNum){
     return boardMapper.deleteBoard(boardNum);
+  }
+
+  public List<BoardDTO> getBoardList(){
+    return boardMapper.getBoardList();
+  }
+
+  public BoardDTO getBoardListDetail(int boardNum){
+    return boardMapper.getBoardListDetail(boardNum);
+  }
+
+  public List<BoardDTO> getBoardListTitle(String title){
+    return boardMapper.getBoardListTitle(title);
   }
 }

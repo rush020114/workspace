@@ -6,11 +6,10 @@ const Sign01 = () => {
   const [memberData, setMemberData] = useState({
     memId: ''
     , memPw: ''
+    , checkPw: ''
     , memName: ''
     , memAge: ''
   })
-
-  const [checkPw, setCheckPw] = useState('')
 
   const handleMemberData = e => {
     setMemberData({
@@ -20,13 +19,16 @@ const Sign01 = () => {
   }
 
   const regMember = () => {
+    if(memberData.memPw !== memberData.checkPw){
+      alert('비밀번호를 확인하세요.')
+      return;
+    }
     axios.post('/api/members', memberData)
-    .then(res => console.log(res.data))
+    .then(res => alert('등록성공'))
     .catch(error => console.log(error))
   }
 
   console.log(memberData)
-  console.log(checkPw)
 
   return (
     <div>
@@ -52,9 +54,9 @@ const Sign01 = () => {
         <p>비밀번호 확인</p>
         <input
          type="password" 
-         value={checkPw}
+         value={memberData.checkPw}
          name='checkPw'
-         onChange={e => setCheckPw(e.target.value)}
+         onChange={e => handleMemberData(e)}
          />
       </div>
       <div>
@@ -78,7 +80,7 @@ const Sign01 = () => {
       <div>
         <button
          type='button'
-         onClick={memberData.memPw === checkPw ? e => regMember() : () => alert("비밀번호가 일치하지 않습니다.")}
+         onClick={e => regMember()}
         >등록</button>
       </div>
     </div>

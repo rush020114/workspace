@@ -1,8 +1,11 @@
 package com.green.basic_board.service;
 
+import com.green.basic_board.dto.BoardDTO;
 import com.green.basic_board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 // 핵심기능이 만들어져 있는 클래스에 service를 붙인다.
 // 핵심기능(쿼리 작업)을 제공하는 메서드 구현!
@@ -20,27 +23,31 @@ public class BoardService {
   }
 
   // 모든 게시글을 조회하는 기능
-  public void getBoardList(){
-
+  public List<BoardDTO> getBoardList(){
+    return boardMapper.getBoardList();
   }
 
   // 하나의 게시글을 조회하는 기능
-  public void getBoard(){
+  public BoardDTO getBoard(int boardNum){
+    return boardMapper.getBoard(boardNum);
+  }
 
+  public List<BoardDTO> getBoardToName(String title){
+    return boardMapper.getBoardToName(title);
   }
 
   // 하나의 게시글을 등록하는 기능
-  public void insertBoard(){
-    boardMapper.insertBoard();
+  public int insertBoard(BoardDTO boardDTO){
+    return boardMapper.insertBoard(boardDTO);
   }
 
   // 하나의 게시글을 조회하는 기능
-  public void updateBoard(){
-    boardMapper.updateBoard();
+  public int updateBoard(BoardDTO boardDTO){
+    return boardMapper.updateBoard(boardDTO);
   }
 
   // 하나의 게시글을 삭제하는 기능
-  public void deleteBoard(){
-    boardMapper.deleteBoard();
+  public int deleteBoard(int boardNum){
+    return boardMapper.deleteBoard(boardNum);
   }
 }

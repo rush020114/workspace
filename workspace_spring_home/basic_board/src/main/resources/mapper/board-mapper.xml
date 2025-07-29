@@ -5,10 +5,28 @@
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <!-- 밑의 mapper는 Mapper어노테이션이 있는 인터페이스와 연결할 수 있게 해준다. -->
 <mapper namespace="com.green.basic_board.mapper.BoardMapper">
+
+    <resultMap id="board" type="com.green.basic_board.dto.BoardDTO">
+        <id     column="BOARD_NUM"      property="boardNum" />
+        <result column="TITLE"          property="title" />
+        <result column="WRITER"         property="writer" />
+        <result column="CONTENT"        property="content" />
+        <result column="READ_CNT"       property="readCnt" />
+        <result column="CREATE_DATE"    property="createDate" />
+    </resultMap>
+
     <!-- 쿼리문에 *를 쓰지 않는다. -->
-	<select id="getBoardList">
-        SELECT
-            TITLE
+    <!--
+     resultType과 resultMap 속성에는 DB에서 받아올 자료형을 적는다.
+     resultMap은 사용자 정의 자료형(DTO)를 적는다. 대신 정의가 필요하다.
+     resultMap정의 태그에선 DB 데이터를 받기 위한 컬럼명(column)과
+     그 데이터를 저장하기 위한 dto가 있는 패키지와 파일명(type)과
+     저장이 될 dto의 멤버변수(property)가 있다.
+     데이터가 조회되면 조회된 컬럼을 그 컬럼과 일치하는 dto의 멤버변수가 받게 된다.
+    -->
+	<select id="getBoardList" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
             , WRITER
             , CONTENT
             , READ_CNT
@@ -16,13 +34,25 @@
         FROM BASIC_BOARD
     </select>
 
-    <select id="getBoard">
-        SELECT
-            TITLE
+    <select id="getBoard" resultMap="board">
+        SELECT BOARD_NUM
+            ,TITLE
             , WRITER
             , CONTENT
+            , READ_CNT
+            , CREATE_DATE
         FROM BASIC_BOARD
-        WHERE BOARD_NUM = 1
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
+
+    <select id="getBoardToName" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
+            , WRITER
+            , CREATE_DATE
+            , READ_CNT
+        FROM BASIC_BOARD
+        WHERE TITLE LIKE CONCAT('%', #{title}, '%')
     </select>
 
     <insert id="insertBoard">
@@ -31,54 +61,23 @@
             , WRITER
             , CONTENT
         ) VALUES (
-            '제목3'
-            , '작성자3'
-            , '내용3'
+            #{title}
+            , #{writer}
+            , #{content}
         )
     </insert>
 
     <update id="updateBoard">
         UPDATE BASIC_BOARD
         SET
-            CONTENT = '내용7'
-            , READ_CNT = READ_CNT + 3
-        WHERE BOARD_NUM = 2
+            TITLE = #{title}
+            , READ_CNT = #{readCnt}
+        WHERE BOARD_NUM = #{boardNum}
     </update>
 
     <delete id="deleteBoard">
         DELETE FROM BASIC_BOARD
-        WHERE BOARD_NUM = 1
+        WHERE BOARD_NUM = #{boardNum}
     </delete>
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

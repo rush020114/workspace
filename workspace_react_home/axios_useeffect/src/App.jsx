@@ -17,7 +17,7 @@ function App() {
       {/* <InputTest01 /> */}
       {/* <InputTest02 /> */}
       {/* <FormPractice01 /> */}
-      <BookInfo />
+      {/* <BookInfo /> */}
     </>
   )
 }

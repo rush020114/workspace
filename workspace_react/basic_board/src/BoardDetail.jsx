@@ -4,26 +4,31 @@ import './BoardDetail.css'
 
 const BoardDetail = () => {
 
-  const [boardData, setBoardData] = useState({boardNum: ''})
+  const [boardNum, setBoardNum] = useState('')
 
   const [board, setBoard] = useState({})
 
   const [isShow, setIsShow] = useState(false)
 
+  console.log(board.title)
+  
   const getBoard = (boardNum) => {
+    if(boardNum === ''){
+      alert('번호를 입력하세요')
+      return
+    }
     axios.get(`/api/boards/${boardNum}`)
-    .then(res => setBoard(res.data))
+    .then(res => {
+      setIsShow(true)
+      console.log(res.data)
+      if(res.data === ''){
+        alert('조회실패')
+        setIsShow(false)
+      }
+      setBoard(res.data)
+    })
     .catch(error => console.log(error))
   }
-  
-  const handleBoardData = (e) => {
-    setBoardData({
-      ...boardData
-      , [e.target.name]: e.target.value
-    })
-  }
-
-  console.log(boardData)
 
   return (
     <div className='detail-container'>
@@ -32,22 +37,24 @@ const BoardDetail = () => {
         <p>조회할 게시글 번호를 입력하세요</p>
         <input
          type="text" 
-         name='boardNum'
-         value={boardData.boardNum}
-         onChange={e => handleBoardData(e)}
+         value={boardNum}
+         onChange={e => setBoardNum(e.target.value)}
         />
         <button
          type='button'
-         onClick={e => {
-          getBoard(boardData.boardNum)
-          setIsShow(true)
-        }}
+         onClick={e => getBoard(boardNum)}
         >조회</button>
       </div>
       {
         isShow
-        ?
+        &&
         <table className='detail-table'>
+          <colgroup>
+            <col width='25%' />
+            <col width='25%' />
+            <col width='25%' />
+            <col width='25%' />
+          </colgroup>
           <tbody>
             <tr>
               <td>글번호</td>
@@ -56,14 +63,14 @@ const BoardDetail = () => {
               <td>{board.readCnt}</td>
             </tr>
             <tr>
-              <td>제목</td>
-              <td>{board.title}</td>
+              <td>작성자</td>
+              <td>{board.writer}</td>
               <td>작성일자</td>
               <td>{board.createDate}</td>
             </tr>
             <tr>
               <td>제목</td>
-              <td colSpan={3}>게시글</td>
+              <td colSpan={3}>{board.title}</td>
             </tr>
             <tr>
               <td>내용</td>
@@ -71,8 +78,6 @@ const BoardDetail = () => {
             </tr>
           </tbody>
         </table>
-        :
-        null
       }
     </div>
   )

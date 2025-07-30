@@ -43,13 +43,17 @@ public class BoardController {
     return boardService.getBoardList();
   }*/
 
-  /*@GetMapping("/{boardNum}")
+  @GetMapping("/{boardNum}")
   public BoardDTO getBoardListDetail(@PathVariable("boardNum") int boardNum){
-    return boardService.getBoardListDetail(boardNum);
-  }*/
+    BoardDTO result = boardService.getBoardListDetail(boardNum);
+    System.out.println(result);
+    return result;
+  }
 
-  @GetMapping("/{title}")
+  @GetMapping("/search/{title}")
   public List<BoardDTO> getBoardListTitle(@PathVariable("title") String title){
-    return boardService.getBoardListTitle(title);
+    List<BoardDTO> result = boardService.getBoardListTitle(title);
+    System.out.println(result);
+    return result;
   }
 }

@@ -1,21 +1,22 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import './BoardList.css'
+import { useNavigate } from 'react-router-dom'
 
-const BoardList = () => {
+const BoardList = ({boardList, setSelectedBoard}) => {
 
-  const [boardList, setBoardList] = useState([])
-
-  useEffect(() => {
-    axios.get('/api/boards')
-    .then(res => setBoardList(res.data))
-    .catch(error => console.log(error))
-  }, [])
+  const nav = useNavigate()
 
   return (
-    <div className='list-container'>
-      <h1>게시글 목록 페이지</h1>
-      <table className='list-table'>
+    <div>
+      <h1>자유게시판</h1>
+      <div>
+        <select name="">
+          <option value="">제목</option>
+        </select>
+        <input type="text" />
+        <button type='button'>검색</button>
+      </div>
+      <table>
         <thead>
           <tr>
             <td>No</td>
@@ -31,7 +32,12 @@ const BoardList = () => {
               return(
                 <tr key={i}>
                   <td>{boardList.length - i}</td>
-                  <td>{board.title}</td>
+                  <td
+                   onClick={e => {
+                    nav(`/${board.boardNum}`)
+                    setSelectedBoard(board)
+                  }}
+                  >{board.title}</td>
                   <td>{board.writer}</td>
                   <td>{board.createDate}</td>
                   <td>{board.readCnt}</td>
@@ -41,6 +47,12 @@ const BoardList = () => {
           }
         </tbody>
       </table>
+      <div>
+        <button
+         type='button'
+         onClick={e => nav('/reg')}
+        >글쓰기</button>
+      </div>
     </div>
   )
 }

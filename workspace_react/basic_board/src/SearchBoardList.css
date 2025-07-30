@@ -1,5 +1,5 @@
-.detail-container{
-  width: 900px;
+.search-container{
+  width: 800px;
   margin: 50px auto;
   text-align: center;
   display: flex;
@@ -7,19 +7,14 @@
   gap: 10px;
 }
 
-.detail-div{
-  display: flex;
-  justify-content: space-between;
-}
-
-.detail-div{
+.search-div{
   display: flex;
   justify-content: flex-end;
   gap: 10px;
   font-size: 1.2rem;
 }
 
-.detail-div > button{
+.search-div > button{
   background-color: #4472c4;
   color: white;
   border: none;
@@ -27,34 +22,32 @@
   font-size: 1.2rem;
 }
 
-.detail-div > p{
+.search-div > p{
   align-self: center;
 }
 
-.detail-table{
+.search-table{
   width: 100%;
   margin-top: 30px;
   border-collapse: collapse;
   font-size: 1.2rem;
 }
 
-.detail-table tr, .detail-table td{
+.search-table > thead{
+  background-color: #4472c4;
+  color: white;
+  font-weight: 700;
+}
+
+.search-table tr, .search-table td{
   padding: 8px;
   border: 1px solid white;
 }
 
-.detail-table > tbody > tr:nth-child(odd){
+.search-table > tbody > tr:nth-child(odd){
   background-color: #cfd5ea;
 }
 
-.detail-table > tbody > tr:nth-child(even){
+.search-table > tbody > tr:nth-child(even){
   background-color: #e9ebf5;
-}
-
-.detail-table > tbody > tr:nth-child(4){
-  height: 100px;
-}
-
-.detail-table > tbody > tr:nth-child(4) > td{
-  vertical-align: middle;
 }

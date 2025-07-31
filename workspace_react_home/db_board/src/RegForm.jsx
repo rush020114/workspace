@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import styles from './RegForm.module.css'
 
 const RegForm = ({nav}) => {
 
@@ -16,22 +17,22 @@ const RegForm = ({nav}) => {
   })}
 
   const regBoard = () => {
+    if(regBoardData.title === '' || regBoardData.writer === ''){
+      alert('제목 또는 작성자를 입력해주세요.')
+      return
+    }
     axios.post('/api/boards', regBoardData)
     .then(res => {
       console.log(res.data)
-      if(res.data === 0){
-        alert('제목 또는 작성자를 입력해주세요.')
-        return
-      }
-      nav('')
+      nav('/')
     })
     .catch(error => console.log(error))
   }
 
   return (
-    <div>
-      <h1>게시글 작성 페이지</h1>
-      <table>
+    <div className={styles.container}>
+      <h1 className={styles.title}>게시글 작성 페이지</h1>
+      <table className={styles.table}>
         <tbody>
           <tr>
             <td>제목</td>
@@ -59,6 +60,7 @@ const RegForm = ({nav}) => {
             <td>내용</td>
             <td>
               <textarea
+               rows={5}
                type="text" 
                name='content'
                value={regBoardData.content}
@@ -68,12 +70,14 @@ const RegForm = ({nav}) => {
           </tr>
         </tbody>
       </table>
-      <button
-       type='button'
-       onClick={e => {
-        regBoard()
-      }}
-      >등록</button>
+      <div className={styles.btn_div}>
+        <button
+         type='button'
+         onClick={e => {
+          regBoard()
+        }}
+        >등록</button>
+      </div>
     </div>
   )
 }

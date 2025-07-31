@@ -35,4 +35,13 @@ public class BoardController {
     boardDTO.setBoardNum(boardNum);
     return boardService.updateBoard(boardDTO);
   }
+  @PutMapping("/read-cnt/{boardNum}")
+  public int updateReadCnt(@PathVariable("boardNum") int boardNum){
+    return boardService.updateReadCnt(boardNum);
+  }
+
+  @DeleteMapping("/{boardNum}")
+  public int deleteBoard(@PathVariable("boardNum") int boardNum){
+    return boardService.deleteBoard(boardNum);
+  }
 }

@@ -14,4 +14,8 @@ public interface BoardMapper {
   int insertBoard(BoardDTO boardDTO);
 
   int updateBoard(BoardDTO boardDTO);
+
+  int updateReadCnt(int boardNum);
+
+  int deleteBoard(int boardNum);
 }

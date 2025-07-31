@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import styles from './BoardList.module.css'
 
-const BoardList = ({nav, setSelectedBoard}) => {
+const BoardList = ({nav}) => {
 
   const [boardList, setBoardList] = useState([])
 
@@ -11,17 +12,24 @@ const BoardList = ({nav, setSelectedBoard}) => {
     .catch(error => console.log(error))
   }, [])
 
+  const updateReadCnt = (boardNum) => {
+    axios.put(`/api/boards/read-cnt/${boardNum}`)
+    .then(res => console.log(res.data))
+    .catch(error => console.log(error))
+  }
+
+
   return (
-    <div>
-      <h1>자유게시판</h1>
-      <div>
+    <div className={styles.container}>
+      <h1 className={styles.title}>자유게시판</h1>
+      <div className={styles.search_div}>
         <select name="">
           <option value="">제목</option>
         </select>
         <input type="text" />
         <button type='button'>검색</button>
       </div>
-      <table>
+      <table className={styles.table}>
         <thead>
           <tr>
             <td>No</td>
@@ -33,12 +41,14 @@ const BoardList = ({nav, setSelectedBoard}) => {
         </thead>
         <tbody>
           {
+            boardList.length !== 0
+            ?
             boardList.map((board, i) => {
               return(
                 <tr key={i}>
                   <td>{boardList.length - i}</td>
                   <td onClick={e => {
-                    setSelectedBoard(board)
+                    updateReadCnt(board.boardNum)
                     nav(`${board.boardNum}`)
                     }}>{board.title}</td>
                   <td>{board.writer}</td>
@@ -47,10 +57,14 @@ const BoardList = ({nav, setSelectedBoard}) => {
                 </tr>
               )
             })
+            :
+            <tr>
+              <td colSpan={5}>조회된 게시글이 없습니다.</td>
+            </tr>
           }
         </tbody>
       </table>
-      <div>
+      <div className={styles.btn_div}>
         <button
          type='button'
          onClick={e => nav('/reg')}

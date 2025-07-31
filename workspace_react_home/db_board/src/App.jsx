@@ -13,23 +13,19 @@ function App() {
 
   const nav = useNavigate()
 
-  const [selectedBoard, setSelectedBoard] = useState({})
-
   return (
     <>
       <Routes>
         <Route
-         path=''
+         path='/'
          element={<BoardList
           nav={nav}
-          setSelectedBoard={setSelectedBoard}
          />} 
         />
         <Route 
          path='/:boardNum'
          element={<BoardDetail 
           nav={nav}
-          selectedBoard={selectedBoard}
          />} 
         />
         <Route
@@ -39,10 +35,9 @@ function App() {
          />} 
         />
         <Route
-         path='/update' 
+         path='/:boardNum/update' 
          element={<UpdateForm 
          nav={nav}
-         selectedBoard={selectedBoard}
          />} 
         />
       </Routes>

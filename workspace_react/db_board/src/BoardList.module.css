@@ -1,0 +1,42 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title_div{
+  text-align: center;
+}
+
+.search_div{
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.list_table{
+  width: 100%;
+  text-align: center;
+}
+
+.list_table > thead > tr{
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.list_table > tbody > tr{
+  border-bottom: 1px solid lightgray;
+}
+
+.list_table td{
+  padding: 7px;
+}
+
+.btn_div{
+  text-align: center;
+}
+
+.clickable:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}

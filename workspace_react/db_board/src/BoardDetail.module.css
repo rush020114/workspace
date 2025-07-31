@@ -1,0 +1,29 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title_div{
+  text-align: center;
+}
+
+.detail_table{
+  width: 100%;
+  text-align: center;
+}
+
+.detail_table > tbody > tr{
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.detail_table td{
+  padding: 7px;
+}
+
+.btn_div{
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}

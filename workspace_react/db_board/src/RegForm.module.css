@@ -1,0 +1,35 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title_div{
+  text-align: center;
+}
+
+.reg_table{
+  width: 100%;
+  text-align: center;
+}
+
+.reg_table > tbody > tr{
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.reg_table td{
+  padding: 7px;
+  vertical-align: middle;
+}
+
+.reg_table input, .reg_table textarea{
+  width: 100%;
+  resize: none;
+}
+
+.btn_div{
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}

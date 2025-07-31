@@ -5,29 +5,43 @@ import './App.css'
 import RegFrom from './RegFrom'
 import BoardList from './BoardList'
 import BoardDetail from './BoardDetail'
-import { Route, Routes } from 'react-router-dom'
+import UpdateForm from './UpdateForm'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function App() {
 
-  const [boardList, setBoardList] = useState([])
-
-  const [selectedBoard, setSelectedBoard] = useState({})
-
-  useEffect(() => {
-    axios.get('/api/boards')
-    .then(res => setBoardList(res.data))
-    .catch(error => console.log(error))
-  }, [])
+  const nav = useNavigate()
 
   return (
-    <>
+    <div className='container'>
       <Routes>
-        <Route path='home' element={<BoardList boardList={boardList} setSelectedBoard={setSelectedBoard} />} />
-        <Route path='/:boardNum' element={<BoardDetail selectedBoard={selectedBoard} />} />
-        <Route path='reg' element={<RegFrom />} />
+        <Route
+         path='/' 
+         element={<BoardList
+          nav={nav}
+          />} 
+        />
+        <Route
+         path='/:boardNum' 
+         element={<BoardDetail 
+          nav={nav}
+          />} 
+        />
+        <Route
+         path='/reg'
+         element={<RegFrom 
+         nav={nav}
+         />} 
+        />
+        <Route
+         path='/:boardNum/update'
+         element={<UpdateForm 
+         nav={nav}
+         />} 
+        />
       </Routes>
-    </>
+    </div>
   )
 }
 

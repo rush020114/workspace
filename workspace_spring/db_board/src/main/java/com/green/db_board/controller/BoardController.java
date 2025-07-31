@@ -22,6 +22,7 @@ public class BoardController {
 
   @GetMapping("/{boardNum}")
   public BoardDTO getBoard(@PathVariable("boardNum") int boardNum){
+    //조회수 1증가 쿼리
     return boardService.getBoard(boardNum);
   }
 
@@ -32,6 +33,17 @@ public class BoardController {
 
   @PutMapping("/{boardNum}")
   public int updateBoard(@RequestBody BoardDTO boardDTO, @PathVariable("boardNum") int boardNum){
+    boardDTO.setBoardNum(boardNum);
     return boardService.updateBoard(boardDTO);
+  }
+
+  @PutMapping("/read-cnt/{boardNum}")
+  public int updateReadCnt(@PathVariable int boardNum){
+    return boardService.updateReadCnt(boardNum);
+  }
+
+  @DeleteMapping("/{boardNum}")
+  public int deleteBoard(@PathVariable("boardNum") int boardNum){
+    return boardService.deleteBoard(boardNum);
   }
 }

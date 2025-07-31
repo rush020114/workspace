@@ -48,42 +48,23 @@
     </insert>
 
     <update id="updateBoard">
-        UPDATE BASIC_BOARD
+        UPDATE BOARD
         SET
             TITLE =  #{title}
             , CONTENT = #{content}
         WHERE BOARD_NUM = #{boardNum}
     </update>
 
+    <update id="updateReadCnt">
+        UPDATE BOARD
+        SET
+            READ_CNT = READ_CNT + 1
+        WHERE BOARD_NUM = ${boardNum}
+    </update>
+
+    <delete id="deleteBoard">
+        DELETE FROM BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
+
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

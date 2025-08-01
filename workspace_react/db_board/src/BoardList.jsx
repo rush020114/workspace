@@ -66,9 +66,8 @@ const BoardList = ({nav}) => {
                       <span 
                       className={styles.clickable}
                       onClick={e => {
-                        const boardNum = board.boardNum
-                        updateReadCnt(boardNum)
-                        nav(`/${boardNum}`)
+                        updateReadCnt(board.boardNum)
+                        nav(`/${board.boardNum}`)
                       }}
                       >
                         {board.title}

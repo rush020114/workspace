@@ -22,6 +22,17 @@ const UpdateForm = ({nav}) => {
     , content: ''
   })
 
+  // boardData가 값이 바뀔 때만 실행 + 마운트 시에도 실행 x
+  // 의존성 배열에 board를 넣으면 board 값이 바뀌어서 리렌더링될 때도 실행
+  useEffect(() => {
+    boardData.title !== undefined
+    && 
+    setUpdateBoardData({
+      title: boardData.title
+      , content: boardData.content
+    })
+  }, [boardData])
+
   const handleUpdateBoard = e => {
     setUpdateBoardData({
       ...updateBoardData
@@ -34,8 +45,8 @@ const UpdateForm = ({nav}) => {
       alert('제목을 입력해주세요.')
       return
     }
-    axios.put(`/api/boards/${boardData.boardNum}`, updateBoardData)
-    .then(res => nav(-1))
+    axios.put(`/api/boards/${boardNum}`, updateBoardData)
+    .then(res => nav(`/${boardNum}`))
     .catch(error => console.log(error))
   }
 

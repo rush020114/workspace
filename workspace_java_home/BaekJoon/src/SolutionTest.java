@@ -1,8 +1,10 @@
+import java.util.Arrays;
+
 public class SolutionTest {
   public static void main(String[] args) {
     Solution solution = new Solution();
-    /*int num = Integer.parseInt("7");
-    System.out.println(num);*/
-    solution.solution("1");
+    System.out.println((int)'✓');
+    System.out.println(10003 - 2713);
+    System.out.println((char)7250);
   }
 }

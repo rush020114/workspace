@@ -16,8 +16,7 @@ const BoardDetail = ({nav}) => {
   }, [])
 
   const deleteBoard = () => {
-    const result = confirm('정말 삭제하시겠습니까?');
-    result
+    confirm('정말 삭제하시겠습니까?')
     &&
     axios
     .delete(`/api/boards/${boardNum}`)

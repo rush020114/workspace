@@ -1,15 +1,18 @@
 class Solution {
-  public String solution(int age) {
-    String answer = "";
-    int cnt = 0;
-    while(true){
-      if(age / Math.pow(10, ++cnt) < 1){
-        break;
+  public int solution(String s) {
+    int index = 0;
+    int answer = 0;
+    for(int i = 0 ; i < s.length() / 2 + 1 ; i++){
+      if(s.charAt(index) == 90){
+        index -= 2;
+        answer -= s.charAt(index) - '0';
+        System.out.println(answer);
+        index += 4;
+        continue;
       }
-    }
-    for(int i = cnt - 1 ; i >= 0 ; i--){
-      answer += (char)(age / Math.pow(10, cnt) % 10 + 'a');
-      System.out.println(age / Math.pow(10, cnt) % 10);
+      answer += s.charAt(index) - '0';
+      System.out.println(answer);
+      index += 2;
     }
     return answer;
   }

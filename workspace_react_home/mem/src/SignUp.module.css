@@ -1,0 +1,39 @@
+.container{
+  width: 800px;
+  margin: 30px auto;
+}
+
+.title{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title > p{
+  font-size: 0.8rem;
+}
+
+span{
+  color: red;
+}
+
+.table{
+  width: 100%;
+  border: 1px solid #cccccc;
+  border-top: 2px solid #cccccc;
+  margin-top: 10px;
+}
+
+.table tr, table td{
+  border: 1px solid #cccccc;
+  padding: 7px;
+}
+
+.table input, .table select{
+  border: 1px solid #cccccc;
+  padding: 3px;
+}
+
+.table td:first-child{
+  background-color: #eeeeee;
+}

@@ -1,0 +1,84 @@
+.container{
+  width: 800px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  color: #333333;
+}
+
+.list_table{
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.list_table > thead{
+  background-color: #5a71be;
+  color: white;
+  border-bottom: 3px solid white;
+  font-weight: 700;
+}
+
+.list_table tr, .list_table td{
+  border: 1px solid white;
+  padding: 7px 3px;
+}
+
+.list_table > tbody > tr:nth-child(odd){
+  background-color: #d1d4e8;
+}
+
+.list_table > tbody > tr:nth-child(even){
+  background-color: #eaebf4;
+}
+
+.list_table > tbody > tr:hover{
+  background-color: #c0c3d7;
+  cursor: pointer;
+}
+
+.list_table > tbody > tr:active{
+  background-color: #e2e5f9;
+}
+
+.list_sum{
+  align-self: flex-end;
+  display: flex;
+  width: 300px;
+}
+
+.list_sum > div{
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.list_sum > div:first-child{
+  background-color: #5a71be;
+  color: white;
+}
+
+.list_sum > div:last-child{
+  border-bottom: 1px solid #5a71be;
+}
+
+.list_btn > button{
+  background-color: #5a71be;
+  color: white;
+  font-size: 1.2rem;
+  padding: 2px 35px;
+  border: none;
+  border-radius: 5px;
+}
+
+.list_btn > button:hover{
+  cursor: pointer;
+  background-color: #6b82cf;
+}
+
+.list_btn > button:active{
+  background-color: #4960ad;
+}

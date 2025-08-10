@@ -29,12 +29,22 @@ function App() {
                 setModal(true)
                 setSelectedTitle(e)
               }}>{e} <span onClick={e => {
-                  e.stopPropagation( )
+                  e.stopPropagation()
                   const newGoodCnt = [...goodCnt]
                   newGoodCnt[i]++;
                   setGoodCnt(newGoodCnt)
                 }}>👍</span> {goodCnt[i]}</h4>
               <p>2월 17일 발행</p>
+              <div>
+                <button type='butto' onClick={e => {
+                  const copy = [...title]
+                  copy.splice(i, 1)
+                  setTitle(copy)
+                  const newGoodCnt = [...goodCnt]
+                  newGoodCnt.splice(i, 1)
+                  setGoodCnt(newGoodCnt)
+                }}>삭제</button>
+              </div>
             </div>
           )
         })
@@ -43,10 +53,13 @@ function App() {
       <input type="text" value={insertValue} onChange={e => setInsertValue(e.target.value)} />
       <button type='button' onClick={e => {
           const copy = [...title]
-          copy.push(insertValue)
+          copy.unshift(insertValue)
           setTitle(copy)
-        }}></button>
-
+          const newGoodCnt = [...goodCnt]
+          newGoodCnt.unshift(0)
+          setGoodCnt(newGoodCnt)
+        }}>등록</button>
+    
       {
         modal
         ?

@@ -1,34 +1,29 @@
 package grade03;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.StringTokenizer;
 
-/**
- * @formatter:on
- * BufferedReader, BufferedWriter를 이용한 빠른 입출력 소스
- * @formatter:off
- */
 public class Main03_06 {
-
-  public static void main(String[] args) throws Exception {
-    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+  public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    StringTokenizer st;
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-    int T = Integer.parseInt(br.readLine());
-    for(int test = 0 ; test < T ; test++) {
-      st = new StringTokenizer(br.readLine());
-      int A = Integer.parseInt(st.nextToken());
-      int B = Integer.parseInt(st.nextToken());
-      bw.write(A + B + "\n"); // "\n" 대신에 bw.newLine(); 을 쓸 수도 있습니다.
+    StringTokenizer s; // 입력받은 문자열을 토큰화할 수 있는 자료형
+
+    // readLine은 엔터치기 전까지 유지
+    int i = Integer.parseInt(br.readLine()); // 버퍼는 문자열을 반환하므로 반복문 돌릴 횟수를 정수에 저장
+
+    for(int j = 0 ; j < i ; j++){
+      s = new StringTokenizer(br.readLine()); // 문자열 토큰화될 때까지 대기
+      int a = Integer.parseInt(s.nextToken()); // 매개변수가 없으므로 공백을 기준으로 저장
+      int b = Integer.parseInt(s.nextToken());
+
+      bw.write(a + b + "\n"); // 출력 버퍼에 저장
     }
 
-    bw.flush();
-    bw.close();
     br.close();
+    bw.flush(); // 버퍼의 모든 데이터 출력
+    bw.close();
   }
 
 }

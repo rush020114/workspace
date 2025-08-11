@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import styles from './ItemList.module.css'
+import dayjs from 'dayjs'
 
 const ItemList = ({nav}) => {
 
@@ -23,8 +25,17 @@ const ItemList = ({nav}) => {
   }
 
   return (
-    <div>
-      <table>
+    <div className={styles.container}>
+      <h1 className={styles.list_title}>상품 목록</h1>      
+      <table className={styles.list_table}>
+        <colgroup>
+          <col width='6%' />
+          <col width='13%' />
+          <col width='26%' />
+          <col width='19%' />
+          <col width='11%' />
+          <col width='24%' />
+        </colgroup>
         <thead>
           <tr>
             <td>No</td>
@@ -48,9 +59,9 @@ const ItemList = ({nav}) => {
                   <td>{itemList.length - i}</td>
                   <td>{item.itemCategory}</td>
                   <td>{item.itemName}</td>
-                  <td>{item.itemPrice}</td>
+                  <td>{'￦' + item.itemPrice.toLocaleString()}</td>
                   <td>{item.itemStatus}</td>
-                  <td>{item.regDate}</td>
+                  <td>{dayjs(item.regDate).format('YYYY.MM.DD HH:mm:ss')}</td>
                 </tr> 
               )
             })
@@ -61,10 +72,11 @@ const ItemList = ({nav}) => {
           }
         </tbody>
       </table>
-      <div>
-        <div>총 등록 가격{sum}</div>
+      <div className={styles.list_sum}>
+        <div>총 등록 가격</div>
+        <div>{'￦' + sum.toLocaleString()}원</div>
       </div>
-      <div>
+      <div className={styles.list_btn}>
         <button
          type='button'
          onClick={e => nav('/reg')}

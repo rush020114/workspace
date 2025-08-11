@@ -1,0 +1,85 @@
+.container{
+  border: 1px solid black;
+  width: 300px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #eaebf4;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #333333;
+}
+
+.reg_title{
+  text-align: center;
+}
+
+.reg_content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reg_content > div > p{
+  margin-bottom: 5px;
+}
+
+.reg_content input:not([type='radio']), .reg_content select, .reg_content textarea{
+  width: 100%;
+  padding: 7px 5px;
+  resize: none;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+}
+
+.reg_content input:not([type='radio']):focus, .reg_content select:focus, .reg_content textarea:focus{
+  outline: 1px solid #aaaaaa;
+  border: 1px solid #aaaaaa;
+}
+
+.reg_content select:hover{
+  cursor: pointer;
+}
+
+.not_valid{
+  color: red;
+  font-size: 0.7rem;
+}
+
+.reg_radio > div{
+  display: flex;
+  gap: 20px;
+}
+
+.reg_radio > div > div{
+  display: flex;
+  gap: 3px;
+}
+
+.reg_radio input[type='radio']{
+  margin: 0px;
+}
+
+.reg_btn{
+  text-align: center;
+}
+
+.reg_btn > button{
+  background-color: #5a71be;
+  color: white;
+  font-size: 1.2rem;
+  padding: 2px 35px;
+  border: none;
+  border-radius: 5px;
+}
+
+.reg_btn > button:hover{
+  cursor: pointer;
+  background-color: #6b82cf;
+}
+
+.reg_btn > button:active{
+  background-color: #4960ad;
+}

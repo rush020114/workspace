@@ -1,0 +1,25 @@
+.container{
+  width: 300px;
+  margin: 50px auto;
+}
+
+.add{
+  display: flex;
+  gap: 10px;
+}
+
+.to_do > div{
+  border: 1px solid black;
+  display: flex;
+}
+
+.to_do > div > div:last-child{
+  display: flex;
+  margin-left: auto;
+}
+
+.to_do img{
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}

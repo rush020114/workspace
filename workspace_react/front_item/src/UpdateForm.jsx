@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import styles from './UpdateForm.module.css'
 
 const UpdateForm = ({nav}) => {
 
@@ -51,80 +52,93 @@ const UpdateForm = ({nav}) => {
   
   console.log(updateItem)
   return (
-    <div>
-      <div>
-        <p>상품 카테고리</p>
-        <select
-         name="itemCategory"
-         value={updateItem.itemCategory}
-         onChange={e => handleUpdateData(e)}
-         >
-          <option value="">선택</option>
-          <option value="상의">상의</option>
-          <option value="하의">하의</option>
-          <option value="악세사리">악세사리</option>
-        </select>
-      </div>
-      <div>
-        <p>상품명</p>
-        <input
-         type="text" 
-         name="itemName"
-         value={updateItem.itemName}
-         onChange={e => handleUpdateData(e)}
-         />
-      </div>
-      <div>
-        <p>상품 가격</p>
-        <input
-         type="text" 
-         name='itemPrice'
-         value={updateItem.itemPrice}
-         onChange={e => handleUpdateData(e)}
-         />
-      </div>
-      <div>
-        <p>상품 상태</p>
+    <div className={styles.container}>
+      <h1 className={styles.update_title}>상품 수정</h1>
+      <div className={styles.update_content}>
         <div>
-          <input
-           type="radio"
-           name='itemStatus'
-           value={'준비중'}
-           checked={updateItem.itemStatus === '준비중'}
+          <p>상품 카테고리</p>
+          <select
+           name="itemCategory"
+           value={updateItem.itemCategory}
            onChange={e => handleUpdateData(e)}
-           />
-           <p>준비중</p>
+           onKeyDown={e => {if(e.key === 'Enter') updateFormData()}}
+           >
+            <option value="">선택</option>
+            <option value="상의">상의</option>
+            <option value="하의">하의</option>
+            <option value="악세사리">악세사리</option>
+          </select>
         </div>
         <div>
+          <p>상품명</p>
           <input
-           type="radio"
-           name='itemStatus'
-           value={'판매중'}
-           checked={updateItem.itemStatus === '판매중'}
+           type="text" 
+           name="itemName"
+           value={updateItem.itemName}
            onChange={e => handleUpdateData(e)}
+           onKeyDown={e => {if(e.key === 'Enter') updateFormData()}}
            />
-           <p>판매중</p>
         </div>
         <div>
+          <p>상품 가격</p>
           <input
-           type="radio"
-           name='itemStatus'
-           value={'매진'}
-           checked={updateItem.itemStatus === '매진'}
+           type="text" 
+           name='itemPrice'
+           value={updateItem.itemPrice}
            onChange={e => handleUpdateData(e)}
+           onKeyDown={e => {if(e.key === 'Enter') updateFormData()}}
            />
-           <p>매진</p>
+        </div>
+        <div className={styles.update_radio}>
+          <p>상품 상태</p>
+          <div>
+            <div>
+              <input
+               type="radio"
+               name='itemStatus'
+               value={'준비중'}
+               checked={updateItem.itemStatus === '준비중'}
+               onChange={e => handleUpdateData(e)}
+               onKeyDown={e => {if(e.key === 'Enter') updateFormData()}}
+               />
+               <p>준비중</p>
+            </div>
+            <div>
+              <input
+               type="radio"
+               name='itemStatus'
+               value={'판매중'}
+               checked={updateItem.itemStatus === '판매중'}
+               onChange={e => handleUpdateData(e)}
+               onKeyDown={e => {if(e.key === 'Enter') updateFormData()}}
+               />
+               <p>판매중</p>
+            </div>
+            <div>
+              <input
+               type="radio"
+               name='itemStatus'
+               value={'매진'}
+               checked={updateItem.itemStatus === '매진'}
+               onChange={e => handleUpdateData(e)}
+               onKeyDown={e => {if(e.key === 'Enter') updateFormData()}}
+               />
+               <p>매진</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p>상품 소개</p>
+          <textarea 
+           rows={5}
+           name="itemIntro"
+           value={updateItem.itemIntro}
+           onChange={e => handleUpdateData(e)}
+           onKeyDown={e => {if(e.key === 'Enter') updateFormData()}}
+          ></textarea>
         </div>
       </div>
-      <div>
-        <p>상품 소개</p>
-        <textarea 
-         name="itemIntro"
-         value={updateItem.itemIntro}
-         onChange={e => handleUpdateData(e)}
-        ></textarea>
-      </div>
-      <div>
+      <div className={styles.update_btn}>
         <button
          type='button'
          onClick={e => updateFormData()}

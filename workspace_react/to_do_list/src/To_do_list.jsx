@@ -15,10 +15,8 @@ const To_do_list = () => {
   const [toDo, setToDo] = useState({
     id: id
     , txt: ""
+    , isShow: false
   });
-
-  // 할 일 수정을 위한 state변수
-  const [isShow, setIsShow] = useState(false);
 
   // 할 일 목록의 값을 세팅하는 함수
   const handleToDo = e => {
@@ -63,7 +61,9 @@ const To_do_list = () => {
 
   // 할 일을 수정해주는 함수
   const updateToDo = i => {
-    setIsShow(true)
+    const newToDoList = [...toDoList]
+    newToDoList[i].isShow = false
+    setToDoList(newToDoList)
   }
 
   console.log(toDo)
@@ -90,11 +90,11 @@ const To_do_list = () => {
              toDoList.map((e, i) => {
                return(
                 <div key={i}>
-                  {isShow ? <input type="text" /> : <div>{e.txt}</div>}
+                  {e.isShow ? <input type="text" /> : <div>{e.txt}</div>}
                   <div>
                     <div>
                       {
-                        isShow ?
+                        e.isShow ?
                         <button type='button'>확인</button>
                         :
                         <img 
@@ -105,7 +105,7 @@ const To_do_list = () => {
                     </div>
                     <div>
                        {
-                        isShow ?
+                        e.isShow ?
                         <button type='button'>취소</button>
                         :
                         <img 

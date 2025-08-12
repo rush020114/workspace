@@ -26,6 +26,10 @@
   padding: 7px 3px;
 }
 
+.list_table > tbody > tr{
+  transition: all 0.1s;
+}
+
 .list_table > tbody > tr:nth-child(odd){
   background-color: #d1d4e8;
 }

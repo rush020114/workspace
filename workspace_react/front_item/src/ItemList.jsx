@@ -74,7 +74,7 @@ const ItemList = ({nav}) => {
       </table>
       <div className={styles.list_sum}>
         <div>총 등록 가격</div>
-        <div>{'￦' + sum.toLocaleString()}원</div>
+        <div>{'￦' + sum.toLocaleString()}</div>
       </div>
       <div className={styles.list_btn}>
         <button

@@ -23,13 +23,14 @@ public class StuController {
 
   // 모든 반의 학생 목록 조회 api
   @GetMapping("/students")
-  public List<StuDTO> getStudentInfo(){
-    return stuService.getStudentInfo();
+  public List<StuDTO> getStudentInfo(ClassDTO classDTO){
+    return stuService.getStudentInfo(classDTO);
   }
 
   // 선택된 학생 목록 조회 api
   @GetMapping("/students/{classNum}")
-  public List<StuDTO> getStudent(@PathVariable("classNum") int classNum){
-    return stuService.getStudent(classNum);
+  public List<StuDTO> getStudent(@PathVariable("classNum") int classNum, ClassDTO classDTO){
+    classDTO.setClassNum(classNum);
+    return stuService.getStudentInfo(classDTO);
   }
 }

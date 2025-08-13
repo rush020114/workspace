@@ -11,6 +11,9 @@ public class StuDTO {
   private int stuNum;
   private String stuName;
   private int stuAge;
+  private int classNum;
+  // 학생에 대해서 학급은 1:1관계이므로 classDTO 멤버변수를 선언
+  private ClassDTO classDTO;
 
   public StuDTO(){
   }

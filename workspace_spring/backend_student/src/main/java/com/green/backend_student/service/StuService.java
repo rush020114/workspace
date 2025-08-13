@@ -21,13 +21,9 @@ public class StuService {
   }
 
   // 모든 반의 학생 조회
-  public List<StuDTO> getStudentInfo(){
-    return stuMapper.getStudentInfo();
+  public List<StuDTO> getStudentInfo(ClassDTO classDTO){
+    return stuMapper.getStudentInfo(classDTO);
   }
 
-  // 선택된 학생 목록 조회
-  public List<StuDTO> getStudent(int classNum){
-    return stuMapper.getStudent(classNum);
-  }
 
 }

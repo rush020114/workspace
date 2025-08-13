@@ -1,0 +1,40 @@
+.container{
+	width: 500px;
+	margin: 30px auto;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.select > select{
+	padding: 7px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	color: #333333;
+}
+
+.table{
+	width: 100%;
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.table > thead{
+	background-color: #4472c4;
+	border-bottom: 3px solid white;
+	color: white;
+	font-weight: 700;
+}
+
+.table tr, .table td{
+	border: 1px solid white;
+	padding: 7px 3px;
+}
+
+.table > tbody > tr:nth-child(odd){
+	background-color: #cfd5ea;
+}
+
+.table > tbody > tr:nth-child(even){
+	background-color: #e9ebf5;
+}

@@ -1,6 +1,6 @@
 public class SolutionTest {
   public static void main(String[] args) {
     Solution solution = new Solution();
-    System.out.println(solution.solution(new int[] {3, 12, 28}, 20));
+    System.out.println(solution.solution(new int[] {1}));
   }
 }

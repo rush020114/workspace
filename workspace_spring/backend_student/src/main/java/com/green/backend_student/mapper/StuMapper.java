@@ -12,8 +12,6 @@ public interface StuMapper {
   List<ClassDTO> getClassInfo();
 
   // 모든 반의 학생 조회
-  List<StuDTO> getStudentInfo();
+  List<StuDTO> getStudentInfo(ClassDTO classDTO);
 
-  // 선택된 학생 목록 조회
-  List<StuDTO> getStudent(int classNum);
 }

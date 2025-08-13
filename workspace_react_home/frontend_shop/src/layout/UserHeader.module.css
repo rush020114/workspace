@@ -26,10 +26,10 @@
 
 .banner_div > p{
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 30px;
+  top: 25px;
   color: white;
   font-size: 2rem;
-  font-size: bold;
+  font-weight: bold;
   letter-spacing: 10px;
 }

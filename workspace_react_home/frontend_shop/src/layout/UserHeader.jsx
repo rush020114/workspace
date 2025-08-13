@@ -4,7 +4,7 @@ import styles from './UserHeader.module.css'
 const UserHeader = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.login}>
+      <div className={styles.login_div}>
         <span>LOGIN</span>
         <span>JOIN</span>
       </div>
@@ -12,7 +12,7 @@ const UserHeader = () => {
       <div className={styles.banner_div}>
         <img
          className={styles.banner_img}
-         src="" 
+         src="./book_banner.PNG" 
         />
         <p>BOOK SHOP</p>
       </div>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+
+<mapper namespace="com.green.backend_student.mapper.StuMapper">
+    <!--
+     테이블 간에는 관계라는 것이 있다. 그 중 1 : 1, 1 : n의 관계를 파악할 줄 알아야 한다.
+     조회하고 싶은 테이블을 기준으로 파악한다. (학생 목록을 조회(기준)할 시 학급이 한 개가 매칭되므로 1:1 관계이다.)
+     관계를 파악하면 기준 DTO에 관계가 있는 DTO의 클래스를 관계에 맞게 추가해주고
+     resultMap 자료형에도 기준에 맞는 태그(1 : 1 => association, 1 : n => collection)를 작성해준다.
+    -->
+
+    <!--
+     resultMap은 데이터베이스에서 조회된 데이터를 어떤 식으로 가져올 건지를 도와주는 속성이다.
+     그리고 그 데이터는 resultMap의 정의문을 통해 자바로 가져온다.
+     데이터 베이스에 조회된 컬럼은 정의문의 column속성으로 받아 dto멤버변수인 property로 받아 dto에 값을 채운다.
+    -->
+
+    <!-- CLASS_INFO 테이블에서 조회된 결과를 ClassDTO로 받기 위한 정의문 -->
+    <resultMap id="classInfo" type="com.green.backend_student.dto.ClassDTO">
+        <id     column="CLASS_NUM"  property="classNum" />
+        <result column="CLASS_NAME" property="className" />
+    </resultMap>
+
+    <!-- STU_INFO 테이블에서 조회된 결과를 StuDTO로 받기 위한 정의문 -->
+    <resultMap id="student" type="com.green.backend_student.dto.StuDTO">
+        <id     column="STU_NUM"    property="stuNum" />
+        <result column="STU_NAME"   property="stuName" />
+        <result column="STU_AGE"    property="stuAge" />
+        <result column="CLASS_NUM"  property="classNum" />
+        <!--
+         학생을 기준으로 학급을 조회하니 테이블 간 1 : 1 관계가 성립하므로
+         변수란(property)에 classDTO를 넣는다.
+         resultMap은 classDTO와 관련된 resultMap의 id를 적는다.
+         밑의 getSTuList 조회쿼리를 실행 시 받아오는 CLASS_NAME 컬럼을
+         association의 resultMap이 받아 classDTO의 값을 채울 수 있게 된다.
+        -->
+        <association property="classDTO" resultMap="classInfo" />
+    </resultMap>
+
+    <!-- 학급 테이블 조회 컬럼 -->
+    <select id="getClassList" resultMap="classInfo">
+        SELECT CLASS_NUM
+            , CLASS_NAME
+        FROM CLASS_INFO
+    </select>
+
+    <!--
+     MyBatis의 #{} 안에 들어가는 값은 멤버변수로 전달되는 자료형에 따라 해석이 달라진다.
+     자바에서 제공하는 자료형이 전달되면 변수명이 마음대로 작성되어도 빈 값이 하나이기 때문에 자동으로 채워진다.
+     그리고 클래스가 매개변수로 넘어가면 #{}은 클래스가 매개변수로 넘어온 것을 인지한다.
+     클래스가 넘어왔음을 인지하면 #{} 안에 적혀있는 문자 그대로 getter를 호출한다.
+     그래서 getter가 없는 변수명을 적으면 값을 받을 수 없다.
+     또한 if,for문도 변수가 getter를 호출하기 때문에 DTO클래스를 넣어주어야 한다.
+    -->
+    <!-- 학생 목록(조인 사용) 조회 -->
+    <select id="getStuList" resultMap="student">
+        SELECT STU_NUM
+            , STU_NAME
+            , STU_AGE
+            , CLASS_NAME
+        FROM STUDENT_INFO S
+        INNER JOIN CLASS_INFO C
+        ON S.CLASS_NUM = C.CLASS_NUM
+        <if test="classNum != 0">
+        WHERE S.CLASS_NUM = #{classNum}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+.btn{
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.blue{
+  background-color: #0d5efd;
+}
+
+.blue:hover{
+  background-color: #0c4dec;
+}
+
+.gray{
+  background-color: #7a838b;
+}
+
+.gray:hover{
+  background-color: #69727a;
+}
+
+.green{
+  background-color: #188452;
+}
+
+.green:hover{
+  background-color: #077341;
+}
+

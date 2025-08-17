@@ -5,19 +5,6 @@ const Home = ({nav}) => {
   return (
     <div>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <h3>MEM</h3>
-          <div>
-            <button
-             type='button'
-             onClick={e => nav('/signup')}
-            >sign up</button>
-            <button
-             type='button'
-             onClick={e => nav('/login')}
-            >log in</button>
-          </div>
-        </div>
         <div className={styles.content}>
           <h1>
             Lorem ipsum dolor sit amet.

@@ -10,6 +10,10 @@
   gap: 12px;
 }
 
+.login_div > span{
+  cursor: pointer;
+}
+
 .banner_div{
   height: 150px; 
   position: relative;

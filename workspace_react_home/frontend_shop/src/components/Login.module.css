@@ -1,0 +1,23 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login_input{
+  position: relative;
+}
+
+.login_input > span{
+  position: absolute;
+  top: 3px;
+  left: 5px;
+}
+
+.login_input > input{
+  padding-left: 30px;
+}
+
+.login_input > span{
+  color: #777777;
+}

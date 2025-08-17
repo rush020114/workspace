@@ -1,0 +1,21 @@
+.menu_div{
+  background-color: #467b53;
+  height: 70px;
+  color: white;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu_div > div{
+  display: flex;
+  gap: 20px;
+}
+
+.menu_div > div > p:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+

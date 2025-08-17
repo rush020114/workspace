@@ -1,19 +1,38 @@
-import java.math.BigInteger;
-
 class Solution {
-  public int solution(int balls, int share) {
-    BigInteger sameBalls = new BigInteger("" + (balls + 1));
-    BigInteger sameShare = new BigInteger("" + (share + 1));
-    BigInteger ballMul = new BigInteger("1");
-    BigInteger shareMul = new BigInteger("1");
-    BigInteger one = new BigInteger("1");
-    for(int i = 0 ; i < share ; i++){
-      sameBalls = sameBalls.subtract(one);
-      sameShare = sameShare.subtract(one);
-      ballMul =ballMul.multiply(sameBalls);
-      shareMul =shareMul.multiply(sameShare);
-
+  public int solution(String s) {
+    String[] strings = s.split(" ");
+    int index = 0;
+    int cnt = 0;
+    for(int i = 0 ; i < strings.length ; i++){
+      if(strings[i].equals("Z")){
+        cnt++;
+      }
     }
-    return (ballMul.divide(shareMul)).intValue();
+    int[] ints = new int[cnt * 2];
+    for(int i = 0 ; i < strings.length ; i++){
+      if(strings[i].equals("Z")){
+        ints[index++] = i - 1;
+        ints[index++] = i;
+      }
+    }
+    int sum = 0;
+    index = 0;
+    if(ints.length != 0){
+      for(int i = 0 ; i < strings.length ; i++){
+        if(ints[index] == i){
+          if(!(index == ints.length - 1)){
+            index++;
+          }
+          continue;
+        }
+        sum += Integer.parseInt(strings[i]);
+      }
+    }
+    else{
+      for(int i = 0 ; i < strings.length ; i++){
+        sum += Integer.parseInt(strings[i]);
+      }
+    }
+    return sum;
   }
 }

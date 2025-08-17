@@ -1,0 +1,44 @@
+.modal_overlay{
+  position: fixed;
+  /* 상하좌우 하나도 떨어져 있기 때문에 화면에 가득찬다. */
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.modal_content{
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.modal_title{
+  position: relative;
+}
+
+.modal_title > p{
+  text-align: center;
+}
+
+.close_btn{
+  position: absolute;
+  top: 0px;
+  right: 3px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666666;
+}
+
+.content_div{
+  margin-top: 12px;
+  
+}

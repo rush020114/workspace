@@ -1,0 +1,33 @@
+.btn{
+  padding: 5px 0px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: white;
+  cursor: pointer;  
+  transition: all 0.25s;
+}
+
+.blue{
+  background-color: #0d5efd;
+}
+
+.blue:hover{
+  background-color: #0c4dec;
+}
+
+.gray{
+  background-color: #7a838b;
+}
+
+.gray:hover{
+  background-color: #69727a;
+}
+
+.green{
+  background-color: #188452;
+}
+
+.green:hover{
+  background-color: #077341;
+}

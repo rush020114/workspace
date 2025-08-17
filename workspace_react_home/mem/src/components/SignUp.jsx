@@ -5,31 +5,8 @@ const SignUp = () => {
 
   useEffect(() => {
     const [regMember, setRegMember] = useState({
-    memId: ''
-    , memPw: ''
-    , checkPw: ''
-    , memName: ''
-    , memGender: ''
-    , memAddr1: ''
-    , memAddr2: ''
-    , memAddr: memAddr
-    , memTel1: '010'
-    , memTel2: ''
-    , memTel3: ''
-    , memTel: memTel
-    , memIden1: ''
-    , memIden2: ''
-    , memIden: memIden
-    , memEmail1: ''
-    , memEmail2: ''
-    , memEmail: memEmail
   })
-  }, [regMember])
-
-  const memAddr = `${regMember.memAddr1} ${regMember.memAddr2}`;
-  const memTel = `${regMember.memTel1}-${regMember.memTel2}-${regMember.memTel3}`;
-  const memIden = `${regMember.memIden1}-${regMember.memIden2}`;
-  const memEmail = `${regMember.memEmail1}@${regMember.memEmail2}`;
+  }, [])
 
   const handleRegMember = e => {
     setRegMember({

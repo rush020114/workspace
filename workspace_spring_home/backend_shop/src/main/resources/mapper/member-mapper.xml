@@ -15,4 +15,36 @@
         <result column="MEM_ROLE"    property="memRole" />
         <result column="JOIN_DATE"   property="joinDate" />
     </resultMap>
+
+    <!-- 회원가입 쿼리 -->
+    <insert id="join">
+        INSERT INTO SHOP_MEMBER (
+            MEM_ID
+            , MEM_PW
+            , MEM_NAME
+            , MEM_TEL
+            , MEM_EMAIL
+            , MEM_ADDR
+            , ADDR_DETAIL
+        ) VALUES (
+            #{memId}
+            , #{memPw}
+            , #{memName}
+            <!-- memTelArr은 배열이므로 mybatis문법을 getter호출한 값의 요소를 반환하면 된다. -->
+            <!-- concat으로 원하는 데이터 형식을 데이터베이스에 삽입할 수 있다. -->
+            , CONCAT(#{memTelArr[0]}, '-', #{memTelArr[1]}, '-', #{memTelArr[2]})
+            , #{memEmail}
+            , #{memAddr}
+            , #{addrDetail}
+        )
+    </insert>
+
+    <!-- 아이디 중복 확인 쿼리 -->
+    <!-- 리액트에서 보낸 아이디가 데이터베이스에서 조회가 되면 쓸 수 없는 아이디라는 원리를 이용한 쿼리 -->
+    <!-- resultType은 조회한 결과 한 행을 자바가 제공하는 자료형으로 받는다는 뜻 -->
+    <select id="checkId" resultType="String">
+        SELECT MEM_ID
+        FROM SHOP_MEMBER
+        WHERE MEM_ID = #{memId}
+    </select>
 </mapper>

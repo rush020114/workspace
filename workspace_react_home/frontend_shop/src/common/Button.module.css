@@ -31,3 +31,9 @@
 .green:hover{
   background-color: #077341;
 }
+
+/* 사용하지 못함을 표현하는 속성 */
+.disabled{
+  cursor: default;
+  opacity: 0.5;
+}

@@ -1,4 +1,3 @@
-
 # 도서 쇼핑몰 프로젝트 테이블
 
 # 1. 회원 테이블
@@ -19,3 +18,6 @@ CREATE TABLE SHOP_MEMBER (
 	, MEM_ROLE VARCHAR(10) NOT NULL DEFAULT 'USER' # ADMIN, USER
 	, JOIN_DATE DATETIME DEFAULT SYSDATE()
 );
+
+SELECT *
+FROM shop_member;

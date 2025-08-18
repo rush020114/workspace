@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 
-  // 회원 등록
-  int insertMember(MemberDTO memberDTO);
+  // 회원가입
+  void join(MemberDTO memberDTO);
+
+  // 아이디 중복확인
+  String checkMemId(String memId);
 }

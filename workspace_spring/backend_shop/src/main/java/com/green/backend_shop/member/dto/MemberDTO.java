@@ -19,6 +19,8 @@ public class MemberDTO {
   private String memEmail;
   private String memRole;
   private LocalDateTime joinDate;
+  // 배열로 전달되는 연락처를 받기 위한 변수
+  private String[] memTelArr;
 
   public MemberDTO(){
   }

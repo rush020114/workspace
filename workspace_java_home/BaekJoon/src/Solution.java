@@ -1,38 +1,21 @@
 class Solution {
-  public int solution(String s) {
-    String[] strings = s.split(" ");
-    int index = 0;
-    int cnt = 0;
-    for(int i = 0 ; i < strings.length ; i++){
-      if(strings[i].equals("Z")){
-        cnt++;
+  public String solution(String bin1, String bin2) {
+    String answer = "";
+    for(int i = 0 ; i < bin1.length() ; i++){
+      if(bin1.substring(0, 1).equals("1") && bin2.substring(0, 1).equals("1")){
+        answer += "1";
       }
-    }
-    int[] ints = new int[cnt * 2];
-    for(int i = 0 ; i < strings.length ; i++){
-      if(strings[i].equals("Z")){
-        ints[index++] = i - 1;
-        ints[index++] = i;
-      }
-    }
-    int sum = 0;
-    index = 0;
-    if(ints.length != 0){
-      for(int i = 0 ; i < strings.length ; i++){
-        if(ints[index] == i){
-          if(!(index == ints.length - 1)){
-            index++;
-          }
-          continue;
+        switch(Integer.parseInt(bin1.substring(i, i + 1)) + Integer.parseInt(bin2.substring(i, i + 1))){
+          case 0:
+            answer += "0";
+            break;
+          case 1:
+            answer += "1";
+            break;
+          default:
+            answer += "0";
         }
-        sum += Integer.parseInt(strings[i]);
-      }
     }
-    else{
-      for(int i = 0 ; i < strings.length ; i++){
-        sum += Integer.parseInt(strings[i]);
-      }
-    }
-    return sum;
+    return answer;
   }
 }

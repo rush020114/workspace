@@ -18,8 +18,8 @@
         <result column="JOIN_DATE"   property="joinDate" />
     </resultMap>
 
-    <!-- 회원 등록 쿼리 -->
-    <insert id="insertMember">
+    <!-- 회원가입 -->
+    <insert id="join">
         INSERT INTO SHOP_MEMBER (
             MEM_ID
             , MEM_PW
@@ -32,10 +32,17 @@
             #{memId}
             , #{memPw}
             , #{memName}
-            , #{memTel}
+            , CONCAT(#{memTelArr[0]}, '-', #{memTelArr[1]}, '-', #{memTelArr[2]})
             , #{memAddr}
             , #{addrDetail}
             , #{memEmail}
         );
     </insert>
+
+    <!-- 아이디 중복확인 -->
+    <select id="checkMemId" resultType="String">
+        SELECT MEM_ID
+        FROM SHOP_MEMBER
+        WHERE MEM_ID = #{memId};
+    </select>
 </mapper>

@@ -5,10 +5,19 @@ import Button from '../common/Button'
 import styles from './Join.module.css'
 import Select from '../common/Select'
 import axios from 'axios'
+import { handleErrorMsg } from '../validate/joinValidate'
+import { useDaumPostcodePopup } from 'react-daum-postcode'
 
 const Join = ({isOpenJoin, onClose}) => {
-  // 아이디 유효성 검사 결과를 저장할 state 변수
-  const[errorMsg, setErrorMsg] = useState('');
+  // 다음 주소록 팝업 생성 함수
+  const open = useDaumPostcodePopup('//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js');
+
+  // 유효성 검사결과 에러 메시지를 저장할 state 변수
+  const[errorMsg, setErrorMsg] = useState({
+    memId: ''
+    , memPw: ''
+    , confirmPw: ''
+  });
 
   // 회원가입 버튼 사용 가능 여부를 저장하는 state 변수
   const [isDisable, setIsDisable] = useState(true)
@@ -96,10 +105,22 @@ const Join = ({isOpenJoin, onClose}) => {
       }
     })
     .catch(e => console.log(e))
-
   }
 
-  console.log(joinData)
+  // 주소록 띄우기 함수
+  const handlePost = () => {
+    // open함수를 실행하면 주소 pop창을 띄운다.
+    // onComplete키는 정해져 있고 value로 함수를 전달한다. 함수는 매개변수 data가 있다.
+    // 객체의 키 onComplete가 open함수의 매개변수로 전달되어야 검색된 주소를 클릭할 수 있게 된다.
+    open({onComplete: data => {
+      // 매개변수 data 안에 선택한 주소의 모든 정보가 객체형태로 들어있음
+      // address키는 지번이므로 우리가 세팅할 폼요소에 값을 집어넣겠끔 state변수를 쓴다.
+      setJoinData({
+        ...joinData
+        , 'memAddr': data.address
+      });
+    }})
+  }
 
   return (
     <Modal
@@ -112,6 +133,13 @@ const Join = ({isOpenJoin, onClose}) => {
       
       // x 버튼 클릭 시 모달을 닫히게 하는 함수
       onClose();
+
+      // validation error 메시지 초기화
+      setErrorMsg({
+        memId: ''
+        , memPw: ''
+        , confirmPw: ''
+      });
       
       // 입력한 값 초기화
       setJoinData({
@@ -140,23 +168,11 @@ const Join = ({isOpenJoin, onClose}) => {
               handleJoinData(e);
               setIsDisable(true);
 
-              // 아이디 유효성 검사(정규식 사용)
-              // 4~8글자, 영문과 숫자만 가능
-              const memIdRegex = /^[a-zA-Z0-9]{4,8}$/;
-              
-              // 유효성 검사
-              if(!e.target.value){ // 빈문자열이면
-                setErrorMsg('아이디는 필수입력입니다.')
-              }
-              else if(e.target.value.length < 4 || e.target.value.length > 8){
-                setErrorMsg('아이디는 4~8글자입니다.')
-              }
-              else if(!memIdRegex.test(e.target.value)){
-                setErrorMsg('아이디는 영문, 숫자만 가능합니다.')
-              }
-              else{
-                setErrorMsg('')
-              }
+              // 유효성 검사 결과 세팅
+              setErrorMsg({
+                ...errorMsg
+                , memId: handleErrorMsg(e)
+              });
              }}
             />
             <Button
@@ -166,7 +182,7 @@ const Join = ({isOpenJoin, onClose}) => {
              onClick={e => checkId()}
             />
           </div>
-          <p className={styles.error}>{errorMsg}</p>
+          <p className={styles.error}>{errorMsg.memId}</p>
         </div>
         <div>
           <p>비밀번호</p>
@@ -178,17 +194,13 @@ const Join = ({isOpenJoin, onClose}) => {
            onChange={e => {
             handleJoinData(e)
 
-            const memPwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-            if(!e.target.value){
-
-            }
-            // 비밀번호
-            // 1. 필수입력
-            // 2. 6~12글자
-            // 3. 영문 + 숫자 조합만 가능(정규식)
+            setErrorMsg({
+              ...errorMsg
+              , memPw: handleErrorMsg(e)
+            });
           }}
           />
-          <p className={styles.error}>{errorMsg}</p>
+          <p className={styles.error}>{errorMsg.memPw}</p>
         </div>
         <div>
           <p>비밀번호 확인</p>
@@ -197,8 +209,16 @@ const Join = ({isOpenJoin, onClose}) => {
            type='password'
            name='confirmPw'
            value={joinData.confirmPw}
-           onChange={e => handleJoinData(e)}
+           onChange={e => {
+            handleJoinData(e);
+
+            setErrorMsg({
+              ...errorMsg
+              , confirmPw: handleErrorMsg(e, joinData)
+            });
+           }}
           />
+          <p className={styles.error}>{errorMsg.confirmPw}</p>
         </div>
         <div>
           <p>회원명</p>
@@ -268,11 +288,15 @@ const Join = ({isOpenJoin, onClose}) => {
                name='memAddr'
                value={joinData.memAddr}
                onChange={e => handleJoinData(e)}
+               readOnly={true}
+               // open함수 호출을 실행할 함수
+               onClick={() => handlePost()}
               />
               <Button
                size='20%' 
                title='검 색'
                color='green'
+               onClick={() => handlePost()}
               />
             </div>
             <Input size='100%' 

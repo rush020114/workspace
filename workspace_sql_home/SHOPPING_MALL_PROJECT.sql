@@ -1,12 +1,9 @@
 # 도서 쇼핑몰 프로젝트 테이블
 
-# 1. 회원 테이블
-# 2. 도서 카테고리 테이블
-# 3. 도서 테이블
 # 4. 구매 테이블
 # 5. 장바구니 테이블
 
-# 회원 테이블
+# 1. 회원 테이블
 
 CREATE TABLE SHOP_MEMBER (
 	MEM_ID VARCHAR(20) PRIMARY KEY
@@ -22,3 +19,25 @@ CREATE TABLE SHOP_MEMBER (
 
 SELECT *
 FROM shop_member;
+
+# 2. 도서 카테고리 테이블
+CREATE TABLE BOOK_CATEGORY (
+	CATE_NUM INT PRIMARY KEY AUTO_INCREMENT
+	, CATE_NAME VARCHAR(20) NOT NULL UNIQUE
+);
+
+INSERT INTO book_category VALUES (1, '소설');
+INSERT INTO book_category VALUES (2, '인터넷/IT');
+INSERT INTO book_category VALUES (3, '자기계발');
+COMMIT;
+
+# 3. 도서 테이블
+CREATE TABLE BOOK (
+	BOOK_NUM INT PRIMARY KEY AUTO_INCREMENT
+	, TITLE VARCHAR(20) NOT NULL
+	, PUBLISHER VARCHAR(20) NOT NULL
+	, PRICE INT NOT NULL
+	, REG_DATE DATETIME DEFAULT SYSDATE() #쇼핑몰에 상품 등록한 날짜
+	, BOOK_INTRO VARCHAR(50)
+	, CATE_NUM INT REFERENCES book_category (CATE_NUM)
+);

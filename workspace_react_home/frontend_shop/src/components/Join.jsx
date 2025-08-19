@@ -5,11 +5,23 @@ import Input from '../common/Input'
 import Button from '../common/Button'
 import Select from '../common/Select'
 import axios from 'axios'
+import { handleJoinErrorMsg } from '../validate/joinValidation'
+// 다른 파일의 변수나 함수를 들고 오는 import문
+import { useDaumPostcodePopup } from 'react-daum-postcode'
 
 const Join = ({isOpenJoin, onClose}) => {
 
+  // 주소록 popup창을 띄우는 함수
+  // 다음 주소록 팝업 생성 함수
+  const open = useDaumPostcodePopup('//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js')
+
   // 아이디 유효성 검사
-  const [errorMsg, setErrorMsg] = useState('');
+  // 유효성 검사를 할 때마다 변수를 만들기 힘드므로 객체로 형성한다.
+  const [errorMsg, setErrorMsg] = useState({
+    memId: ''
+    , memPw: ''
+    , checkPw: ''
+  });
 
   // 중복확인에 따른 버튼 활성화 state변수
   const [isDisable, setIsDisable] = useState(true);
@@ -113,13 +125,31 @@ const Join = ({isOpenJoin, onClose}) => {
     .catch(e => console.log(e));
   };
 
+  const handlePost = () => {
+    // open함수: 주소록 팝업창을 열어준다.
+    // onComplete키(고정된 키): 열린 팝업 창의 검색 결과를 선택할 때 실행
+    // onComplete의 value: onComplete는 주소를 선택했을 때 실행하므로 value값에 주소를 선택했을 때 필요한 기능을 실행할 함수를 넣는다.
+    // value에 들어가는 함수에는 매개변수(data: 주소에 대한 모든 정보)가 넘어온다. onComplete실행에 관련된 함수이므로 그 범위를 벗어난 함수는 매개변수를 전달할 필요가 없다.
+    open({onComplete: data => {
+      setJoinData({
+        ...joinData
+        , memAddr: data.address
+      });
+    }})
+  }
+
   return (
     <Modal
      title={'Join'}
      isOpen={isOpenJoin}
      // modal을 직접 건들면 모든 모달에 적용되므로 onclose함수를 여러 줄로 만들어준다.
      onClose={() => {
-      setErrorMsg('')
+      // 모달을 닫을 때마다 유효성 검사의 값을 초기화시킨다.
+      setErrorMsg({
+        memId: ''
+        , memPw: ''
+        , memPw: ''
+      })
       // onclose가 함수 정의가 됐으므로 props로 전달된 onclose는 호출해준다.
       onClose();
       // 모달을 닫을 때 입력한 값을 초기화하지 않으므로 초기화해주는 state변경함수를 쓴다.
@@ -149,30 +179,16 @@ const Join = ({isOpenJoin, onClose}) => {
              value={joinData.memId}
              onChange={e => {
               // 아이디의 값이 변형될 때마다 유효성 검사를 해야 값을 입력할 때마다 문구가 뜬다.
-              // (1): 정규식을 변수에 저장한다.
-              const memIdRegex = /^[a-zA-Z0-9]{4,8}$/;
               handleJoinData(e);
               // 중복 안 되는 데이터를 받아도 값이 변경되면 회원가입 버튼을 비활성화
               setIsDisable(true);
-              // 유효성 검사의 상태를 나타내는 조건문들
-              // e.target.value는 비동기와 상관없이 값이 반영되기 때문에 사용한다.
-              // e.target.value의 값을 이용해 truthy, falsy를 판단한다.
-              if(!e.target.value){
-                setErrorMsg('아이디는 필수입력입니다.')
-              }
-              else if(e.target.value.length < 4 || e.target.value.length > 8){
-                setErrorMsg('아이디는 4~8자입니다.')
-              }
-              // (2): 정규식에 test함수를 쓴다.
-              // (3): 매개변수에 필요한 값을 넣는다.
-              // (4): 우리가 정의한 정규식과 일치하면 true 아니면 false를 반환
-              else if(!memIdRegex.test(e.target.value)){
-                setErrorMsg('아이디는 영문, 숫자만 입력가능합니다.')
-              }
-              // 위의 경우를 모두 통과하면 유효성 검사를 통과한다.
-              else{
-                setErrorMsg('')
-              }
+
+              // 유효성 검사할 때마다 state변경 함수를 실행하니 중복된 코드 제거를 위해 공통된 변경함수를 빼내어준다. 
+              setErrorMsg({
+                ...errorMsg
+                // 함수 리턴 값이 유효성 검사 문자이다.
+                , memId: handleJoinErrorMsg(e)
+              })
              }}
             />
             <Button 
@@ -182,7 +198,7 @@ const Join = ({isOpenJoin, onClose}) => {
              onClick={() => {checkId()}}
             />
           </div>
-          <p className={styles.error}>{errorMsg}</p>
+          <p className={styles.error}>{errorMsg.memId}</p>
         </div>
         <div>
           <p>비밀번호</p>
@@ -191,8 +207,15 @@ const Join = ({isOpenJoin, onClose}) => {
            size='100%'
            name='memPw'
            value={joinData.memPw}
-           onChange={e => handleJoinData(e)}
+           onChange={e => {
+            handleJoinData(e);
+            setErrorMsg({
+              ...errorMsg
+              , memPw: handleJoinErrorMsg(e)
+            });
+           }}
           />
+          <p className={styles.error}>{errorMsg.memPw}</p>
         </div>
         <div>
           <p>비밀번호 확인</p>
@@ -201,8 +224,16 @@ const Join = ({isOpenJoin, onClose}) => {
            size='100%'
            name='checkPw'
            value={joinData.checkPw}
-           onChange={e => handleJoinData(e)}
+           onChange={e => {
+            handleJoinData(e);
+            setErrorMsg({
+              ...errorMsg
+              // 비밀번호 확인은 비밀번호와 다른지를 확인하는 것이기 때문에 비밀번호도 매개변수로 전달한다.(js는 같은 함수의 매개변수 정보가 달라도 된다.)
+              , checkPw: handleJoinErrorMsg(e, joinData.memPw)
+            })
+           }}
           />
+          <p className={styles.error}>{errorMsg.checkPw}</p>
         </div>
         <div>
           <p>회원명</p>
@@ -269,12 +300,18 @@ const Join = ({isOpenJoin, onClose}) => {
                size='80%'
                name='memAddr'
                value={joinData.memAddr}
-               onChange={e => handleJoinData(e)}
+               onChange={e => handleJoinData(e)} 
+               // 읽기 전용: true
+               readOnly={true}
+               // 읽기 전용인 대신 클릭으로 팝업창 열리게 해주기
+               onClick={() => handlePost()}
               />
               <Button 
                size='20%'
                title='검 색'
                color='green'
+               // 검색 버튼 눌렀을 때 주소록 팝업창을 여는 함수를 실행하는 함수
+               onClick={() => handlePost()}
               />
             </div>
             <Input 

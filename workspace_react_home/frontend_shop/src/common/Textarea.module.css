@@ -1,0 +1,12 @@
+.textarea{
+  padding: 5px;
+  border: none;
+  outline: 1px solid #bbbbbb;
+  border-radius: 5px;
+  outline-offset: -1px;
+  resize: none;
+}
+
+.textarea:focus{
+  outline: 2px solid #bbbbbb;
+}

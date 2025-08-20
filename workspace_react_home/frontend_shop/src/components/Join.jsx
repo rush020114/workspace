@@ -198,7 +198,7 @@ const Join = ({isOpenJoin, onClose}) => {
              onClick={() => {checkId()}}
             />
           </div>
-          <p className={styles.error}>{errorMsg.memId}</p>
+          <p className='error'>{errorMsg.memId}</p>
         </div>
         <div>
           <p>비밀번호</p>
@@ -215,7 +215,7 @@ const Join = ({isOpenJoin, onClose}) => {
             });
            }}
           />
-          <p className={styles.error}>{errorMsg.memPw}</p>
+          <p className='error'>{errorMsg.memPw}</p>
         </div>
         <div>
           <p>비밀번호 확인</p>
@@ -233,7 +233,7 @@ const Join = ({isOpenJoin, onClose}) => {
             })
            }}
           />
-          <p className={styles.error}>{errorMsg.checkPw}</p>
+          <p className='error'>{errorMsg.checkPw}</p>
         </div>
         <div>
           <p>회원명</p>

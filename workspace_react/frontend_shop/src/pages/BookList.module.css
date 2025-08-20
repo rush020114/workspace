@@ -1,0 +1,42 @@
+.container{
+  width: 100%;
+  background-color: #eeeeee;
+}
+
+.content{
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+
+.list_div{
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 3px 3px 5px #aaaaaa;
+  padding-bottom: 5px;
+}
+
+.img_div{
+  overflow: hidden;
+}
+
+.img_div > img{ 
+  transition: all 0.5s;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.img_div:hover > img{
+  scale: 1.2
+}
+
+.list_div{
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}

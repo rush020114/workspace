@@ -14,8 +14,8 @@ public class BookCategoryService {
     this.bookCategoryMapper = bookCategoryMapper;
   }
 
-  // 도서 카테고리 조회
-  public List<BookCategoryDTO> getBookCategory(){
-    return bookCategoryMapper.getBookCategory();
+  // 도서 카테고리 목록 조회
+  public List<BookCategoryDTO> getCateList(){
+    return bookCategoryMapper.getCateList();
   }
 }

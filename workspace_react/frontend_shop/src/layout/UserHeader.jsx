@@ -26,7 +26,7 @@ const UserHeader = () => {
         <p>BOOK SHOP</p>
       </div>
       <div className={styles.menu_div}>
-        메뉴자리
+        메뉴 영역
       </div>
 
       {/* 로그인 모달 컴포넌트 */}

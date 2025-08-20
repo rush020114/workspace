@@ -2,23 +2,35 @@ package com.green.backend_shop.book.controller;
 
 import com.green.backend_shop.book.dto.BookDTO;
 import com.green.backend_shop.book.service.BookService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/books")
 public class BookController {
-  private BookService bookService;
+  private final BookService bookService;
 
-  public BookController(BookService bookService){
-    this.bookService = bookService;
+  // 도서 목록 조회
+  @GetMapping("")
+  public List<BookDTO> getBookList(){
+    return bookService.getBookList();
+  }
+
+  // 도서 상세 조회
+  @GetMapping("/{bookNum}")
+  public BookDTO getBook(@PathVariable("bookNum") int bookNum){
+    return bookService.getBook(bookNum);
   }
 
   // 도서등록 api
-  @GetMapping("")
+  @PostMapping("")
   public int insertBook(@RequestBody BookDTO bookDTO){
+    log.info(bookDTO.toString());
     return bookService.insertBook(bookDTO);
   }
 }

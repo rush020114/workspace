@@ -4,7 +4,7 @@ export const handleRegBookErrorMsg = (e) => {
 
   switch(e.target.name){
     case 'cateNum':
-      if(e.target.value === '0'){
+      if(!e.target.value){
         errorStr = '카테고리를 선택해주세요.'
       }
       break;

@@ -25,4 +25,13 @@ public class MemberController {
     // 사용 가능 : return true
     return memberService.isUsableId(memId);
   }
+
+  // 로그인
+  // 로그인 가능 쿼리를 실행할 땐 get으로 데이터를 두 개 받아야 하는 상황이 생긴다.
+  // react에서 작업을 다 해주었기 떄문에 spring에선 어노테이션 없이 dto를 생성해 받으면 된다.
+  @GetMapping("/login")
+  public MemberDTO login(MemberDTO memberDTO){
+    return memberService.login(memberDTO);
+  }
+
 }

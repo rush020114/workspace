@@ -10,4 +10,7 @@ public interface MemberMapper {
 
   // 아이디 중복확인 쿼리 실행
   String checkId(String memId);
+
+  // 로그인
+  MemberDTO login (MemberDTO memberDTO);
 }

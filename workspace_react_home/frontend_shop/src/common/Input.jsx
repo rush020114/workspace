@@ -8,14 +8,23 @@ import styles from './Input.module.css'
 // 스프레드 연산자를 씀으로써 문법적 오류가 없게끔 된다.
 // 현재의 props 형태는 기본 인자를 제외한 나머지 인자의 객체 형태이므로
 // input 태그에 스프레드 연산자로 뿌려줄 수 있다(중괄호는 객체로 감싸는 문법이 아닌 변수를 사용하기 위한 문법).
-const Input = ({size='120px', type='text', ...props}) => {
-
+const Input = ({
+  size='120px'
+  , type='text'
+  , padding='5px'
+  , fontSize='12px'
+  , ...props
+}) => {
   return (
     <input
-     className={styles.input}
+     style={{
+      width: size
+      , padding: padding
+      , fontSize: fontSize
+     }}
      type={type}
-     style={{width: size}}
-     {...props}
+     className={styles.input} 
+     {...props} 
     />
   )
 }

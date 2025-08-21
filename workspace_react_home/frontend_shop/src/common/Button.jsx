@@ -7,6 +7,8 @@ const Button = ({
   size='120px'
   , title='버튼'
   , color='blue'
+  , padding='5px 12px'
+  , fontSize='0.8rem'
   , onClick
   , ...props
 }) => {
@@ -16,13 +18,19 @@ const Button = ({
      // class를 두 개 한 번에 적용시키기 위한 문법이다.
      // 객체의 키 값에 변수를 주고 싶으면 []를 쓴다.
      // props로 disabled를 넘기지 않으면 undefined(falsy)가 나오는 원리를 이용해 단락평가를 한다.
-     className={`${styles.btn} ${styles[color]} ${props.disabled && styles.disabled}`}
-     style={{width: size}}
+     className={
+      `${styles.btn} 
+       ${styles[color]} 
+       ${props.disabled && styles.disabled}`
+     }
+     style={{
+      width: size
+      , padding: padding
+      , fontSize: fontSize
+     }}
      onClick={onClick}
      {...props}
-    >
-      {title}
-    </button>
+    >{title}</button>
   )
 }
 

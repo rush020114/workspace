@@ -187,15 +187,17 @@ const RegBook = () => {
         </div>
         <div className={styles.btn}>
           <Button 
-            onClick={e => setBookData({
-              cateNum: ''
-              , title: ''
-              , publisher: ''
-              , price: ''
-              , bookIntro: ''
-            })}
+            onClick={e => {
+              setBookData({
+                cateNum: ''
+                , title: ''
+                , publisher: ''
+                , price: ''
+                , bookIntro: ''
+              });
+              regBook();
+          }}
             disabled={isDisable}
-            onClick={e => regBook()}
           />
         </div>
       </div>

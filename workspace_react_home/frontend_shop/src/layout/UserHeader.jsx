@@ -23,7 +23,7 @@ const UserHeader = () => {
       <div className={styles.banner_div}>
         <img
          className={styles.banner_img}
-         src="./book_banner.PNG" 
+         src="/book_banner.PNG" 
         />
         <p>BOOK SHOP</p>
       </div>

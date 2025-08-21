@@ -8,6 +8,7 @@ import BookList from './pages/BookList'
 import AdminLayout from './layout/AdminLayout'
 import RegBook from './pages/RegBook'
 import CategoryManage from './pages/CategoryManage'
+import BookDetail from './pages/BookDetail'
 
 function App() {
 
@@ -26,7 +27,8 @@ function App() {
           {/* 일반 사용자가 접근하는 페이지는 모두 UserLayout과 함께 열림 */}
           {/* UserLayout의 Outlet 위치에 우리가 원하는 컴포넌트가 뜬다. */}
           {/* 도서 목록 페이지, url : /list */}
-          <Route path='list' element={<BookList />} />
+          <Route path='' element={<BookList />} />
+          <Route path='book-detail/:bookNum' element={<BookDetail />} />
 
         </Route>
 

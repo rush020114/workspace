@@ -1,11 +1,9 @@
 .btn{
-  padding: 5px 0px;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.8rem;
   color: white;
-  cursor: pointer;  
-  transition: all 0.25s;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .blue{
@@ -32,8 +30,7 @@
   background-color: #077341;
 }
 
-/* 사용하지 못함을 표현하는 속성 */
 .disabled{
-  cursor: default;
   opacity: 0.5;
+  cursor: default;
 }

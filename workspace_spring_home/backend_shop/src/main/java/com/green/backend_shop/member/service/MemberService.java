@@ -24,4 +24,9 @@ public class MemberService {
     // 조회된 데이터가 없으면 null이다.(memberMapper의 return은 조회한 아이디)
     return memberMapper.checkId(memId) == null;
   }
+
+  // 로그인
+  public MemberDTO login(MemberDTO memberDTO){
+    return memberMapper.login(memberDTO);
+  }
 }

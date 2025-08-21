@@ -17,7 +17,7 @@ function App() {
         {/* UserLayout의 Outlet 위치에 우리가 원하는 컴포넌트가 뜬다. */}
         <Route path='/' element={<UserLayout />}>
           {/* 도서 목록 페이지, url : /list */}
-          <Route path='list' element={<BookList />} />
+          <Route path='' element={<BookList />} />
           {/* 도서 상세 페이지, url : /book-detail */}
           <Route path='book-detail/:bookNum' element={<BookDetail />} />
         </Route>

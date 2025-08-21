@@ -26,12 +26,14 @@ const BookList = () => {
           return(
             <div key={i} className={styles.list_div}>
               <div className={styles.img_div}>
-                <img src="./마인_메인.jpg" 
+                <img src="./부동상 상식사전_메인.jpg" 
                  onClick={e => nav(`/book-detail/${book.bookNum}`)}
                 />
               </div>
-              <p>{book.title}</p>
-              <p>￦{book.price.toLocaleString()}</p>
+              <div className={styles.info}>
+                <p>{book.title}</p>
+                <p>￦{book.price.toLocaleString()}</p>
+              </div>
             </div>
           )
         })

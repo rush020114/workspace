@@ -4,11 +4,15 @@ import styles from './Input.module.css'
 const Input = ({
   size='120px'
   , type='text'
+  , padding='3px 4px'
   , ...props
 }) => {
   return (
     <input
-     style={{width: size}}
+     style={{
+      width: size
+      , padding: padding
+     }}
      type={type}
      className={styles.input} 
      {...props} 

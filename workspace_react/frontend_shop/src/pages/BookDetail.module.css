@@ -1,14 +1,20 @@
 .container{
   width: 100%;
-  border: 1px solid black;
+  margin: auto;
+  padding: 20px;
+  background-color: #fafafa;
+  border: 1px solid #cccccc;
 }
 
 .content{
   display: flex;
+  gap: 60px;
 }
+
 
 .left_content{
   width: 40%;
+  box-shadow: 5px 5px 10px #aaaaaa;
 }
 
 .left_content > img{
@@ -22,10 +28,29 @@
   font-size: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+}
+
+.content_table{
+  width: 100%;
+}
+
+.content_table td{
+  padding-bottom: 50px;
 }
 
 .btn_div{
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 20px;
+}
+
+.intro{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.detail_img > img{
+  width: 100%;
 }

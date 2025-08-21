@@ -1,10 +1,8 @@
 # 도서 쇼핑몰 프로젝트 테이블
 
-# 1. 회원 테이블
-# 4. 구매 테이블
 # 5. 장바구니 테이블
 
-# 회원 테이블
+# 1. 회원 테이블
 CREATE TABLE SHOP_MEMBER (
 	MEM_ID VARCHAR(20) PRIMARY KEY
 	, MEM_PW VARCHAR(20) NOT NULL
@@ -43,3 +41,14 @@ CREATE TABLE book(
 
 SELECT *
 FROM book;
+
+# 4. 구매 테이블
+
+CREATE TABLE SHOP_CART (
+	CART_NUM INT PRIMARY KEY AUTO_INCREMENT
+	, BOOK_NUM INT REFERENCES book (BOOK_NUM)
+	, CART_CNT INT NOT NULL # 장바구니에 담은 도서 수량
+	, MEM_ID VARCHAR(20) REFERENCES shop_member (MEM_ID)
+	, TOTAL_PRICE INT NOT NULL
+	, CART_DATE DATETIME DEFAULT SYSDATE()
+);

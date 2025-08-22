@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './BookDetail.module.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import Button from '../common/Button'
 import Input from '../common/Input'
@@ -8,23 +8,45 @@ import PageTitle from '../common/PageTitle'
 
 const BookDetail = () => {
 
+  const nav = useNavigate();
+
   // 도서 상세 페이지 번호를 url로 받을 params
   const {bookNum} = useParams();
 
+  // 로그인 정보
+  const loginInfo = sessionStorage.getItem('loginInfo');
+  
+  // 로그인 정보 사용을 위한 변수
+  const loginData = JSON.parse(loginInfo);
+
   // 상품 수량 세팅 state변수
   const [inputNumber, setInputNumber] = useState(1);
-
+  
   // 도서 상세 정보를 받아올 state변수
   const [bookDetail, setBookDetail] = useState({});
-
+  
   // 도서 상세 정보를 조회할 useEffect
   useEffect(() => {
     axios.get(`/api/books/${bookNum}`)
     .then(res => setBookDetail(res.data))
     .catch(e => console.log(e))
-  }, [])
+  }, []);
 
-  console.log(bookDetail)
+  // 장바구니 등록 함수
+  const regCartData = () => {
+    // 로그인 안했으면
+    if(!sessionStorage.getItem('loginInfo')){
+      alert('장바구니를 이용하려면 로그인하셔야 합니다.');
+      return;
+    }
+    axios.post('/api/carts', {bookNum: bookNum, cartCnt: inputNumber, memId: loginData.memId})
+    .then(res => {
+      confirm('장바구니에 상품을 담았습니다.\n장바구니 페이지로 이동할까요?')
+      &&
+      nav('/cart-list');
+    })
+    .catch(e => console.log(e))
+  }
 
   return (
     <div className={styles.container}>
@@ -76,7 +98,8 @@ const BookDetail = () => {
               title='장바구니' 
               color='green' 
               fontSize='1.2rem'
-              />
+              onClick={e => regCartData()}
+            />
             <Button
               padding='12px 0px'
               size='200px' 

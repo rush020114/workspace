@@ -3,12 +3,17 @@ import styles from './BookDetail.module.css'
 import Input from '../common/Input'
 import Button from '../common/Button'
 import PageTitle from '../common/PageTitle'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const BookDetail = () => {
 
   const {bookNum} = useParams();
+
+  const nav = useNavigate();
+
+  // 로그아웃을 위한 session저장공간 데이터 불러오는 변수
+  const loginInfo = sessionStorage.getItem('loginInfo');
 
   // 상품 수량 세팅 state 변수
   const [cnt, setCnt] = useState(1);
@@ -22,6 +27,26 @@ const BookDetail = () => {
     .then(res => setBookDetail(res.data))
     .catch(e => console.log(e));
   }, []);
+
+  // 장바구니 등록 함수
+  const regCartData = () => {
+    if(loginInfo){
+      axios.post('/api/carts', {
+        bookNum: bookNum
+        , cartCnt: cnt
+        , memId: JSON.parse(loginInfo).memId
+      })
+      .then(res => {
+        confirm('장바구니에 등록되었습니다.\n장바구니 목록으로 이동하시겠습니까?')
+        &&
+        nav('/cart-list ');
+      })
+      .catch(e => console.log(e));
+    }
+    else{
+      alert('로그인 후 이용해주세요.')
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -58,6 +83,7 @@ const BookDetail = () => {
               padding='15px'
               fontSize='1.2rem'
               title='장바구니'
+              onClick={() => regCartData()}
             />
           </div>
         </div>

@@ -1,199 +1,372 @@
 import React, { useEffect, useState } from 'react'
 import styles from './SignUp.module.css'
+import Input from '../common/Input'
+import Select from '../common/Select'
+import Modal from '../common/Modal'
+import Button from '../common/Button'
+import axios from 'axios'
+import { useDaumPostcodePopup } from 'react-daum-postcode'
+import { handleSignUpErrorMsg } from '../validate/signUpValidate'
 
-const SignUp = () => {
+const SignUp = ({isOpenSignUp, onClose}) => {
 
-  useEffect(() => {
-    const [regMember, setRegMember] = useState({
+  // 주소 팝업창 함수
+  const open = useDaumPostcodePopup('//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js');
+
+  // 버튼 활성화 state 변수
+  const [isDisable, setisDisable] = useState(true);
+
+  // 유효성 검사 문장을 저장할 state 변수
+  const [errorMsg, setErrorMsg] = useState({
+    memId: ''
+    , memPw: ''
+    , confirmPw: ''
   })
-  }, [])
 
-  const handleRegMember = e => {
-    setRegMember({
-      ...regMember
-      , [e.target.name]: e.target.value
+  // 회원가입 정보 저장 state 변수
+  const [signUpData, setSignUpData] = useState({
+    memId: ''
+    , memPw: ''
+    , confirmPw: ''
+    , memName: ''
+    , memTelArr: ['', '', '']
+    , firstIden: ''
+    , secondIden: ''
+    , memIden: ''
+    , memAddr: ''
+    , addrDetail: ''
+    , memGender: ''
+    , firstEmail: ''
+    , secondEmail: ''
+    , memEmail: ''
+  });
+  
+  // 회원가입 데이터 세팅 함수
+  const handleSignUpData = e =>{
+    if(e.target.name === 'firstIden' || e.target.name === 'secondIden'){
+      setSignUpData({
+        ...signUpData
+        , [e.target.name]: e.target.value
+        , memIden: e.target.name === 'firstIden' 
+        ? e.target.value + '-' + signUpData.secondIden
+        : signUpData.firstIden + '-' + e.target.value
+      });
+    }
+    else if(e.target.name === 'firstEmail' || e.target.name === 'secondEmail'){
+      setSignUpData({
+        ...signUpData
+        , [e.target.name]: e.target.value
+        , memEmail: e.target.name === 'firstEmail'
+        ? e.target.value + '@' + signUpData.secondEmail
+        : signUpData.firstEmail + '@' + e.target.value
+      });
+    }
+    else{
+      setSignUpData({
+        ...signUpData
+        , [e.target.name]: e.target.value
+      });
+    };
+  };
+  
+  // 연락처 세팅 함수
+  const handleMemTel = (e, index) => {
+    signUpData.memTelArr.splice(index, 1, e.target.value);
+    setSignUpData({
+      ...signUpData
+      , memTelArr: signUpData.memTelArr
+    });
+  };
+
+  // 회원 등록 함수
+  const regSignUpData = () => {
+    axios.post('/api/members', signUpData)
+    .then(res => {
+      alert('가입 완료');
+      onClose();
+      setisDisable(true);
+      setErrorMsg({
+        memId: ''
+        , memPw: ''
+        , confirmPw: ''          
+      });
+      setSignUpData({
+        memId: ''
+        , memPw: ''
+        , confirmPw: ''
+        , memName: ''
+        , memTelArr: ['', '', '']
+        , firstIden: ''
+        , secondIden: ''
+        , memIden: ''
+        , memAddr: ''
+        , addrDetail: ''
+        , memGender: ''
+        , firstEmail: ''
+        , secondEmail: ''
+        , memEmail: ''
+      });
     })
-  }
+    .catch(e => console.log(e));
+  };
+  
+  // 중복확인
+  const isDup = () => {
+    axios.get(`/api/members/${signUpData.memId}`)
+    .then(res => {
+      if(res.data){
+        alert('사용 가능');
+        setisDisable(false);
+      }
+      else{
+        alert('사용 불가능');
+      };
+    })
+    .catch(e => console.log(e));
+  };
 
-  console.log(regMember)
+  // 주소록 팝업 띄우기 함수
+  const handlePost = () => {
+    open({onComplete: data => setSignUpData({
+      ...signUpData
+      , memAddr: data.address
+      })
+    });
+  };
 
+  console.log(errorMsg)
+  
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <h2>회원가입</h2>
-        <p><span>*</span> 필수입력사항</p>
-      </div>
-      <table className={styles.table}>
-        <colgroup>
-          <col width='20%' />
-          <col width='80%' />
-        </colgroup>
-        <tbody>
-          <tr>
-            <td>아이디 <span>*</span></td>
-            <td>
-              <input
-               type="text" 
-               name='memId'
-               value={regMember.memId}
-               onChange={e => handleRegMember(e)}
+    <Modal
+      title='Sign Up'
+      isOpen={isOpenSignUp}
+      onClose={() => {
+        onClose();
+        setisDisable(true);
+        setErrorMsg({
+          memId: ''
+          , memPw: ''
+          , confirmPw: ''          
+        });
+        setSignUpData({
+          memId: ''
+          , memPw: ''
+          , confirmPw: ''
+          , memName: ''
+          , memTelArr: ['', '', '']
+          , firstIden: ''
+          , secondIden: ''
+          , memIden: ''
+          , memAddr: ''
+          , addrDetail: ''
+          , memGender: ''
+          , firstEmail: ''
+          , secondEmail: ''
+          , memEmail: ''
+        });
+      }}
+      size='500px'
+      marginTop='30px'
+    >
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.id_div}>
+            <p>아이디</p>
+            <div>
+              <Input
+                name='memId'
+                value={signUpData.memId}
+                onChange={e => {
+                  handleSignUpData(e);
+                  setisDisable(true);
+                  setErrorMsg({
+                    ...errorMsg
+                    , memId: handleSignUpErrorMsg(e)
+                  })
+                }}
+                size='70%'
               />
-            </td>
-          </tr>
-          <tr>
-            <td>비밀번호 <span>*</span></td>
-            <td>
-              <input
-               type="text" 
-               name='memPw'
-               value={regMember.memPw}
-               onChange={e => handleRegMember(e)}
+              <Button 
+                size='30%'
+                content='중복 확인'
+                fontSize=''
+                onClick={() => isDup()}
               />
-            </td>
-          </tr>
-          <tr>
-            <td>비밀번호 확인 <span>*</span></td>
-            <td>
-              <input
-               type="text" 
-               name='checkPw'
-               value={regMember.checkPw}
-               onChange={e => handleRegMember(e)}
+            </div>
+            <p className='error'>{errorMsg.memId}</p>
+          </div>
+          <div>
+            <p>비밀번호</p>
+            <Input 
+              type='password'
+              name='memPw'
+              value={signUpData.memPw}
+              onChange={e => {
+                handleSignUpData(e)
+                setErrorMsg({
+                  ...errorMsg
+                  , memPw: handleSignUpErrorMsg(e)
+                })
+              }}
+              size='100%'
+            />
+            <p className='error'>{errorMsg.memPw}</p>
+          </div>
+          <div>
+            <p>비밀번호 확인</p>
+            <Input 
+              type='password'
+              name='confirmPw'
+              value={signUpData.confirmPw}
+              onChange={e => {
+                handleSignUpData(e)
+                setErrorMsg({
+                  ...errorMsg
+                  , confirmPw: handleSignUpErrorMsg(e, signUpData.memPw)
+                })
+              }}
+              size='100%'
+            />
+            <p className='error'>{errorMsg.confirmPw}</p>
+          </div>
+          <div>
+            <p>이름</p>
+            <Input 
+              name='memName'
+              value={signUpData.memName}
+              onChange={e => handleSignUpData(e)}
+              size='100%'
+            />
+          </div>
+          <div className={styles.tel_div}>
+            <p>연락처</p>
+            <div>
+              <Input 
+                name='memTelArr'
+                value={signUpData.memTelArr[0]}
+                onChange={e => handleMemTel(e, 0)}
+                size='100%'
+                maxLength='3'
               />
-            </td>
-          </tr>
-          <tr>
-            <td>이름 <span>*</span></td>
-            <td>
-              <input
-               type="text" 
-               name='memName'
-               value={regMember.memName}
-               onChange={e => handleRegMember(e)}
+              <Input 
+                name='memTelArr'
+                value={signUpData.memTelArr[1]}
+                onChange={e => handleMemTel(e, 1)}
+                size='100%'
+                maxLength='4'
               />
-            </td>
-          </tr>
-          <tr>
-            <td>성별 <span>*</span></td>
-            <td>
+              <Input 
+                name='memTelArr'
+                value={signUpData.memTelArr[2]}
+                onChange={e => handleMemTel(e, 2)}
+                size='100%'
+                maxLength='4'
+              />
+            </div>
+          </div>
+          <div className={styles.iden_div}>
+            <p>주민등록번호</p>
+            <div>
+              <Input 
+                name='firstIden'
+                value={signUpData.firstIden}
+                onChange={e => handleSignUpData(e)}
+                size='100%'
+                maxLength='6'
+              />
+              <Input 
+                type='password'
+                name='secondIden'
+                value={signUpData.secondIden}
+                onChange={e => handleSignUpData(e)}
+                size='100%'
+                maxLength='7'
+              />
+            </div>
+          </div>
+          <div className={styles.addr_div}>
+            <p>주소</p>
+            <div>
               <div>
-                <input
-                 type="radio" 
-                 name='memGender'
-                 value={'남'}
-                 checked={regMember.memGender === '남'}
-                 onChange={e => handleRegMember(e)}
+                <Input 
+                  name='memAddr'
+                  value={signUpData.memAddr}
+                  onChange={e => handleSignUpData(e)}
+                  readOnly={true}
+                  onClick={() => handlePost()}
+                  size='70%'
                 />
-                <p>남</p>
-                <input
-                 type="radio" 
-                 name='memGender'
-                 value={'여'}
-                 checked={regMember.memGender === '여'}
-                 onChange={e => handleRegMember(e)}
+                <Button 
+                  onClick={() => handlePost()}
+                  size='30%'
+                  fontSize=''
+                  content='검 색'
                 />
-                <p>여</p>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>주소</td>
-            <td>
-              <select
-               name="memAddr1"
-               value={regMember.memAddr1}
-               onChange={e => handleRegMember(e)}
-              >
-                <option value="">선택</option>
-                <option value="서울">서울</option>
-                <option value="인천">인천</option>
-                <option value="대전">대전</option>
-                <option value="대구">대구</option>
-                <option value="광주">광주</option>
-                <option value="부산">부산</option>
-                <option value="울산">울산</option>
-              </select>
-              <input
-               type="text" 
-               name='memAddr2'
-               value={regMember.memAddr2}
-               onChange={e => handleRegMember(e)}
+              <Input 
+                name='addrDetail'
+                value={signUpData.addrDetail}
+                onChange={e => handleSignUpData(e)}
+                size='100%'
               />
-            </td>
-          </tr>
-          <tr>
-            <td>전화번호 <span>*</span></td>
-            <td>
-              <select
-               type="text" 
-               name='memTel1'
-               value={regMember.memTel1}
-               onChange={e => handleRegMember(e)}
-              >
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="012">012</option>
-                <option value="013">013</option>
-                <option value="014">014</option>
-              </select>
-              <input
-               type="text" 
-               name='memTel2'
-               value={regMember.memTel2}
-               onChange={e => handleRegMember(e)}
+            </div>
+          </div>
+          <div className={styles.gender_div}>
+            <p>성별</p>
+            <div>
+              <div>
+                <input type="radio" 
+                  name='memGender'
+                  value={'남'}
+                  checked={signUpData.memGender === '남'}
+                  onChange={e => handleSignUpData(e)}
+                />
+                남
+              </div>
+              <div>
+                <input type="radio" 
+                  name='memGender'
+                  value={'여'}
+                  checked={signUpData.memGender === '여'}
+                  onChange={e => handleSignUpData(e)}
+                />
+                여
+              </div>
+            </div>
+          </div>
+          <div className={styles.email_div}>
+            <p>이메일</p>
+            <div>
+              <Input
+                name='firstEmail'
+                value={signUpData.firstEmail}
+                onChange={e => handleSignUpData(e)}
+                size='100%'
               />
-              <input
-               type="text" 
-               name='memTel3'
-               value={regMember.memTel3}
-               onChange={e => handleRegMember(e)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>주민등록번호 <span>*</span></td>
-            <td>
-              <input
-               type="text" 
-               name='memIden1'
-               value={regMember.memIden1}
-               onChange={e => handleRegMember(e)}
-              />
-              -
-              <input
-               type="text" 
-               name='memIden2'
-               value={regMember.memIden2}
-               onChange={e => handleRegMember(e)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>이메일</td>
-            <td>
-              <input
-               type="text" 
-               name='memEmail1'
-               value={regMember.memEmail1}
-               onChange={e => handleRegMember(e)}
-              />
-              @
-              <select
-               type="text" 
-               name='memEmail2'
-               value={regMember.memEmail2}
-               onChange={e => handleRegMember(e)}
+              <Select
+                name='secondEmail'
+                value={signUpData.secondEmail}
+                onChange={e => handleSignUpData(e)}
+                size='100%'
               >
                 <option value="">선택</option>
                 <option value="gmail.com">gmail.com</option>
                 <option value="naver.com">naver.com</option>
-                <option value="kakao.com">kakao.com</option>
-              </select>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+              </Select>
+            </div>
+          </div>
+        </div>
+        <div className={styles.btn_div}>
+          <Button
+            content='회원 가입'
+            size='100%'
+            fontSize=''
+            onClick={() => regSignUpData()}
+            disabled={isDisable}
+          />
+        </div>
+      </div>
+    </Modal>
   )
 }
 

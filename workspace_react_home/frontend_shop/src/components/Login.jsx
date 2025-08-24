@@ -31,7 +31,21 @@ const Login = ({isOpenLogin, onClose}) => {
     axios.get('/api/members/login', {params: loginData})
     .then(res => {
       if(res.data){
-        alert('로그인 가능');
+        alert('환영합니다.');
+        // sessionStorage는 새로고침되어도 로그인 정보가 남을 수 있게 해주는 웹 브라우저가 제공하는 저장 공간이다. 
+        // 다른 두 저장공간과 웹브라우저가 종료될 때 데이터가 사라진다. 그리고 탭 간 데이터를 공유한다.
+        // 저장 문법은 setItem함수를 쓰며 매개변수로 키이름, 저장할 값(문자, 객체 등)를 받는다.
+        // 이때 매개변수는 전부 문자열이어야 한다. 그래서 객체를 전달할 때는 JSON문법을 쓴다.
+        // JSON언어는 공용 프로그래밍 언어로 다른 언어끼리 데이터를 교환할 수 있게 해준다.
+        // JSON으로 객체를 문자열화하고 문자열화한 객체를 일반 객체로 풀 수 있다.
+        // 저장 공간에 저장된 데이터는 key: value(문자열)형식으로 저장된다.
+        // 저장된 데이터를 읽을 땐 getItem함수를 호출하며 매개변수로 저장된 키값을 문자열로 적는다.
+        // 로그인했을 때 
+        sessionStorage.setItem('loginInfo', JSON.stringify({
+          memId: res.data.memId
+          , memName: res.data.memName
+          , memRole: res.data.memRole
+        }))
         if(res.data.memRole === 'ADMIN'){
           nav('/admin/reg-book');
         }
@@ -45,7 +59,7 @@ const Login = ({isOpenLogin, onClose}) => {
         };
       }
       else{
-        alert('로그인 불가능')
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.')
         setLoginData({
           memId: ''
           , memPw : ''
@@ -78,6 +92,7 @@ const Login = ({isOpenLogin, onClose}) => {
             name='memId'
             value={loginData.memId}
             onChange={e => handleLoginData(e)}
+            onKeyDown={e => {if(e.key === 'Enter') login()}}
           />
           <span><i className="bi bi-person-fill"></i></span>
         </div>
@@ -90,6 +105,7 @@ const Login = ({isOpenLogin, onClose}) => {
             name='memPw'
             value={loginData.memPw}
             onChange={e => handleLoginData(e)}
+            onKeyDown={e => {if(e.key === 'Enter') login()}}
           />
           <span><i className="bi bi-lock-fill"></i></span>
         </div>

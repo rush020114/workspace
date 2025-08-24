@@ -9,6 +9,7 @@ import AdminLayout from './layout/AdminLayout'
 import RegBook from './pages/RegBook'
 import CategoryManage from './pages/CategoryManage'
 import BookDetail from './pages/BookDetail'
+import CartList from './pages/CartList'
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
           {/* 도서 목록 페이지, url : /list */}
           <Route path='' element={<BookList />} />
           <Route path='book-detail/:bookNum' element={<BookDetail />} />
-
+          <Route path='cart-list' element={<CartList />} />
         </Route>
 
         {/* 관리자페이지는 AdminLayout이랑 함께 열린다. */}

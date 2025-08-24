@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.mem.cart.mapper.CartMapper">
+	<resultMap id="cart" type="com.green.mem.cart.dto.CartDTO">
+        <id     column="CART_NUM"     property="cartNum" />
+        <result column="CLOTHING_NUM" property="clothingNum" />
+        <result column="CART_CNT"     property="cartCnt" />
+        <result column="TOTAL_PRICE"  property="totalPrice" />
+        <result column="CART_DATE"    property="cartDate" />
+        <result column="MEM_ID"       property="memId" />
+    </resultMap>
+
+    <!-- 장바구니 등록 -->
+    <insert id="insertCart">
+        INSERT INTO MEM_CART (
+            CLOTHING_NUM
+            , CART_CNT
+            , TOTAL_PRICE
+            , MEM_ID
+        ) VALUES (
+            #{clothingNum}
+            , #{cartCnt}
+            , (
+                SELECT PRICE
+                FROM CLOTHING
+                WHERE CLOTHING_NUM = #{clothingNum}
+            ) * #{cartCnt}
+            , #{memId}
+        )
+    </insert>
+</mapper>

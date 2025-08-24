@@ -1,0 +1,45 @@
+.container{
+  width: 100%;
+  background-color: #467b53;
+  color: white;
+  height: 100%;
+}
+
+.menu_category{
+  margin-bottom: 20px;
+}
+
+.menu_category > p{
+  font-size: 0.8rem;
+  color: #dddddd;
+  padding: 12px;
+}
+
+.menu_category > p > span{
+  color: #dddddd;
+  margin-right:4px;
+}
+
+.sideMenu{
+  font-size: 0.9rem;
+}
+
+.sideMenu > li{
+  /* 12시부터 시계방향 */
+  padding: 10px 0px 10px 16px;
+  border-left: 5px solid rgba(0, 0, 0, 0);
+  transition: all 0.1s;
+}
+
+.sideMenu > li:hover{
+  background-color: #356a42;
+  border-left: 5px solid #356a42;
+  color:white;
+  cursor: pointer;
+}
+
+.active{
+  background-color: #356a42;
+  border-left: 5px solid #023710 !important;
+  color:white;
+}

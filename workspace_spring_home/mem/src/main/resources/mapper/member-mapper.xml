@@ -3,16 +3,19 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
-<mapper namespace="com.green.mem.mapper.MemberMapper">
-	<resultMap id="member" type="com.green.mem.dto.MemberDTO">
-        <id column="MEM_ID" property="memId" />
-        <result column="MEM_PW" property="memPw" />
-        <result column="MEM_NAME" property="memName" />
-        <result column="MEM_GENDER" property="memGender" />
-        <result column="MEM_ADDR" property="memAddr" />
-        <result column="MEM_TEL" property="memTel" />
-        <result column="MEM_IDEN" property="memIden" />
-        <result column="MEM_EMAIL" property="memEmail" />
+<mapper namespace="com.green.mem.Member.mapper.MemberMapper">
+	<resultMap id="member" type="com.green.mem.Member.dto.MemberDTO">
+        <id     column="MEM_ID"      property="memId" />
+        <result column="MEM_PW"      property="memPw" />
+        <result column="MEM_NAME"    property="memName" />
+        <result column="MEM_GENDER"  property="memGender" />
+        <result column="MEM_ADDR"    property="memAddr" />
+        <result column="ADDR_DETAIL" property="addrDetail" />
+        <result column="MEM_TEL"     property="memTel" />
+        <result column="MEM_IDEN"    property="memIden" />
+        <result column="MEM_EMAIL"   property="memEmail" />
+        <result column="REG_DATE"    property="regDate" />
+        <result column="MEM_ROLE"    property="memRole" />
     </resultMap>
 
     <!-- 회원 등록 -->
@@ -23,6 +26,7 @@
             , MEM_NAME
             , MEM_GENDER
             , MEM_ADDR
+            , ADDR_DETAIL
             , MEM_TEL
             , MEM_IDEN
             , MEM_EMAIL
@@ -32,10 +36,28 @@
             , #{memName}
             , #{memGender}
             , #{memAddr}
-            , #{memTel}
+            , #{addrDetail}
+            , CONCAT(#{memTelArr[0]}, '-', #{memTelArr[1]}, '-', #{memTelArr[2]})
             , #{memIden}
             , #{memEmail}
         )
     </insert>
+
+    <!-- 중복 확인 -->
+    <select id="isDup" resultType="String">
+        SELECT MEM_ID
+        FROM MEM
+        WHERE MEM_ID = #{memId}
+    </select>
+
+    <!-- 로그인 -->
+    <select id="login" resultMap="member">
+        SELECT MEM_ID
+            , MEM_NAME
+            , MEM_ROLE
+        FROM MEM
+        WHERE MEM_ID = #{memId}
+        AND MEM_PW = #{memPw}
+    </select>
 </mapper>
 

@@ -1,0 +1,23 @@
+.container{
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.header_div{
+  height: 10vh;
+  border: 3px solid red;
+}
+
+.main{
+  display: flex;
+  height: 90vh;
+}
+
+.side{
+  width: 20%;
+}
+
+.content{
+  width: 80%;
+  padding: 20px;
+}

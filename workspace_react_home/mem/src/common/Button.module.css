@@ -1,5 +1,4 @@
 .btn{
-  padding: 7px;
   border: none;
   border-radius: 3px;
   color: white;
@@ -29,4 +28,9 @@
 
 .red:hover{
   background-color: #c95358;
+}
+
+.disabled{
+  cursor: default;
+  opacity: 0.3;
 }

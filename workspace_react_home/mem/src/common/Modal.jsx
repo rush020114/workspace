@@ -5,6 +5,7 @@ const Modal = ({
   title=''
   , size='300px'
   , color='green'
+  , marginTop='60px'
   , children
   , isOpen=false
   , onClose
@@ -13,11 +14,13 @@ const Modal = ({
 
   return (
     <div className={styles.modal_overlay}>
-      <div className={styles.modal_content}>
-        <div
-         className={styles.modal_title}
-         style={{width: size}}
-        >
+      <div className={styles.modal_content}
+        style={{
+          width: size
+          , marginTop: marginTop
+        }}
+      >
+        <div className={styles.modal_title}>
           <h2
            className={styles[color]}
           >{title}</h2>

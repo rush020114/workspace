@@ -45,8 +45,8 @@ const BookDetail = () => {
       &&
       nav('/cart-list');
     })
-    .catch(e => console.log(e))
-  }
+    .catch(e => console.log(e));
+  };
 
   return (
     <div className={styles.container}>

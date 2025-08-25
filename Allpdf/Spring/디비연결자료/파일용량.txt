@@ -1,0 +1,5 @@
+# 한 파일의 용량을 5MB로 설정
+spring.servlet.multipart.max-file-size=5MB
+
+# 한 번에 업로드되는 용량을 5MB로 설정
+spring.servlet.multipart.max-request-size=5MB

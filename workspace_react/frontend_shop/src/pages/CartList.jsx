@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import styles from './CartList.module.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import dayjs from 'dayjs';
 import Input from '../common/Input';
 import Button from '../common/Button'
 
 const CartList = () => {
-
-  // 로그인한 사용자 정보 받아오기
-  const loginInfo = sessionStorage.getItem('loginInfo');
-
-  // 로그인한 사용자 정보 객체 풀어주기
-  const loginData = JSON.parse(loginInfo);
-
+  const nav = useNavigate();
+  
   // 조회한 장바구니 목록을 저장할 state변수
   const [cartList, setCartList] = useState([]);
-
+  
   // 장바구니 목록을 조회할 useEffect
   useEffect(() => {
+    // 로그인한 사용자 정보 받아오기
+    const loginInfo = sessionStorage.getItem('loginInfo');
+    
+    // 장바구니 페이지를 들어왔는데 만약 로그인이 되어 있지 않으면
+    // 강제로 상품 목록 페이지로 이동
+    if(!loginInfo){
+      nav('/');
+      alert('접근 권한이 없습니다.');
+      return;
+    };
+    // 로그인한 사용자 정보 객체화(JSON 데이터)
+    const loginData = JSON.parse(loginInfo);
+
     axios.get(`/api/carts/${loginData.memId}`)
     .then(res => setCartList(res.data))
     .catch(e => console.log(e));
@@ -28,11 +36,7 @@ const CartList = () => {
   console.log(cartList)
   // 총 가격
   let totalPrice = 0;
-  if(cartList.length !== 0){
-    for(let i = 0 ; i < cartList.length ; i++){
-      totalPrice += parseInt(cartList[i].totalPrice)
-    }
-  }
+  if(cartList.length !== 0) cartList.forEach(e => totalPrice += e.totalPrice)
 
   return (
     <div className={styles.container}>
@@ -63,6 +67,8 @@ const CartList = () => {
         </thead>
         <tbody>
           {
+            cartList.length
+            ?
             cartList.map((cart, i) => {
               return(
                 <tr key={i}>
@@ -78,7 +84,7 @@ const CartList = () => {
                       <p>{cart.bookDTO.title}</p>
                     </div>
                   </td>
-                  <td>{cart && parseInt(cart.bookDTO.price).toLocaleString()}</td>
+                  <td>{cart.bookDTO.price.toLocaleString()}</td>
                   <td>
                     <div className={styles.cnt_div}>
                       <Input 
@@ -91,12 +97,19 @@ const CartList = () => {
                       />
                     </div>
                   </td>
-                  <td>{cart && parseInt(cart.totalPrice).toLocaleString()}</td>
+                  <td>{cart.totalPrice.toLocaleString()}</td>
                   <td>{dayjs(cart.cartDate).format('YYYY.MM.DD HH:mm')}</td>
-                  <td><Button title='삭제' color='gray' /></td>
+                  <td><Button title='삭 제' color='gray' /></td>
                 </tr>
               )
             })
+            :
+            <tr>
+              <td 
+                colSpan={8}
+                style={{padding: '50px 0px'}}
+              >장바구니에 담은 도서가 없습니다.</td>
+            </tr>
           }
         </tbody>
       </table>

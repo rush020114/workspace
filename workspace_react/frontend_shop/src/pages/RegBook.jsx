@@ -10,6 +10,9 @@ import PageTitle from '../common/PageTitle'
 
 const RegBook = () => {
 
+  // 선택한 메인 이미지를 저장할 state 변수
+  const [mainImg, setMainImg] = useState(null);
+
   // 도서 카테고리 목록을 받을 state변수
   const [bookCategoryList, setBookCategoryList] = useState([]);
 
@@ -67,18 +70,34 @@ const RegBook = () => {
 
   // 도서등록 함수
   const regBook = () => {
-    axios.post('/api/books', bookData)
-    .then(res => {
-      alert('등록성공')
-      setBookData({
-        cateNum: ''
-        , title: ''
-        , publisher: ''
-        , price: ''
-        , bookIntro: ''
-      })
-    })
+    // 선택한 첨부파일 spring으로 가져가기
+    // 업로드랑 등록이랑은 별개지만 등록과정에 포함되니 자바로 같이 보내준다.
+    // 파일 데이터를 자바로 전송하기 위해서는 post함수의 3번째 매개변수를 활용해야 한다.
+
+    // 전달되는 데이터에 파일 데이터도 포함되어 있습니다. 라는 정의
+    const fileConfig = {'Content-Type': 'multipart/form-data'};
+
+    // 파일 데이터가 포함된 내용을 자바로 전달할 때는 formData 객체를 사용해야 한다.
+    // 1. formData 객체 생성
+    const formData = new FormData();
+    // 선택한 파일을 formData에 추가
+    formData.append('mainImg', mainImg)
+    axios.post('/api/books', formData, fileConfig)
+    .then()
     .catch(e => console.log(e));
+
+    // axios.post('/api/books', bookData)
+    // .then(res => {
+    //   alert('등록성공')
+    //   setBookData({
+    //     cateNum: ''
+    //     , title: ''
+    //     , publisher: ''
+    //     , price: ''
+    //     , bookIntro: ''
+    //   })
+    // })
+    // .catch(e => console.log(e));
   };
 
   console.log(bookData)
@@ -169,6 +188,25 @@ const RegBook = () => {
              }}
             />
           <p className='error'>{errorMsg.price}</p>
+          </div>
+          <div>
+            <p>메인 페이지</p>
+            <input
+              type="file" 
+              onChange={e => {
+                // e.target.files -> 이벤트가 발생한 태그에서 선택한 파일들의 정보
+                console.log(e.target.files);
+                
+                // 키 값에 정수를 적고 싶을 때도 []로 접근 가능하다.
+                // 선택한 파일을 mainImg 변수에 저장
+                setMainImg(e.target.files['0']);
+              }}
+            />
+          </div>
+          <div>
+            <p>서브 페이지(다수 선택 가능)</p>
+            {/* type='file'은 첨부파일 1개만 선택 가능, 다수 파일을 선택하려면 multiple={true} 속성 부여 */}
+            {/* <input type="file" multiple={true} /> */}
           </div>
           <div>
             <p>도서 설명</p>

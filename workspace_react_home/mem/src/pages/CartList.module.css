@@ -1,0 +1,77 @@
+.container{
+  width: 100%;
+  margin: 30px auto;
+}
+
+.table{
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.table tr, .table td{
+  padding: 5px;
+  border: 1px solid white;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table > thead{
+  font-weight: 700;
+  border-bottom: 3px solid #4472c4;
+}
+
+.table > thead td{
+  padding: 10px;
+}
+
+.table > tbody > tr:nth-child(even){
+  background-color: #f7f7f7;
+}
+
+.img_div{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.img_div img{
+  width: 80px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cnt_div{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.totalPrice{
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.totalPrice > div{
+  width: 300px;
+  display: flex;
+  border-bottom: 1px solid #4472c4;
+}
+
+.totalPrice > div > div:first-child{
+  background-color: #4472c4;
+  width: 150px;
+  color: white;
+  padding: 0px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.totalPrice > div > div:last-child{
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

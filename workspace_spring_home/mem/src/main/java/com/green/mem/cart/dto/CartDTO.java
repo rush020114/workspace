@@ -1,5 +1,6 @@
 package com.green.mem.cart.dto;
 
+import com.green.mem.clothing.dto.ClothingDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,6 +17,7 @@ public class CartDTO {
   private int totalPrice;
   private LocalDateTime cartDate;
   private String memId;
+  private ClothingDTO clothingDTO;
   
   public CartDTO(){
   }

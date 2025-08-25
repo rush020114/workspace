@@ -15,15 +15,15 @@
   public class CartController {
     private final CartService cartService;
 
-    // 장바구니 등록 api
-    @PostMapping("")
-    public int insertCart(@RequestBody CartDTO cartDTO){
-      return cartService.insertCart(cartDTO);
-    }
-
     // 장바구니 목록 조회 api
     @GetMapping("/{memId}")
     public List<CartDTO> getCartList(@PathVariable("memId") String memId){
       return cartService.getCartList(memId);
+    }
+
+    // 장바구니 등록 api
+    @PostMapping("")
+    public void insertCart(@RequestBody CartDTO cartDTO){
+      cartService.insertCart(cartDTO);
     }
   }

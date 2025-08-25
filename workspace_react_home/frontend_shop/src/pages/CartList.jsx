@@ -4,20 +4,29 @@
   import Button from '../common/Button';
   import Input from '../common/Input';
   import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
   const CartList = () => {
 
-    // 로그아웃을 위한 session저장공간 데이터 불러오는 변수
-    const loginInfo = sessionStorage.getItem('loginInfo');
-    
-    // 저장된 로그인 정보의 객체화
-    const loginData = JSON.parse(loginInfo);
+    const nav = useNavigate();
 
     // 장바구니 목록 조회를 저장할 state변수
     const [cartList, setCartList] = useState([]);
-
+    
     // 장바구니 목록을 받아올 useEffect
     useEffect(() => {
+
+      // 로그아웃을 위한 session저장공간 데이터 불러오는 변수
+      const loginInfo = sessionStorage.getItem('loginInfo');
+      
+      if(!loginInfo){
+        alert('접근 권한이 없습니다.');  
+        nav('/')
+        return;
+      };
+
+      // 저장된 로그인 정보의 객체화
+      const loginData = JSON.parse(loginInfo);
       axios.get(`/api/carts/${loginData.memId}`)
       .then(res => setCartList(res.data))
       .catch(e => console.log(e));

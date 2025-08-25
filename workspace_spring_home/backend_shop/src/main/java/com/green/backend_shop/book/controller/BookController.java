@@ -2,9 +2,11 @@ package com.green.backend_shop.book.controller;
 
 import com.green.backend_shop.book.dto.BookDTO;
 import com.green.backend_shop.book.service.BookService;
+import com.green.backend_shop.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,9 +19,11 @@ public class BookController {
   private final BookService bookService;
 
   // 도서 등록 api
+  // formData로 들어온 데이터는 RequestParam어노테이션으로 받는다.(mainImg라는 이름으로 전달했으므로 mainImg로 받는다.)
+  // 파일 데이터는 자료형이 MultipartFile이다.
   @PostMapping("")
-  public int insertBook (@RequestBody BookDTO bookDTO){
-    return bookService.insertBook(bookDTO);
+  public void insertBook (@RequestParam("mainImg") MultipartFile mainImg){
+    FileUploadUtil.fileUpload(mainImg);
   }
 
   // 도서 목록 조회 api

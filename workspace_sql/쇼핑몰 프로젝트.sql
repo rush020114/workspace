@@ -91,3 +91,14 @@ ON B.BOOK_NUM = C.BOOK_NUM
 WHERE MEM_ID = 'USER'
 ORDER BY CART_DATE DESC;
 
+#BOOK_IMG 테이블에 데이터 추가
+INSERT INTO book_img (ORIGIN_IMG_NAME, ATTACHED_IMG_NAME, BOOK_NUM, IS_MAIN) 
+VALUES ('abc.jpg', 'aaa-bbb.jpg', 1, 'Y')
+, ('abc.jpg', 'aaa-bbb.jpg', 1, 'Y')
+, ('abc.jpg', 'aaa-bbb.jpg', 1, 'Y');
+
+SELECT *
+FROM book_img;
+
+# 다음에 들어갈 book_num을 조회(최대 book_num  + 1)
+SELECT IFNULL(MAX(BOOK_NUM), 0) + 1 FROM book;

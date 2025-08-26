@@ -6,4 +6,4 @@ const CategoryManage = () => {
   )
 }
 
-export default CategoryManage
+export default CategoryManage 

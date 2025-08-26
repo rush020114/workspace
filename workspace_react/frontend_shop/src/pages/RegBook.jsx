@@ -13,6 +13,9 @@ const RegBook = () => {
   // 선택한 메인 이미지를 저장할 state 변수
   const [mainImg, setMainImg] = useState(null);
 
+  // 선택한 서브 이미지를 저장할 state 변수
+  const [subImgs, setSubImgs] = useState(null);
+
   // 도서 카테고리 목록을 받을 state변수
   const [bookCategoryList, setBookCategoryList] = useState([]);
 
@@ -25,6 +28,8 @@ const RegBook = () => {
     , title: ''
     , publisher: ''
     , price: ''
+    , mainImg: ''
+    , subImgs: ''
   });
 
   // 등록할 도서의 데이터를 저장할 state변수
@@ -44,7 +49,7 @@ const RegBook = () => {
   }, []);
 
   // 등록할 도서의 데이터를 세팅해줄 함수
-  const handleBookData = e => {
+  const handleBookData = e => { 
     setBookData({
       ...bookData
       , [e.target.name]: e.target.name === 'price' 
@@ -60,13 +65,15 @@ const RegBook = () => {
     if(bookData.cateNum !== '' && 
         bookData.title !== '' && 
         bookData.publisher !== '' && 
-        bookData.price !== ''){
+        bookData.price !== '' &&
+        mainImg !== null &&
+        subImgs !== null){
       setIsDisable(false);
     }
     else{
       setIsDisable(true);
     };
-  }, [bookData]);
+  }, [bookData, mainImg, subImgs]);
 
   // 도서등록 함수
   const regBook = () => {
@@ -79,29 +86,44 @@ const RegBook = () => {
 
     // 파일 데이터가 포함된 내용을 자바로 전달할 때는 formData 객체를 사용해야 한다.
     // 1. formData 객체 생성
+    // formData 객체에는 이미지뿐 아니라, 자바로 가져가는 모든 데이터를 저장한다.
     const formData = new FormData();
-    // 선택한 파일을 formData에 추가
-    formData.append('mainImg', mainImg)
+    // 선택한 메인 이미지를 formData에 추가
+    formData.append('mainImg', mainImg);
+    
+    // 선택한 모든 서브 이미지들을 formData에 추가
+    // 배열 자체를 전달 못하기 때문에 배열을 하나하나씩 전달한다.
+    // key값만 동일하게 해주면 자바에서 알아서 배열 처리하여 subImgs에 저장한다.
+    for(const subImg of subImgs){
+      formData.append('subImgs', subImg);
+    }
+
+    // input 태그에 입력한 내용도 formData에 저장
+    // input 태그에 입력한 모든 정보는 bookData 객체 안에 있음
+    formData.append('cateNum', bookData.cateNum);
+    formData.append('title', bookData.title);
+    formData.append('publisher', bookData.publisher);
+    formData.append('price', bookData.price);
+    formData.append('bookIntro', bookData.bookIntro);
+
     axios.post('/api/books', formData, fileConfig)
-    .then()
+    .then(res => {
+      alert('등록성공');
+      setBookData({
+        cateNum: ''
+        , title: ''
+        , publisher: ''
+        , price: ''
+        , bookIntro: ''
+      });
+    })    
     .catch(e => console.log(e));
 
-    // axios.post('/api/books', bookData)
-    // .then(res => {
-    //   alert('등록성공')
-    //   setBookData({
-    //     cateNum: ''
-    //     , title: ''
-    //     , publisher: ''
-    //     , price: ''
-    //     , bookIntro: ''
-    //   })
-    // })
-    // .catch(e => console.log(e));
   };
 
-  console.log(bookData)
-  console.log(errorMsg)
+
+  console.log(mainImg)
+  console.log(subImgs)
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -200,13 +222,34 @@ const RegBook = () => {
                 // 키 값에 정수를 적고 싶을 때도 []로 접근 가능하다.
                 // 선택한 파일을 mainImg 변수에 저장
                 setMainImg(e.target.files['0']);
+                console.log(e.target.value)
+                setErrorMsg({
+                  ...errorMsg
+                  , mainImg: !e.target.value ? '파일을 선택해주세요.' : ''
+                })
               }}
             />
+            <p className='error'>{errorMsg.mainImg}</p>
           </div>
           <div>
             <p>서브 페이지(다수 선택 가능)</p>
             {/* type='file'은 첨부파일 1개만 선택 가능, 다수 파일을 선택하려면 multiple={true} 속성 부여 */}
-            {/* <input type="file" multiple={true} /> */}
+            <input
+              type="file" 
+              multiple={true} 
+              onChange={e => {
+                const fileArr = [];
+                for(let i = 0 ; i < e.target.files.length ; i++){
+                  fileArr.push(e.target.files[i])
+                }
+                setSubImgs(fileArr);
+                setErrorMsg({
+                  ...errorMsg
+                  , subImgs: !e.target.value ? '파일을 선택해주세요.' : ''
+                })
+              }}
+            />
+            <p className='error'>{errorMsg.subImgs}</p>
           </div>
           <div>
             <p>도서 설명</p>

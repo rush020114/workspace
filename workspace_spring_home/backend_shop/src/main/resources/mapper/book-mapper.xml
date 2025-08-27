@@ -16,21 +16,57 @@
         <result column="CATE_NUM" property="cateNum" />
     </resultMap>
 
+    <!-- 등록할 책번호를 받을 조회 쿼리 -->
+    <!-- AUTO_INCREMENT를 대신할 수 있는 조회쿼리로 조회된 정수를 BOOK_NUM으로 삼으면 된다. -->
+    <select id="getNextBookNum" resultType="int">
+        SELECT IFNULL(MAX(BOOK_NUM), 0) + 1
+        FROM BOOK
+    </select>
+
     <!-- 도서 등록 쿼리 -->
+    <!--
+     bookImg에 도서번호를 등록할 수 없으므로 도서번호를 받아오게끔 쿼리를 수정해주어야 한다.
+     도서 등록할 때나 그에 대한 이미지를 등록할 때 도서번호가 같아야 하므로 도서번호도 함께 등록한다.
+    -->
     <insert id="insertBook">
         INSERT INTO BOOK (
-            CATE_NUM
+            BOOK_NUM
+            , CATE_NUM
             , TITLE
             , PUBLISHER
             , PRICE
             , BOOK_INTRO
         ) VALUES (
-            #{cateNum}
+            #{bookNum}
+            , #{cateNum}
             , #{title}
             , #{publisher}
             , #{price}
             , #{bookIntro}
         )
+    </insert>
+
+    <!--
+     BOOK테이블에 데이터가 등록될 때 반드시 같이 BOOK_IMG테이블이 등록되어야 한다.
+     이와 같이 실행되는 쿼리는 BOOK_NUM을 조회해주는 쿼리, BOOK 테이블에 값을 저장하는 퀄이다.
+     BOOK테이블을 등록할 때 실행되는 쿼리는 3개이다.
+    -->
+    <insert id="insertBookImg">
+        INSERT INTO BOOK_IMG (
+            ORIGIN_IMG_NAME
+            , ATTACHED_IMG_NAME
+            , BOOK_NUM
+            , IS_MAIN
+        ) VALUES
+        <!-- separator속성은 반복이 돌 때마다 끝에 지정한 문자를 추가한다.(마지막엔 실행하지 않음) -->
+        <!-- collection은 반복 돌릴 데이터명이므로 우리가 만든 변수명으로 정해져 있다.(foreach의 클론 뒤의 값이랑 같은 역할) -->
+        <!-- item은 collection 각각의 데이터이므로 임의로 변수명을 정해도 된다.(foreach의 클론 앞의 값이랑 같은 역할) -->
+        <foreach collection="bookImgDTOList" item="bookImgDTO" separator=",">
+            (#{bookImgDTO.originImgName}
+            , #{bookImgDTO.attachedImgName}
+            , #{bookImgDTO.bookNum}
+            , #{bookImgDTO.isMain})
+        </foreach>
     </insert>
 
     <!-- 도서 목록 조회 -->

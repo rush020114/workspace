@@ -9,8 +9,14 @@ import java.util.List;
 public interface CartMapper {
 
   // 장바구니 등록
-  int insertCart(CartDTO cartDTO);
+  void insertCart(CartDTO cartDTO);
 
   // 장바구니 목록 조회
   List<CartDTO> getCartList (String memId);
+
+  // 장바구니 중복 조회
+  String getDupCart (CartDTO cartDTO);
+
+  // 장바구니 등록 데이터 중복 시 장바구니 수정
+  void updateCart (CartDTO cartDTO);
 }

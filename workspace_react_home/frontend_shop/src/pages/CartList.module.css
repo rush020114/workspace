@@ -24,6 +24,10 @@
   padding: 10px;
 }
 
+.table > tbody > tr:nth-child(odd){
+  background-color: #fcfcfc;
+}
+
 .table > tbody > tr:nth-child(even){
   background-color: #f7f7f7;
 }

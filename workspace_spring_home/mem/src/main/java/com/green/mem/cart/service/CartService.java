@@ -13,8 +13,14 @@ public class CartService {
   private final CartMapper cartMapper;
 
   // 장바구니 등록
-  public int insertCart(CartDTO cartDTO){
-    return cartMapper.insertCart(cartDTO);
+  public void insertCart(CartDTO cartDTO){
+    boolean result = cartMapper.getDupCart(cartDTO) == null;
+    if(result){
+      cartMapper.insertCart(cartDTO);
+    }
+    else{
+      cartMapper.updateCart(cartDTO);
+    }
   }
 
   // 장바구니 목록 조회

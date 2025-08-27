@@ -17,8 +17,8 @@ public class CartController {
 
   // 장바구니 등록 api
   @PostMapping("")
-  public int insertCart(@RequestBody CartDTO cartDTO){
-    return cartService.insertCart(cartDTO);
+  public void insertCart(@RequestBody CartDTO cartDTO){
+    cartService.insertCart(cartDTO);
   }
 
   // 장바구니 목록 조회 api

@@ -14,12 +14,17 @@ const RegBook = () => {
   // 파일에 대한 형식은 문자열도 객체도 아닌 걸로 판단한다. 그래서 초기값을 null을 준다.(이미지는 문자열이 될 수 없는 데이터)
   const [mainImg, setMainImg] = useState(null);
 
+  // 다수의 파일을 저장할 state 변수
+  const [subImgs, setSubImgs] = useState(null);
+
   // 유효성 검사 결과 state변수
   const [errorMsg, setErrorMsg] = useState({
     cateNum: ''
     , title: ''
     , publisher: ''
     , price: ''
+    , mainImg: ''
+    , subImgs: ''
   })
 
   // 버튼 비활성화 결정 state변수
@@ -64,14 +69,16 @@ const RegBook = () => {
     if(bookData.cateNum === '' ||
       bookData.title === '' ||
       bookData.publisher === '' ||
-      bookData.price === ''
+      bookData.price === '' ||
+      mainImg === null ||
+      subImgs === null
     ){
       setIsDisable(true);
     }
     else{
       setIsDisable(false);
     };
-  }, [bookData]);
+  }, [bookData, mainImg, subImgs]);
 
   // 도서 등록 함수
   const regBook = () => {
@@ -89,27 +96,34 @@ const RegBook = () => {
     // 그래서 파일 데이터(숫자가 문자가 아니므로)가 포함될 때는 FormData 객체를 활용해야 한다.
     // append함수를 써서 formData에 데이터를 추가할 수 있는데 객체 형식(첫번째 매개변: key, 두번째 매개변수 value)처럼 값이 들어간다.
     const formData = new FormData();
-    formData.append('mainImg', mainImg)
+    formData.append('mainImg', mainImg);
+    // spring으로 보낼 때 spring이 파일들을 배열형태로 받지 못하므로 전달할 배열의 키값은 동일하게 작성하되 각각의 데이터를 따로 추가한다.
+    // 키값이 같은 각각의 파일들은 spring에서 자동으로 배열에 감싸져 전달된다.
+    for(const imgs of subImgs){
+      formData.append('subImgs', imgs);
+    }
+    // 파일 데이터와 함께 일반적인 데이터를 spring으로 보낼 때는 formData에 append로 추가해주어야 한다.
+    // append해줄 때는 dto의 키값이랑 append의 키값이랑 동일하게 해주어 전달하면 된다.
+    formData.append('cateNum', bookData.cateNum)
+    formData.append('title', bookData.title)
+    formData.append('publisher', bookData.publisher)
+    formData.append('price', bookData.price)
+    formData.append('bookIntro', bookData.bookIntro)
 
     axios.post('/api/books',formData , fileConfig)
-    .then()
+    .then(res => {
+      alert('등록완료');
+      setBookData({
+        cateNum: ''
+        , title: ''
+        , publisher: ''
+        , price: ''
+        , bookIntro: ''
+      });
+    })
     .catch(e => console.log(e));
-
-    // axios.post(`/api/books`, bookData)
-    // .then(res => {
-    //   alert('등록완료')
-    //   setBookData({
-    //     cateNum: ''
-    //     , title: ''
-    //     , publisher: ''
-    //     , price: ''
-    //     , bookIntro: ''
-    //   })
-    // })
-    // .catch(e => console.log(e));
   };
 
-  console.log(bookData)
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -207,14 +221,37 @@ const RegBook = () => {
               <p>메인 이미지</p>
               <input 
                 type="file" 
-                onChange={e => setMainImg(e.target.files['0'])}
+                onChange={e => {
+                  setMainImg(e.target.files['0']);
+                  setErrorMsg({
+                    ...errorMsg
+                    , mainImg: !e.target.value ? '파일을 등록해주세요.' : ''
+                  });
+                }}
               />
             </div>
+            <p className='error'>{errorMsg.mainImg}</p>
             <div>
               {/* multiple속성은 파일을 다수 선택할 수 있다. */}
               <p>서브 이미지(다수 선택 가능)</p>
-              <input type="file" multiple={true} />
+              <input 
+                type="file" 
+                multiple={true} 
+                onChange={e => {
+                  // 파일이 여러개이고 formData에 전달하기 위해 배열에 저장한다.
+                  const subImgArr = [];
+                  for(let i = 0 ; i < e.target.files.length ; i++){
+                    subImgArr.push(e.target.files[i]);
+                  }
+                  setSubImgs(subImgArr);
+                  setErrorMsg({
+                    ...errorMsg
+                    , subImgs: !e.target.value ? '파일을 등록해주세요.' : ''
+                  });
+                }}
+              />
             </div>
+            <p className='error'>{errorMsg.subImgs}</p>
           </div>
           <div>
             <p>도서 설명</p>

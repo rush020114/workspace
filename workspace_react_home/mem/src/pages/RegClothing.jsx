@@ -8,6 +8,11 @@ import Textarea from '../common/Textarea'
 import axios from 'axios'
 
 const RegClothes = () => {
+  // 메인 이미지를 저장할 state 변수
+  const [mainImg, setMainImg] = useState(null);
+
+  // 서브 이미지들을 저장할 state 변수
+  const [subImgs, setSubImgs] = useState(null);
 
   // 옷 카테고리 목록 조회를 받을 state변수
   const [cateList, setCateList] = useState([]);
@@ -67,9 +72,24 @@ const RegClothes = () => {
 
   // 옷 등록 함수
   const regClothingData = () => {
-    axios.post('/api/clothes', clothingData)
+
+    const fileConfig = {'Content-Type': 'multipart/form-data'};
+
+    const formData = new FormData();
+
+    formData.append('mainImg', mainImg);
+    for(const imgs of subImgs){
+      formData.append('subImgs', imgs);
+    };
+    formData.append('cateNum', clothingData.cateNum);
+    formData.append('clothingName', clothingData.clothingName);
+    formData.append('brand', clothingData.brand);
+    formData.append('price', clothingData.price);
+    formData.append('clothingIntro', clothingData.clothingIntro);
+
+    axios.post('/api/clothes',formData , fileConfig)
     .then(res => {
-      alert('등록완료');
+      alert('등록성공');
       setClothingData({
         cateNum: ''
         , clothingName: ''
@@ -79,7 +99,7 @@ const RegClothes = () => {
       })
     })
     .catch(e => console.log(e));
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -165,6 +185,27 @@ const RegClothes = () => {
               }}
             />
             <p className='error'>{errorMsg.price}</p>
+          </div>
+          <div>
+            <p>메인이미지</p>
+            <input
+              type="file" 
+              onChange={e => setMainImg(e.target.files[0])}
+            />
+          </div>
+          <div>
+            <p>서브이미지</p>
+            <input 
+              type="file" 
+              multiple={true} 
+              onChange={e => {
+                const subImgArr = [];
+                for(let i = 0 ; i < e.target.files.length ; i++){
+                  subImgArr.push(e.target.files[0]);
+                };
+                setSubImgs(subImgArr);
+              }}
+            />
           </div>
           <div>
             <p>상품 소개</p>

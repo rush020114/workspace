@@ -1,6 +1,7 @@
 package com.green.backend_shop.book.controller;
 
 import com.green.backend_shop.book.dto.BookDTO;
+import com.green.backend_shop.book.dto.BookImgDTO;
 import com.green.backend_shop.book.service.BookService;
 import com.green.backend_shop.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +22,22 @@ public class BookController {
   // 도서 등록 api
   // formData로 들어온 데이터는 RequestParam어노테이션으로 받는다.(mainImg라는 이름으로 전달했으므로 mainImg로 받는다.)
   // 파일 데이터는 자료형이 MultipartFile이다.
+  // @requestParams의 name속성은 전달된 파일의 키값이다. required속성은 파일 전달이 필수인지를 결정하는 속성이다.(false는 필수 전달 아님이라는 뜻)
+  // 책 등록하기 위해 넘긴 일반 데이터는 formData로 넘어왔기 때문에 어노테이션 없이 받으면 된다.
   @PostMapping("")
-  public void insertBook (@RequestParam("mainImg") MultipartFile mainImg){
-    FileUploadUtil.fileUpload(mainImg);
+  public void insertBook (@RequestParam("mainImg") MultipartFile mainImg
+                          , @RequestParam(name = "subImgs", required = false) MultipartFile[] subImgs
+                          , BookDTO bookDTO){
+
+    // 각각 등록 시 쿼리의 빈값을 채워줄 메서드의 리턴값을 받은 상태이다(책번호 제외).
+    BookImgDTO bookImgDTO = FileUploadUtil.fileUpload(mainImg);
+    List<BookImgDTO> bookImgDTOList = FileUploadUtil.multipleFileUpload(subImgs);
+
+    // 도서 등록 시 필요한 이미지 만큼의 데이터 세팅(메인 1개, 서브 여러개)
+    bookImgDTOList.add(bookImgDTO);
+
+    // 도서 등록 기능 실행(bookDTO엔 책번호 없음)
+    bookService.insertBook(bookDTO, bookImgDTOList);
   }
 
   // 도서 목록 조회 api

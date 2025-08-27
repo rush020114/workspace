@@ -1,14 +1,17 @@
 package com.green.backend_shop.util;
 
+import com.green.backend_shop.book.dto.BookImgDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 // 파일 업로드 메서드를 갖고 있는 클래스를 만들어 파일을 업로드하고 싶을 때 쉽게 메서드를 호출하여 이용할 수 있다.
 public class FileUploadUtil {
   // 객체 생성 없이 사용해도 상관 없으므로 static을 사용
-  public static void fileUpload(MultipartFile img){
+  public static BookImgDTO fileUpload(MultipartFile img){
     // 파일을 server에 저장하기 위해서는 경로와 파일명(랜덤)을 설정해주어야 한다.
     // 경로와 파일명을 함께 세팅해주어야 하므로 마지막에 \를 붙여주어야 한다.
     String uploadPath = "C:\\dev\\myhome\\workspace\\workspace_spring_home\\backend_shop\\src\\main\\resources\\upload\\";
@@ -34,11 +37,27 @@ public class FileUploadUtil {
     } catch (Exception e){
       System.out.println(e);
     }
-
+    // book_img 테이블에 채워줄 빈값 중 원본이미지, 참조이미지, 메인여부를 업로드 메서드에서 리턴해줄 수 있다.
+    // 빈값은 bookImgDTO에 들어가면 된다.
+    BookImgDTO bookImgDTO = new BookImgDTO();
+    bookImgDTO.setOriginImgName(img.getOriginalFilename());
+    bookImgDTO.setAttachedImgName(attachedFileName);
+    // 메인이미지밖에 들어오지 않는 메서드이므로 Y를 세팅한다.
+    bookImgDTO.setIsMain("Y");
+    return bookImgDTO;
   }
 
   // 다수의 파일을 업로드할 메서드
-  public static void multipleFileUpload(){
-
+  public static List<BookImgDTO> multipleFileUpload(MultipartFile[] subImgs){
+    // 서브 이미지는 여러개가 등록되므로 빈값을 채워줄 때는 list가 적합하다.
+    List<BookImgDTO> bookImgDTOList = new ArrayList<>();
+    for(int i = 0 ; i < subImgs.length ; i++){
+      // 서브이미지는 bookImgDTO의 리스트이다.
+      // fileUpload메서드 실행 시 반환이 우리가 필요한 빈값을 채운 bookImgDTO를 반환하므로 리스트 채우기에 적합하다.
+      bookImgDTOList.add(fileUpload(subImgs[i]));
+      // 빈값 중 Y는 N으로 바꾸어 주어야 한다.
+      bookImgDTOList.get(i).setIsMain("N");
+    }
+    return bookImgDTOList;
   }
 }

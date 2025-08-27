@@ -31,6 +31,28 @@
         )
     </insert>
 
+    <!-- 등록할 옷 번호 조회 -->
+    <select id="getNextClothingNum" resultType="int">
+        SELECT IFNULL(MAX(CLOTHING_NUM), 0) + 1
+        FROM CLOTHING
+    </select>
+
+    <!-- 옷 등록 시 같이 등록될 이미지들 -->
+    <insert id="insertClothingImgs">
+        INSERT INTO CLOTHING_IMG (
+            ORIGIN_IMG_NAME
+            , ATTACHED_IMG_NAME
+            , CLOTHING_NUM
+            , IS_MAIN
+        ) VALUES
+        <foreach collection="clothingImgDTOList" item="clothingImgDTO" separator=",">
+            (#{clothingImgDTO.originImgName}
+            , #{clothingImgDTO.attachedImgName}
+            , #{clothingImgDTO.clothingNum}
+            , #{clothingImgDTO.isMain})
+        </foreach>
+    </insert>
+
     <!-- 옷 목록 조회 -->
     <select id="getClothingList" resultMap="clothing">
         SELECT CLOTHING_NUM

@@ -51,20 +51,29 @@ const CartList = () => {
         </thead>
         <tbody>
           {
-            cartList.map((e, i) => {
+            cartList.length
+            ?
+            cartList.map((cart, i) => {
               return(
                 <tr key={i}>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{cartList.length - i}</td>
+                  <td>{cart.clothingDTO.clothingName}</td>
+                  <td>{cart.clothingDTO.price}</td>
+                  <td>{cart.cartCnt}</td>
+                  <td>{cart.totalPrice}</td>
+                  <td>{cart.cartDate}</td>
+                  <td><Button /></td>
                 </tr>
               )
             })
+            :
+            <tr>
+              <td
+                colSpan={8}
+                style={{padding: '50px 0px'}}
+              >장바구니 목록이 존재하지 않습니다.</td>
+            </tr>
           }
         </tbody>
       </table>

@@ -69,6 +69,8 @@ import { useNavigate } from 'react-router-dom';
           </thead>
           <tbody>
             {
+              cartList.length
+              ?
               cartList.map((cart, i) => {
                 return(
                   <tr key={i}>
@@ -97,6 +99,13 @@ import { useNavigate } from 'react-router-dom';
                   </tr>
                 )
               })
+              :
+              <tr>
+                <td
+                  colSpan={8}
+                  style={{padding: '50px 0px'}}
+                >장바구니 목록이 없습니다.</td>
+              </tr>
             }
           </tbody>
         </table>

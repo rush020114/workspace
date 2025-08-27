@@ -12,7 +12,7 @@ public class FileUploadUtil {
 
   // 메인 이미지 업로드 및 옷 이미지 쿼리 빈값 리턴 메서드
   public static ClothingImgDTO fileUpload(MultipartFile img){
-    String uploadPath = "C:\\dev\\myhome\\workspace\\workspace_spring_home\\mem\\src\\main\\resources\\upload\\";
+    String uploadPath = "C:\\dev\\myhome\\workspace\\workspace_spring_home\\mem\\src\\main\\resources\\static\\upload\\";
 
     String attachedFileName = UUID.randomUUID().toString();
 

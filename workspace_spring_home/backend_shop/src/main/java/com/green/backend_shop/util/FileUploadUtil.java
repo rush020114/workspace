@@ -14,7 +14,7 @@ public class FileUploadUtil {
   public static BookImgDTO fileUpload(MultipartFile img){
     // 파일을 server에 저장하기 위해서는 경로와 파일명(랜덤)을 설정해주어야 한다.
     // 경로와 파일명을 함께 세팅해주어야 하므로 마지막에 \를 붙여주어야 한다.
-    String uploadPath = "C:\\dev\\myhome\\workspace\\workspace_spring_home\\backend_shop\\src\\main\\resources\\upload\\";
+    String uploadPath = "C:\\dev\\myhome\\workspace\\workspace_spring_home\\backend_shop\\src\\main\\resources\\static\\upload\\";
 
     // 원본 파일명은 중복되면 덮어씌우므로 랜덤한 파일명으로 바꾸어 저장해준다.
     String attachedFileName = UUID.randomUUID().toString();

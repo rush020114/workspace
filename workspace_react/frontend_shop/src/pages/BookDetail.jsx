@@ -48,11 +48,18 @@ const BookDetail = () => {
     .catch(e => console.log(e));
   };
 
+  console.log(bookDetail)
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.left_content}>
-          <img src="../부동상 상식사전_메인.jpg"/>
+          {
+            !bookDetail.title
+            ?
+            null
+            :
+            <img src={`http://localhost:8080/upload/${bookDetail.bookImgDTOList[1].attachedImgName}`}/>
+          }
         </div>
         <div className={styles.right_content}>
           <table className={styles.content_table}>
@@ -116,7 +123,15 @@ const BookDetail = () => {
             {bookDetail.bookIntro}
           </div>
         </div>
-        <div className={styles.detail_img}><img src="../부동상 상식사전_상세1.jpg"/></div>
+        <div className={styles.detail_img}>
+          {
+            !bookDetail.title
+            ?
+            null
+            :
+            <img src={`http://localhost:8080/upload/${bookDetail.bookImgDTOList[0].attachedImgName}`}/>
+          }
+        </div>
       </div>
     </div>
   )

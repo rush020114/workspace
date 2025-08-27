@@ -15,8 +15,10 @@ const BookList = () => {
   useEffect(() => {
     axios.get('/api/books')
     .then(res => setBookList(res.data))
-    .catch(e => console.log(e))
-  }, [])
+    .catch(e => console.log(e));
+  }, []);
+
+  console.log(bookList);
 
   return (
     <div className={styles.container}>
@@ -26,7 +28,7 @@ const BookList = () => {
           return(
             <div key={i} className={styles.list_div}>
               <div className={styles.img_div}>
-                <img src="./부동상 상식사전_메인.jpg" 
+                <img src={`http://localhost:8080/upload/${book.bookImgDTOList[0].attachedImgName}`} 
                  onClick={e => nav(`/book-detail/${book.bookNum}`)}
                 />
               </div>

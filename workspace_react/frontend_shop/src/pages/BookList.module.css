@@ -12,6 +12,7 @@
 }
 
 .list_div{
+  height: 375px;
   padding: 10px;
   background-color: white;
   border-radius: 10px;
@@ -22,9 +23,12 @@
 
 .img_div{
   overflow: hidden;
+  height: 80%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border: 1px solid #cccccc;
+  display: flex;
+  flex-direction: column;
 }
 
 .img_div > img{ 
@@ -39,12 +43,8 @@
   scale: 1.1
 }
 
-.list_div{
-  display: flex;
-  flex-direction: column;
-}
-
 .info{
+  height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;

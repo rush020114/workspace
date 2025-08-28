@@ -42,7 +42,7 @@ const ClothingDetail = () => {
       .then(res => {
         confirm('장바구니에 등록되었습니다. \n 장바구니 페이지로 이동하시겠습니까?')
         &&
-        nav('/cart-list')
+        nav('/user/cart-list')
       })
       .catch();
     }
@@ -55,7 +55,20 @@ const ClothingDetail = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.left_content}>
-          <img src="../이글아이 워리어아머.png" />
+          {
+            clothingDetail.clothingImgDTOList
+            &&
+            clothingDetail.clothingImgDTOList.map((img, i) => {
+              if(img.isMain === 'Y'){
+                return(
+                  <img 
+                    key={i}
+                    src={`http://localhost:8080/upload/${img.attachedImgName}`} 
+                  />
+                )
+              }
+            })
+          }
         </div>
         <div className={styles.right_content}>
           <div>
@@ -99,11 +112,25 @@ const ClothingDetail = () => {
           <PageTitle 
             fontSize='2.5rem'
             size='300px'
+            title='상품 소개'
           />
           <div>{clothingDetail.clothingIntro}</div>
         </div>
         <div className={styles.detail_img}>
-          <img src="../이글아이 워리어아머 상세정보.png" />
+          {
+            clothingDetail.clothingImgDTOList
+            &&
+            clothingDetail.clothingImgDTOList.map((img, i) => {
+              if(img.isMain === 'N'){
+                return(
+                  <img 
+                    key={i}
+                    src={`http://localhost:8080/upload/${img.attachedImgName}`} 
+                  />
+                )
+              }
+            })
+          }
         </div>
       </div>
     </div>

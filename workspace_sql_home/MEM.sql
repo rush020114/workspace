@@ -67,3 +67,4 @@ CREATE TABLE MEM_CART(
 );
 SELECT *
 FROM mem_cart;
+

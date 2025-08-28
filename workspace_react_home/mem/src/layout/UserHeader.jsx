@@ -23,7 +23,10 @@ const UserHeader = () => {
   return (
     <div className={styles.header}>
       <div className={styles.menu_div}>
-        <h3>MEM</h3>
+        <h3 
+          onClick={() => nav('/')}
+          style={{cursor: 'pointer'}}
+        >MEM</h3>
         <div>
           {
             !loginData
@@ -35,7 +38,9 @@ const UserHeader = () => {
             :
             <>
               <p>{loginData.memId}님 환영합니다.</p>
-              <p>마이페이지</p>
+              <p
+                onClick={() => nav('/user/cart-list')}
+              >마이페이지</p>
               <p 
                 onClick={() => {
                   sessionStorage.removeItem('loginInfo')

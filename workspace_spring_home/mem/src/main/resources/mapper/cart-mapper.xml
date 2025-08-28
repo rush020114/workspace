@@ -61,10 +61,15 @@
             , CART_CNT
             , CART_DATE
             , TOTAL_PRICE
+            , ATTACHED_IMG_NAME
+            , IS_MAIN
         FROM MEM_CART M
         INNER JOIN CLOTHING C
         ON C.CLOTHING_NUM = M.CLOTHING_NUM
+        INNER JOIN CLOTHING_IMG I
+        ON M.CLOTHING_NUM = I.CLOTHING_NUM
         WHERE MEM_ID = #{memId}
+        AND IS_MAIN = 'Y'
         ORDER BY REG_DATE DESC
     </select>
 </mapper>

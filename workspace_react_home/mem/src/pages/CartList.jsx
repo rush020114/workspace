@@ -3,6 +3,7 @@ import styles from './CartList.module.css'
 import axios from 'axios';
 import Button from '../common/Button'
 import Input from '../common/Input'
+import dayjs from 'dayjs';
 
 const CartList = () => {
 
@@ -28,18 +29,20 @@ const CartList = () => {
     <div className={styles.container}>
       <table className={styles.table}>
         <colgroup>
-          <col width='5%' />
-          <col width='5%' />
-          <col width='25%' />
+          <col width='3%' />
+          <col width='3%' />
+          <col width='34%' />
           <col width='10%' />
           <col width='20%' />
           <col width='10%' />
-          <col width='15%' />
+          <col width='10%' />
           <col width='10%' />
         </colgroup>
         <thead>
           <tr>
-            <td></td>
+            <td>
+              <input type="checkbox" />
+            </td>
             <td>No</td>
             <td>상품정보</td>
             <td>가격</td>
@@ -56,14 +59,43 @@ const CartList = () => {
             cartList.map((cart, i) => {
               return(
                 <tr key={i}>
-                  <td></td>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
                   <td>{cartList.length - i}</td>
-                  <td>{cart.clothingDTO.clothingName}</td>
-                  <td>{cart.clothingDTO.price}</td>
-                  <td>{cart.cartCnt}</td>
-                  <td>{cart.totalPrice}</td>
-                  <td>{cart.cartDate}</td>
-                  <td><Button /></td>
+                  <td>
+                    <div className={styles.img_div}>
+                      <div>
+                        <img
+                          src={`http://localhost:8080/upload/${cart.clothingDTO.clothingImgDTOList[0].attachedImgName}`} 
+                        />
+                      </div>
+                      <p>{cart.clothingDTO.clothingName}</p>
+                    </div>
+                  </td>
+                  <td>{cart.clothingDTO.price.toLocaleString()}</td>
+                  <td>
+                    <div className={styles.cnt_div}>
+                      <Input
+                        type='number'
+                        value={cart.cartCnt} 
+                      />
+                      <Button 
+                        content='변 경'
+                        color='green'
+                        size='50px'
+                      />
+                    </div>
+                  </td>
+                  <td>{cart.totalPrice.toLocaleString()}</td>
+                  <td>{dayjs(cart.cartDate).format('YYYY.MM.DD HH:mm') }</td>
+                  <td>
+                    <Button 
+                      size='50px'
+                      color='red'
+                      content='삭 제'
+                    />
+                  </td>
                 </tr>
               )
             })
@@ -82,7 +114,9 @@ const CartList = () => {
           <div><p></p></div>
           <div><p></p></div>
         </div>
-        <Button />
+        <Button 
+          color='blue'
+        />
       </div>
     </div>
   )

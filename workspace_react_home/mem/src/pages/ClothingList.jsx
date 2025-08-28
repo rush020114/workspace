@@ -17,6 +17,8 @@ const ClothingList = () => {
     .catch(e => console.log(e));
   }, []);
 
+  console.log(clothingList)
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -25,7 +27,8 @@ const ClothingList = () => {
             return(
               <div key={i} className={styles.list_div}>
                 <div className={styles.img_div}>
-                  <img src="./이글아이 워리어아머.png" 
+                  <img 
+                    src={`http://localhost:8080/upload/${clothing.clothingImgDTOList[0].attachedImgName}`}
                     onClick={() => nav(`/clothing-detail/${clothing.clothingNum}`)}
                   />
                 </div>

@@ -63,6 +63,7 @@
             , PRICE
             , BOOK_INTRO
             , ATTACHED_IMG_NAME
+            , IS_MAIN
         FROM BOOK B
         INNER JOIN BOOK_IMG I
         ON B.BOOK_NUM = I.BOOK_NUM

@@ -13,6 +13,7 @@
 .banner_div{
   height: 150px;
   position: relative;
+  cursor: pointer;
 }
 
 .menu_div{

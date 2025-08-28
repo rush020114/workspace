@@ -1,11 +1,9 @@
 .container{
   width: 100%;
-  margin: 30px auto;
 }
 
 .table{
   width: 100%;
-  font-size: 1.2rem;
 }
 
 .table td{
@@ -22,6 +20,7 @@
 .table > thead td{
   padding: 10px;
 }
+
 
 .table > tbody > tr:nth-child(odd){
   background-color: #f7f7f7;

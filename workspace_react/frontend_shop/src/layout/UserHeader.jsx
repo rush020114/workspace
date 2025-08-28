@@ -4,7 +4,6 @@ import Login from '../components/Login'
 import Join from '../components/Join';
 import { useNavigate } from 'react-router-dom';
 
-
 const UserHeader = () => {
   
   const nav = useNavigate();
@@ -35,7 +34,9 @@ const UserHeader = () => {
           <>
             {/* loginInfo는 json이기 때문에 객체로 변경해서 사용해야 한다. */}
             <span>{loginData.memId}님 환영합니다!</span>
-            <span>마이페이지</span>
+            <span
+              onClick={() => nav('/user/cart-list')}
+            >마이페이지</span>
             <span onClick={() => {
                 sessionStorage.removeItem('loginInfo');
                 nav('/');
@@ -43,7 +44,9 @@ const UserHeader = () => {
           </>
         }
       </div>
-      <div className={styles.banner_div}>
+      <div className={styles.banner_div}
+        onClick={() => nav('/')}
+      >
         <img
          className={styles.banner_img}
          src="/book_banner.PNG" 

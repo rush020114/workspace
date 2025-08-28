@@ -11,6 +11,10 @@ const CartList = () => {
   
   // 조회한 장바구니 목록을 저장할 state변수
   const [cartList, setCartList] = useState([]);
+
+  // 선택한 체크박스 값을 저장할 state 변수
+  // 모든 체크박스가 선택된 채로 화면에 나오려면 조회한 모든 cartNum이 초기값으로 세팅되어야 함.
+  const [checkData, setCheckData] = useState([]);
   
   // 장바구니 목록을 조회할 useEffect
   useEffect(() => {
@@ -28,33 +32,55 @@ const CartList = () => {
     const loginData = JSON.parse(loginInfo);
 
     axios.get(`/api/carts/${loginData.memId}`)
-    .then(res => setCartList(res.data))
+    .then(res => {
+      setCartList(res.data);
+      // 체크박스 초기값 세팅
+      const checkboxDataArr = [];
+      for(const e of res.data){
+        checkboxDataArr.push(e.cartNum);
+      }
+      setCheckData(checkboxDataArr);
+    })
     .catch(e => console.log(e));
   }, []);
 
+  // 체크박스 값 변경 시 실행 함수
+  const handleCheckbox = e => {
+    // 체크가 됐다면...
+    // cartNum을 숫자로 변환해서 저장
+    if(e.target.checked){
+      setCheckData([
+        ...checkData
+        , parseInt(e.target.value)
+      ])
+    }
+    // 체크가 해제됐다면
+    else{
+      setCheckData(checkData.filter(cartNum => cartNum !== parseInt(e.target.value)))
+    }
+  }
 
-  console.log(cartList)
-  // 총 가격
-  let totalPrice = 0;
-  if(cartList.length !== 0) cartList.forEach(e => totalPrice += e.totalPrice)
+  console.log(checkData)
 
   return (
     <div className={styles.container}>
       <table className={styles.table}>
         <colgroup>
-          <col width='5%' />
-          <col width='5%' />
-          <col width='25%' />
+          <col width='3%' />
+          <col width='3%' />
+          <col width='34%' />
           <col width='10%' />
           <col width='20%' />
           <col width='10%' />
-          <col width='15%' />
+          <col width='10%' />
           <col width='10%' />
         </colgroup>
         <thead>
           <tr>
             <td>
-              <input type="checkbox" checked/>
+              <input
+                type="checkbox" 
+              />
             </td>
             <td>No</td>
             <td>상품정보</td>
@@ -73,14 +99,23 @@ const CartList = () => {
               return(
                 <tr key={i}>
                   <td>
-                    <input type="checkbox" checked/>
+                    <input
+                      type="checkbox" 
+                      checked={checkData.includes(cart.cartNum)}
+                      value={cart.cartNum}
+                      onChange={e => handleCheckbox(e)}
+                    />
                   </td>
                   <td>
                     <p>{cartList.length - i}</p>
                   </td>
                   <td>
                     <div className={styles.img_div}>
-                      <div><img src="./부동상 상식사전_메인.jpg" /></div>
+                      <div>
+                        <img
+                          src={`http://localhost:8080/upload/${cart.bookDTO.bookImgDTOList[0].attachedImgName}`} 
+                        />
+                      </div>
                       <p>{cart.bookDTO.title}</p>
                     </div>
                   </td>
@@ -92,7 +127,7 @@ const CartList = () => {
                         value={cart.cartCnt}
                       />
                       <Button 
-                        title='수량변경'
+                        title='변 경'
                         color='green'
                       />
                     </div>
@@ -116,7 +151,7 @@ const CartList = () => {
       <div className={styles.totalPrice}>
         <div>
           <div><p>구매가격</p></div>
-          <div><p>{totalPrice.toLocaleString()}</p></div>
+          <div><p>{}</p></div>
         </div>
         <Button 
           size='200px'

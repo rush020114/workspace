@@ -43,7 +43,7 @@ const BookDetail = () => {
     .then(res => {
       confirm('장바구니에 상품을 담았습니다.\n장바구니 페이지로 이동할까요?')
       &&
-      nav('/cart-list');
+      nav('/user/cart-list');
     })
     .catch(e => console.log(e));
   };
@@ -54,11 +54,18 @@ const BookDetail = () => {
       <div className={styles.content}>
         <div className={styles.left_content}>
           {
-            !bookDetail.title
-            ?
-            null
-            :
-            <img src={`http://localhost:8080/upload/${bookDetail.bookImgDTOList[1].attachedImgName}`}/>
+            bookDetail.bookImgDTOList
+            &&
+            bookDetail.bookImgDTOList.map((img, i) => {
+              if(img.isMain === 'Y'){
+                return(
+                  <img 
+                    key={i}
+                    src={`http://localhost:8080/upload/${img.attachedImgName}`}
+                  />
+                )
+              }
+            })
           }
         </div>
         <div className={styles.right_content}>
@@ -125,11 +132,18 @@ const BookDetail = () => {
         </div>
         <div className={styles.detail_img}>
           {
-            !bookDetail.title
-            ?
-            null
-            :
-            <img src={`http://localhost:8080/upload/${bookDetail.bookImgDTOList[0].attachedImgName}`}/>
+            bookDetail.bookImgDTOList
+            &&
+            bookDetail.bookImgDTOList.map((img, i) => {
+              if(img.isMain !== 'Y'){
+                return(
+                  <img
+                    key={i}
+                    src={`http://localhost:8080/upload/${img.attachedImgName}`}
+                  />
+                )
+              }
+            })
           }
         </div>
       </div>

@@ -42,7 +42,7 @@ CREATE TABLE book(
 SELECT *
 FROM book;
 
-# 3. 도서 이미지 정보 테이블
+# 4. 도서 이미지 정보 테이블
 CREATE TABLE BOOK_IMG (
 	IMG_NUM INT PRIMARY KEY AUTO_INCREMENT
 	, ORIGIN_IMG_NAME VARCHAR(100) # 원본 파일명
@@ -51,7 +51,7 @@ CREATE TABLE BOOK_IMG (
 	, IS_MAIN VARCHAR(3) # 메인이미지면 : 'Y', 서브이미지 : 'N'
 );
 
-# 4. 장바구니 테이블
+# 5. 장바구니 테이블
 
 CREATE TABLE SHOP_CART (
 	CART_NUM INT PRIMARY KEY AUTO_INCREMENT
@@ -62,64 +62,7 @@ CREATE TABLE SHOP_CART (
 	, CART_DATE DATETIME DEFAULT SYSDATE()
 );
 
-INSERT INTO shop_cart(
-	BOOK_NUM
-	, CART_CNT
-	, MEM_ID
-	, TOTAL_PRICE
-) VALUES(
-	1
-	, 2
-	, 'user'
-	, (SELECT PRICE 
-		FROM book 
-		WHERE BOOK_NUM = 5) * 3
-);
-
 SELECT * FROM shop_cart;
-
-SELECT CART_NUM
-	, C.BOOK_NUM
-	, TITLE
-	, PRICE
-	, CART_CNT
-	, TOTAL_PRICE
-	, CART_DATE
-FROM shop_cart C
-INNER JOIN book B
-ON B.BOOK_NUM = C.BOOK_NUM
-WHERE MEM_ID = 'USER'
-ORDER BY CART_DATE DESC;
-
-#BOOK_IMG 테이블에 데이터 추가
-INSERT INTO book_img (ORIGIN_IMG_NAME, ATTACHED_IMG_NAME, BOOK_NUM, IS_MAIN)
-VALUES ('abc.jpg', 'aaa-bbb.jpg', 1, 'Y')
-, ('abc.jpg', 'aaa-bbb.jpg', 1, 'Y')
-, ('abc.jpg', 'aaa-bbb.jpg', 1, 'Y');
 
 SELECT *
 FROM book_img;
-
-# 다음에 들어갈 book_num을 조회(최대 book_num  + 1)
-SELECT IFNULL(MAX(BOOK_NUM), 0) + 1 FROM book;
-
-SELECT B.BOOK_NUM
-	, TITLE
-	, PRICE
-	, ATTACHED_IMG_NAME
-FROM book B
-INNER JOIN book_img I
-ON B.BOOK_NUM = I.BOOK_NUM
-WHERE IS_MAIN = 'Y';
-
-
-SELECT B.BOOK_NUM
-   , TITLE
-   , PUBLISHER
-   , PRICE
-   , BOOK_INTRO
-   , ATTACHED_IMG_NAME
-FROM book B
-INNER JOIN BOOK_IMG I
-ON B.BOOK_NUM = I.BOOK_NUM
-WHERE B.BOOK_NUM = 2;

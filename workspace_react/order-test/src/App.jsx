@@ -20,6 +20,7 @@ import Radio1 from './Radio1'
 import Textarea1 from './Textarea1'
 import FormPractice01 from './FormPractice01'
 import FormPractice02 from './FormPractice02'
+import Checkbox from './Checkbox'
 
 
 
@@ -44,7 +45,8 @@ function App() {
       {/* <Textarea1 /> */}
       {/* <Radio1 /> */}
       {/* <FormPractice01 /> */}
-      <FormPractice02 />
+      {/* <FormPractice02 /> */}
+      <Checkbox />
     </>
   )
 }

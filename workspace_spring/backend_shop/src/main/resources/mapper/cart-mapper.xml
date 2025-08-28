@@ -39,18 +39,23 @@
     <!-- 장바구니 목록 조회 쿼리 -->
     <select id="getCartList" resultMap="cart">
         SELECT CART_NUM
-        , C.BOOK_NUM
+        , B.BOOK_NUM
         <!-- title이 조회될 때 cart resultMap 정의문을 본다. -->
+        <!-- join이 2개 이상일 때 같은 컬럼이 존재하는 것을 함께 쓴다. -->
         , TITLE
         , PRICE
         , CART_CNT
         , TOTAL_PRICE
         , CART_DATE
-        FROM shop_cart C
-        INNER JOIN book B
-        ON B.BOOK_NUM = C.BOOK_NUM
+        , ATTACHED_IMG_NAME
+        , IS_MAIN
+        FROM SHOP_CART C
+        INNER JOIN BOOK B
+        ON C.BOOK_NUM = B.BOOK_NUM
+        INNER JOIN book_img I
+        ON C.BOOK_NUM = I.BOOK_NUM
         WHERE MEM_ID = #{memId}
-        ORDER BY CART_DATE DESC;
+        AND IS_MAIN = 'Y';
     </select>
 
     <!-- 쿼리를 미리 써놓으면 어떤 데이터가 들어갈지 미리 파악할 수 있다. -->

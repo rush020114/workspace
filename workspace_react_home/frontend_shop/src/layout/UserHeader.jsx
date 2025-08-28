@@ -36,7 +36,7 @@ const UserHeader = () => {
           :
           <>
             <span>{loginData.memId}님 환영합니다.</span>
-            <span>마이페이지</span>
+            <span onClick={() => nav('/user/cart-list')}>마이페이지</span>
             <span onClick={() => {
               // sessionStorage 저장 데이터 삭제 문법(로그아웃)
               sessionStorage.removeItem('loginInfo')
@@ -46,7 +46,10 @@ const UserHeader = () => {
         }
       </div>
       {/* 이미지 검색은 public을 기준으로 삼기 때문에 public 폴더 안에 있는 사진의 파일명을 현재폴더로 잡고 입력한다. */}
-      <div className={styles.banner_div}>
+      <div
+        className={styles.banner_div}
+        onClick={() => nav('/')}
+      >
         <img
          className={styles.banner_img}
          src="/book_banner.PNG" 

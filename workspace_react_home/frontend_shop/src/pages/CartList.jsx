@@ -12,6 +12,10 @@ import { useNavigate } from 'react-router-dom';
 
     // 장바구니 목록 조회를 저장할 state변수
     const [cartList, setCartList] = useState([]);
+
+    // 체크박스 데이터를 저장할 state 변수
+    // 체크 박스는 중복을 허용하므로 배열이 적합하다.
+    const [checkboxesData, setCheckboxesData] = useState([]);
     
     // 장바구니 목록을 받아올 useEffect
     useEffect(() => {
@@ -28,30 +32,46 @@ import { useNavigate } from 'react-router-dom';
       // 저장된 로그인 정보의 객체화
       const loginData = JSON.parse(loginInfo);
       axios.get(`/api/carts/${loginData.memId}`)
-      .then(res => setCartList(res.data))
+      .then(res => {
+        setCartList(res.data);
+        const checkboxArr = []
+        for(const checkbox of res.data){
+          checkboxArr.push(checkbox.cartNum);
+        }
+        setCheckboxesData(checkboxArr)
+      })
       .catch(e => console.log(e));
     }, []);
 
-    // 총 가격
-    let totalPrice = 0;
-    if(cartList.length !== 0){
-      for(let i = 0 ; i < cartList.length ; i++){
-        totalPrice += parseInt(cartList[i].totalPrice)
+    // 체크박스 값 변경 시 실행 함수
+    const handleCheckboxes = e => {
+      if(e.target.checked){
+        setCheckboxesData([
+          ...checkboxesData
+          , parseInt(e.target.value)
+        ])
+      }
+      else{
+        setCheckboxesData(
+          checkboxesData.filter(checkbox => checkbox !== parseInt(e.target.value))
+        )
       }
     }
+
+    console.log(checkboxesData)
 
     return (
       <div className={styles.container}>
         <table className={styles.table}>
           <colgroup>
-            <col width='5%' />
-            <col width='5%' />
-            <col width='25%' />
+            <col width='4%' />
+            <col width='4%' />
+            <col width='32%' />
             <col width='10%' />
             <col width='20%' />
             <col width='10%' />
-            <col width='15%' />
-            <col width='10%' />
+            <col width='12%' />
+            <col width='8%' />
           </colgroup>
           <thead>
             <tr>
@@ -75,12 +95,22 @@ import { useNavigate } from 'react-router-dom';
                 return(
                   <tr key={i}>
                     <td>
-                      <input type="checkbox" />
+                      <input 
+                        // checkbox의 value도 하나하나씩 구별할 수 있는 데이터를 넣어주어야 한다.
+                        // 장바구니를 하나하나 구분지을 수 있는 것은 pk가 적합하다.
+                        // value를 나중에 등록 데이터로 사용할 것이니 pk를 쓰면 구별이 된다.
+                        type="checkbox" 
+                        value={cart.cartNum}
+                        checked={checkboxesData.includes(cart.cartNum)}
+                        onChange={e => handleCheckboxes(e)}
+                      />
                     </td>
                     <td>{cartList.length - i}</td>
                     <td>
                       <div className={styles.img_div}>
-                        <div><img src="차트분석 무작정 따라하기_메인.jpg" /></div>
+                        <div>
+                          <img src={`http://localhost:8080/upload/${cart.bookDTO.bookImgDTOList[0].attachedImgName}`} />
+                        </div>
                         <p>{cart.bookDTO.title}</p>
                       </div>
                     </td>
@@ -90,12 +120,22 @@ import { useNavigate } from 'react-router-dom';
                         <Input 
                           value={cart.cartCnt}
                         />
-                        <Button title='수정' />
+                        <Button
+                          title='수 정' 
+                          size='60px'
+                          color='green'
+                        />
                       </div>
                     </td>
                     <td>{cart && parseInt(cart.totalPrice).toLocaleString()}</td>
-                    <td>{dayjs(cart.cartDate).format('YYYY.MM.SS HH:mm')}</td>
-                    <td><Button title='삭제' /></td>
+                    <td>{dayjs(cart.cartDate).format('YYYY.MM.DD HH:mm')}</td>
+                    <td>
+                      <Button 
+                        title='삭 제' 
+                        size='60px'
+                        color='gray'
+                      />
+                    </td>
                   </tr>
                 )
               })
@@ -112,7 +152,7 @@ import { useNavigate } from 'react-router-dom';
         <div className={styles.totalPrice}>
           <div>
             <div><p>구매가격</p></div>
-            <div><p>{totalPrice.toLocaleString()}</p></div>
+            <div><p></p></div>
           </div>
           <Button 
             size='200px'

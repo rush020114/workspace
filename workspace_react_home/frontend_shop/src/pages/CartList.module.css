@@ -1,11 +1,10 @@
 .container{
   width: 100%;
-  margin: 30px auto;
+  margin: auto;
 }
 
 .table{
   width: 100%;
-  font-size: 1.2rem;
   border-collapse: collapse;
 }
 

@@ -28,7 +28,7 @@ const BookList = () => {
                 <div className={styles.img_div}>
                   <img
                     onClick={() => nav(`/book-detail/${book.bookNum}`)}
-                    src="./차트분석 무작정 따라하기_메인.jpg"
+                    src={`http://localhost:8080/upload/${book.bookImgDTOList[0].attachedImgName}`}
                   />
                 </div>
                 <div className={styles.info}>

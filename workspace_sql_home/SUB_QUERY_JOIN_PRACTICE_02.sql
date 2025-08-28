@@ -34,10 +34,53 @@ INSERT INTO RENTAL (BOOK_ID, BORROWER_NAME, RENTAL_DATE, RETURN_DATE) VALUES
 COMMIT;
 
 #도서 제목, 저자, 대출자 이름, 대출 날짜를 조회하시오.
+SELECT (SELECT TITLE 
+		FROM test_book 	
+		WHERE BOOK_ID = R.BOOK_ID) TITLE
+	, (SELECT AUTHOR 
+		FROM test_book 
+		WHERE BOOK_ID = R.BOOK_ID) AUTHOR 
+	, BORROWER_NAME
+	, RENTAL_DATE
+FROM rental R;
+
+SELECT TITLE
+	, AUTHOR
+	, (SELECT BORROWER_NAME 
+		FROM rental 
+		WHERE BOOK_ID = B.BOOK_ID) BORROWER_NAME
+	, (SELECT RENTAL_DATE 
+		FROM rental 
+		WHERE BOOK_ID = B.BOOK_ID) RENTAL_DATE
+FROM TEST_BOOK B;
+
+SELECT TITLE
+	, AUTHOR
+	, BORROWER_NAME
+	, RENTAL_DATE
+FROM test_book T
+INNER JOIN rental R
+ON T.BOOK_ID = R.BOOK_ID;
 
 #출판 연도가 2020년 이후인 도서 중 대출된 적이 있는 도서의 모든 정보를 조회하시오.
+SELECT *
+FROM test_book
+WHERE PUBLISHED_YEAR >= 2020
+AND BOOK_ID 
+IN (SELECT DISTINCT BOOK_ID 
+	FROM rental);
 
 #한 번도 대출되지 않은 도서의 제목과 저자를 조회하시오.
+SELECT TITLE
+	, AUTHOR
+FROM TEST_BOOK
+WHERE BOOK_ID 
+NOT IN (SELECT DISTINCT BOOK_ID 
+		FROM rental);
 
 #모든 도서의 제목, 대출횟수, 대출 여부를 출력하세요. 대출 여부는 한번이라도 대출된 적이 있는
 #책은 '대출기록있음', 대출된 적이 없는 도서에는 '대출이이력없음'으로 조회하시오.
+SELECT TITLE
+	, (SELECT COUNT(BOOK_ID) FROM rental WHERE BOOK_ID = B.BOOK_ID) 대출여부
+	, IF((SELECT COUNT(BOOK_ID) FROM rental WHERE BOOK_ID = B.BOOK_ID) > 0, '대출기록있음', '대출이력없음') 대출여부
+FROM test_book B;

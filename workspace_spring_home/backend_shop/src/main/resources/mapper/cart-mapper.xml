@@ -22,6 +22,14 @@
         그러면 association resultMap를 읽고 참조하게 되는데 그 id를 보면 join으로 조회된 컬럼의 column이 존재하므로
         그 곳의 dto에 join으로 조회된 컬럼을 넣을 수 있기 때문에 이 파일의 dto에 join 조회 컬럼이 들어간다.
         -->
+        <!--
+         장바구니 목록 조회 시 3개의 테이블을 동시에 조회한다.
+         그래서 3개 각각의 관계를 파악해 ASSOCIATION이나 COLLECTION 태그를 각각 써줘야 할 것 같지만
+         이미 bookDTO에 bookImgDTOLIST의 관계가 성립하기에 조회한 데이터에서 resultMap으로 bookImg를 찾을 때
+         bookDTO를 통해서 접근 가능하게끔 설계가 되어 있기 때문에 태그를 추가할 필요가 없다.
+         결로은 장바구니 테이블을 조회할 시
+         장바구니 테이블 : 책 : 책 이미지 = 1 : 1 : n 관계가 이 resultMap을 통해 잘 정의되어 있다.
+        -->
         <association property="bookDTO" resultMap="com.green.backend_shop.book.mapper.BookMapper.book" />
     </resultMap>
 
@@ -34,10 +42,18 @@
         , CART_CNT
         , TOTAL_PRICE
         , CART_DATE
+        , ATTACHED_IMG_NAME
         FROM SHOP_CART C
         INNER JOIN BOOK B
         ON B.BOOK_NUM = C.BOOK_NUM
+        INNER JOIN BOOK_IMG I
+        <!--
+         JOIN을 두 개 이상 쓴다면 두 번째 조인 때는
+         조인을 거는 테이블에 있는 컬럼과 나머지 두 테이블 중 같은 컬럼이 있는 테이블을 연결하면 된다.
+        -->
+        ON C.BOOK_NUM = I.BOOK_NUM
         WHERE MEM_ID = #{memId}
+        AND IS_MAIN = 'Y'
         ORDER BY CART_DATE DESC
     </select>
 

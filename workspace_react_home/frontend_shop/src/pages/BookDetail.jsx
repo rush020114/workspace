@@ -39,7 +39,7 @@ const BookDetail = () => {
       .then(res => {
         confirm('장바구니에 등록되었습니다.\n장바구니 목록으로 이동하시겠습니까?')
         &&
-        nav('/cart-list ');
+        nav('/user/cart-list ');
       })
       .catch(e => console.log(e));
     }
@@ -47,12 +47,26 @@ const BookDetail = () => {
       alert('로그인 후 이용해주세요.')
     }
   };
+  console.log(bookDetail)
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.left_content}>
-          <img src="../차트분석 무작정 따라하기_메인.jpg" />
+          {
+            bookDetail.bookImgDTOList
+            &&
+            bookDetail.bookImgDTOList.map((img, i) => {
+              if(img.isMain === 'Y'){
+                return(
+                  <img 
+                    key={i}
+                    src={`http://localhost:8080/upload/${bookDetail.bookImgDTOList[1].attachedImgName}`} 
+                  />
+                )
+              }
+            })
+          }
         </div>
         <div className={styles.right_content}>
           <div>
@@ -98,7 +112,20 @@ const BookDetail = () => {
           <div>{bookDetail.bookIntro}</div>
         </div>
         <div className={styles.detail_img}>
-          <img src="../차트분석 무작정 따라하기_상세1.jpg" />
+          {
+            bookDetail.bookImgDTOList
+            &&
+            bookDetail.bookImgDTOList.map((img, i) => {
+              if(img.isMain !== 'Y'){
+                return( 
+                  <img 
+                    key={i}
+                    src={`http://localhost:8080/upload/${bookDetail.bookImgDTOList[1].attachedImgName}`} 
+                  />
+                )
+              }
+            })
+          }
         </div>
       </div>
     </div>

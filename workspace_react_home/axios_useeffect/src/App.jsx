@@ -9,6 +9,7 @@ import InputTest02 from './InputTest02'
 import FormPractice01 from './FormPractice01'
 import BookInfo from './BookInfo'
 import axios from 'axios'
+import Checkbox from './Checkbox'
 
 function App() {
   const [num, setNum] = useState(5);
@@ -42,6 +43,7 @@ function App() {
       {/* <InputTest02 /> */}
       {/* <FormPractice01 /> */}
       {/* <BookInfo /> */}
+      <Checkbox />
     </>
   )
 }

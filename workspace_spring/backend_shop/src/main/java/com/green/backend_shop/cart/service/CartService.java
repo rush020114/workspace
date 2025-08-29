@@ -34,4 +34,13 @@ public class CartService {
     return cartMapper.getCartList(memId);
   }
 
+  // 장바구니 삭제
+  public int deleteCart(int cartNum){
+    return cartMapper.deleteCart(cartNum);
+  }
+
+  // 장바구니 페이지 수량 변경
+  public void updateCart(CartDTO cartDTO){
+    cartMapper.updateCart(cartDTO);
+  }
 }

@@ -4,12 +4,11 @@
 }
 
 .header_div{
-  height: 24vh;
+  height: 220px;
 }
 
 .main{
   display: flex;
-  height: 76vh;
 }
 
 .side{
@@ -18,6 +17,6 @@
 
 .content{
   padding-left: 20px;
-  padding-bottom: 0px;
+  padding-bottom: 20px;
   width: 80%;
 }

@@ -19,4 +19,10 @@ public interface CartMapper {
 
   // 장바구니 수량 변경
   void updateCartCnt(CartDTO cartDTO);
+
+  // 장바구니 삭제
+  int deleteCart(int cartCnt);
+
+  // 장바구니 페이지 수량 변경
+  void updateCart(CartDTO cartDTO);
 }

@@ -61,7 +61,7 @@ const Login = ({isOpenLogin, onClose}) => {
   return (
     <Modal
        title='Login'
-       size='350px'
+       size='375px'
        isOpen={isOpenLogin}
        onClose={() => {
         onClose();
@@ -82,6 +82,7 @@ const Login = ({isOpenLogin, onClose}) => {
                 name='memId'
                 value={loginData.memId}
                 onChange={e => handleLoginData(e)}
+                onKeyDown={e => e.key === 'Enter' && login()}
               />
             </div>
             <div>
@@ -94,6 +95,7 @@ const Login = ({isOpenLogin, onClose}) => {
                 name='memPw'
                 value={loginData.memPw}
                 onChange={e => handleLoginData(e)}
+                onKeyDown={e => e.key === 'Enter' && login()}
               />
             </div>
           </div>

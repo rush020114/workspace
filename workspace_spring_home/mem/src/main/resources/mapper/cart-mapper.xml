@@ -72,4 +72,20 @@
         AND IS_MAIN = 'Y'
         ORDER BY REG_DATE DESC
     </select>
+
+    <!-- 장바구니 삭제 -->
+    <delete id="deleteCart">
+        DELETE FROM MEM_CART
+        WHERE CART_NUM = #{cartNum}
+    </delete>
+
+    <!-- 장바구니 수량 수정 -->
+    <update id="updateCartCnt">
+        UPDATE MEM_CART
+        SET CART_CNT = #{cartCnt}
+            , TOTAL_PRICE = (SELECT PRICE
+                            FROM CLOTHING
+                            WHERE CLOTHING_NUM = #{clothingNum}) * #{cartCnt}
+        WHERE CART_NUM = #{cartNum}
+    </update>
 </mapper>

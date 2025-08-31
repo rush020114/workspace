@@ -1,29 +1,108 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './CartList.module.css'
 import axios from 'axios';
 import Button from '../common/Button'
 import Input from '../common/Input'
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
 const CartList = () => {
 
-  // 로그인 정보 조회
-  const loginInfo = sessionStorage.getItem('loginInfo');
+  const nav = useNavigate();
 
-  // 로그인 정보 객체화
-  const loginData =  JSON.parse(loginInfo);
-
+  // db데이터 변경 시 화면 반영을 도와줄 useState
+  const [reload, setReload] = useState(0);
+  
   // 장바구니 목록을 저장할 state 변수
   const [cartList, setCartList] = useState([]);
 
+  // 체크박스 데이터를 저장할 state변수
+  const [checkboxes, setCheckboxes] = useState([]);
+
+  // 전체 체크박스 체크 데이터들을 저장할 useRef
+  const checkboxArr = useRef([]);
+
+  // 최종가격을 저장할 state 변수
+  const [finalPrice, setFinalPrice] = useState(0);
+
+  // 전체 체크박스 체크 최종가격을 저장할 useRef
+  const allCheckboxPrice = useRef(0); 
+  
   // 장바구니 목록을 세팅할 useEffect
   useEffect(() => {
-    axios.get(`/api/carts/${loginData.memId}`)
-    .then(res => setCartList(res.data))
-    .catch(e => console.log(e));
-  }, []);
+    
+    // 로그인 정보 조회
+    const loginInfo = sessionStorage.getItem('loginInfo');
 
-  console.log(cartList);
+    if(!loginInfo){
+      alert('접근권한이 없습니다.');
+      nav('/')
+      return;
+    }
+  
+    // 로그인 정보 객체화
+    const loginData =  JSON.parse(loginInfo);
+
+    axios.get(`/api/carts/${loginData.memId}`)
+    .then(res => {
+      setCartList(res.data)
+      checkboxArr.current = [];
+      allCheckboxPrice.current = 0;
+
+      for(const cart of res.data){
+        checkboxArr.current.push(cart.cartNum);
+        allCheckboxPrice.current += cart.totalPrice;
+      };
+      setCheckboxes(checkboxArr.current);
+      setFinalPrice(allCheckboxPrice.current);
+    })
+    .catch(e => console.log(e));
+  }, [reload]);
+
+  // 장바구니 각각의 체크박스들 체크박스 체크 여부 결정 함수
+  const handleCheckbox = e =>{
+    if(e.target.checked){
+      setCheckboxes([
+        ...checkboxes
+        , parseInt(e.target.value)
+      ]);
+    }
+    else{
+      setCheckboxes(checkboxes.filter(checkbox => checkbox !== parseInt(e.target.value)));
+    };
+  };
+
+  // 최종 가격 세팅 함수
+  const handleFinalPrice = (e, totalPrice) => {
+    e.target.name === 'checkAll'
+    ?
+    setFinalPrice(e.target.checked ? allCheckboxPrice.current : 0)
+    :
+    setFinalPrice(e.target.checked ? finalPrice + totalPrice : finalPrice - totalPrice)
+  }
+
+  // 장바구니 삭제
+  const deleteCart = cart => {
+    confirm('삭제하시겠습니까?')
+    &&
+    axios.delete(`/api/carts/${cart.cartNum}`)
+    .then(res => setReload(reload + 1))
+    .catch(e => console.log(e));
+  };
+
+  // 장바구니 수량 수정
+  const updateCartCnt = (e, cart) => {
+    axios.put(`/api/carts/${cart.cartNum}`, {
+      cartCnt: e.target.value
+      , clothingNum: cart.clothingNum
+    })
+    .then(res => setReload(reload + 1))
+    .catch();
+  };
+
+  console.log(cartList)
+  console.log(checkboxes);
+  console.log(finalPrice);
 
   return (
     <div className={styles.container}>
@@ -41,7 +120,14 @@ const CartList = () => {
         <thead>
           <tr>
             <td>
-              <input type="checkbox" />
+              <input type="checkbox" 
+                name='checkAll'
+                checked={checkboxArr.current.length === checkboxes.length}
+                onChange={e => {
+                  setCheckboxes(e.target.checked ? checkboxArr.current : []);
+                  handleFinalPrice(e);
+                }}
+              />
             </td>
             <td>No</td>
             <td>상품정보</td>
@@ -60,7 +146,15 @@ const CartList = () => {
               return(
                 <tr key={i}>
                   <td>
-                    <input type="checkbox" />
+                    <input type="checkbox" 
+                      name='checkSingle'
+                      value={cart.cartNum}
+                      checked={checkboxes.includes(cart.cartNum)}
+                      onChange={e => {
+                        handleCheckbox(e)
+                        handleFinalPrice(e, cart.totalPrice)
+                      }}
+                    />
                   </td>
                   <td>{cartList.length - i}</td>
                   <td>
@@ -78,22 +172,21 @@ const CartList = () => {
                     <div className={styles.cnt_div}>
                       <Input
                         type='number'
+                        size='120px'
+                        min={1}
                         value={cart.cartCnt} 
-                      />
-                      <Button 
-                        content='변 경'
-                        color='green'
-                        size='50px'
+                        onChange={e => updateCartCnt(e, cart)}
                       />
                     </div>
                   </td>
                   <td>{cart.totalPrice.toLocaleString()}</td>
-                  <td>{dayjs(cart.cartDate).format('YYYY.MM.DD HH:mm') }</td>
+                  <td>{dayjs(cart.cartDate).format('YYYY.MM.DD HH:mm')}</td>
                   <td>
                     <Button 
-                      size='50px'
+                      size='70px'
                       color='red'
                       content='삭 제'
+                      onClick={e => deleteCart(cart)}
                     />
                   </td>
                 </tr>
@@ -111,11 +204,12 @@ const CartList = () => {
       </table>
       <div className={styles.totalPrice}>
         <div>
-          <div><p></p></div>
-          <div><p></p></div>
+          <div><p>구매 가격</p></div>
+          <div><p>{finalPrice.toLocaleString()}</p></div>
         </div>
         <Button 
           color='blue'
+          content='구 매'
         />
       </div>
     </div>

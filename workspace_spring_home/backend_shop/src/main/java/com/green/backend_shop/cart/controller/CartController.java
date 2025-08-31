@@ -26,4 +26,17 @@
     public void insertCart(@RequestBody CartDTO cartDTO){
       cartService.insertCart(cartDTO);
     }
+
+    // 장바구니 삭제 api
+    @DeleteMapping ("/{cartNum}")
+    public void deleteCart(@PathVariable("cartNum") int cartNum){
+      cartService.deleteCart(cartNum);
+    }
+
+    // 장바구니 수량 변경 api
+    @PutMapping("/{cartNum}")
+    public void updateCart(@PathVariable("cartNum") int cartNum, @RequestBody CartDTO cartDTO){
+      cartDTO.setCartNum(cartNum);
+      cartService.updateCartCnt(cartDTO);
+    }
   }

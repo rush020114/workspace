@@ -31,4 +31,14 @@ public class CartService {
       cartMapper.updateCart(cartDTO);
     }
   }
+
+  // 장바구니 삭제
+  public void deleteCart(int cartNum){
+    cartMapper.deleteCart(cartNum);
+  }
+
+  // 장바구니 수량 변경
+  public void updateCartCnt(CartDTO cartDTO){
+    cartMapper.updateCartCnt(cartDTO);
+  }
 }

@@ -19,4 +19,10 @@ public interface CartMapper {
 
   // 중복 시 수정할 데이터
   void updateCart(CartDTO cartDTO);
+
+  // 장바구니 삭제
+  void deleteCart (int cartNum);
+
+  // 장바구니 수량 수정
+  void updateCartCnt(CartDTO cartDTO);
 }

@@ -27,4 +27,14 @@ public class CartService {
   public List<CartDTO> getCartList(String memId){
     return cartMapper.getCartList(memId);
   }
+
+  // 장바구니 삭제
+  public void deleteCart (int cartNum){
+    cartMapper.deleteCart(cartNum);
+  }
+
+  // 장바구니 수량 수정
+  public void updateCartCnt(CartDTO cartDTO){
+    cartMapper.updateCartCnt(cartDTO);
+  }
 }

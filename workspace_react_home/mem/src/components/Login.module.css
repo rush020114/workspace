@@ -7,11 +7,12 @@
 .input{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 10px;
 }
 
 .input > div > p{
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
   color: #467b53;
 }

@@ -26,4 +26,17 @@ public class CartController {
   public List<CartDTO> getCartList(@PathVariable("memId") String memId){
     return cartService.getCartList(memId);
   }
+
+  // 장바구니 삭제 api
+  @DeleteMapping("/{cartNum}")
+  public void deleteCart(@PathVariable("cartNum") int cartNum){
+    cartService.deleteCart(cartNum);
+  }
+
+  // 장바구니 수량 수정 api
+  @PutMapping("/{cartNum}")
+  public void updateCartCnt(@PathVariable("cartNum") int cartNum, @RequestBody CartDTO cartDTO){
+    cartDTO.setCartNum(cartNum);
+    cartService.updateCartCnt(cartDTO);
+  }
 }

@@ -19,12 +19,12 @@ const AdminSideMenu = () => {
               <span>
                 <i className="bi bi-bag-fill"></i>
               </span>
-              상품관리
+              마이페이지
             </p>
             <ul className={styles.sideMenu}>
-              <li className={styles.active}>카테고리관리</li>
-              <li>상품등록</li>
-              <li>상품관리</li>
+              <li className={styles.active}>장바구니</li>
+              <li>구매이력</li>
+              <li>내가 쓴 글</li>
             </ul>
           </div>
         :

@@ -1,7 +1,5 @@
 # 도서 쇼핑몰 프로젝트 테이블
 
-# 5. 장바구니 테이블
-
 # 1. 회원 테이블
 CREATE TABLE SHOP_MEMBER (
 	MEM_ID VARCHAR(20) PRIMARY KEY
@@ -62,7 +60,30 @@ CREATE TABLE SHOP_CART (
 	, CART_DATE DATETIME DEFAULT SYSDATE()
 );
 
-SELECT * FROM shop_cart;
+SELECT * 
+FROM shop_cart;
 
 SELECT *
 FROM book_img;
+
+# 6. 구매 정보 테이블
+CREATE TABLE SHOP_BUY (
+	BUY_NUM INT PRIMARY KEY AUTO_INCREMENT
+	, BOOK_NUM INT REFERENCES book (BOOK_NUM)
+	, MEM_ID VARCHAR(20) REFERENCES shop_member (MEM_ID)
+	, BUY_DATE DATETIME DEFAULT SYSDATE()
+	, BUY_CNT INT 
+);
+
+SELECT *
+FROM shop_buy;
+
+INSERT INTO shop_buy (BOOK_NUM, MEM_ID, BUY_CNT) 
+VALUES 
+(
+	(SELECT BOOK_NUM shop_cart WHERE CART_NUM = 1)
+	, 'USER'
+	, (SELECT CART_CNT shop_cart WHERE CART_NUM = 1)
+)
+, ()
+, ();

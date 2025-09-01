@@ -120,6 +120,19 @@ const CartList = () => {
       setReload(reload + 1)
     )
     .catch(e => console.log(e));
+  };
+
+  // 선택 구매
+  const buyAll = () => {
+    axios.post(`/api/buys/all`, {
+      memId: JSON.parse(sessionStorage.getItem('loginInfo')).memId
+      , cartNumList: checkData
+    })
+    .then(res => {
+      alert('구매완료')
+      setReload(reload + 1)
+    })
+    .catch(e => console.log(e));
   }
 
   console.log(reload)
@@ -257,6 +270,7 @@ const CartList = () => {
           padding='10px 0px'
           fontSize='1.2rem'
           title='선택 구매'
+          onClick={() => buyAll()}
         />
       </div>
     </div>

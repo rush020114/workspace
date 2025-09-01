@@ -95,4 +95,13 @@
         WHERE CART_NUM = #{cartNum};
     </update>
 
+    <!-- 장바구니 구매 시 데이터 삭제 -->
+    <delete id="deleteBuyCart">
+        DELETE FROM SHOP_CART
+        WHERE CART_NUM IN
+        <foreach collection="cartNumList" item="cartNum" separator="," open="(" close=")">
+            #{cartNum}
+        </foreach>
+    </delete>
+
 </mapper>

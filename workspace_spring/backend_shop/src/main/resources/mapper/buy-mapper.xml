@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.backend_shop.buy.mapper.BuyMapper">
+    <!-- SHOP_BUY의 조회된 컬럼을 받을 정의문 -->
+	<resultMap id="buy" type="com.green.backend_shop.buy.dto.BuyDTO">
+        <id     column="BUY_NUM"  property="buyNum" />
+        <result column="BOOK_NUM" property="bookNum" />
+        <result column="MEM_ID"   property="memId" />
+        <result column="BUY_DATE" property="buyDate" />
+        <result column="BUY_CNT"  property="buyCnt" />
+    </resultMap>
+
+    <!-- 상세 페이지 물품 구매 -->
+    <insert id="insertDetailBuy">
+        INSERT INTO SHOP_BUY (
+            BOOK_NUM
+            , MEM_ID
+            , BUY_CNT
+        ) VALUES (
+            #{bookNum}
+            , #{memId}
+            , #{buyCnt}
+        )
+    </insert>
+
+    <!-- 장바구니 물품 구매 -->
+    <!-- 쿼리를 실행하기 위해 dto자체가 넘어올 필요 없이 카트리스트만 넘어오면 해결되므로 .을 찍어 접근할 필요도 없다. -->
+    <insert id="buyAll">
+        INSERT INTO SHOP_BUY (
+            BOOK_NUM
+            , MEM_ID
+            , BUY_CNT
+        ) VALUES     <!-- buyDTO.getCartNumList() -->
+        <!-- dto가 넘어가면 getter 호출 -->
+        <foreach collection="cartNumList" item="cartNum" separator=",">
+            (
+                (SELECT BOOK_NUM FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+                , #{memId}
+                , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+            )
+        </foreach>
+    </insert>
+</mapper>

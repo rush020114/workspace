@@ -37,6 +37,7 @@
         <!-- separator : 한 번 반복될 때마다 실행할 쿼리문(마지막은 알아서 실행 안 함) -->
         <!-- collection : 반복 돌릴 데이터명 -->
         <!-- item : 반복 돌릴 list에서 하나씩 뺀 데이터의 부여한 이름 -->
+        <!-- dto가 넘어가지 않으면 반복을 돌릴 데이터의 변수명을 그대로 넣어준다. -->
         <foreach collection="bookImgList" item="bookImg" separator=",">
             (#{bookImg.originImgName}, #{bookImg.attachedImgName}, #{bookImg.bookNum}, #{bookImg.isMain})
         </foreach>

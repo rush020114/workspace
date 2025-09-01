@@ -1,44 +1,72 @@
-
 class Solution {
-  public int[] solution(int n) {
-    int cnt = 0;
+  public long solution(String numbers) {
+    String num = "";
     int index = 0;
-    for(int i = 0 ; i < n ;i ++){
-      if(n % (i + 1) == 0){
-        cnt++;
+    for(int i = 0 ; i < numbers.length() ; i += index){
+      System.out.println(numbers.length());
+      System.out.println(index);
+      if(numbers.substring(index).contains("one")){
+        index += 3;
+        num += 1;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("two")){
+        index += 3;
+        num += 2;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("three")){
+        index += 5;
+        num += 3;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("four")){
+        index += 4;
+        num += 4;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("five")){
+        System.out.println("five");
+        index += 4;
+        num += 5;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("six")){
+        System.out.println("six");
+        index += 3;
+        num += 6;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("seven")){
+        index += 5;
+        num += 7;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("eight")){
+        index += 5;
+        num += 8;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("nine")){
+        index += 4;
+        num += 9;
+        continue;
+      }
+
+      if(numbers.substring(index).contains("zero")){
+        index += 4;
+        num += 0;
       }
     }
-    int[] ints = new int[cnt];
-    for(int i = n - 1 ; i >= 0 ; i--){
-      if(n % (i + 1) == 0){
-        ints[index++] = n / (i + 1);
-      }
-    }
-    index = 0;
-    for(int i = 0 ; i < ints.length ; i++){
-      cnt = 0;
-      for(int j = 1 ; j <= ints[i] ; j++){
-        if(ints[i] % j == 0){
-          cnt++;
-        }
-      }
-      if(cnt == 2){
-        index++;
-      }
-    }
-    int[] newInts = new int[index];
-    index = 0;
-    for(int i = 0 ; i < ints.length ; i++){
-      cnt = 0;
-      for(int j = 1 ; j <= ints[i] ; j++){
-        if(ints[i] % j == 0){
-          cnt++;
-        }
-      }
-      if(cnt == 2){
-        newInts[index++] = ints[i];
-      }
-    }
-    return newInts;
+
+    return Long.parseLong(num);
   }
 }

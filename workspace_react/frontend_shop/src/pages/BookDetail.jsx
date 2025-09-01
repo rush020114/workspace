@@ -36,7 +36,7 @@ const BookDetail = () => {
   const regCartData = () => {
     // 로그인 안했으면
     if(!sessionStorage.getItem('loginInfo')){
-      alert('장바구니를 이용하려면 로그인하셔야 합니다.');
+      alert('로그인 후 이용해주세요.');
       return;
     }
     axios.post('/api/carts', {bookNum: bookNum, cartCnt: inputNumber, memId: loginData.memId})
@@ -45,6 +45,23 @@ const BookDetail = () => {
       &&
       nav('/user/cart-list');
     })
+    .catch(e => console.log(e));
+  };
+
+  // 물품 구매
+  const buy = e => {
+
+    if(!sessionStorage.getItem('loginInfo')){
+      alert('로그인 후 이용해주세요.');
+      return;
+    }
+
+    axios.post(`/api/buys`, {
+      bookNum: bookNum
+      , memId: loginData.memId
+      , buyCnt: inputNumber
+    })
+    .then(res => alert('구매완료'))
     .catch(e => console.log(e));
   };
 
@@ -119,6 +136,7 @@ const BookDetail = () => {
               size='200px' 
               title='구매하기'
               fontSize='1.2rem'
+              onClick={e => buy()}
             />
           </div>
         </div>

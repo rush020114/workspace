@@ -5,6 +5,7 @@ import com.green.backend_shop.book.dto.BookImgDTO;
 import com.green.backend_shop.book.mapper.BookMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class BookService {
   // 도서 등록 때 실행할 쿼리는 3개이지만 등록이라는 기능 안에서 쿼리 3개가 실행되므로
   // 핵심 기능을 구현하는 service에서는 메서드 하나이면 충분하다.
   // 이미지 테이블의 빈값을 채우기 위해서는 list(list안의 dto가 빈값을 다 갖게 됨)가 필요하다.
+  @Transactional(rollbackFor = Exception.class)
   public void insertBook(BookDTO bookDTO, List<BookImgDTO> bookImgDTOList){
     // 등록할 도서번호를 조회
     int nextBookNum = bookMapper.getNextBookNum();

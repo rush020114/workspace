@@ -1,0 +1,11 @@
+.input{
+  outline: 1px solid #bbbbbb;
+  border: none;
+  border-radius: 4px;
+  /* outline이 border랑 겹쳐짐 */
+  outline-offset: -1px;
+}
+
+.input:focus{
+  outline: 2px solid #bbbbbb;
+}

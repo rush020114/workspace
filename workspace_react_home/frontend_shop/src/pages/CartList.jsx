@@ -124,6 +124,19 @@ import { useNavigate } from 'react-router-dom';
       .catch(e => console.log(e));
     };
 
+    // 장바구니 구매
+    const buyCartBook = () => {
+      axios.post('/api/buys/carts', {
+        memId: JSON.parse(sessionStorage.getItem('loginInfo')).memId
+        , cartNumList: checkboxesData
+      })
+      .then(res => {
+        setReload(reload + 1);
+        alert('구매완료');
+      })
+      .catch(e => console.log(e));
+    };
+
     console.log(reload)
 
     return (
@@ -245,6 +258,7 @@ import { useNavigate } from 'react-router-dom';
             padding='10px 0px'
             fontSize='1.2rem'
             title='선택 구매'
+            onClick={() => buyCartBook()}
           />
         </div>
       </div>

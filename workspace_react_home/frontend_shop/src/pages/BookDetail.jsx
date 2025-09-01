@@ -47,6 +47,21 @@ const BookDetail = () => {
       alert('로그인 후 이용해주세요.')
     }
   };
+
+  // 도서 구매
+  const buyBook = () => {
+    if(!loginInfo){
+      alert('로그인 후 이용해주세요.')
+      return;
+    }
+    axios.post(`/api/buys`, {
+      bookNum: bookNum
+      , memId: JSON.parse(loginInfo).memId
+      , buyCnt: cnt
+    })
+    .then(res => alert('구매완료'))
+    .catch(e => console.log(e));
+  };
   console.log(bookDetail)
 
   return (
@@ -91,6 +106,7 @@ const BookDetail = () => {
               fontSize='1.2rem'
               color='green'
               title='구매하기'
+              onClick={() => buyBook()}
             />
             <Button 
               size='200px'

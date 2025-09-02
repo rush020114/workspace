@@ -7,6 +7,8 @@ import axios from 'axios'
 
 const RegSalesInfo = () => {
 
+  const telRegex = /^\d{3}-\d{4}-\d{4}$/;
+
   // 차모델명을 받기 위해 차 정보 리스트를 저장할 state 변수
   const [carList, setCarList] = useState([]);
 

@@ -25,6 +25,15 @@
 			, #{carMaker}
 		)
 	</insert>
+
+	<!-- 차량 목록 조회 -->
+	<select id="getCarList" resultMap="car">
+		SELECT MODEL_NUM
+			, MODEL_NAME
+			, CAR_MAKER
+		FROM CAR_INFO
+		ORDER BY CAR_NUM DESC
+	</select>
 </mapper>
 
 

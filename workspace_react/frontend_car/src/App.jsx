@@ -3,11 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import CarLayout from './Layout/CarLayout'
-import Home from './Pages/Home'
+import CarLayout from './layout/CarLayout'
+import Home from './pages/Home'
 import ManageCar from './Pages/ManageCar'
-import RegSalesInfo from './Pages/RegSalesInfo'
-import SalesInfoList from './Pages/SalesInfoList'
+import RegSalesInfo from './pages/RegSalesInfo'
+import SalesInfoList from './pages/SalesInfoList'
 
 function App() {
 

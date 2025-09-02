@@ -73,6 +73,7 @@ CREATE TABLE SHOP_BUY (
 	, MEM_ID VARCHAR(20) REFERENCES shop_member (MEM_ID)
 	, BUY_DATE DATETIME DEFAULT SYSDATE()
 	, BUY_CNT INT 
+	, ORDER_NUM INT # 주문번호. 한 번에 여러상품을 구매하면 동일한 주문번호를 가짐 
 );
 
 SELECT *
@@ -87,3 +88,23 @@ VALUES
 )
 , ()
 , ();
+
+SELECT ORDER_NUM
+	, MAX(MEM_ID) MEM_ID
+	, SUM((SELECT PRICE
+		FROM BOOK
+		WHERE BOOK_NUM = shop_buy.BOOK_NUM) * BUY_CNT) PRICE
+	, MAX(BUY_DATE) BUY_DATE
+	, CASE COUNT(ORDER_NUM) - 1
+		WHEN 0 THEN MAX((SELECT TITLE 
+						FROM book 
+						WHERE BOOK_NUM = shop_buy.BOOK_NUM))
+		ELSE CONCAT(MAX((SELECT TITLE 
+							FROM book 
+							WHERE BOOK_NUM = shop_buy.BOOK_NUM))
+				, ' 외 '
+				, COUNT(ORDER_NUM) - 1
+				, '건') END TITLE
+FROM shop_buy
+GROUP BY ORDER_NUM
+ORDER BY BUY_DATE DESC;

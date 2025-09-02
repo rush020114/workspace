@@ -34,11 +34,19 @@
   background-color: #e0e4F6;
   border-left: 3px solid #667eea;
   color:#667eea;
-  cursor: pointer;
 }
 
-.active{
+/* .active를 자식으로 가진 .menu_li를 선택해서 디자인을 적용하겠다. */
+.menu_li:has(.active){
   background-color: #e0e4F6;
   border-left: 3px solid #667eea !important;
   color:#667eea;
+}
+
+.active{
+  color: #667eea;
+}
+
+.menu_li:hover > a{
+  color: #667eea;
 }

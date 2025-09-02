@@ -154,7 +154,7 @@ const CartList = () => {
             <td>
               <input
                 type="checkbox" 
-                checked={arr.current.length === checkData.length}
+                checked={arr.current.length === checkData.length} 
                 onChange={e => {
                   // 전체 체크박스가 체크 -> 모든 체크박스 체크
                   // 전체 체크박스가 체크해제 -> 모든 체크박스 해제

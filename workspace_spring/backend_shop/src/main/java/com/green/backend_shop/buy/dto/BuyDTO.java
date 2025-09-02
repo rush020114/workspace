@@ -18,6 +18,7 @@ public class BuyDTO {
   private int buyCnt;
   // 리액트에서 전달되는 cartNum 목록 데이터를 받기 위해 선언한 변수
   private List<Integer> cartNumList;
+  private int orderNum;
 
   public BuyDTO(){
   }

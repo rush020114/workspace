@@ -21,4 +21,3 @@ FROM car_info;
 
 SELECT * 
 FROM sales_info;
-

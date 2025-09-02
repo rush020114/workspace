@@ -6,11 +6,21 @@
 <mapper namespace="com.green.backend_shop.buy.mapper.BuyMapper">
     <!-- shop_buy의 조회된 컬럼을 받기 위한 정의문 -->
 	<resultMap id="buy" type="com.green.backend_shop.buy.dto.BuyDTO">
-        <id     column="BUY_NUM"  property="buyNum" />
-        <result column="BOOK_NUM" property="bookNum" />
-        <result column="MEM_ID"   property="memId" />
-        <result column="BUY_DATE" property="buyDate" />
-        <result column="BUY_CNT"  property="buyCnt" />
+        <id     column="BUY_NUM"   property="buyNum" />
+        <result column="BOOK_NUM"  property="bookNum" />
+        <result column="MEM_ID"    property="memId" />
+        <result column="BUY_DATE"  property="buyDate" />
+        <result column="BUY_CNT"   property="buyCnt" />
+        <result column="ORDER_NUM" property="orderNum" />
+    </resultMap>
+    
+    <!-- 관리자의 구매 이력 조회 시 컬럼을 받기 위한 정의문이 존재하지 않아 또 다시 만들어주어야 한다. -->
+    <resultMap id="buyDTOForAdmin" type="com.green.backend_shop.buy.dto.BuyDTOForAdmin">
+        <id     column="ORDER_NUM"  property="orderNum" />
+        <result column="MEM_ID"     property="memId" />
+        <result column="PRICE"      property="price" />
+        <result column="BUY_DATE"   property="buyDate" />
+        <result column="TITLE"      property="title" />
     </resultMap>
 
     <!-- 도서 구매 -->
@@ -19,10 +29,13 @@
             BOOK_NUM
             , MEM_ID
             , BUY_CNT
+            , ORDER_NUM
         ) VALUES (
             #{bookNum}
             , #{memId}
             , #{buyCnt}
+            , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1
+                FROM SHOP_BUY)
         )
     </insert>
     
@@ -39,16 +52,55 @@
       그 각각의 데이터는 cartNum으로 받아서 mybatis변수명을 cartNum으로 할 수 있다.
       단, dto가 전달되지 않을 땐 전달되는 변수명과 collection의 변수명을 같게 해준다.
     -->
+    <!--
+      ORDER_NUM에 값을 추가할 때 등록하고 또 등록하는 것이 아니다(VALUES가 한 쿼리 안에서 진행되므로).
+      그래서 처음에 집어넣을 값이 그대로 유지되어 빈값을 채우게 된다.
+    -->
     <insert id="buyCartBook">
         INSERT INTO SHOP_BUY (
             BOOK_NUM
             , MEM_ID
             , BUY_CNT
+            , ORDER_NUM
         ) VALUES
         <foreach collection="cartNumList" item="cartNum" separator=",">
             ((SELECT BOOK_NUM FROM SHOP_CART WHERE CART_NUM = #{cartNum})
             , #{memId}
-            , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum}))
+            , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+            , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1
+                FROM SHOP_BUY))
         </foreach>
     </insert>
+
+    <!-- 주문번호에 따른 관리자의 사용자 구매이력 조회 -->
+    <!--
+      주문번호 별로 조회하므로 GROUPING을 해야 하는 상황이다.
+      대신 GROUPING을 함으로써 일반 컬럼들을 조회할 때 데이터들이 누락되는 상황이다.
+      정확한 데이터를 조회하기 위해선 GROUPING된 컬럼으로 조회되는 열을 알맞게 맞추어주어야 한다.
+      그래서 GROUPING은 단일행함수와 함께 사용한다.
+      일반적으로 MAX를 쓰면 GROUP절에 사용되지 않은 컬럼의 행 개수를 맞출 수 있다.
+      결제금액 같은 합을 구해야 하는 경우는 SUM을 사용하면 된다.
+      그리고 외 몇 권 같은 문자를 추가하고 싶을 때는 orderNum을 grouping하여 행의 개수가 파악되고 있으므로
+      orderNum에 count함수를 이용하여 개수를 맞출 수 있다.
+    -->
+    <select id="getBuyListForAdmin" resultMap="buyDTOForAdmin">
+        SELECT ORDER_NUM
+        , MAX(MEM_ID) MEM_ID
+        , SUM((SELECT PRICE 
+                FROM BOOK 
+                WHERE BOOK_NUM = SB.BOOK_NUM) * BUY_CNT) PRICE
+        , IF(COUNT(ORDER_NUM) - 1 = 0
+            , MAX((SELECT TITLE 
+                    FROM book 
+                    WHERE BOOK_NUM = SB.BOOK_NUM))
+            , CONCAT(MAX((SELECT TITLE 
+                        FROM book 
+                        WHERE BOOK_NUM = SB.BOOK_NUM))
+                    , ' 외 ', COUNT(ORDER_NUM) - 1, '권')) TITLE
+        , MAX(BUY_DATE) BUY_DATE
+        FROM SHOP_BUY SB
+        GROUP BY ORDER_NUM
+        <!-- 쿼리 해석 순서에 따라 ORDER BY는 맨마지막에 해석되므로 별칭으로 조회홰도 문제 없다. -->
+        ORDER BY BUY_DATE
+    </select>
 </mapper>

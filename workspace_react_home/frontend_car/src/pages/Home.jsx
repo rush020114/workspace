@@ -7,9 +7,7 @@ import Button from '../common/Button'
 const Home = () => {
   return (
     <div>
-      <Input />
-      <Button />
-      <Select></Select>
+      홈
     </div>
   )
 }

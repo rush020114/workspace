@@ -11,6 +11,8 @@ import CategoryManage from './pages/CategoryManage'
 import BookDetail from './pages/BookDetail'
 import CartList from './pages/CartList'
 import PersonalLayout from './layout/PersonalLayout'
+import BuyList from './pages/BuyList'
+import BuyListForUser from './pages/BuyListForUser'
 
 function App() {
 
@@ -39,9 +41,13 @@ function App() {
           <Route path='reg-book' element={<RegBook />} />
           {/* 카테고리 관리 페이지, url : /admin/cate-manage */}
           <Route path='cate-mamnge' element={<CategoryManage />} />
+          <Route path='buy-list' element={<BuyList />} />
         </Route>
+
+        {/* 마이페이지 */}
         <Route path='/user' element={<PersonalLayout />}>
           <Route path='cart-list' element={<CartList />} />
+          <Route path='buy-list' element={<BuyListForUser />} />
         </Route>
       </Routes>
     </>

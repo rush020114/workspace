@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './CarLayout.module.css'
-import { CarHeader } from './CarHeader'
+import CarHeader from './CarHeader'
 import { Outlet } from 'react-router-dom'
 
 const CarLayout = () => {

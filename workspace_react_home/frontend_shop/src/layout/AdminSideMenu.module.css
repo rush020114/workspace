@@ -29,15 +29,24 @@
   border: 3px solid rgba(0, 0, 0, 0);
 }
 
-.active {
-  background-color: #e0e4f6;
-  border-left: 3px solid #667eea !important;
-  color: #667eea;
-}
-
 .side_menu > li:hover {
   background-color: #e0e4f6;
   border-left: 3px solid #667eea;
   color: #667eea;
   cursor: pointer;
+}
+
+/* 자식 또는 자손으로 .active를 가지면 menu_li에 디자인을 적용하겠다. */
+.menu_li:has(.active) {
+  background-color: #e0e4f6;
+  border-left: 3px solid #667eea !important;
+  color: #667eea;
+}
+
+.active{
+  color: #667eea;
+}
+
+.menu_li:hover > a{
+  color: #667eea;
 }

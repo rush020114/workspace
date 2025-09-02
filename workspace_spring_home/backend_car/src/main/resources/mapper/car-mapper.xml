@@ -11,4 +11,25 @@
         <result column="PRICE"      property="price" />
         <result column="CAR_MAKER"  property="carMaker" />
     </resultMap>
+
+    <!-- 차량 등록 -->
+    <insert id="insertCar">
+        INSERT INTO CAR_INFO (
+            MODEL_NAME
+            , PRICE
+            , CAR_MAKER
+        ) VALUES (
+            #{modelName}
+            , #{price}
+            , #{carMaker}
+        )
+    </insert>
+
+    <!-- 차량 조회 -->
+    <select id="getCarList" resultMap="car">
+        SELECT MODEL_NUM
+            , MODEL_NAME
+            , CAR_MAKER
+        FROM CAR_INFO
+    </select>
 </mapper>

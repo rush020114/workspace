@@ -9,17 +9,25 @@ const CarHeader = () => {
   return (
     <div className={styles.container}>
       <ul className={styles.menu}>
-        <li onClick={() => nav('/')}>
-          <NavLink>홈</NavLink>
+        <li>
+          <NavLink
+            to={'/'}
+          >홈</NavLink>
         </li>
-        <li onClick={() => nav('/manage-car')}>
-          차량관리
+        <li>
+          <NavLink
+            to={'/manage-car'}
+          >차량관리</NavLink>
         </li>
-        <li onClick={() => nav('/reg-sales')}>
-          판매정보등록
+        <li>
+          <NavLink
+            to={'/reg-sales'}
+          >판매정보등록</NavLink>
         </li>
-        <li onClick={() => nav('/sales-info')}>
-          판매목록조회
+        <li>
+          <NavLink
+            to={'sales-info'}
+          >판매목록조회</NavLink>
         </li>
       </ul>
     </div>

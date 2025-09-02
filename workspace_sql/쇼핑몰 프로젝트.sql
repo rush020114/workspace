@@ -108,3 +108,30 @@ SELECT ORDER_NUM
 FROM shop_buy
 GROUP BY ORDER_NUM
 ORDER BY BUY_DATE DESC;
+
+
+1,2,3,4
+INSERT INTO SHOP_BUY (
+      BOOK_NUM
+      , MEM_ID
+      , BUY_CNT
+      , ORDER_NUM
+  ) VALUES     
+      (
+          (SELECT BOOK_NUM FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+          , #{memId}
+          , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+          , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1 FROM SHOP_BUY)
+      ),
+      (
+          (SELECT BOOK_NUM FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+          , #{memId}
+          , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+          , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1 FROM SHOP_BUY)
+      ),
+      (
+          (SELECT BOOK_NUM FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+          , #{memId}
+          , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum})
+          , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1 FROM SHOP_BUY)
+      );

@@ -32,7 +32,7 @@
 			, MODEL_NAME
 			, CAR_MAKER
 		FROM CAR_INFO
-		ORDER BY CAR_NUM DESC
+		ORDER BY MODEL_NUM DESC
 	</select>
 </mapper>
 

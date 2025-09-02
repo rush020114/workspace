@@ -44,8 +44,8 @@ const ManageCar = () => {
 
   // 차량을 조회할 useEffect
   useEffect(() => {
-    axios.get()
-    .then()
+    axios.get('/api/cars')
+    .then(res => setCarList(res.data))
     .catch(e => console.log(e));
   }, [reload]);
 
@@ -54,6 +54,11 @@ const ManageCar = () => {
     axios.post('/api/cars', carData)
     .then(res => {
       alert('등록완료');
+      setCarData({
+        carMaker: ''
+        , modelName: ''
+        , price: ''
+      })
       setReload(reload + 1);
     })
     .catch(e => console.log(e));

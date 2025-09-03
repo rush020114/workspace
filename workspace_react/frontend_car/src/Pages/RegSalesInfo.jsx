@@ -11,7 +11,7 @@ const RegSalesInfo = () => {
   const nav = useNavigate();
 
   // 버튼 활성화 여부를 저장할 state변수
-  const [isDisable, setisDisable] = useState(true);
+  const [isDisable, setIsDisable] = useState(true);
 
   // XXX-XXXX-XXXX 형식의 전화번호 정규식
   const buyerTelRegex = /^\d{3}-\d{4}-\d{4}$/;
@@ -77,10 +77,10 @@ const RegSalesInfo = () => {
       !buyerTelRegex.test(salesData.buyerTel) &&
       salesData.buyerTel
     ){
-      setisDisable(true);
+      setIsDisable(true);
     }
     else{
-      setisDisable(false);
+      setIsDisable(false);
     };
   }, [salesData]);
 

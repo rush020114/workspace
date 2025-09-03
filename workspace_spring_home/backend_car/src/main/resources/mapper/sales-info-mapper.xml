@@ -12,5 +12,37 @@
         <result column="COLOR"      property="color" />
         <result column="SALES_DATE" property="salesDate" />
         <result column="MODEL_NUM"  property="modelNum" />
+        <association property="carDTO" resultMap="com.green.backend_car.car.mapper.CarMapper.car" />
     </resultMap>
+
+    <!-- 판매 정보 등록 -->
+    <insert id="regSales">
+        INSERT INTO SALES_INFO (
+            BUYER
+            , BUYER_TEL
+            , COLOR
+            , MODEL_NUM
+        ) VALUES (
+            #{buyer}
+            , #{buyerTel}
+            , #{color}
+            , #{modelNum}
+        )
+    </insert>
+
+    <!-- 판매 정보 조회 -->
+    <select id="getSalesList" resultMap="salesInfo">
+        SELECT BUYER
+            , BUYER_TEL
+            , SALES_DATE
+            , COLOR
+            , (SELECT MODEL_NAME
+                FROM CAR_INFO
+                WHERE MODEL_NUM = S.MODEL_NUM) MODEL_NAME
+            , (SELECT PRICE
+                FROM CAR_INFO
+                WHERE MODEL_NUM = S.MODEL_NUM) PRICE
+        FROM SALES_INFO S
+        ORDER BY SALES_DATE DESC
+    </select>
 </mapper>

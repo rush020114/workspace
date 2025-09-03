@@ -31,5 +31,6 @@
             , MODEL_NAME
             , CAR_MAKER
         FROM CAR_INFO
+        ORDER BY MODEL_NUM DESC
     </select>
 </mapper>

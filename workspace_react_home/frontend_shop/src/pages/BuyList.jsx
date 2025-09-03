@@ -24,7 +24,11 @@ const BuyList = () => {
   
   return (
     <div className={styles.container}>
-      <div><PageTitle /></div>
+      <div>
+        <PageTitle 
+          title='구매 이력 조회'
+        />
+      </div>
       <div className={styles.search_div}>
         <div>
           <p>구매번호</p>
@@ -36,8 +40,12 @@ const BuyList = () => {
         </div>
         <div>
           <p>구매일시</p>
-          <Input />- 
-          <Input />
+          <Input 
+            type='date'
+          />- 
+          <Input 
+            type='date'
+          />
         </div>
         <div>
           <Button></Button>

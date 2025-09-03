@@ -101,6 +101,6 @@
         FROM SHOP_BUY SB
         GROUP BY ORDER_NUM
         <!-- 쿼리 해석 순서에 따라 ORDER BY는 맨마지막에 해석되므로 별칭으로 조회홰도 문제 없다. -->
-        ORDER BY BUY_DATE
+        ORDER BY BUY_DATE DESC
     </select>
 </mapper>

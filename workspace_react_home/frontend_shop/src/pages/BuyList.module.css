@@ -1,0 +1,42 @@
+.search_div{
+  display: flex;
+  justify-content: space-between;
+}
+
+.search_div > div{
+  display: flex;
+  gap: 10px;
+}
+
+.table_div{
+  margin-top: 30px;
+}
+
+.table_div > p{
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.table{
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.table > thead > tr{
+  background-color: #667eea;
+  color: white;
+}
+
+.table td{
+  padding: 7px;
+}
+
+.table > tbody > tr:nth-child(odd){
+  background-color: #f5f5f8;
+}
+
+.table > tbody > tr:nth-child(even){
+  background-color: #fcfcfc;
+}

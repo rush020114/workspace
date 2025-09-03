@@ -34,6 +34,7 @@ const SalesInfoList = () => {
             <td>가격</td>
           </tr>
         </thead>
+        <tbody>
         {
           salesList.map((sales, i) => {
             return(
@@ -49,6 +50,7 @@ const SalesInfoList = () => {
             )
           })
         }
+        </tbody>
       </table>
     </div>
   )

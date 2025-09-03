@@ -106,7 +106,7 @@ const ManageCar = () => {
           </div>
           <div>
             <p>모델명</p>
-            <Input 
+            <Input
               name='modelName'
               value={carData.modelName}
               onChange={e => {
@@ -146,7 +146,13 @@ const ManageCar = () => {
         <div>
           <h2>등록된 차량 목록</h2>
         </div>
-        <table>
+        <table className={styles.table}>
+          <colgroup>
+            <col width={'25%'} />
+            <col width={'25%'} />
+            <col width={'25%'} />
+            <col width={'25%'} />
+          </colgroup>
           <thead>
             <tr>
               <td>No</td>

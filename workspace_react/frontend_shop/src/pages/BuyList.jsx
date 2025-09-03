@@ -22,7 +22,11 @@ const BuyList = () => {
 
   return (
     <div className={styles.container}>
-      <div><PageTitle /></div>
+      <div>
+        <PageTitle 
+          title='구매 이력 조회'
+        />
+      </div>
       <div className={styles.search_div}>
         <div>
           <p>주문번호</p>
@@ -38,10 +42,13 @@ const BuyList = () => {
           <Input />
         </div>
         <div>
-          <Button></Button>
+          <Button
+            title='검 색'
+          />
         </div>
       </div>
       <div className={styles.table_div}>
+        <p>{`총 ${buyList.length}건이 검색되었습니다.`}</p>
         <table className={styles.table}>
           <thead>
             <tr>

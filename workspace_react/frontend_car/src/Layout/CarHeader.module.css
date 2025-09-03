@@ -1,10 +1,40 @@
 .container{
   width: 100%;
   margin-top: 30px;
+  background-color: black;
+  border-radius: 50px;
 }
 
 .menu{
+  padding: 5px 0px;
   display: flex;
-  justify-content: space-around;
-  border: 1px solid red;
+}
+
+.menu > li{
+  padding: 10px;
+  margin: 0px 5px;
+  width: 100%;
+  text-align: center;
+  border-radius: 50px;
+  transition: all 0.2s;
+}
+
+.menu > li:hover{
+  background-color: #555555;
+}
+
+.menu > li:active{
+  background-color: #333333;
+}
+
+.menu > li:has(.active){
+  background-color: #555555;
+}
+
+.menu > li > a{
+  color: white;
+}
+
+.active{
+
 }

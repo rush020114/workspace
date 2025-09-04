@@ -17,9 +17,6 @@ const ManageCar = () => {
     , price: ''
   });
 
-  // 차량 등록 시 리렌더링할 state 변수
-  const [reload, setReload] = useState(0);
-
   // 조회된 차량 목록을 세팅할 state 변수
   const [carList, setCarList] = useState([]);
 
@@ -47,7 +44,7 @@ const ManageCar = () => {
     axios.get('/api/cars')
     .then(res => setCarList(res.data))
     .catch(e => console.log(e));
-  }, [reload]);
+  }, [carData]);
 
   // 차량 등록 함수
   const regCar = () => {
@@ -59,7 +56,6 @@ const ManageCar = () => {
         , modelName: ''
         , price: ''
       })
-      setReload(reload + 1);
     })
     .catch(e => console.log(e));
   };

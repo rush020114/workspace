@@ -42,4 +42,9 @@ public class BuyService {
     System.out.println(buyMapper.getBuyListForAdmin());
     return buyMapper.getBuyListForAdmin();
   }
+
+  // 구매 내역 상세 조회
+  public List<BuyDTO> getBuyDetail(int orderNum){
+    return buyMapper.getBuyDetail(orderNum);
+  }
 }

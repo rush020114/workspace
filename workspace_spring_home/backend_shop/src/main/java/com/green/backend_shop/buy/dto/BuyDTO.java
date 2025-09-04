@@ -1,5 +1,6 @@
 package com.green.backend_shop.buy.dto;
 
+import com.green.backend_shop.book.dto.BookDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,6 +22,8 @@ public class BuyDTO {
   // 장바구니 구매가 될 때 dto를 xml로 전달하므로 getter가 호출된다.
   private List<Integer> cartNumList;
   private int orderNum;
+  private BookDTO bookDTO;
+  private int totalPrice;
 
   public BuyDTO(){
   }

@@ -40,3 +40,8 @@
 .table > tbody > tr:nth-child(even){
   background-color: #fcfcfc;
 }
+
+.table > tbody > tr:hover{
+  cursor: pointer;
+  background-color: #eeeeee;
+}

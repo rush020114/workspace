@@ -12,6 +12,8 @@
         <result column="BUY_DATE"  property="buyDate" />
         <result column="BUY_CNT"   property="buyCnt" />
         <result column="ORDER_NUM" property="orderNum" />
+        <result column="TOTAL_PRICE" property="totalPrice" />
+        <association property="bookDTO" resultMap="com.green.backend_shop.book.mapper.BookMapper.book" />
     </resultMap>
     
     <!-- 관리자의 구매 이력 조회 시 컬럼을 받기 위한 정의문이 존재하지 않아 또 다시 만들어주어야 한다. -->
@@ -102,5 +104,22 @@
         GROUP BY ORDER_NUM
         <!-- 쿼리 해석 순서에 따라 ORDER BY는 맨마지막에 해석되므로 별칭으로 조회홰도 문제 없다. -->
         ORDER BY BUY_DATE DESC
+    </select>
+
+    <!-- 구매 내역 상세 조회 -->
+    <select id="getBuyDetail" resultMap="buy">
+        SELECT BUY_NUM
+            , TITLE
+            , PRICE
+            , BUY_CNT
+            , PRICE * BUY_CNT TOTAL_PRICE
+            , ATTACHED_IMG_NAME
+        FROM SHOP_BUY SB
+        INNER JOIN BOOK B
+        ON B.BOOK_NUM = SB.BOOK_NUM
+        INNER JOIN BOOK_IMG I
+        ON SB.BOOK_NUM = I.BOOK_NUM
+        WHERE ORDER_NUM = #{orderNum}
+        AND IS_MAIN = 'Y'
     </select>
 </mapper>

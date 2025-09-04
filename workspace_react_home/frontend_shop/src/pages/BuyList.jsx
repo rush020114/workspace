@@ -6,9 +6,16 @@ import Input from '../common/Input'
 import Select from '../common/Select'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import BuyListModal from '../components/BuyListModal'
 
 
 const BuyList = () => {
+
+  // 상세 구매 내역을 받아올 state 변수
+  const [buyDetail, setBuyDetail] = useState([]);
+
+  // 상세 구매 내역 보이기/안보이기 여부를 저장할 state 변수
+  const [isOpenBuyDetail, setIsOpenBuyDetail] = useState(false);
 
   // 관리자의 사용자 구매이력을 저장할 state 변수
   const [buyList, setBuyList] = useState([]);
@@ -20,7 +27,14 @@ const BuyList = () => {
     .catch(e => console.log(e));
   }, []);
 
-  console.log(buyList)
+  // 상세 구매 내역을 받아올 함수
+  const getDetail = orderNum => {
+    axios.get(`/api/buys/${orderNum}`)
+    .then(res => setBuyDetail(res.data))
+    .catch(e => console.log(e));
+  };
+
+  console.log(buyDetail)
   
   return (
     <div className={styles.container}>
@@ -67,12 +81,18 @@ const BuyList = () => {
             {
               buyList.map((buy, i) => {
                 return(
-                  <tr key={i}>
+                  <tr 
+                    key={i}
+                    onClick={() => {
+                      setIsOpenBuyDetail(true);
+                      getDetail(buy.orderNum);
+                    }}
+                  >
                     <td>{buyList.length - i}</td>
                     <td>{buy.orderNum}</td>
                     <td>{buy.title}</td>
                     <td>{buy.memId}</td>
-                    <td>{buy.price.toLocaleString()}</td>
+                    <td>{buy.price.toLocaleString()}원</td>
                     <td>{dayjs(buy.buyDate).format('YYYY.MM.DD HH:mm:ss')}</td>
                   </tr>
                 )
@@ -81,6 +101,11 @@ const BuyList = () => {
           </tbody>
         </table>
       </div>
+      <BuyListModal 
+        buyDetail={buyDetail}
+        isOpenBuyDetail={isOpenBuyDetail}
+        onClose={() => setIsOpenBuyDetail(false)}
+      />
     </div>
   )
 }

@@ -79,59 +79,16 @@ CREATE TABLE SHOP_BUY (
 SELECT *
 FROM shop_buy;
 
-INSERT INTO shop_buy (BOOK_NUM, MEM_ID, BUY_CNT) 
-VALUES 
-(
-	(SELECT BOOK_NUM shop_cart WHERE CART_NUM = 1)
-	, 'USER'
-	, (SELECT CART_CNT shop_cart WHERE CART_NUM = 1)
-)
-, ()
-, ();
-
-SELECT ORDER_NUM
-	, MAX(MEM_ID) MEM_ID
-	, SUM((SELECT PRICE
-		FROM BOOK
-		WHERE BOOK_NUM = shop_buy.BOOK_NUM) * BUY_CNT) PRICE
-	, MAX(BUY_DATE) BUY_DATE
-	, CASE COUNT(ORDER_NUM) - 1
-		WHEN 0 THEN MAX((SELECT TITLE 
-						FROM book 
-						WHERE BOOK_NUM = shop_buy.BOOK_NUM))
-		ELSE CONCAT(MAX((SELECT TITLE 
-							FROM book 
-							WHERE BOOK_NUM = shop_buy.BOOK_NUM))
-				, ' 외 '
-				, COUNT(ORDER_NUM) - 1
-				, '건') END TITLE
-FROM shop_buy
-GROUP BY ORDER_NUM
-ORDER BY BUY_DATE DESC;
-
-
-1,2,3,4
-INSERT INTO SHOP_BUY (
-      BOOK_NUM
-      , MEM_ID
-      , BUY_CNT
-      , ORDER_NUM
-  ) VALUES     
-      (
-          (SELECT BOOK_NUM FROM SHOP_CART WHERE CART_NUM = #{cartNum})
-          , #{memId}
-          , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum})
-          , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1 FROM SHOP_BUY)
-      ),
-      (
-          (SELECT BOOK_NUM FROM SHOP_CART WHERE CART_NUM = #{cartNum})
-          , #{memId}
-          , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum})
-          , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1 FROM SHOP_BUY)
-      ),
-      (
-          (SELECT BOOK_NUM FROM SHOP_CART WHERE CART_NUM = #{cartNum})
-          , #{memId}
-          , (SELECT CART_CNT FROM SHOP_CART WHERE CART_NUM = #{cartNum})
-          , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1 FROM SHOP_BUY)
-      );
+SELECT BUY_NUM 
+	, TITLE
+	, PRICE
+	, BUY_CNT
+	, PRICE * BUY_CNT TOTAL_PRICE
+	, ATTACHED_IMG_NAME
+FROM shop_buy SB
+INNER JOIN book B
+ON SB.BOOK_NUM = B.BOOK_NUM
+INNER JOIN book_img I
+ON SB.BOOK_NUM = I.BOOK_NUM
+WHERE ORDER_NUM = 3
+AND IS_MAIN = 'Y';

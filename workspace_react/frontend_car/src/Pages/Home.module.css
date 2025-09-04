@@ -8,3 +8,6 @@
   height: 80vh;
 }
 
+.container > span{
+  font-size: 15rem;
+}

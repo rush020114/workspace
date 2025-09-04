@@ -98,10 +98,12 @@ const RegSalesInfo = () => {
 
   return (
     <div className={styles.container}>
+      <h1><span><i className="bi bi-car-front"></i></span> 판매 정보 등록</h1>
       <div className={styles.content}>
         <div>
           <p>구매자명</p>
           <Input 
+            size='100%'
             name='buyer'
             value={salesData.buyer}
             onChange={e => {
@@ -115,8 +117,26 @@ const RegSalesInfo = () => {
           <p className='error'>{errorMsg.buyer}</p>
         </div>
         <div>
+          <p>연락처</p>
+          <Input 
+            size='100%'
+            maxLength={13}
+            name='buyerTel'
+            value={salesData.buyerTel}
+            onChange={e => {
+              handleSalesDate(e);
+              setErrorMsg({
+                ...errorMsg,
+                buyerTel: handleBuyerTelErrorMsg(e)
+              });
+            }}
+          />
+          <p className='error'>{errorMsg.buyerTel}</p>
+        </div>
+        <div>
           <p>색상</p>
           <Select
+            size='100%'
             name='color'
             value={salesData.color}
             onChange={e => {
@@ -137,6 +157,7 @@ const RegSalesInfo = () => {
         <div>
           <p>모델</p>
           <Select
+            size='100%'
             name='modelNum'
             value={salesData.modelNum}
             onChange={e => {
@@ -161,26 +182,11 @@ const RegSalesInfo = () => {
           </Select>
           <p className='error'>{errorMsg.modelNum}</p>
         </div>
-        <div>
-          <p>연락처</p>
-          <Input 
-            maxLength={13}
-            name='buyerTel'
-            value={salesData.buyerTel}
-            onChange={e => {
-              handleSalesDate(e);
-              setErrorMsg({
-                ...errorMsg,
-                buyerTel: handleBuyerTelErrorMsg(e)
-              });
-            }}
-          />
-          <p className='error'>{errorMsg.buyerTel}</p>
-        </div>
       </div>
-      <div>
+      <div className={styles.btn_div}>
         <Button 
           onClick={() => regSalesInfo()}
+          color='black'
           disabled={isDisable}
         />
       </div>

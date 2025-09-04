@@ -3,12 +3,43 @@
   border: none;
   border-radius: 5px;
   color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.black{
+  background-color: #111111;
+}
+
+.black:hover{
+  background-color: #222222;
+}
+
+.black:active{
+  background-color: black;
 }
 
 .gray{
   background-color: #555555;
 }
 
-.disabled{
-  background-color: white;
+.gray:hover{
+  background-color: #777777;
+}
+
+.gray{
+  background-color: #666666;
+}
+
+.disable{
+  background-color: #d0d0d0;
+  cursor: default;
+}
+
+.disable:hover{
+  background-color: #d0d0d0;
+}
+
+.disable:active{
+  background-color: #d0d0d0;
 }

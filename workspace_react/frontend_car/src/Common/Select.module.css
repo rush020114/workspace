@@ -1,3 +1,10 @@
 .select{
-  padding: 7px;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  outline: 1px solid #cccccc;
+}
+
+.select:focus{
+  outline: 1.5px solid #cccccc;
 }

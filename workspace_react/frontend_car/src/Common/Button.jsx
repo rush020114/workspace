@@ -11,7 +11,7 @@ const Button = ({
     <button
       type='button'
       style={{width: size}}
-      className={`${styles.button} ${styles[color]} ${props.disable && styles.disabled}`}
+      className={`${styles.button} ${styles[color]} ${props.disabled && styles.disable}`}
       {...props}
     >{title}</button>
   )

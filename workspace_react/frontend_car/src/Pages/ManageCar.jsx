@@ -80,15 +80,16 @@ const ManageCar = () => {
   console.log(carData)
   return (
     <div className={styles.container}>
-      <div className={styles.regCar}>
+      <div className={styles.reg_car}>
         <div>
-          <h2>차량 등록</h2>
+          <h1><span><i className="bi bi-car-front"></i></span> 차량 등록</h1>
         </div>
-        <div>
+        <div className={styles.reg_content}>
           <div>
             <p>제조사</p>
             <Select
               name='carMaker'
+              size='100%'
               value={carData.carMaker}
               onChange={e => {
                 handleCarData(e)
@@ -107,6 +108,7 @@ const ManageCar = () => {
           <div>
             <p>모델명</p>
             <Input
+              size='100%'
               name='modelName'
               value={carData.modelName}
               onChange={e => {
@@ -122,6 +124,7 @@ const ManageCar = () => {
           <div>
             <p>차량가격</p>
             <Input 
+              size='100%'
               name='price'
               value={carData.price && parseInt(carData.price).toLocaleString()}
               onChange={e => {
@@ -132,19 +135,20 @@ const ManageCar = () => {
                 });
               }}
             />
+            <p className='error'>{errorMsg.price}</p>
           </div>
-          <p className='error'>{errorMsg.price}</p>
         </div>
-        <div>
+        <div className={styles.btn_div}>
           <Button 
             onClick={() => regCar()}
+            color='black'
             disabled={isDisable}
           />
         </div>
       </div>
       <div className={styles.carList}>
         <div>
-          <h2>등록된 차량 목록</h2>
+          <h1><span><i className="bi bi-car-front"></i></span> 등록된 차량 목록</h1>
         </div>
         <table className={styles.table}>
           <colgroup>

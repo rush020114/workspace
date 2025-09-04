@@ -6,9 +6,16 @@ import Input from '../common/Input'
 import Select from '../common/Select'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import BuyListModal from './BuyListModal'
 
 
 const BuyList = () => {
+
+  // 구매 상세 내역 리스트를 저장할 state 변수
+  const [buyDetail, setBuyDetail] = useState([]);
+
+  // 구매상세내역 모달창 숨김/보이기 여부
+  const [isOpenBuyModal, setIsOpenBuyModal] = useState(false);
 
   // 구매 조회를 저장할 state 변수
   const [buyList, setBuyList] = useState([]);
@@ -18,7 +25,16 @@ const BuyList = () => {
     axios.get('/api/buys/buy-list-admin')
     .then(res => setBuyList(res.data))
     .catch(e => console.log(e));
-  }, [])
+  }, []);
+
+  // 행 클릭 시 구매 상세 조회
+  const getDetail = orderNum => {
+    axios.get(`/api/buys/${orderNum}`)
+    .then(res => setBuyDetail(res.data))
+    .catch(e => console.log(e));
+  };
+
+  console.log(isOpenBuyModal)
 
   return (
     <div className={styles.container}>
@@ -38,8 +54,12 @@ const BuyList = () => {
         </div>
         <div>
           <p>구매일시</p>
-          <Input />- 
-          <Input />
+          <Input 
+            type='date'
+          />- 
+          <Input 
+            type='date'
+          />
         </div>
         <div>
           <Button
@@ -64,12 +84,17 @@ const BuyList = () => {
             {
               buyList.map((e, i) => {
                 return(
-                  <tr key={i}>
+                  <tr key={i}
+                    onClick={() => {
+                      setIsOpenBuyModal(true);
+                      getDetail(e.orderNum);
+                    }}
+                  >
                     <td>{buyList.length - i}</td>
                     <td>{e.orderNum}</td>
                     <td>{e.title}</td>
                     <td>{e.memId}</td>
-                    <td>{e.price.toLocaleString()}</td>
+                    <td>{e.price.toLocaleString()}원</td>
                     <td>{dayjs(e.buyDate).format('YYYY.MM.DD HH:mm:ss')}</td>
                   </tr>
                 )
@@ -78,6 +103,11 @@ const BuyList = () => {
           </tbody>
         </table>
       </div>
+      <BuyListModal 
+        isOpenBuyModal={isOpenBuyModal}
+        onClose={() => setIsOpenBuyModal(false)}
+        buyDetail={buyDetail}
+      />
     </div>
   )
 }

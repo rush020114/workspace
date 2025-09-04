@@ -34,4 +34,10 @@ public class BuyController {
   public List<BuyDTOForAdmin> getBuyListForAdmin(){
     return buyService.getBuyListForAdmin();
   }
+
+  // 구매 상세 내역 조회
+  @GetMapping("/{orderNum}")
+  public List<BuyDTO> getDetailBuy(@PathVariable("orderNum") int orderNum){
+    return buyService.getDetailBuy(orderNum);
+  }
 }

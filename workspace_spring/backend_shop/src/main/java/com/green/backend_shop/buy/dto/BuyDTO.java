@@ -1,5 +1,6 @@
 package com.green.backend_shop.buy.dto;
 
+import com.green.backend_shop.book.dto.BookDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +20,8 @@ public class BuyDTO {
   // 리액트에서 전달되는 cartNum 목록 데이터를 받기 위해 선언한 변수
   private List<Integer> cartNumList;
   private int orderNum;
+  private int totalPrice;
+  private BookDTO bookDTO;
 
   public BuyDTO(){
   }

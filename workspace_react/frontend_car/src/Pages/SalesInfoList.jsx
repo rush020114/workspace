@@ -48,6 +48,8 @@ const SalesInfoList = () => {
           </thead>
           <tbody>
           {
+            salesList.length
+            ?
             salesList.map((sales, i) => {
               return(
                 <tr key={i}>
@@ -61,6 +63,10 @@ const SalesInfoList = () => {
                 </tr>
               )
             })
+            :
+            <tr>
+              <td colSpan={7}>조회된 목록이 없습니다.</td>
+            </tr>
           }
           </tbody>
         </table>

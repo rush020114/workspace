@@ -167,6 +167,8 @@ const ManageCar = () => {
           </thead>
           <tbody>
             {
+              carList.length 
+              ?
               carList.map((car, i) => {
                 return(
                   <tr key={i}>
@@ -177,6 +179,10 @@ const ManageCar = () => {
                   </tr>
                 )
               })
+              :
+              <tr>
+                <td colSpan={4}>조회된 목록이 없습니다.</td>
+              </tr>
             }
           </tbody>
         </table>

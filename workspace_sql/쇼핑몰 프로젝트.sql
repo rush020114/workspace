@@ -79,16 +79,25 @@ CREATE TABLE SHOP_BUY (
 SELECT *
 FROM shop_buy;
 
-SELECT BUY_NUM 
-	, TITLE
-	, PRICE
-	, BUY_CNT
-	, PRICE * BUY_CNT TOTAL_PRICE
-	, ATTACHED_IMG_NAME
-FROM shop_buy SB
-INNER JOIN book B
-ON SB.BOOK_NUM = B.BOOK_NUM
-INNER JOIN book_img I
-ON SB.BOOK_NUM = I.BOOK_NUM
-WHERE ORDER_NUM = 3
-AND IS_MAIN = 'Y';
+SELECT ORDER_NUM
+   , MAX(MEM_ID) MEM_ID
+   , SUM((SELECT PRICE
+       FROM BOOK
+       WHERE BOOK_NUM = shop_buy.BOOK_NUM) * BUY_CNT) PRICE
+   , MAX(BUY_DATE) BUY_DATE
+   , CASE COUNT(ORDER_NUM) - 1
+       WHEN 0 THEN MAX((SELECT TITLE
+                       FROM book
+                       WHERE BOOK_NUM = shop_buy.BOOK_NUM))
+       ELSE CONCAT(MAX((SELECT TITLE
+                       FROM book
+                       WHERE BOOK_NUM = shop_buy.BOOK_NUM))
+           , ' 외 '
+           , COUNT(ORDER_NUM) - 1
+           , '건') END TITLE
+FROM shop_buy
+WHERE BUY_DATE < ADDDATE('2025-09-04', 1)
+GROUP BY ORDER_NUM
+ORDER BY BUY_DATE DESC;
+
+SELECT ADDDATE('2025-12-31', 1) DAY;

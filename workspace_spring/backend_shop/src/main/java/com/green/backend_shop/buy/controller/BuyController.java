@@ -2,6 +2,7 @@ package com.green.backend_shop.buy.controller;
 
 import com.green.backend_shop.buy.dto.BuyDTO;
 import com.green.backend_shop.buy.dto.BuyDTOForAdmin;
+import com.green.backend_shop.buy.dto.SearchBuyDTO;
 import com.green.backend_shop.buy.service.BuyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +32,9 @@ public class BuyController {
 
   // 관리자 구매이력조회 페이지의 구매목록조회 api
   @GetMapping("/buy-list-admin")
-  public List<BuyDTOForAdmin> getBuyListForAdmin(){
-    return buyService.getBuyListForAdmin();
+  public List<BuyDTOForAdmin> getBuyListForAdmin(SearchBuyDTO searchBuyDTO){
+    log.info(searchBuyDTO.toString());
+    return buyService.getBuyListForAdmin(searchBuyDTO);
   }
 
   // 구매 상세 내역 조회

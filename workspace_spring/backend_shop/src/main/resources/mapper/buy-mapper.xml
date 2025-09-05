@@ -79,6 +79,20 @@
                     , COUNT(ORDER_NUM) - 1
                     , '건') END TITLE
         FROM shop_buy
+        WHERE 1 = 1
+        <!-- if문에 빈문자열이 들어갈 때가 많기 때문에 통상적으로 내용을 감쌀 때 홀따옴표를 쓴다. -->
+        <if test='orderNum != null and !orderNum.equals("")'>
+            AND ORDER_NUM = #{orderNum}
+        </if>
+        <if test='memId != null and !memId.equals("")'>
+            AND MEM_ID LIKE CONCAT('%', #{memId}, '%')
+        </if>
+        <if test='fromDate != null and !fromDate.equals("")'>
+            AND BUY_DATE &gt;= #{fromDate}
+        </if>
+        <if test='toDate != null and !toDate.equals("")'>
+            AND BUY_DATE &lt; ADDDATE(#{toDate}, 1)
+        </if>
         GROUP BY ORDER_NUM
         ORDER BY BUY_DATE DESC;
     </select>

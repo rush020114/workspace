@@ -11,6 +11,14 @@ import BuyListModal from './BuyListModal'
 
 const BuyList = () => {
 
+  // 입력한 검색 조건 데이터를 저장할 state 변수
+  const [searchData, setSearchData] = useState({
+    orderNum: ''
+    , memId: ''
+    , fromDate: ''
+    , toDate: ''
+  });
+
   // 구매 상세 내역 리스트를 저장할 state 변수
   const [buyDetail, setBuyDetail] = useState([]);
 
@@ -34,7 +42,28 @@ const BuyList = () => {
     .catch(e => console.log(e));
   };
 
-  console.log(isOpenBuyModal)
+  // 검색 데이터를 입력할 때마다 실행하는 함수
+  const handleSearchData = e => {
+    setSearchData({
+      ...searchData
+      , [e.target.name]: e.target.value
+    });
+  };
+
+  // 검색 버튼 클릭 시 실행 함수
+  const doSearch = () => {
+    axios.get('/api/buys/buy-list-admin', {params: searchData})
+    .then(res => {
+      setBuyList(res.data);
+      setSearchData({
+        orderNum: ''
+        , memId: ''
+        , fromDate: ''
+        , toDate: ''
+      })
+    })
+    .catch(e => console.log(e));
+  };
 
   return (
     <div className={styles.container}>
@@ -46,24 +75,39 @@ const BuyList = () => {
       <div className={styles.search_div}>
         <div>
           <p>주문번호</p>
-          <Input />
+          <Input 
+            name='orderNum'
+            value={searchData.orderNum}
+            onChange={e => handleSearchData(e)}
+          />
         </div>
         <div>
           <p>구매자ID</p>
-          <Input />
+          <Input 
+            name='memId'
+            value={searchData.memId}
+            onChange={e => handleSearchData(e)}
+          />
         </div>
         <div>
           <p>구매일시</p>
           <Input 
             type='date'
+            name='fromDate'
+            value={searchData.fromDate}
+            onChange={e => handleSearchData(e)}
           />- 
           <Input 
             type='date'
+            name='toDate'
+            value={searchData.toDate}
+            onChange={e => handleSearchData(e)}
           />
         </div>
         <div>
           <Button
             title='검 색'
+            onClick={() => doSearch()}
           />
         </div>
       </div>
@@ -82,6 +126,8 @@ const BuyList = () => {
           </thead>
           <tbody>
             {
+              buyList.length
+              ?
               buyList.map((e, i) => {
                 return(
                   <tr key={i}
@@ -99,6 +145,13 @@ const BuyList = () => {
                   </tr>
                 )
               })
+              :
+              <tr>
+                <td 
+                  colSpan={6}
+                  style={{padding: '50px 0px'}}
+                >조회된 데이터가 없습니다.</td>
+              </tr>
             }
           </tbody>
         </table>

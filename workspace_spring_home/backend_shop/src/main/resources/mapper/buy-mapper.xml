@@ -101,6 +101,20 @@
                     , ' 외 ', COUNT(ORDER_NUM) - 1, '권')) TITLE
         , MAX(BUY_DATE) BUY_DATE
         FROM SHOP_BUY SB
+        <!-- 검색 시 AND절이 해당 상황에 따라 변하므로 WHERE절을 무조건 TRUE가 되게끔 설계한다. -->
+        WHERE 1 = 1
+        <if test='orderNum != null and !orderNum.equals("")'>
+            AND ORDER_NUM = #{orderNum}
+        </if>
+        <if test='memId != null and !memId.equals("")'>
+            AND MEM_ID LIKE CONCAT('%', #{memId}, '%')
+        </if>
+        <if test='fromDate != null and !fromDate.equals("")'>
+            AND BUY_DATE &gt;= #{fromDate}
+        </if>
+        <if test='toDate != null and !toDate.equals("")'>
+            AND BUY_DATE &lt; ADDDATE(#{toDate}, 1)
+        </if>
         GROUP BY ORDER_NUM
         <!-- 쿼리 해석 순서에 따라 ORDER BY는 맨마지막에 해석되므로 별칭으로 조회홰도 문제 없다. -->
         ORDER BY BUY_DATE DESC

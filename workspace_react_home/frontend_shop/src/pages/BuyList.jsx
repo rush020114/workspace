@@ -11,6 +11,14 @@ import BuyListModal from '../components/BuyListModal'
 
 const BuyList = () => {
 
+  // 검색 데이터를 저장할 state 변수
+  const [searchData, setSearchData] = useState({
+    orderNum: ''
+    , memId: ''
+    , fromDate: ''
+    , toDate: ''
+  })
+
   // 상세 구매 내역을 받아올 state 변수
   const [buyDetail, setBuyDetail] = useState([]);
 
@@ -34,6 +42,29 @@ const BuyList = () => {
     .catch(e => console.log(e));
   };
 
+  // 검색할 데이터를 세팅할 함수
+  const handleSearchData = e => {
+    setSearchData({
+      ...searchData
+      , [e.target.name]: e.target.value
+    });
+  };
+
+  // 검색 데이터를 받아올 함수
+  const searchBuyList = () => {
+    axios.get('/api/buys/buy-list-admin', {params: searchData})
+    .then(res => {
+      setBuyList(res.data);
+      setSearchData({
+        orderNum: ''
+        , memId: ''
+        , fromDate: ''
+        , toDate: ''
+      })
+    })
+    .catch(e => console.log(e));
+  };
+
   console.log(buyDetail)
   
   return (
@@ -46,23 +77,40 @@ const BuyList = () => {
       <div className={styles.search_div}>
         <div>
           <p>구매번호</p>
-          <Input />
+          <Input 
+            name='orderNum'
+            value={searchData.orderNum}
+            onChange={e => handleSearchData(e)}
+          />
         </div>
         <div>
           <p>구매자ID</p>
-          <Input />
+          <Input 
+            name='memId'
+            value={searchData.memId}
+            onChange={e => handleSearchData(e)}
+          />
         </div>
         <div>
           <p>구매일시</p>
           <Input 
             type='date'
+            name='fromDate'
+            value={searchData.fromDate}
+            onChange={e => handleSearchData(e)}
           />- 
           <Input 
             type='date'
+            name='toDate'
+            value={searchData.toDate}
+            onChange={e => handleSearchData(e)}
           />
         </div>
         <div>
-          <Button></Button>
+          <Button
+            title='검 색'
+            onClick={() => searchBuyList()}
+          ></Button>
         </div>
       </div>
       <div className={styles.table_div}>

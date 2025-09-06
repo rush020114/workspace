@@ -1,13 +1,13 @@
 package com.green.mem.buy.controller;
 
 import com.green.mem.buy.dto.BuyDTO;
+import com.green.mem.buy.dto.BuyDTOForAdmin;
 import com.green.mem.buy.service.BuyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -26,5 +26,17 @@ public class BuyController {
   @PostMapping("/cart-buy")
   public void regBuyInCart(@RequestBody BuyDTO buyDTO){
     buyService.regBuyInCart(buyDTO);
+  }
+
+  // 구매 이력 조회 api
+  @GetMapping("/buy-list-admin")
+  public List<BuyDTOForAdmin> getBuyListForAdmin(){
+    return buyService.getBuyListForAdmin();
+  }
+
+  // 구매 내역 상세 조회 api
+  @GetMapping("/buy-detail/{orderNum}")
+  public List<BuyDTO> getBuyDetail(@PathVariable("orderNum") int orderNum){
+    return  buyService.getBuyDetail(orderNum);
   }
 }

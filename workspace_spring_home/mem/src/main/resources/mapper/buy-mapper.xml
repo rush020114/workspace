@@ -12,6 +12,18 @@
         <result column="BUY_DATE"       property="buyDate" />
         <result column="BUY_CNT"        property="buyCnt" />
         <result column="ORDER_NUM"      property="orderNum" />
+        <result column="TOTAL_PRICE"    property="totalPrice" />
+        <association property="clothingDTO" resultMap="com.green.mem.clothing.mapper.ClothingMapper.clothing" />
+    </resultMap>
+    
+    <!-- 구매 이력 조회를 받아올 정의문 -->
+    <resultMap id="buyDTOForAdmin" type="com.green.mem.buy.dto.BuyDTOForAdmin">
+        <result column="BUY_NUM" property="buyNum" />
+        <result column="ORDER_NUM" property="orderNum" />
+        <result column="CLOTHING_NAME" property="clothingName" />
+        <result column="MEM_ID" property="memId" />
+        <result column="TOTAL_PRICE" property="totalPrice" />
+        <result column="BUY_DATE" property="buyDate" />
     </resultMap>
 
     <!-- 상세 페이지 구매 -->
@@ -54,4 +66,45 @@
         )
         </foreach>
     </insert>
+
+    <!-- 구매 이력 조회 -->
+    <select id="getBuyListForAdmin" resultMap="buyDTOForAdmin">
+        SELECT BUY_NUM
+            , ORDER_NUM
+            , IF(COUNT(ORDER_NUM) = 1
+                , MAX((SELECT CLOTHING_NAME
+                        FROM CLOTHING
+                        WHERE CLOTHING_NUM = B.CLOTHING_NUM))
+            , CONCAT(MAX((SELECT CLOTHING_NAME
+                        FROM CLOTHING
+                        WHERE CLOTHING_NUM = B.CLOTHING_NUM))
+                , ' 외 ', COUNT(ORDER_NUM) - 1, '건')) CLOTHING_NAME
+            , MAX((SELECT MEM_ID
+                FROM CLOTHING
+                WHERE CLOTHING_NUM = B.CLOTHING_NUM)) MEM_ID
+            , SUM((SELECT PRICE
+                FROM CLOTHING
+                WHERE CLOTHING_NUM = B.CLOTHING_NUM) * BUY_CNT) TOTAL_PRICE
+            , MAX(BUY_DATE) BUY_DATE
+        FROM MEM_BUY B
+        GROUP BY ORDER_NUM
+        ORDER BY BUY_DATE DESC
+    </select>
+
+    <!-- 구매 이력 상세 조회 -->
+    <select id="getBuyDetail" resultMap="buy">
+        SELECT BUY_NUM
+            , CLOTHING_NAME
+            , ATTACHED_IMG_NAME
+            , PRICE
+            , BUY_CNT
+            , PRICE * BUY_CNT TOTAL_PRICE
+        FROM MEM_BUY B
+        INNER JOIN CLOTHING C
+        ON B.CLOTHING_NUM = C.CLOTHING_NUM
+        INNER JOIN CLOTHING_IMG I
+        ON B.CLOTHING_NUM = I.CLOTHING_NUM
+        WHERE ORDER_NUM = #{orderNum}
+        AND IS_MAIN = 'Y'
+    </select>
 </mapper>

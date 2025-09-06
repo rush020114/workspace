@@ -48,7 +48,7 @@ const Login = ({isOpenLogin, onClose}) => {
         };
       }
       else{
-        alert('아이디 도는 비밀번호가 일치하지 않습니다.');
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
         setLoginData({
           memId: ''
           , memPw: ''
@@ -61,7 +61,7 @@ const Login = ({isOpenLogin, onClose}) => {
   return (
     <Modal
        title='Login'
-       size='375px'
+       size='400px'
        isOpen={isOpenLogin}
        onClose={() => {
         onClose();

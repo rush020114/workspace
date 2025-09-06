@@ -34,7 +34,7 @@ const ClothingList = () => {
                 </div>
                 <div className={styles.info}>
                   <p>{clothing.clothingName}</p>
-                  <p>{clothing.price}</p>
+                  <p>{clothing.price.toLocaleString() + '원'}</p>
                 </div>
               </div>
             )

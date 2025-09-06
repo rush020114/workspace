@@ -100,6 +100,16 @@ const CartList = () => {
     .catch();
   };
 
+  // 장바구니 선택 구매 
+  const buyInCart = () => {
+    axios.post('/api/buys/cart-buy', {cartNumList: checkboxes})
+    .then(res => {
+      alert('주문완료');
+      setReload(reload + 1);
+    })
+    .catch(e => console.log(e));
+  };
+
   console.log(cartList)
   console.log(checkboxes);
   console.log(finalPrice);
@@ -167,7 +177,7 @@ const CartList = () => {
                       <p>{cart.clothingDTO.clothingName}</p>
                     </div>
                   </td>
-                  <td>{cart.clothingDTO.price.toLocaleString()}</td>
+                  <td>{cart.clothingDTO.price.toLocaleString() + '원'}</td>
                   <td>
                     <div className={styles.cnt_div}>
                       <Input
@@ -179,7 +189,7 @@ const CartList = () => {
                       />
                     </div>
                   </td>
-                  <td>{cart.totalPrice.toLocaleString()}</td>
+                  <td>{cart.totalPrice.toLocaleString() + '원'}</td>
                   <td>{dayjs(cart.cartDate).format('YYYY.MM.DD HH:mm')}</td>
                   <td>
                     <Button 
@@ -205,11 +215,13 @@ const CartList = () => {
       <div className={styles.totalPrice}>
         <div>
           <div><p>구매 가격</p></div>
-          <div><p>{finalPrice.toLocaleString()}</p></div>
+          <div><p>{finalPrice.toLocaleString() + '원'}</p></div>
         </div>
         <Button 
+          size='100px'
           color='blue'
-          content='구 매'
+          content='선택 구매'
+          onClick={() => buyInCart()}
         />
       </div>
     </div>

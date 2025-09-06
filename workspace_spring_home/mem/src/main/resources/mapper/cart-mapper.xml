@@ -88,4 +88,13 @@
                             WHERE CLOTHING_NUM = #{clothingNum}) * #{cartCnt}
         WHERE CART_NUM = #{cartNum}
     </update>
+
+    <!-- 장바구니 선택구매 만큼 삭제 -->
+    <delete id="deleteSelectedCart">
+        DELETE FROM MEM_CART
+        WHERE CART_NUM IN
+        <foreach collection="cartNumList" item="cartNum" separator="," open="(" close=")">
+            #{cartNum}
+        </foreach>
+    </delete>
 </mapper>

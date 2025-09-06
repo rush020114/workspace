@@ -10,6 +10,8 @@ import ClothingList from './pages/ClothingList'
 import ClothingDetail from './pages/ClothingDetail'
 import CartList from './pages/CartList'
 import PersonalLayout from './layout/PersonalLayout'
+import BuyListForUser from './pages/BuyListForUser'
+import BuyList from './pages/BuyList'
 
 function App() {
 
@@ -28,11 +30,15 @@ function App() {
         <Route path='/admin' element={<AdminLayout />}>
           {/* 옷 등록 */}
           <Route path='reg-clothing' element={<RegClothing />} />
+          {/* 구매 정보 조회 */}
+          <Route path='buy-list' element={<BuyList />} />
         </Route>
         {/* 마이페이지 layout */}
         <Route path='/user' element={<PersonalLayout />}>
           {/* 옷 장바구니 */}
           <Route path='cart-list' element={<CartList />} />
+          {/* 사용자 구매 관리 */}
+          <Route path='buy-list' element={<BuyListForUser />} />
         </Route>
       </Routes>
     </>

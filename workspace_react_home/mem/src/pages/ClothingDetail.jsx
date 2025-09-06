@@ -42,14 +42,33 @@ const ClothingDetail = () => {
       .then(res => {
         confirm('장바구니에 등록되었습니다. \n 장바구니 페이지로 이동하시겠습니까?')
         &&
-        nav('/user/cart-list')
+        nav('/user/cart-list');
       })
       .catch();
     }
     else{
       alert('로그인 후 이용해주십시오.')
+    };
+  };
+
+  // 상품 구매
+  const buyInDetail = () => {
+    if(loginInfo){
+      axios.post('/api/buys', {
+        clothingNum: clothingNum
+        , memId: loginData.memId
+        , buyCnt: cnt
+      })
+      .then(res => {
+        alert('주문완료');
+        nav('/')
+      })
+      .catch(e => console.log(e));
     }
-  }
+    else{
+      alert('로그인 후 이용해주십시오.')
+    };
+  };
 
   return (
     <div className={styles.container}>
@@ -75,7 +94,7 @@ const ClothingDetail = () => {
             <p>{clothingDetail.clothingName}</p>
             <p>{clothingDetail.brand}</p>
             <p>
-              {clothingDetail.price && parseInt(clothingDetail.price).toLocaleString()}
+              {clothingDetail.price && parseInt(clothingDetail.price).toLocaleString() + '원'}
             </p>
             <Input 
               type='number'
@@ -86,7 +105,7 @@ const ClothingDetail = () => {
               padding='16px'
             />
             <p>
-               총가격 : {clothingDetail.price && parseInt(clothingDetail.price * cnt).toLocaleString()}
+               총가격 : {clothingDetail.price && parseInt(clothingDetail.price * cnt).toLocaleString() + '원'}
             </p>
           </div>
           <div className={styles.btn_div}>
@@ -103,6 +122,7 @@ const ClothingDetail = () => {
               content='구매하기'
               fontSize='1.2rem'
               color='blue'
+              onClick={() => buyInDetail()}
             />
           </div>
         </div>

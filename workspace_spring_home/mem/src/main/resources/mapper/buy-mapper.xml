@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.mem.buy.mapper.BuyMapper">
+    <!-- mem_buy테이블 조회 결과를 받아올 정의문 -->
+	<resultMap id="buy" type="com.green.mem.buy.dto.BuyDTO">
+        <id     column="BUY_NUM"        property="buyNum" />
+        <result column="CLOTHING_NUM"   property="clothingNum" />
+        <result column="MEM_ID"         property="memId" />
+        <result column="BUY_DATE"       property="buyDate" />
+        <result column="BUY_CNT"        property="buyCnt" />
+        <result column="ORDER_NUM"      property="orderNum" />
+    </resultMap>
+
+    <!-- 상세 페이지 구매 -->
+    <insert id="regBuyInDetail">
+        INSERT INTO MEM_BUY (
+            CLOTHING_NUM
+            , MEM_ID
+            , BUY_CNT
+            , ORDER_NUM
+        ) VALUES (
+            #{clothingNum}
+            , #{memId}
+            , #{buyCnt}
+            , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1
+                FROM MEM_BUY)
+        )
+    </insert>
+
+    <!-- 장바구니 페이지 구매 -->
+    <insert id="regBuyInCart">
+        INSERT INTO MEM_BUY (
+            CLOTHING_NUM
+            , MEM_ID
+            , BUY_CNT
+            , ORDER_NUM
+        ) VALUES
+        <foreach collection="cartNumList" item="cartNum" separator=",">
+        (
+            (SELECT CLOTHING_NUM
+            FROM MEM_CART
+            WHERE CART_NUM = #{cartNum})
+            , (SELECT MEM_ID
+                FROM MEM_CART
+                WHERE CART_NUM = #{cartNum})
+            , (SELECT CART_CNT
+                FROM MEM_CART
+                WHERE CART_NUM = #{cartNum})
+            , (SELECT IFNULL(MAX(ORDER_NUM), 0) + 1
+                FROM MEM_BUY)
+        )
+        </foreach>
+    </insert>
+</mapper>

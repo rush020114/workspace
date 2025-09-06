@@ -1,5 +1,6 @@
 package com.green.mem.cart.mapper;
 
+import com.green.mem.buy.dto.BuyDTO;
 import com.green.mem.cart.dto.CartDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -25,4 +26,7 @@ public interface CartMapper {
 
   // 장바구니 수량 수정
   void updateCartCnt (CartDTO cartDTO);
+
+  // 장바구니 선택 구매 만큼 삭제
+  void deleteSelectedCart(BuyDTO buyDTO);
 }

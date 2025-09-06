@@ -5,6 +5,7 @@ import com.green.mem.clothing.dto.ClothingImgDTO;
 import com.green.mem.clothing.mapper.ClothingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class ClothingService {
   private final ClothingMapper clothingMapper;
 
   // 옷 등록
+  @Transactional(rollbackFor = Exception.class)
   public void insertClothing(ClothingDTO clothingDTO, List<ClothingImgDTO> clothingImgDTOList){
     // 등록할 옷 번호 조회
     int nextClothingNum = clothingMapper.getNextClothingNum();

@@ -20,25 +20,25 @@
   margin-right:4px;
 }
 
-.sideMenu{
+.sidemenu{
   font-size: 0.9rem;
 }
 
-.sideMenu > li{
+.sidemenu > li{
   /* 12시부터 시계방향 */
   padding: 10px 0px 10px 16px;
   border-left: 5px solid rgba(0, 0, 0, 0);
   transition: all 0.1s;
 }
 
-.sideMenu > li:hover{
+.sidemenu > li:hover{
   background-color: #356a42;
   border-left: 5px solid #356a42;
   color:white;
   cursor: pointer;
 }
 
-.active{
+.menu_li:has(.active){
   background-color: #356a42;
   border-left: 5px solid #023710 !important;
   color:white;

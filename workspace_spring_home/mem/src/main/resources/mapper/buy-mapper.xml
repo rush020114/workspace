@@ -87,6 +87,19 @@
                 WHERE CLOTHING_NUM = B.CLOTHING_NUM) * BUY_CNT) TOTAL_PRICE
             , MAX(BUY_DATE) BUY_DATE
         FROM MEM_BUY B
+        WHERE 1 = 1
+        <if test='orderNum != null and !orderNum.equals("")'>
+            AND ORDER_NUM = #{orderNum}
+        </if>
+        <if test='memId != null and !memId.equals("")'>
+            AND MEM_ID LIKE CONCAT('%', #{memId}, '%')
+        </if>
+        <if test='fromDate != null and !fromDate.equals("")'>
+            AND BUY_DATE &gt;= #{fromDate}
+        </if>
+        <if test='toDate != null and !toDate.equals("")'>
+            AND BUY_DATE &lt; ADDDATE(#{toDate}, 1)
+        </if>
         GROUP BY ORDER_NUM
         ORDER BY BUY_DATE DESC
     </select>

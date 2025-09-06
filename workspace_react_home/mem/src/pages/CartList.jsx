@@ -218,9 +218,10 @@ const CartList = () => {
           <div><p>{finalPrice.toLocaleString() + '원'}</p></div>
         </div>
         <Button 
-          size='100px'
+          size='120px'
           color='blue'
           content='선택 구매'
+          padding='12px 0px'
           onClick={() => buyInCart()}
         />
       </div>

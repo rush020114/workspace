@@ -48,9 +48,9 @@ const BuyListModal = ({
                           <p>{buy.clothingDTO.clothingName}</p>
                         </div>
                        </td>
-                      <td>{buy.clothingDTO.price}</td>
+                      <td>{buy.clothingDTO.price.toLocaleString() + '원'}</td>
                       <td>{buy.buyCnt}</td>
-                      <td>{buy.totalPrice}</td>
+                      <td>{buy.totalPrice.toLocaleString() + '원'}</td>
                     </tr>
                   )
                 })

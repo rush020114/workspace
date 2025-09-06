@@ -9,6 +9,14 @@ import BuyListModal from '../components/BuyListModal'
 
 const BuyList = () => {
 
+  // 검색 데이터를 저장할 state 변수
+  const [searchData, setSearchData] = useState({
+    orderNum: ''
+    , memId: ''
+    , fromDate: ''
+    , toDate: ''
+  });
+
   // 구매 상세 내역 모달창을 열고 닫기 위한 state 변수
   const [isOpenBuyDetail, setIsOpenBuyDetail] = useState(false)
 
@@ -32,7 +40,28 @@ const BuyList = () => {
     .catch(e => console.log(e));
   };
 
-  console.log(buyDetail)
+  // 검색 데이터를 세팅할 함수
+  const handleSearchData = e => {
+    setSearchData({
+      ...searchData
+      , [e.target.name]: e.target.value
+    });
+  };
+
+  // 검색 데이터를 불러올 함수
+  const searchBuy = () => {
+    axios.get('/api/buys/buy-list-admin', {params: searchData})
+    .then(res => {
+      setBuyList(res.data);
+      setSearchData({
+        orderNum: ''
+        , memId: ''
+        , fromDate: ''
+        , toDate: ''
+      })
+    })
+    .catch(e => console.log(e));
+  };
 
   return (
     <div className={styles.container}>
@@ -46,23 +75,42 @@ const BuyList = () => {
           <p>구매번호</p>
           <Input 
             size='150px'
+            name='orderNum'
+            value={searchData.orderNum}
+            onChange={e => handleSearchData(e)}
           />
         </div>
         <div>
           <p>구매자ID</p>
           <Input 
             size='150px'
+            name='memId'
+            value={searchData.memId}
+            onChange={e => handleSearchData(e)}
           />
         </div>
         <div>
           <p>구매일시</p>
           <Input 
+            type='date'
             size='150px'
+            name='fromDate'
+            value={searchData.fromDate}
+            onChange={e => handleSearchData(e)}
+          />
+          -
+          <Input 
+            type='date'
+            size='150px'
+            name='toDate'
+            value={searchData.toDate}
+            onChange={e => handleSearchData(e)}
           />
         </div>
         <div>
           <Button 
             content='검 색'
+            onClick={() => searchBuy()}
           />
         </div>
       </div>

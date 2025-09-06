@@ -2,6 +2,7 @@ package com.green.mem.buy.controller;
 
 import com.green.mem.buy.dto.BuyDTO;
 import com.green.mem.buy.dto.BuyDTOForAdmin;
+import com.green.mem.buy.dto.SearchBuyDTO;
 import com.green.mem.buy.service.BuyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +31,8 @@ public class BuyController {
 
   // 구매 이력 조회 api
   @GetMapping("/buy-list-admin")
-  public List<BuyDTOForAdmin> getBuyListForAdmin(){
-    return buyService.getBuyListForAdmin();
+  public List<BuyDTOForAdmin> getBuyListForAdmin(SearchBuyDTO searchBuyDTO){
+    return buyService.getBuyListForAdmin(searchBuyDTO);
   }
 
   // 구매 내역 상세 조회 api

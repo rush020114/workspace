@@ -8,9 +8,16 @@
 
 .side{
   width: 20%;
+  position: fixed;
+  top: 80px;
+  left: 10px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .content{
   padding-top: 20px;
+  padding-left: 20px;
   width: 80%;
+  margin-left: auto;
 }

@@ -78,4 +78,3 @@ CREATE TABLE MEM_BUY (
 );
 
 SELECT * FROM mem_buy;
-

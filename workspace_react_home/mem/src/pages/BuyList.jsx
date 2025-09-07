@@ -78,6 +78,7 @@ const BuyList = () => {
             name='orderNum'
             value={searchData.orderNum}
             onChange={e => handleSearchData(e)}
+            onKeyDown={e => {if(e.key === 'Enter') searchBuy()}}
           />
         </div>
         <div>
@@ -87,6 +88,7 @@ const BuyList = () => {
             name='memId'
             value={searchData.memId}
             onChange={e => handleSearchData(e)}
+            onKeyDown={e => {if(e.key === 'Enter') searchBuy()}}
           />
         </div>
         <div>
@@ -97,6 +99,7 @@ const BuyList = () => {
             name='fromDate'
             value={searchData.fromDate}
             onChange={e => handleSearchData(e)}
+            onKeyDown={e => {if(e.key === 'Enter') searchBuy()}}
           />
           -
           <Input 
@@ -105,6 +108,7 @@ const BuyList = () => {
             name='toDate'
             value={searchData.toDate}
             onChange={e => handleSearchData(e)}
+            onKeyDown={e => {if(e.key === 'Enter') searchBuy()}}
           />
         </div>
         <div>

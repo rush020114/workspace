@@ -10,6 +10,8 @@ import CartList from './pages/CartList'
 import PersonalLayout from './layout/PersonalLayout'
 import BuyListForUser from './pages/BuyListForUser'
 import BuyList from './pages/BuyList'
+import BarChartTest from './components/BarChartTest'
+import AdminHome from './pages/AdminHome'
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
           <Route path='' element={<BookList />} />
           {/* 도서 상세 페이지, url : /book-detail */}
           <Route path='book-detail/:bookNum' element={<BookDetail />} />
+          {/* 바 차트 연습용 컴포넌트 */}
+          <Route path='bar-chart' element={<BarChartTest />} />
         </Route>
         {/* 관리자 페이지는 AdminLayout이랑 함께 열린다. */}
         <Route path='/admin' element={<AdminLayout />}>
@@ -33,6 +37,8 @@ function App() {
           <Route path='cate-manage' element={<CategoryManage />} />
           {/* 구매이력조회 페이지, url : /admin/buy-list */}
           <Route path='buy-list' element={<BuyList />} />
+          {/* 관리자 홈 */}
+          <Route path='home' element={<AdminHome />} />
         </Route>
         {/* 마이페이지 layout */}
         <Route path='/user' element={<PersonalLayout />}>

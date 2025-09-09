@@ -1,0 +1,31 @@
+.container{
+  background-color: rgba(230, 230, 230, 0.3);
+  margin-left: -20px;
+  margin-top: -20px;
+  padding: 20px;
+  padding-bottom: 0.1px;
+}
+
+.container > div{
+  margin-bottom: 25px;
+}
+
+.first_row{
+  display: flex;
+  gap: 30px;
+}
+
+.first_row > div{
+  background-color: white;
+  border-radius: 3px;
+  height: 80px;
+  padding: 12px;
+  width: 100%;
+}
+
+.second_row{
+  background-color: white;
+  border-radius: 3px;
+  padding: 12px;
+  height: 240px;
+}

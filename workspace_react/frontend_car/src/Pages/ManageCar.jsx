@@ -88,7 +88,7 @@ const ManageCar = () => {
               size='100%'
               value={carData.carMaker}
               onChange={e => {
-                handleCarData(e)
+                handleCarData(e);
                 setErrorMsg({
                   ...errorMsg
                   , carMaker: e.target.value ? '' : '제조사를 선택해주세요.'
@@ -108,7 +108,7 @@ const ManageCar = () => {
               name='modelName'
               value={carData.modelName}
               onChange={e => {
-                handleCarData(e)
+                handleCarData(e);
                 setErrorMsg({
                   ...errorMsg
                   , modelName: e.target.value ? '' : '모델명은 필수 입력입니다.'
@@ -124,7 +124,7 @@ const ManageCar = () => {
               name='price'
               value={carData.price && parseInt(carData.price).toLocaleString()}
               onChange={e => {
-                handleCarData(e)
+                handleCarData(e);
                 setErrorMsg({
                   ...errorMsg
                   , price: e.target.value ? '' : '가격은 필수 입력입니다.'

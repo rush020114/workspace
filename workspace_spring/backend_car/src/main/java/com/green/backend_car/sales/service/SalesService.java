@@ -14,9 +14,6 @@ public class SalesService {
 
   // 판매 정보 등록
   public void insertSalesInfo(SalesDTO salesDTO){
-    if(salesDTO.getBuyerTel().equals("")){
-      salesDTO.setBuyerTel(null);
-    }
     salesMapper.insertSalesInfo(salesDTO);
   }
 

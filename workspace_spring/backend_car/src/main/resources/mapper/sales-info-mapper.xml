@@ -22,12 +22,16 @@
             BUYER
             , COLOR
             , MODEL_NUM
+        <if test='!buyerTel.equals("")'>
             , BUYER_TEL
+        </if>
         ) VALUES (
             #{buyer}
             , #{color}
             , #{modelNum}
+        <if test='!buyerTel.equals("")'>
             , #{buyerTel}
+        </if>
         )
     </insert>
 

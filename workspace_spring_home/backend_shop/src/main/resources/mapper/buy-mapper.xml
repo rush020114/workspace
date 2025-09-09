@@ -136,4 +136,90 @@
         WHERE ORDER_NUM = #{orderNum}
         AND IS_MAIN = 'Y'
     </select>
+
+    <!-- 현재일로부터 -10일까지 날짜 데이터 조회 -->
+    <select id="getTenDay" resultType="String">
+        SELECT CURRENT_DATE() BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -1) BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -2) BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -3) BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -4) BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -5) BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -6) BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -7) BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -8) BUY_DATE
+        UNION ALL
+        SELECT ADDDATE(CURRENT_DATE(), -9) BUY_DATE
+    </select>
+
+    <!-- 10일 간 각각의 매출 조회 -->
+    <select id="getSalesTenDay" resultType="int">
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = CURRENT_DATE()
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -1)
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -2)
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -3)
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -4)
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -5)
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -6)
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -7)
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -8)
+        UNION ALL
+        SELECT IFNULL(SUM((SELECT PRICE
+                            FROM BOOK
+                            WHERE BOOK_NUM = B.BOOK_NUM) * BUY_CNT), 0) TOTAL_PRICE
+        FROM SHOP_BUY B
+        WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') = ADDDATE(CURRENT_DATE(), -9)
+    </select>
 </mapper>

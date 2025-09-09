@@ -47,4 +47,14 @@ public class BuyService {
   public List<BuyDTO> getBuyDetail(int orderNum){
     return buyMapper.getBuyDetail(orderNum);
   }
+
+  // 현재일로부터 -10일까지 날짜 데이터 조회
+  public List<String> getTenDay(){
+    return buyMapper.getTenDay();
+  }
+
+  // 10일 간 각각의 매출 조회
+  public List<Integer> getSalesTenDay(){
+    return buyMapper.getSalesTenDay();
+  }
 }

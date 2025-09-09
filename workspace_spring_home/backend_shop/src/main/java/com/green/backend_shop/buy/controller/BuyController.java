@@ -41,4 +41,16 @@ public class BuyController {
   public List<BuyDTO> getBuyDetail(@PathVariable("orderNum") int orderNum){
     return buyService.getBuyDetail(orderNum);
   }
+
+  // 현재일로부터 -10일까지 날짜 데이터 조회
+  @GetMapping("/date-10-day")
+  public List<String> getTenDay(){
+    return buyService.getTenDay();
+  }
+
+  // 10일 간 각각의 매출 조회
+  @GetMapping("/sales-10-day")
+  public List<Integer> getSalesTenDay(){
+    return buyService.getSalesTenDay();
+  }
 }

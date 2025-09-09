@@ -20,4 +20,10 @@ public interface BuyMapper {
 
   // 구매 내역 상세 조회
   List<BuyDTO> getBuyDetail(int orderNum);
+
+  // 현재일로부터 -10일까지 날짜 데이터 조회
+  List<String> getTenDay();
+
+  // 10일 간 각각의 매출 조회
+  List<Integer> getSalesTenDay();
 }

@@ -13,6 +13,7 @@ import CartList from './pages/CartList'
 import PersonalLayout from './layout/PersonalLayout'
 import BuyList from './pages/BuyList'
 import BuyListForUser from './pages/BuyListForUser'
+import AdminHome from './pages/AdminHome'
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
           {/* 카테고리 관리 페이지, url : /admin/cate-manage */}
           <Route path='cate-mamnge' element={<CategoryManage />} />
           <Route path='buy-list' element={<BuyList />} />
+          <Route path='home' element={<AdminHome />} />
         </Route>
 
         {/* 마이페이지 */}

@@ -74,8 +74,7 @@ const RegSalesInfo = () => {
     if(!salesData.buyer ||
       !salesData.color ||
       !salesData.modelNum ||
-      !buyerTelRegex.test(salesData.buyerTel) &&
-      salesData.buyerTel
+      errorMsg.buyerTel
     ){
       setIsDisable(true);
     }

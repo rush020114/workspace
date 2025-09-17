@@ -1,8 +1,13 @@
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Pretendard-Regular';
 }
 
 html, body, div, span, applet, object, iframe,
@@ -18,53 +23,85 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	/* border: 0; */
-	/* font-size: 100%; */
-	/* font: inherit; */
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
 }
 
-/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
 }
 
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: '';
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-
-/*  * -> 에스테리스크 (모든, 전부, all)   */
-*{
-  box-sizing: border-box;
-	font-family: 'Pretendard-Regular';
+.error {
+  color: red !important;
+  font-size: 0.8rem !important;
+  margin-top: -1px !important;
 }
 
-.error{
-	color: red !important;
-	font-size: 0.8rem !important;
-	margin-top: -1px !important;
+/* 전역 a 태그는 메뉴 등에서만 흰색으로 */
+a {
+  color: white;
+  text-decoration: none;
 }
 
-a{
-	color: white;
-	text-decoration: none;
+/* 페이지네이션 스타일 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+/* 페이지네이션 내부 링크 스타일 오버라이드 */
+.pagination a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+/* 활성 페이지 */
+.pagination li.active {
+  background-color: #467b53;
+  border-color: #467b53;
+}
+
+.pagination li.active a {
+  color: white;
+}
+
+/* 비활성 페이지 */
+.pagination li.disabled {
+  color: #ccc;
+  cursor: not-allowed;
 }

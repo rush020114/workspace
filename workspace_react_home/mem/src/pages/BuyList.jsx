@@ -6,9 +6,21 @@ import Input from '../common/Input'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import BuyListModal from '../components/BuyListModal'
+import Pagination from 'react-js-pagination'
 
 const BuyList = () => {
 
+  // 페이지 당 목록 수
+  const itemsCountPerPage = 8;
+
+  // 현재 페이지를 저장할 state 변수
+  const [activePage, setActivePage] = useState(1);
+
+  // 페이지를 바꿀 때 실행할 함수(버튼 클릭 시 자동 실행)
+  const handlePageChange = pageNumber => {
+    setActivePage(pageNumber);
+  };
+  
   // 검색 데이터를 저장할 state 변수
   const [searchData, setSearchData] = useState({
     orderNum: ''
@@ -19,12 +31,19 @@ const BuyList = () => {
 
   // 구매 상세 내역 모달창을 열고 닫기 위한 state 변수
   const [isOpenBuyDetail, setIsOpenBuyDetail] = useState(false)
-
+  
   // 구매 상세 내역을 저장할 state 변수
   const [buyDetail, setBuyDetail] = useState([]);
-
+  
   // 구매 이력 조회를 저장할 state 변수
   const [buyList, setBuyList] = useState([]);
+  
+  // 보여줄 목록을 세팅할 변수 
+  // activePage가 리렌더링되면서 필요한 데이터를 화면에 다시 뿌려줄 수 있음
+  const currentList = buyList.slice(
+    (activePage - 1) * itemsCountPerPage
+    , activePage * itemsCountPerPage
+  )
 
   // 구매 이력을 조회할 useEffect
   useEffect(() => {
@@ -62,6 +81,8 @@ const BuyList = () => {
     })
     .catch(e => console.log(e));
   };
+
+  console.log(currentList)
 
   return (
     <div className={styles.container}>
@@ -132,10 +153,11 @@ const BuyList = () => {
             </tr>
           </thead>
           <tbody>
+            {/* currentList로 map을 그려 페이지당 데이터 반영 */}
             {
-              buyList.length
+              currentList.length
               ?
-              buyList.map((buy, i) => {
+              currentList.map((buy, i) => {
                 return(
                   <tr 
                     key={i}
@@ -160,6 +182,13 @@ const BuyList = () => {
             }
           </tbody>
         </table>
+        <Pagination 
+          activePage={activePage}               // 현재 선택된 페이지 번호
+          itemsCountPerPage={itemsCountPerPage} // 한 페이지에 보여줄 아이템 수
+          totalItemsCount={buyList.length}      // 전체 아이템 수 (총 데이터 개수)
+          pageRangeDisplayed={10}               // 한 번에 보여줄 페이지 버튼 수
+          onChange={handlePageChange}           // 페이지 버튼 클릭 시 실행될 함수
+        />
       </div>
       <BuyListModal 
         buyDetail={buyDetail}

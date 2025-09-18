@@ -32,7 +32,18 @@ const AdminSideMenu = () => {
                   className={({isActive}) => isActive ? styles.active : null}
                 >구매이력</NavLink>
               </li>
-              <li className={styles.menu_li}>내 정보</li>
+              <li className={styles.menu_li}>
+                <NavLink
+                  to={'/user/qna'}
+                  className={({isActive}) => isActive ? styles.active : null}
+                >문의</NavLink>
+              </li>
+              <li className={styles.menu_li}>
+                <NavLink
+                  to={'/user/info'}
+                  className={({isActive}) => isActive ? styles.active : null}
+                >내 정보</NavLink>
+              </li>
             </ul>
           </div>
         :
@@ -63,8 +74,13 @@ const AdminSideMenu = () => {
               고객관리
             </p>
             <ul className={styles.sidemenu}>
-              <li className={styles.menu_li}>고객정보조회</li>
-              <li className={styles.menu_li}>고객정보변경</li>
+              <li className={styles.menu_li}>고객정보</li>
+              <li className={styles.menu_li}>
+                <NavLink
+                  to={'/admin/qna'}
+                  className={({isActive}) => isActive ? styles.active : null}
+                >문의사항</NavLink>
+              </li>
               <li className={styles.menu_li}>게시판관리</li>
             </ul>
           </div>

@@ -1,0 +1,25 @@
+.container{
+  padding: 0px 20px 0px 0px;
+}
+
+.content{
+  gap: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  background-color: #eeeeee;
+  padding: 20px;
+}
+
+.qna_table{
+  width: 100%;
+}
+
+.qna_table td{
+  padding: 10px;
+  vertical-align: top;
+}
+
+.btn_div{
+  text-align: end;
+  margin-right: 10px;
+}

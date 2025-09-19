@@ -11,5 +11,8 @@ public interface QuestionMapper {
   void regQst(QuestionDTO questionDTO);
 
   // 이용자 문의 목록 조회
-  List<QuestionDTO> getQstListForUser(String memId);
+  List<QuestionDTO> getQstList(QuestionDTO questionDTO);
+
+  // 문의 상세 조회 및 답변
+  QuestionDTO getQstDetail(QuestionDTO questionDTO);
 }

@@ -16,6 +16,7 @@ public class QuestionDTO {
   private String memId;
   private LocalDateTime qstDate;
   private String qstStatus;
+  private String memRole;
 
   public QuestionDTO(){
   }

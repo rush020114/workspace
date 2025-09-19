@@ -23,8 +23,15 @@ public class QuestionController {
   }
 
   // 이용자 문의 목록 조회
-  @GetMapping("/{memId}")
-  public List<QuestionDTO> getQstListForUser(@PathVariable("memId") String memId){
-    return questionService.getQstListForUser(memId);
+  @GetMapping("")
+  public List<QuestionDTO> getQstList(QuestionDTO questionDTO){
+    return questionService.getQstList(questionDTO);
+  }
+
+  // 문의 상세 조회 및 답변
+  @GetMapping("/detail")
+  public QuestionDTO getQstDetail(QuestionDTO questionDTO){
+    log.info(questionDTO.toString());
+    return questionService.getQstDetail(questionDTO);
   }
 }

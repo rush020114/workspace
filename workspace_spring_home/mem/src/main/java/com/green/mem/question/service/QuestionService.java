@@ -18,7 +18,12 @@ public class QuestionService {
   }
 
   // 이용자 문의 목록 조회
-  public List<QuestionDTO> getQstListForUser(String memId){
-    return questionMapper.getQstListForUser(memId);
+  public List<QuestionDTO> getQstList(QuestionDTO questionDTO){
+    return questionMapper.getQstList(questionDTO);
+  }
+
+  // 문의 상세 조회 및 답변
+  public QuestionDTO getQstDetail(QuestionDTO questionDTO){
+    return questionMapper.getQstDetail(questionDTO);
   }
 }

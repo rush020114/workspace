@@ -4,8 +4,10 @@ import PageTitle from '../common/PageTitle'
 import Button from '../common/Button'
 import axios from 'axios';
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
 const UserInfo = () => {
+  const nav = useNavigate();
 
   // 로그인 정보를 받아올 변수
   const loginInfo = sessionStorage.getItem('loginInfo');
@@ -18,10 +20,15 @@ const UserInfo = () => {
 
   // 문의 목록을 세팅할 useEffect
   useEffect(() => {
-    axios.get(`/api/questions/${loginData.memId}`)
+    axios.get(`/api/questions`, {params: {
+      memId: loginData.memId
+      , memRole: loginData.memRole
+    }})
     .then(res => setQstList(res.data))
     .catch(e => console.log(e));
   }, []);
+
+  console.log(qstList)
 
   return (
     <div className={styles.container}>
@@ -42,7 +49,7 @@ const UserInfo = () => {
             <tr>
               <td>제목</td>
               <td>진행 상태</td>
-              <td>문의 날짜</td>
+              <td>작성일</td>
               <td>수정</td>
               <td>삭제</td>
             </tr>
@@ -54,9 +61,11 @@ const UserInfo = () => {
               qstList.map((qst, i) => {
                 return(
                   <tr key={i}>
-                    <td>{qst.qstTitle}</td>
+                    <td
+                      onClick={() => nav(`/user/qna-detail/${qst.qstId}`)}
+                    >{qst.qstTitle}</td>
                     <td>{qst.qstStatus}</td>
-                    <td>{dayjs(qst.qstDate).format('YYYY-MM-DD')}</td>
+                    <td>{dayjs(qst.qstDate).format('YYYY-MM-DD HH:mm:ss')}</td>
                     <td>
                       <Button
                         content='수정'

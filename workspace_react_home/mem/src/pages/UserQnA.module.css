@@ -23,3 +23,41 @@
   text-align: end;
   margin-right: 10px;
 }
+
+.file{
+  padding: 3px;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #777777;
+  display: flex;
+  gap: 10px;
+  background-color: white;
+}
+
+.file_btn{
+  background-color: #467b53; 
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.file_btn:hover{
+  background: #578c64;
+}
+
+.file_list > ul{
+  height: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.file_list > ul > li{
+  border: 1px solid #cccccc;
+  background-color: #eeeeee;
+  border-radius: 3px;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  padding: 0px 5px;
+}

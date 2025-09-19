@@ -15,6 +15,8 @@ import BuyList from './pages/BuyList'
 import UserQnA from './pages/UserQnA'
 import AdminQnA from './pages/AdminQnA'
 import UserInfo from './pages/UserInfo'
+import UserQnADetail from './pages/UserQnADetail'
+import AdminQnADetail from './pages/AdminQnADetail'
 
 function App() {
 
@@ -35,8 +37,10 @@ function App() {
           <Route path='reg-clothing' element={<RegClothing />} />
           {/* 구매 정보 조회 */}
           <Route path='buy-list' element={<BuyList />} />
-          {/* 답변 */}
+          {/* 이용자 문의 목록 */}
           <Route path='qna' element={<AdminQnA />} />
+          {/* 답변 */}
+          <Route path='qna-detail/:qstId' element={<AdminQnADetail />} />
         </Route>
         {/* 마이페이지 layout */}
         <Route path='/user' element={<PersonalLayout />}>
@@ -48,6 +52,8 @@ function App() {
           <Route path='qna' element={<UserQnA />} />
           {/* 내정보 */}
           <Route path='info' element={<UserInfo />} />
+          {/* 문의 상세 */}
+          <Route path='qna-detail/:qstId' element={<UserQnADetail />} />
         </Route>
       </Routes>
     </>

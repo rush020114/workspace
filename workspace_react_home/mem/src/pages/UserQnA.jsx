@@ -10,6 +10,9 @@ import { useNavigate } from 'react-router-dom'
 const UserQnA = () => {
   const nav = useNavigate();
 
+  // 선택한 파일들을 저장할 state 변수
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
   // 로그인 정보를 받아올 변수
   const loginInfo = sessionStorage.getItem('loginInfo');
 
@@ -29,6 +32,11 @@ const UserQnA = () => {
       , [e.target.name]: e.target.value
     });
   };
+
+  // 파일을 배열화 시켜줄 함수
+  const handleFileChange = e => {
+    setSelectedFiles(Array.from(e.target.files));
+  }
 
   // 문의 등록 함수
   const regQst = () => {
@@ -79,8 +87,36 @@ const UserQnA = () => {
             <tr>
               <td><h2>첨부 파일</h2></td>
               <td>
-                <input type="file" />
-                <input type="file" multiple/>
+                <div className={styles.file}>
+                  <input 
+                    type="file" 
+                    id="file-upload" 
+                    multiple
+                    style={{display: 'none'}} 
+                    onChange={e => handleFileChange(e)}
+                  />
+                  {/* for 속성은 어떤 input요소와 연결되는지를 지정하는 속성 */}
+                  <label htmlFor="file-upload" className={styles.file_btn}>
+                    파일 선택
+                  </label>
+                  <div className={styles.file_list}>
+                    {
+                      selectedFiles.length > 0 
+                      ?
+                      <ul>
+                        {
+                          selectedFiles.map((file, i) => {
+                            return(
+                              <li key={i}>{file.name}</li>
+                            )
+                          })
+                        }
+                      </ul>
+                      :
+                      '선택된 파일 없음'
+                    }
+                  </div>
+                </div>
               </td>
             </tr>
           </tbody>

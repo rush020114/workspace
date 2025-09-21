@@ -10,6 +10,9 @@ const UserQnADetail = () => {
   // 문의 상세 데이터 조회를 pk를 얻기 위한 params hook
   const {qstId} = useParams();
 
+  // 답변 정보를 저장할 state 변수
+  const [answerData, setAnswerData] = useState({});
+
   // 로그인 정보를 받아올 변수
   const loginInfo = sessionStorage.getItem('loginInfo');
 
@@ -29,7 +32,15 @@ const UserQnADetail = () => {
     .catch(e => console.log(e));
   }, []);
 
+  // 답변 정보를 조회할 useEffect
+  useEffect(() => {
+    axios.get(`/api/answers/${qstId}`)
+    .then(res => setAnswerData(res.data))
+    .catch(e => console.log(e));
+  }, []);
+
   console.log(qstDetail)
+  console.log(answerData)
 
   return (
     <div className={styles.container}>
@@ -37,23 +48,25 @@ const UserQnADetail = () => {
         title='문의'
         fontSize='2rem'
       />
-      <div className={styles.qna_img} style={{width: '200px'}}>
-        <div className={styles.img_div}>
-        {
-          qstDetail.questionImgDTOList
-          &&
-          qstDetail.questionImgDTOList.map((img, i) => {
-            if(img.isMain === 'Y'){
-              return(
-                <img 
-                  key={i}
-                  src={`http://localhost:8080/answer_upload/${img.attachedImgName}`} 
-                  style={{width: '100%'}} 
-                />
-              )
-            }
-          })
-        }
+      <div className={styles.content}>
+        <div className={styles.qna_img} style={{width: '200px'}}>
+          <div className={styles.img_div}>
+          {
+            qstDetail.questionImgDTOList
+            &&
+            qstDetail.questionImgDTOList.map((img, i) => {
+              if(img.isMain === 'Y'){
+                return(
+                  <img 
+                    key={i}
+                    src={`http://localhost:8080/answer_upload/${img.attachedImgName}`} 
+                    style={{width: '100%'}} 
+                  />
+                )
+              }
+            })
+          }
+          </div>
         </div>
         <table className={styles.qna_table}>
           <colgroup>
@@ -79,6 +92,35 @@ const UserQnADetail = () => {
             </tr>
           </tbody>
         </table>
+        {
+        qstDetail.qstStatus === '답변완료'
+        &&
+        <div className={styles.answer_div}>
+          <table className={styles.qna_table}>
+            <colgroup>
+              <col width='16.66%' />
+              <col width='16.66%' />
+              <col width='16.66%' />
+              <col width='16.66%' />
+              <col width='16.66%' />
+              <col width='16.66%' />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>문의 번호</td>
+                <td>{answerData.qstId}</td>
+                <td>답변자</td>
+                <td>{answerData.memId}</td>
+                <td>답변 날짜</td>
+                <td>{dayjs(answerData.ansDate).format('YYYY-MM-DD HH:mm:ss')}</td>
+              </tr>
+              <tr>
+                <td colSpan={6}>{answerData.ansContent}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        }
       </div>
     </div>
   )

@@ -51,7 +51,7 @@ const UserInfo = () => {
               <td>제목</td>
               <td>진행 상태</td>
               <td>작성일</td>
-              <td colSpan={2}>관리</td>
+              <td>관리</td>
             </tr>
           </thead>
           <tbody>
@@ -68,14 +68,18 @@ const UserInfo = () => {
                     <td>{qst.qstStatus}</td>
                     <td>{dayjs(qst.qstDate).format('YYYY-MM-DD HH:mm:ss')}</td>
                     <td>
-                      <Button
-                        content='수정'
-                      />
-                    </td>
-                    <td>
-                      <Button
-                        content='삭제'
-                      />
+                      <div className={styles.manage_qna}>
+                      {
+                        qst.qstStatus === '진행중'
+                        &&
+                        <Button
+                          content='수정'
+                        />
+                      }
+                        <Button
+                          content='삭제'
+                        />
+                      </div>
                     </td>
                   </tr>
                 )

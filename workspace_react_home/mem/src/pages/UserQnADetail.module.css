@@ -24,3 +24,7 @@
 .qna_table tr:last-child{
   height: 300px;
 }
+
+.answer_div{
+  margin-top: 20px;
+}

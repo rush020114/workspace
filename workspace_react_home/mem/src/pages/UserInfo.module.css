@@ -26,3 +26,9 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+.manage_qna{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}

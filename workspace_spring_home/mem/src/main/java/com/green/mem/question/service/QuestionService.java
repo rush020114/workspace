@@ -40,6 +40,9 @@ public class QuestionService {
 
   // 문의 상세 조회 및 답변
   public QuestionDTO getQstDetail(QuestionDTO questionDTO){
+    questionDTO.setImgCnt(questionMapper.getImgCnt(questionDTO.getQstId()));
     return questionMapper.getQstDetail(questionDTO);
   }
+
+
 }

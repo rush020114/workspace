@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @ToString
 public class AnswerDTO {
   private int ansId;
-  private String ansTitle;
   private String ansContent;
   private String qstId;
   private String memId;

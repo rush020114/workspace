@@ -12,6 +12,7 @@
 
 .qna_table{
   width: 100%;
+  margin: 20px 0px;
 }
 
 .qna_table td{
@@ -28,4 +29,10 @@
 .btn_div{
   text-align: end;
   margin-top: 20px;
+}
+
+.answer_div{
+  background-color: white;
+  border: 1px solid #cccccc;
+  padding: 5px;
 }

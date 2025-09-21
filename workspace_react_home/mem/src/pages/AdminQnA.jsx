@@ -37,19 +37,19 @@ const AdminQnA = () => {
       <div className={styles.content}>
         <table className={styles.table}>
           <colgroup>
+            <col width='5%' />
             <col width='50%' />
             <col width='10%' />
             <col width='10%' />
-            <col width='20%' />
-            <col width='10%' />
+            <col width='25%' />
           </colgroup>
           <thead>
             <tr>
+              <td>No</td>
               <td>제목</td>
               <td>문의자</td>
               <td>진행 상태</td>
               <td>작성일</td>
-              <td>답변</td>
             </tr>
           </thead>
           <tbody>
@@ -59,17 +59,13 @@ const AdminQnA = () => {
               qstList.map((qst, i) => {
                 return(
                   <tr key={i}>
+                    <td>{qstList.length - i}</td>
                     <td
                       onClick={() => nav(`/admin/qna-detail/${qst.qstId}`)}
                     >{qst.qstTitle}</td>
                     <td>{qst.memId}</td>
                     <td>{qst.qstStatus}</td>
                     <td>{dayjs(qst.qstDate).format('YYYY-MM-DD HH:mm:ss')}</td>
-                    <td>
-                      <Button
-                        content='답 변'
-                      />
-                    </td>
                   </tr>
                 )
               })

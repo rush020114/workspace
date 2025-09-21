@@ -20,6 +20,9 @@ public class QuestionDTO {
   private String memRole;
   private List<QuestionImgDTO> questionImgDTOList;
 
+  // 문의 테이블 등록 시 사진 등록 안 할 때 문의 테이블 조인 조회 시 사진 테이블을 조회하지 않게 하는 변수
+  private int imgCnt;
+
   public QuestionDTO(){
   }
 }

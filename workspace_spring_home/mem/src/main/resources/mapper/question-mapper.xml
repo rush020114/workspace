@@ -52,9 +52,16 @@
         ORDER BY QST_DATE DESC
     </select>
 
+    <!-- 문의 테이블 등록 시 사진 등록 안 할 때 문의 테이블 조인 조회 시 사진 테이블을 조회하지 않게 하는 쿼리 -->
+    <select id="getImgCnt" resultType="int">
+        SELECT COUNT(IMG_NUM)
+        FROM question_img
+        WHERE QST_ID = #{qstId};
+    </select>
+
     <!-- 문의 상세 조회 및 답변 -->
     <select id="getQstDetail" resultMap="question">
-        SELECT QST_ID
+        SELECT Q.QST_ID
             , QST_TITLE
             , QST_CONTENT
         <if test="memRole.equals('ADMIN')">
@@ -62,8 +69,16 @@
         </if>
             , QST_DATE
             , QST_STATUS
-        FROM QUESTION
-        WHERE QST_ID = #{qstId}
+        <if test="imgCnt != 0">
+            , ATTACHED_IMG_NAME
+            , IS_MAIN
+        </if>
+        FROM QUESTION Q
+    <if test="imgCnt != 0">
+        INNER JOIN QUESTION_IMG I
+        ON Q.QST_ID = I.QST_ID
+    </if>
+        WHERE Q.QST_ID = #{qstId}
     </select>
 
     <!-- 문의 등록 전 qstId 조회 -->
@@ -89,4 +104,11 @@
         )
     </foreach>
     </insert>
+
+    <!-- 답변 등록 시 문의 상태 바꾸기 -->
+    <update id="updateQstStatus">
+        UPDATE QUESTION
+        SET QST_STATUS = "답변완료"
+        WHERE QST_ID = #{qstId}
+    </update>
 </mapper>

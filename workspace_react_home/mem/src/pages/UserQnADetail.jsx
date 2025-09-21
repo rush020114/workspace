@@ -37,7 +37,24 @@ const UserQnADetail = () => {
         title='문의'
         fontSize='2rem'
       />
-      <div className={styles.content}>
+      <div className={styles.qna_img} style={{width: '200px'}}>
+        <div className={styles.img_div}>
+        {
+          qstDetail.questionImgDTOList
+          &&
+          qstDetail.questionImgDTOList.map((img, i) => {
+            if(img.isMain === 'Y'){
+              return(
+                <img 
+                  key={i}
+                  src={`http://localhost:8080/answer_upload/${img.attachedImgName}`} 
+                  style={{width: '100%'}} 
+                />
+              )
+            }
+          })
+        }
+        </div>
         <table className={styles.qna_table}>
           <colgroup>
             <col width='16.66%' />

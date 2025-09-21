@@ -3,6 +3,7 @@ package com.green.mem.question.controller;
 import com.green.mem.question.dto.QuestionDTO;
 import com.green.mem.question.dto.QuestionImgDTO;
 import com.green.mem.question.service.QuestionService;
+import com.green.mem.util.QuestionUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

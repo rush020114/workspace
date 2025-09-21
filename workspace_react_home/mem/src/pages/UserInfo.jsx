@@ -39,19 +39,19 @@ const UserInfo = () => {
       <div className={styles.content}>
         <table className={styles.table}>
           <colgroup>
-            <col width='50%' />
+            <col width='5%' />
+            <col width='45%' />
             <col width='10%' />
-            <col width='20%' />
-            <col width='10%' />
+            <col width='30%' />
             <col width='10%' />
           </colgroup>
           <thead>
             <tr>
+              <td>No</td>
               <td>제목</td>
               <td>진행 상태</td>
               <td>작성일</td>
-              <td>수정</td>
-              <td>삭제</td>
+              <td colSpan={2}>관리</td>
             </tr>
           </thead>
           <tbody>
@@ -61,6 +61,7 @@ const UserInfo = () => {
               qstList.map((qst, i) => {
                 return(
                   <tr key={i}>
+                    <td>{qstList.length - i}</td>
                     <td
                       onClick={() => nav(`/user/qna-detail/${qst.qstId}`)}
                     >{qst.qstTitle}</td>
@@ -81,7 +82,10 @@ const UserInfo = () => {
               })
               :
               <tr>
-                <td colSpan={5}>문의 목록이 존재하지 않습니다.</td>
+                <td 
+                  colSpan={5}
+                  style={{textDecoration: 'none', cursor: 'default', padding: '30px'}}
+                >문의 목록이 존재하지 않습니다.</td>
               </tr>
             }
           </tbody>

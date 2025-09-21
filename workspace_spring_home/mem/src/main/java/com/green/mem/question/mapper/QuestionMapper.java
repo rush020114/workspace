@@ -1,6 +1,7 @@
 package com.green.mem.question.mapper;
 
 import com.green.mem.question.dto.QuestionDTO;
+import com.green.mem.question.dto.QuestionImgDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,4 +16,11 @@ public interface QuestionMapper {
 
   // 문의 상세 조회 및 답변
   QuestionDTO getQstDetail(QuestionDTO questionDTO);
+
+  // 문의 번호 조회
+  int getQstId();
+
+  // 문의 이미지 등록
+  void regQuestionImgList(List<QuestionImgDTO> questionImgDTOList);
+
 }

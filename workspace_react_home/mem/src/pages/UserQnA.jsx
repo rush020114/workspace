@@ -10,8 +10,11 @@ import { useNavigate } from 'react-router-dom'
 const UserQnA = () => {
   const nav = useNavigate();
 
-  // 선택한 파일들을 저장할 state 변수
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  // 선택한 메인파일을 저장할 state 변수
+  const [mainImg, setMainImg] = useState(null);
+
+  // 선택한 상세파일들을 저장할 state 변수
+  const [subImgs, setSubImgs] = useState([]);
 
   // 로그인 정보를 받아올 변수
   const loginInfo = sessionStorage.getItem('loginInfo');
@@ -33,20 +36,32 @@ const UserQnA = () => {
     });
   };
 
-  // 파일을 배열화 시켜줄 함수
-  const handleFileChange = e => {
-    setSelectedFiles(Array.from(e.target.files));
-  }
 
   // 문의 등록 함수
   const regQst = () => {
-    axios.post('/api/questions', {...qstData, memId: loginData.memId})
+
+    const fileConfig = {'Content-Type': 'multipart/form-data'};
+
+    const formData = new FormData();
+    formData.append('mainImg', mainImg);
+
+    for(const img of subImgs){
+      formData.append('subImgs', img);
+    };
+    formData.append('qstTitle', qstData.qstContent);
+    formData.append('qstContent', qstData.qstContent);
+    formData.append('memId', loginData.memId);
+
+
+    axios.post('/api/questions', formData, fileConfig)
     .then(res => {
       alert('등록완료');
       nav('/user/info')
     })
     .catch(e => console.log(e));
   };
+  console.log(mainImg)
+  console.log(subImgs)
 
   return (
     <div className={styles.container}>
@@ -88,24 +103,42 @@ const UserQnA = () => {
               <td><h2>첨부 파일</h2></td>
               <td>
                 <div className={styles.file}>
-                  <input 
+                  <input
                     type="file" 
-                    id="file-upload" 
-                    multiple
-                    style={{display: 'none'}} 
-                    onChange={e => handleFileChange(e)}
+                    id='file-upload'
+                    style={{display: 'none'}}
+                    onChange={e => setMainImg(e.target.files[0])}
                   />
-                  {/* for 속성은 어떤 input요소와 연결되는지를 지정하는 속성 */}
                   <label htmlFor="file-upload" className={styles.file_btn}>
-                    파일 선택
+                    메인 이미지
                   </label>
                   <div className={styles.file_list}>
                     {
-                      selectedFiles.length > 0 
+                      mainImg
+                      ?
+                      mainImg.name
+                      :
+                      '선택된 파일 없음'
+                    }
+                  </div>
+                  <input 
+                    type="file" 
+                    id="file-upload-detail" 
+                    multiple
+                    style={{display: 'none'}} 
+                    onChange={e => setSubImgs(Array.from(e.target.files))}
+                  />
+                  {/* for 속성은 어떤 input요소와 연결되는지를 지정하는 속성 */}
+                  <label htmlFor="file-upload-detail" className={styles.file_btn}>
+                    상세 이미지
+                  </label>
+                  <div className={styles.file_list}>
+                    {
+                      subImgs.length > 0 
                       ?
                       <ul>
                         {
-                          selectedFiles.map((file, i) => {
+                          subImgs.map((file, i) => {
                             return(
                               <li key={i}>{file.name}</li>
                             )

@@ -1,11 +1,15 @@
 package com.green.mem.question.controller;
 
 import com.green.mem.question.dto.QuestionDTO;
+import com.green.mem.question.dto.QuestionImgDTO;
 import com.green.mem.question.service.QuestionService;
+import com.green.mem.util.QuestionUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -17,9 +21,25 @@ public class QuestionController {
 
   // 문의 등록
   @PostMapping("")
-  public void regQst(@RequestBody QuestionDTO questionDTO){
-    log.info(questionDTO.toString());
-    questionService.regQst(questionDTO);
+  public void regQst(@RequestParam(name = "mainImg", required = false) MultipartFile mainImg
+                     , @RequestParam(name = "subImgs", required = false) MultipartFile[] subImgs
+                     , QuestionDTO questionDTO){
+
+    List<QuestionImgDTO> questionImgDTOList = new ArrayList<>();
+
+    // 메인 이미지가 있을 때만 업로드
+    if (mainImg != null && !mainImg.isEmpty()) {
+      QuestionImgDTO questionImgDTO = QuestionUploadUtil.questionUpload(mainImg);
+      questionImgDTOList.add(questionImgDTO);
+    }
+
+    // 서브 이미지가 있을 때만 업로드
+    if (subImgs != null && subImgs.length > 0) {
+      questionImgDTOList.addAll(QuestionUploadUtil.multipleQuestionUpload(subImgs));
+    }
+
+    questionService.regQst(questionDTO, questionImgDTOList);
+
   }
 
   // 이용자 문의 목록 조회

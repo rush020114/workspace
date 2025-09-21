@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,6 +18,7 @@ public class QuestionDTO {
   private LocalDateTime qstDate;
   private String qstStatus;
   private String memRole;
+  private List<QuestionImgDTO> questionImgDTOList;
 
   public QuestionDTO(){
   }

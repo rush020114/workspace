@@ -22,7 +22,7 @@
   background-color: #fcfcfc;
 }
 
-.table > tbody > tr > td:first-child:hover{
+.table > tbody > tr > td:nth-child(2):hover{
   cursor: pointer;
   text-decoration: underline;
 }

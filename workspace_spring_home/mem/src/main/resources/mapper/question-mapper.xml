@@ -11,6 +11,16 @@
         <result column="MEM_ID"      property="memId" />
         <result column="QST_DATE"    property="qstDate" />
         <result column="QST_STATUS"    property="qstStatus" />
+        <collection property="questionImgDTOList" resultMap="questionImg" />
+    </resultMap>
+
+    <!-- 문의 이미지 resultMap -->
+    <resultMap id="questionImg" type="com.green.mem.question.dto.QuestionImgDTO">
+        <id     column="IMG_NUM" property="imgNum" />
+        <result column="ORIGIN_IMG_NAME" property="originImgName" />
+        <result column="ATTACHED_IMG_NAME" property="attachedImgName" />
+        <result column="QST_ID" property="qstId" />
+        <result column="IS_MAIN" property="isMain" />
     </resultMap>
 
     <!-- 문의 등록 -->
@@ -55,4 +65,28 @@
         FROM QUESTION
         WHERE QST_ID = #{qstId}
     </select>
+
+    <!-- 문의 등록 전 qstId 조회 -->
+    <select id="getQstId" resultType="int">
+        SELECT IFNULL(MAX(QST_ID), 0) + 1 QST_ID
+        FROM QUESTION
+    </select>
+
+    <!-- 문의 이미지 등록 -->
+    <insert id="regQuestionImgList">
+        INSERT INTO QUESTION_IMG (
+            ORIGIN_IMG_NAME
+            , ATTACHED_IMG_NAME
+            , IS_MAIN
+            , QST_ID
+        ) VALUES
+    <foreach collection="questionImgDTOList" item="questionImg" separator=",">
+        (
+            #{questionImg.originImgName}
+            , #{questionImg.attachedImgName}
+            , #{questionImg.isMain}
+            , #{questionImg.qstId}
+        )
+    </foreach>
+    </insert>
 </mapper>

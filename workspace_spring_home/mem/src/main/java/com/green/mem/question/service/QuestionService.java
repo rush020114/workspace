@@ -1,9 +1,11 @@
 package com.green.mem.question.service;
 
 import com.green.mem.question.dto.QuestionDTO;
+import com.green.mem.question.dto.QuestionImgDTO;
 import com.green.mem.question.mapper.QuestionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,9 +14,23 @@ import java.util.List;
 public class QuestionService {
   public final QuestionMapper questionMapper;
 
-  // 문의 등록
-  public void regQst(QuestionDTO questionDTO){
+  // 문의 등록과 이미지 등록
+  @Transactional(rollbackFor = Exception.class)
+  public void regQst(QuestionDTO questionDTO, List<QuestionImgDTO> questionImgDTOList){
+    int nextQstId = questionMapper.getQstId();
+
+    // 문의 등록
     questionMapper.regQst(questionDTO);
+
+    // 이미지 등록
+    if (questionImgDTOList.size() > 0) {
+      for(QuestionImgDTO imgs : questionImgDTOList){
+        imgs.setQstId(nextQstId);
+      }
+      questionMapper.regQuestionImgList(questionImgDTOList);
+    }
+
+
   }
 
   // 이용자 문의 목록 조회

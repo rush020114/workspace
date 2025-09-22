@@ -48,7 +48,7 @@ const UserQnA = () => {
     for(const img of subImgs){
       formData.append('subImgs', img);
     };
-    formData.append('qstTitle', qstData.qstContent);
+    formData.append('qstTitle', qstData.qstTitle);
     formData.append('qstContent', qstData.qstContent);
     formData.append('memId', loginData.memId);
 

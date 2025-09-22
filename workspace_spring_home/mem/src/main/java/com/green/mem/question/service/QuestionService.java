@@ -44,5 +44,14 @@ public class QuestionService {
     return questionMapper.getQstDetail(questionDTO);
   }
 
+  // 문의 삭제
+  public void deleteQst(int qstId){
+    questionMapper.deleteQst(qstId);
+  }
+
+  // 문의 수정
+  public void updateQst(QuestionDTO questionDTO){
+    questionMapper.updateQst(questionDTO);
+  }
 
 }

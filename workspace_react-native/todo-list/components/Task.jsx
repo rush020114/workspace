@@ -5,18 +5,20 @@ import React from 'react'
 import del_img from '@/assets/icon/delete.png'
 import edit_img from '@/assets/icon/edit.png'
 
-const Task = () => {
+const Task = ({todo}) => {
   return (
     <View style={styles.task_back}>
-      <Text style={styles.todo}>할 일 내용</Text>
-      <Image 
-        source={edit_img}
-        style={styles.img}
-      />
-      <Image
-        source={del_img}
-        style={styles.img}
-      />
+      <Text style={styles.todo}>{todo.todoTitle}</Text>
+      <View style={styles.todo_view}>
+        <Image 
+          source={edit_img}
+          style={styles.img}
+        />
+        <Image
+          source={del_img}
+          style={styles.img}
+        />
+      </View>
     </View>
   )
 }
@@ -28,16 +30,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#eeeeee',
     padding: 15,
     flexDirection: 'row',
+    alignItems: 'center',
     gap: 5
   },
 
   todo: {
     fontSize: 20,
-    width: '80%',
-    verticalAlign: 'middle'
+    verticalAlign: 'middle',
   },
 
-  img: {
-    width: '10%',
+  todo_view: {
+    marginLeft: 'auto',
+    flexDirection: 'row',
+    gap: 10
   }
 })

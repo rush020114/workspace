@@ -6,8 +6,11 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
-const UserInfo = () => {
+const UserInfo = ({setIsOkayUpdate}) => {
   const nav = useNavigate();
+    
+  // 화면 리렌더링 도와줄 변수
+  const [reload, setReload] = useState(0);
 
   // 로그인 정보를 받아올 변수
   const loginInfo = sessionStorage.getItem('loginInfo');
@@ -26,7 +29,19 @@ const UserInfo = () => {
     }})
     .then(res => setQstList(res.data))
     .catch(e => console.log(e));
-  }, []);
+  }, [reload]);
+
+  // 문의 삭제 함수
+  const delQst = qstId => {
+    confirm('삭제하시겠습니까?')
+    &&
+    axios.delete(`/api/questions/${qstId}`)
+    .then(res => {
+      alert('삭제완료');
+      setReload(reload + 1)
+    })
+    .catch(e => console.log(e));
+  };
 
   console.log(qstList)
 
@@ -74,10 +89,15 @@ const UserInfo = () => {
                         &&
                         <Button
                           content='수정'
+                          onClick={() => {
+                            setIsOkayUpdate()
+                            nav(`/user/qna-detail/${qst.qstId}`);
+                          }}
                         />
                       }
                         <Button
                           content='삭제'
+                          onClick={() => delQst(qst.qstId)}
                         />
                       </div>
                     </td>

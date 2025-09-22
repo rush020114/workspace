@@ -54,4 +54,17 @@ public class QuestionController {
     log.info(questionDTO.toString());
     return questionService.getQstDetail(questionDTO);
   }
+
+  // 문의 삭제
+  @DeleteMapping("/{qstId}")
+  public void deleteQst(@PathVariable("qstId") int qstId){
+    questionService.deleteQst(qstId);
+  }
+
+  // 문의 수정
+  @PutMapping("/{qstId}")
+  public void updateQst(@PathVariable("qstId") int qstId, @RequestBody QuestionDTO questionDTO){
+    questionDTO.setQstId(qstId);
+    questionService.updateQst(questionDTO);
+  }
 }

@@ -29,4 +29,10 @@ public interface QuestionMapper {
 
   // 문의 테이블 등록 시 사진 등록 안 할 때 문의 테이블 조인 조회 시 사진 테이블을 조회하지 않게 하는 메서드
   int getImgCnt(int qstId);
+
+  // 문의 삭제
+  void deleteQst(int qstId);
+
+  // 문의 수정
+  void updateQst(QuestionDTO questionDTO);
 }

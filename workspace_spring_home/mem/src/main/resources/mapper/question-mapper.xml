@@ -111,4 +111,18 @@
         SET QST_STATUS = "답변완료"
         WHERE QST_ID = #{qstId}
     </update>
+
+    <!-- 문의 삭제 -->
+    <delete id="deleteQst">
+        DELETE FROM QUESTION
+        WHERE QST_ID = #{qstId}
+    </delete>
+
+    <!-- 문의 수정 -->
+    <update id="updateQst">
+        UPDATE QUESTION
+        SET QST_TITLE = #{qstTitle}
+            , QST_CONTENT = #{qstContent}
+        WHERE QST_ID = #{qstId}
+    </update>
 </mapper>

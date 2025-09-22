@@ -20,6 +20,8 @@ import AdminQnADetail from './pages/AdminQnADetail'
 
 function App() {
 
+  // 수정 클릭 시 수정페이지로 바꿀 state 변수
+  const [isOkayUpdate, setIsOkayUpdate] = useState(false);
 
   return (
     <>
@@ -51,9 +53,13 @@ function App() {
           {/* 문의 */}
           <Route path='qna' element={<UserQnA />} />
           {/* 내정보 */}
-          <Route path='info' element={<UserInfo />} />
+          <Route path='info' element={<UserInfo 
+            setIsOkayUpdate={() => setIsOkayUpdate(true)}
+          />} />
           {/* 문의 상세 */}
-          <Route path='qna-detail/:qstId' element={<UserQnADetail />} />
+          <Route path='qna-detail/:qstId' element={<UserQnADetail 
+            isOkayUpdate={isOkayUpdate}
+          />} />
         </Route>
       </Routes>
     </>

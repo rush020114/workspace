@@ -4,11 +4,17 @@ import PageTitle from '../common/PageTitle'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import Input from '../common/Input'
+import Textarea from '../common/Textarea'
+import Button from '../common/Button'
 
-const UserQnADetail = () => {
+const UserQnADetail = ({isOkayUpdate}) => {
 
   // 문의 상세 데이터 조회를 pk를 얻기 위한 params hook
   const {qstId} = useParams();
+
+  // 문의 수정 데이터를 저장할 state 변수
+  const [updateQst, setUpdateQst] = useState({})
 
   // 답변 정보를 저장할 state 변수
   const [answerData, setAnswerData] = useState({});
@@ -21,6 +27,21 @@ const UserQnADetail = () => {
 
   // 문의 상세 데이터를 저장할 state 변수
   const [qstDetail, setQstDetail] = useState([]);
+
+  // 문의 수정 데이터를 얻을 useEffect
+  useEffect(() => {
+    if(!qstDetail.qstTitle){
+      return;
+    }
+    setUpdateQst(qstDetail);
+  }, [qstDetail]);
+  
+  // 문의 수정 함수
+  const updateQstData = () => {
+    axios.put(`/api/questions/${qstId}`, qstDetail)
+    .then(res => alert('수정완료'))
+    .catch(e => console.log(e));
+  }
 
   // 문의 상세 데이터를 조회할 useEffect
   useEffect(() => {
@@ -39,8 +60,16 @@ const UserQnADetail = () => {
     .catch(e => console.log(e));
   }, []);
 
+  // 문의 수정 함수
+  const handleQstData = e => {
+    setUpdateQst({
+      ...updateQst
+      , [e.target.name]: e.target.value
+    });
+  };
+
   console.log(qstDetail)
-  console.log(answerData)
+  console.log(updateQst)
 
   return (
     <div className={styles.container}>
@@ -80,7 +109,20 @@ const UserQnADetail = () => {
           <tbody>
             <tr>
               <td>제목</td>
-              <td>{qstDetail.qstTitle}</td>
+              <td>
+              {
+                !isOkayUpdate
+                ?
+                qstDetail.qstTitle
+                :
+                <Input 
+                  size='100%'
+                  name='qstTitle'
+                  value={updateQst.qstTitle}
+                  onChange={e => handleQstData(e)}
+                />
+              }
+              </td>
               <td>작성일</td>
               <td>{dayjs(qstDetail.qstDate).format('YYYY-MM-DD HH:mm:ss')}</td>
               <td>진행상황</td>
@@ -88,7 +130,21 @@ const UserQnADetail = () => {
             </tr>
             <tr>
               <td>내용</td>
-              <td colSpan={5}>{qstDetail.qstContent}</td>
+              <td colSpan={5}>
+              {
+                !isOkayUpdate
+                ?
+                qstDetail.qstContent
+                :
+                <Textarea 
+                  size='100%'
+                  rows='15'
+                  name='qstContent'
+                  value={updateQst.qstContent}
+                  onChange={e => handleQstData(e)}
+                />
+              }
+              </td>
             </tr>
           </tbody>
         </table>
@@ -120,6 +176,18 @@ const UserQnADetail = () => {
             </tbody>
           </table>
         </div>
+        }
+        {
+        isOkayUpdate
+        ?
+        <div className={styles.btn_div}>
+          <Button 
+            content='수 정'
+            onClick={() => updateQstData()}
+          />
+        </div>
+        :
+        null
         }
       </div>
     </div>

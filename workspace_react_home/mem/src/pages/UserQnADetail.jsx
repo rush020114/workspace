@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './UserQnADetail.module.css'
 import PageTitle from '../common/PageTitle'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import Input from '../common/Input'
@@ -9,6 +9,7 @@ import Textarea from '../common/Textarea'
 import Button from '../common/Button'
 
 const UserQnADetail = ({isOkayUpdate}) => {
+  const nav = useNavigate();
 
   // 문의 상세 데이터 조회를 pk를 얻기 위한 params hook
   const {qstId} = useParams();
@@ -38,8 +39,11 @@ const UserQnADetail = ({isOkayUpdate}) => {
   
   // 문의 수정 함수
   const updateQstData = () => {
-    axios.put(`/api/questions/${qstId}`, qstDetail)
-    .then(res => alert('수정완료'))
+    axios.put(`/api/questions/${qstId}`, updateQst)
+    .then(res => {
+      alert('수정완료');
+      nav('/user/info');
+    })
     .catch(e => console.log(e));
   }
 

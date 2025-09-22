@@ -10,7 +10,7 @@
     </resultMap>
 
     <!-- 할일 목록 조회 -->
-    <select id="getTodoList">
+    <select id="getTodoList" resultMap="todo">
         SELECT TODO_NUM
             , TODO_TITLE
         FROM TODO

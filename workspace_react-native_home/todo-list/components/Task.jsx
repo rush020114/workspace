@@ -5,10 +5,11 @@ import del_img from '../assets/icons/delete.png'
 import edit_img from '../assets/icons/edit.png'
 
 // 통상적으로 app도 필요한 것들을 comoponent로 구성해 사용한다.
-const Task = () => {
+// 필요한 데이터를 props로 전달해 사용한다.
+const Task = ({todo}) => {
   return (
     <View style={styles.task_back}>
-      <Text>할 일 내용</Text>
+      <Text>{todo.todoTitle}</Text>
       <View style={styles.icon_view}>
         {/* 이미지 사용 방법은 react native에서 확안한다. 그 방법 중 선택한 것이다. */}
         <Image 

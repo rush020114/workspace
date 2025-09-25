@@ -59,8 +59,16 @@ const BookDetail = () => {
       , memId: JSON.parse(loginInfo).memId
       , buyCnt: cnt
     })
-    .then(res => alert('구매완료'))
-    .catch(e => console.log(e));
+    .then(res => {
+      // 서버에서 보낸 created는 201로 받는다. 
+      // 201이 반환됐다는 뜻은 통신 성공이라는 뜻
+      if(res.status === 201){
+        alert('구매완료');
+      }
+    })
+    // 서버에서 예와가 발생하면 통신 오류이므로 catch함수에서 받을 수 있다.
+    // 서버에서 body로 보낸 데이터는 e.response.data로 받을 수 있다.
+    .catch(e => alert(e.response.data));
   };
   console.log(bookDetail)
 

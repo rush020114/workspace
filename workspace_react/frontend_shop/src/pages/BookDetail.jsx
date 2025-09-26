@@ -61,8 +61,12 @@ const BookDetail = () => {
       , memId: loginData.memId
       , buyCnt: inputNumber
     })
-    .then(res => alert('구매완료'))
-    .catch(e => console.log(e));
+    .then(res => {
+      if(res.status === 201){
+        alert('구매완료');
+      }
+    })
+    .catch(e => alert(e.response.data));
   };
 
   console.log(bookDetail)

@@ -6,7 +6,7 @@ import styles from './Login.module.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const Login = ({isOpenLogin, onClose}) => {
+const Login = ({isOpenLogin, onClose, onLogin}) => {
 
   const nav = useNavigate();
 
@@ -30,11 +30,18 @@ const Login = ({isOpenLogin, onClose}) => {
     .then(res => {
       if(res.data){
         alert('환영합니다.');
-        sessionStorage.setItem('loginInfo', JSON.stringify({
-          memId: res.data.memId
-          , memName: res.data.memName
-          , memRole: res.data.memRole
-        }));
+        
+        const userInfo = {
+          memId: res.data.memId,
+          memName: res.data.memName,
+          memRole: res.data.memRole
+        };
+        
+        sessionStorage.setItem('loginInfo', JSON.stringify(userInfo));
+        console.log('💾 sessionStorage 저장 완료:', userInfo); // ← 확인
+        
+        onLogin();
+
         if(res.data.memRole === 'ADMIN'){
           nav('/admin/reg-clothing');
         }

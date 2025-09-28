@@ -1,5 +1,6 @@
 package com.green.mem.question.controller;
 
+import com.green.mem.common.NotificationController;
 import com.green.mem.question.dto.QuestionDTO;
 import com.green.mem.question.dto.QuestionImgDTO;
 import com.green.mem.question.service.QuestionService;
@@ -18,6 +19,7 @@ import java.util.List;
 @RequestMapping("/questions")
 public class QuestionController {
   private final QuestionService questionService;
+  private final NotificationController notificationController;  // ← 추가!
 
   // 문의 등록
   @PostMapping("")
@@ -39,6 +41,9 @@ public class QuestionController {
     }
 
     questionService.regQst(questionDTO, questionImgDTOList);
+
+    // 관리자에게 알림!
+    notificationController.notifyAdmin("새 문의가 등록되었습니다!");
 
   }
 

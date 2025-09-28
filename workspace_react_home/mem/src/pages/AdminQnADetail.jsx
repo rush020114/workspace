@@ -58,6 +58,7 @@ const AdminQnADetail = () => {
       ansContent: !isOkayAnswer ? ansContent : updateAnswer
       , qstId
       , memId: loginData.memId
+      , userId: qstDetail.memId
     })
     .then(res => {
       alert('답변 완료');

@@ -4,10 +4,13 @@ import PageTitle from '../common/PageTitle'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import Button from '../common/Button'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
 
 const AdminQnA = () => {
   const nav = useNavigate();
+
+  // outlet으로 전달된 notiCnt를 받기 위한 hook
+  const {notiCnt} = useOutletContext(); 
 
   // 로그인 정보를 받아올 변수
   const loginInfo = sessionStorage.getItem('loginInfo')
@@ -26,7 +29,7 @@ const AdminQnA = () => {
     }})
     .then(res => setQstList(res.data))
     .catch(e => console.log(e));
-  }, []);
+  }, [notiCnt]);
 
   return (
     <div>

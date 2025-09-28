@@ -4,7 +4,7 @@ import Login from '../components/Login'
 import SignUp from '../components/SignUp';
 import { useNavigate } from 'react-router-dom';
 
-const UserHeader = () => {
+const UserHeader = ({onLogin, onLogout, notiCnt}) => {
 
   const nav = useNavigate();
 
@@ -19,6 +19,8 @@ const UserHeader = () => {
 
   // 회원가입 모달 여는 state 변수
   const [isOpenSignUp, setIsOpenSignUp] = useState(false);
+
+  console.log(notiCnt);
 
   return (
     <div className={styles.header}>
@@ -40,10 +42,21 @@ const UserHeader = () => {
               <p>{loginData.memId}님 환영합니다.</p>
               <p
                 onClick={() => nav('/user/cart-list')}
-              >마이페이지</p>
+                style={{position: 'relative'}}
+              >
+                마이페이지
+                {notiCnt > 0 && (
+                  <span className='badge'>
+                    {notiCnt > 99 ? '99+' : notiCnt}
+                  </span>
+                )}
+              </p>
               <p 
                 onClick={() => {
                   sessionStorage.removeItem('loginInfo')
+                  
+                  onLogout()
+    
                   nav('/')
                 }}
               >LOGOUT</p>
@@ -54,6 +67,7 @@ const UserHeader = () => {
       <Login 
         isOpenLogin={isOpenLogin}
         onClose={() => setIsOpenLogin(false)}
+        onLogin={onLogin}
       />
       <SignUp
         isOpenSignUp={isOpenSignUp}

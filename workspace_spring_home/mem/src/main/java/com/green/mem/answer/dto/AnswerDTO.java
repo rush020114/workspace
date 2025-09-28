@@ -15,6 +15,7 @@ public class AnswerDTO {
   private String qstId;
   private String memId;
   private LocalDateTime ansDate;
+  private String userId;
 
   public AnswerDTO(){
   }

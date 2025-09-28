@@ -4,7 +4,7 @@ import AdminSideMenu from './AdminSideMenu'
 import { Outlet } from 'react-router-dom'
 import UserHeader from './UserHeader'
 
-const PersonalLayout = () => {
+const PersonalLayout = ({notiCnt, onResetCnt}) => {
   return (
     <div className={styles.container}>
       <div className={styles.header_div}>
@@ -12,10 +12,13 @@ const PersonalLayout = () => {
       </div>
       <div className={styles.main}>
         <div className={styles.side}>
-          <AdminSideMenu />
+          <AdminSideMenu 
+            notiCnt={notiCnt}
+            onResetCnt={onResetCnt}
+          />
         </div>
         <div className={styles.content}>
-          <Outlet />
+          <Outlet context={{notiCnt}} />
         </div>
       </div>
     </div>

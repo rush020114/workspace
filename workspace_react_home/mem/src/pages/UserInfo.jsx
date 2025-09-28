@@ -4,10 +4,13 @@ import PageTitle from '../common/PageTitle'
 import Button from '../common/Button'
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 const UserInfo = ({setIsOkayUpdate}) => {
   const nav = useNavigate();
+
+  // outlet으로 noticnt를 받아오기 위한 hook
+  const {notiCnt} = useOutletContext();
     
   // 화면 리렌더링 도와줄 변수
   const [reload, setReload] = useState(0);
@@ -29,7 +32,7 @@ const UserInfo = ({setIsOkayUpdate}) => {
     }})
     .then(res => setQstList(res.data))
     .catch(e => console.log(e));
-  }, [reload]);
+  }, [reload, notiCnt]);
 
   // 문의 삭제 함수
   const delQst = qstId => {

@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './AdminSideMenu.module.css'
 import { NavLink, useLocation } from 'react-router-dom'
 
-const AdminSideMenu = () => {
+const AdminSideMenu = ({notiCnt,onResetCnt}) => {
 
   // url정보 받아올 hook
   const url = useLocation();
+
+  // 배지를 띄울지 말지를 결정할 주소를 저장할 hook
+  const location = useLocation();
+
+  // 관리자 qna 페이지인지
+  const isAdminQnA = location.pathname === '/admin/qna'
+
+  // 이용자 qna 페이지인지
+  const isUserQnA = location.pathname === '/user/info'
+
+  // 이미 문의 목록이면 notiCnt 0으로 초기화
+  useEffect(() => {
+    if(isAdminQnA && isUserQnA && notiCnt > 0){
+      onResetCnt();
+    };
+  }, [notiCnt, isAdminQnA, isUserQnA]);
 
   return (
     <div className={styles.container}>
@@ -34,15 +50,24 @@ const AdminSideMenu = () => {
               </li>
               <li className={styles.menu_li}>
                 <NavLink
-                  to={'/user/qna'}
+                  to={'/user/info'}
                   className={({isActive}) => isActive ? styles.active : null}
-                >문의</NavLink>
+                  onClick={() => onResetCnt()}
+                  style={{position: 'relative'}}
+                >내 정보
+                {
+                  notiCnt > 0 &&
+                  (<span className='badge'>
+                    {notiCnt > 99 ? '99+' : notiCnt}
+                  </span>)
+                }
+                </NavLink>
               </li>
               <li className={styles.menu_li}>
                 <NavLink
-                  to={'/user/info'}
+                  to={'/user/qna'}
                   className={({isActive}) => isActive ? styles.active : null}
-                >내 정보</NavLink>
+                >문의</NavLink>
               </li>
             </ul>
           </div>
@@ -76,10 +101,20 @@ const AdminSideMenu = () => {
             <ul className={styles.sidemenu}>
               <li className={styles.menu_li}>고객정보</li>
               <li className={styles.menu_li}>
+                {/* 배지 추가 */}
                 <NavLink
                   to={'/admin/qna'}
                   className={({isActive}) => isActive ? styles.active : null}
-                >문의사항</NavLink>
+                  onClick={onResetCnt}  // 클릭 시 초기화
+                  style={{ position: 'relative' }}
+                >
+                  문의사항
+                  {notiCnt > 0 && (
+                    <span className='badge'>
+                      {notiCnt > 99 ? '99+' : notiCnt}
+                    </span>
+                  )}
+                </NavLink>
               </li>
               <li className={styles.menu_li}>게시판관리</li>
             </ul>

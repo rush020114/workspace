@@ -13,4 +13,8 @@ public class TodoService {
   public List<TodoDTO> getTodoList(){
     return todoMapper.getTodoList();
   }
+
+  public void regTodo(String todoTitle){
+    todoMapper.regTodo(todoTitle);
+  }
 }

@@ -69,3 +69,6 @@ SELECT * FROM question_img;
 SELECT * FROM question;
 SELECT * FROM application;
 SELECT * FROM answer;
+#DROP TABLE question_img;
+#DROP TABLE answer;
+#DROP TABLE question;

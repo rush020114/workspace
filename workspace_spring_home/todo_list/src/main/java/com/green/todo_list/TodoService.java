@@ -14,4 +14,9 @@ public class TodoService {
   public List<TodoDTO> getTodoList(){
     return todoMapper.getTodoList();
   }
+
+  // 할 일 등록
+  public void regTodo(TodoDTO todoDTO){
+    todoMapper.regTodo(todoDTO);
+  }
 }

@@ -8,4 +8,7 @@ import java.util.List;
 public interface TodoMapper {
   // 할일 목록 조회
   List<TodoDTO> getTodoList();
+
+  // 할 일 등록
+  void regTodo(TodoDTO todoDTO);
 }

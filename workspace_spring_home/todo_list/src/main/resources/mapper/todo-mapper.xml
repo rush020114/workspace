@@ -15,4 +15,13 @@
             , TODO_TITLE
         FROM TODO
     </select>
+
+    <!-- 할일 등록 -->
+    <insert id="regTodo">
+        INSERT INTO TODO (
+            TODO_TITLE
+        ) VALUES (
+            #{todoTitle}
+        )
+    </insert>
 </mapper>

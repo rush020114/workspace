@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**") // 접근 허용할 spring api url (*이 두 개면 / 다음 모든 것까지도 허용)
-            .allowedOrigins("http:/localhost:5173", "http://localhost:8081", "exp://192.168.204.69:8081") // 접근 허용할 server(react와, react native)
+            .allowedOrigins("http://localhost:5173", "http://localhost:8081") // 접근 허용할 server(react와, react native)
             .allowedMethods("GET", "POST", "PUT", "DELETE")
             .allowedHeaders("*") // 허용할 헤더 정보
             .allowCredentials(false); // 로그인 방식에 따른 boolean값 설정(토큰)

@@ -9,4 +9,6 @@ public interface TodoMapper {
   List<TodoDTO> getTodoList();
 
   void regTodo(String todoTitle);
+
+  void deleteTodo(int todoNum);
 }

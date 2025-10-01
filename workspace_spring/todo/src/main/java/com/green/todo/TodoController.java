@@ -62,4 +62,32 @@ public class TodoController {
               );
     }
   }
+
+  @DeleteMapping("/{todoNum}")
+  public ResponseEntity<?> deleteTodo(@PathVariable("todoNum") int todoNum){
+    try {
+      if(todoNum <= 0){
+        throw new Exception();
+      }
+      todoService.deleteTodo(todoNum);
+      return ResponseEntity
+              .status(HttpStatus.OK)
+              .body("삭제 성공");
+    } catch (Exception e) {
+      e.printStackTrace();
+
+      boolean isParamError = todoNum <= 0;
+
+      return  ResponseEntity
+              .status(
+                isParamError ? HttpStatus.BAD_REQUEST : HttpStatus.INTERNAL_SERVER_ERROR
+              )
+              .body(
+                isParamError ?
+                "전달된 할 일 번호가 정상적이지 않습니다." :
+                "할 일 삭제 기능 실행 중 오류가 발생했습니다."
+              );
+
+    }
+  }
 }

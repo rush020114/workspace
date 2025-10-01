@@ -24,4 +24,10 @@
             #{todoTitle}
         );
     </insert>
+
+    <!-- todo 한 개 삭제 -->
+    <delete id="deleteTodo">
+        DELETE FROM TODO
+        WHERE TODO_NUM = #{todoNum}
+    </delete>
 </mapper>

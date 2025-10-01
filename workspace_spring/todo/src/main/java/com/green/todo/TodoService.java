@@ -17,4 +17,8 @@ public class TodoService {
   public void regTodo(String todoTitle){
     todoMapper.regTodo(todoTitle);
   }
+
+  public void deleteTodo(int todoNum){
+    todoMapper.deleteTodo(todoNum);
+  }
 }

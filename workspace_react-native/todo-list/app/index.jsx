@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { TouchableWithoutFeedback } from 'react-native'
 import { Keyboard } from 'react-native'
+import { SERVER_URL } from '../constants/appConst'
 
 const HomeScreen = () => {
 
@@ -21,14 +22,14 @@ const HomeScreen = () => {
   useEffect(() => {
     // localhost를 인식하지 못함
     // pc의 ip주소를 통해 접근해야 한다.
-    axios.get('http://192.168.30.79:8080/todo')
+    axios.get(`${SERVER_URL}/todo`)
     .then(res => setTodoList(res.data))
     .catch(e => console.log(e));
   }, [reload]);
 
   // 할 일 등록 
   const regTodo = () => {
-    axios.post('http://192.168.30.79:8080/todo', {todoTitle})
+    axios.post(`${SERVER_URL}/todo`, {todoTitle})
     .then(res => {if(res.status === 201){
       alert('등록 성공');
       setTodoTitle('');
@@ -76,7 +77,10 @@ const HomeScreen = () => {
             data={todoList}
             // 데이터로 그림 그리기, 매개변수 : 데이터 하나하나
             // 매개변수가 객체이므로 key값을 지킬 것
-            renderItem={({item}) => <Task todo={item} />}
+            renderItem={({item}) => <Task 
+              todo={item} 
+              setReload={setReload}
+            />}
             // map의 key={i} 내용과 동일
             keyExtractor={todo => todo.todoNum}
           />

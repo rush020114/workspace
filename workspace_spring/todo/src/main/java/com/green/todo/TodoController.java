@@ -90,4 +90,19 @@ public class TodoController {
 
     }
   }
+
+  @PutMapping("/{todoNum}")
+  public ResponseEntity<?> updateTodo(@PathVariable("todoNum") int todoNum, @RequestBody TodoDTO todoDTO){
+    try{
+      todoDTO.setTodoNum(todoNum);
+      todoService.updateTodo(todoDTO);
+      return ResponseEntity
+              .status(HttpStatus.OK)
+              .body("수정 완료");
+    } catch (Exception e) {
+      return ResponseEntity
+              .status(HttpStatus.INTERNAL_SERVER_ERROR)
+              .body("수정 중 서버 오류 발생");
+    }
+  }
 }

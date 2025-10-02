@@ -25,9 +25,16 @@
         );
     </insert>
 
-    <!-- todo 한 개 삭제 -->
+    <!-- 할일  한 개 삭제 -->
     <delete id="deleteTodo">
         DELETE FROM TODO
         WHERE TODO_NUM = #{todoNum}
     </delete>
+
+    <!-- 할 일 수정 -->
+    <update id="updateTodo">
+        UPDATE TODO
+        SET TODO_TITLE = #{todoTitle}
+        WHERE TODO_NUM = #{todoNum}
+    </update>
 </mapper>

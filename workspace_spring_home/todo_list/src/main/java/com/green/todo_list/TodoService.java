@@ -19,4 +19,9 @@ public class TodoService {
   public void regTodo(TodoDTO todoDTO){
     todoMapper.regTodo(todoDTO);
   }
+
+  // 할 일 삭제
+  public void deleteTodo(int todoNum){
+    todoMapper.deleteTodo(todoNum);
+  }
 }

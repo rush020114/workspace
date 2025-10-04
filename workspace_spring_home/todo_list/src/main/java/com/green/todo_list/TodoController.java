@@ -46,4 +46,18 @@ public class TodoController {
     }
   }
 
+  // 할 일 삭제
+  @DeleteMapping("/{todoNum}")
+  public ResponseEntity<?> deleteTodo(@PathVariable("todoNum") int todoNum){
+    try{
+      todoService.deleteTodo(todoNum);
+      return ResponseEntity
+              .status(HttpStatus.OK)
+              .body("삭제 완료");
+    } catch (Exception e) {
+      return ResponseEntity
+              .status(HttpStatus.INTERNAL_SERVER_ERROR)
+              .body("삭제 중 서버 오류 발생");
+    }
+  }
 }

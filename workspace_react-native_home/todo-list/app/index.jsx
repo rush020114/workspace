@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Task from '../components/Task'
 import axios from 'axios'
+import { SERVER_URL } from '../constants/appConst'
 
 const HomeScreen = () => {
 
@@ -17,14 +18,14 @@ const HomeScreen = () => {
 
   // 할 일 목록을 조회할 useEffect
   useEffect(() => {
-    axios.get('http://192.168.45.72:8080/todos')
+    axios.get(`${SERVER_URL}/todos`)
     .then(res => setTodoList(res.data))
     .catch(e => console.log(e));
   }, [reload]);
 
   // 할 일 등록
   const regTodo = () => {
-    axios.post('http://192.168.45.72:8080/todos', {todoTitle})
+    axios.post(`${SERVER_URL}/todos`, {todoTitle})
     .then(res => {
       alert(res.data);
       setTodoTitle('');
@@ -32,6 +33,7 @@ const HomeScreen = () => {
     })
     .catch(e => console.log(e));
   };
+
 
   console.log(todoList)
 
@@ -64,7 +66,10 @@ const HomeScreen = () => {
             // 반복 돌릴 데이터
             data={todoList}
             // 반복돌릴 하나하나의 데이터 그림을 그릴 것을 함수의 리턴문에 작성
-            renderItem={({item}) => <Task todo={item} />}
+            renderItem={({item}) => <Task 
+              todo={item} 
+              setReload={setReload}
+            />}
             // map의 key값 채우는 것과 같은 역할
             keyExtractor={todo => todo.todoNum}
           />

@@ -24,4 +24,9 @@ public class TodoService {
   public void deleteTodo(int todoNum){
     todoMapper.deleteTodo(todoNum);
   }
+
+  // 할 일 수정
+  public void updateTodo(TodoDTO todoDTO){
+    todoMapper.updateTodo(todoDTO);
+  }
 }

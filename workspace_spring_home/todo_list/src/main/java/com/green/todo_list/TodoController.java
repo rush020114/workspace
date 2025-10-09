@@ -15,7 +15,7 @@ import java.util.List;
 public class TodoController {
   private final TodoService todoService;
 
-  // 할 일 목록 조회
+  // 할 일 목록 조회 api
   @GetMapping("")
   public ResponseEntity<?> getTodoList(){
     try{
@@ -30,7 +30,7 @@ public class TodoController {
     }
   }
 
-  // 할 일 등록
+  // 할 일 등록 api
   @PostMapping("")
   public ResponseEntity<?> regTodo(@RequestBody TodoDTO todoDTO){
     try {
@@ -46,7 +46,7 @@ public class TodoController {
     }
   }
 
-  // 할 일 삭제
+  // 할 일 삭제 api
   @DeleteMapping("/{todoNum}")
   public ResponseEntity<?> deleteTodo(@PathVariable("todoNum") int todoNum){
     try{
@@ -58,6 +58,22 @@ public class TodoController {
       return ResponseEntity
               .status(HttpStatus.INTERNAL_SERVER_ERROR)
               .body("삭제 중 서버 오류 발생");
+    }
+  }
+
+  // 할 일 삭제 api
+  @PutMapping("/{todoNum}")
+  public ResponseEntity<?> updateTodo(@PathVariable("todoNum") int todoNum, @RequestBody TodoDTO todoDTO){
+    try {
+      todoDTO.setTodoNum(todoNum);
+      todoService.updateTodo(todoDTO);
+      return ResponseEntity
+              .status(HttpStatus.OK)
+              .body("수정 완료");
+    } catch (Exception e){
+      return ResponseEntity
+              .status(HttpStatus.INTERNAL_SERVER_ERROR)
+              .body("수정 중 서버 오류 발생");
     }
   }
 }

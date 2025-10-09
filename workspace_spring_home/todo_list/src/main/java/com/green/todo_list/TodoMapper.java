@@ -14,4 +14,7 @@ public interface TodoMapper {
 
   // 할 일 삭제
   void deleteTodo(int todoNum);
+
+  // 할 일 수정
+  void updateTodo(TodoDTO todoDTO);
 }

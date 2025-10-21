@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { colors } from '@/constants/colorConstant'
 
 const Button = ({title='버튼', size='large', onPress, ...props}) => {
   return (
@@ -25,7 +26,7 @@ export default Button
 
 const styles = StyleSheet.create({
   btnContainer: {
-    backgroundColor: 'orange',
+    backgroundColor: colors.ORANGE_600,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center'

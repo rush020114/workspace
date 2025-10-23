@@ -23,8 +23,11 @@ const LoginScreen = () => {
     // 로그인 정보를 secureStore에 저장
     await SecureStore.setItemAsync('loginInfo', JSON.stringify(loginInfo));
 
-    // 로그인 성공 후 SNS 목록 페이지로 이동
-    router.replace('/')
+    // 로그인 성공 후 기존에 존재하던 모든 화면의 stack을 제거하고 sns 목록 페이지로 이동
+    if(router.canDismiss()){ // 쌓인 스택이 존재하면...
+      router.dismissAll(); // 모든 stack 제거
+    }
+    router.replace('/');
   };
   
   return (

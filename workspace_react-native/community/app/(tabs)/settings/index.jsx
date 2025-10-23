@@ -38,6 +38,9 @@ const SettingsHomeScreen = () => {
     // secureStore에 저장된 로그인 정보 삭제
     await SecureStore.deleteItemAsync('loginInfo')
 
+    if(router.canDismiss()){
+      router.dismissAll();
+    }
     router.replace('/')
   }
 

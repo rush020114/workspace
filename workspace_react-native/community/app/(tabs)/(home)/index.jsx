@@ -1,8 +1,8 @@
 import { FlatList, Keyboard, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Button from '../../../components/common/Button'
-import { useRouter } from 'expo-router'
+import { useFocusEffect, useRouter } from 'expo-router'
 import Input from '../../../components/common/Input'
 import { colors } from '@/constants/colorConstant'
 import FeedItem from '../../../components/home/FeedItem'
@@ -30,25 +30,28 @@ import * as SecureStore from 'expo-secure-store'
 const HomeScreen = () => {
   const router = useRouter();
 
-  // 로그인 정보 여부 확인
-  useEffect(() => {
-    const getLoginInfo = async () => {
-      // secureStore에 저장된 로그인 정보를 가져옴
-      const loginInfo = await SecureStore.getItemAsync('loginInfo');
-      
-      // 가져온 데이터를 원래 형태인 객체로 변환
-      const loginData = JSON.parse(loginInfo);
-  
-      console.log('로그인 데이터 = ', loginData)
-
-      // 로그인되어 있지 않다면
-      if(!loginData){
-        router.replace('/auth/login')
+  // 마운트디거나, 화면에 focus가 잡히면 실행
+  // 로그인 정보 확인
+  useFocusEffect(
+    useCallback(() => {
+      const getLoginInfo = async () => {
+        // secureStore에 저장된 로그인 정보를 가져옴
+        const loginInfo = await SecureStore.getItemAsync('loginInfo');
+        
+        // 가져온 데이터를 원래 형태인 객체로 변환
+        const loginData = JSON.parse(loginInfo);
+    
+        console.log('로그인 데이터 = ', loginData)
+    
+        // 로그인되어 있지 않다면
+        if(!loginData){
+          router.replace('/auth/login')
+        }
+    
       }
-
-    }
-    getLoginInfo();
-  }, []);
+      getLoginInfo();
+    }, [])
+  )
 
   const feedList = dummyData;
 

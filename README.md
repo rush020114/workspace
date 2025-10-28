@@ -7,7 +7,6 @@ Spring Boot + React로 구현한 도서 쇼핑몰 웹 애플리케이션
 **개발 인원:** 1명 (개인)
 
 ## 📈 학습 과정 (1회차 → 2회차 → 3회차)
-## 📈 학습 과정 (1회차 → 2회차 → 3회차)
 
 <table>
   <thead>
@@ -52,17 +51,19 @@ Spring Boot + React로 구현한 도서 쇼핑몰 웹 애플리케이션
 
 > 같은 프로젝트를 3번 반복하며 **기술 내재화**와 **깊이 있는 학습**에 집중했습니다.
 
-[1회차 프로젝트 프론트엔드 코드 →](https://github.com/rush020114/workspace/tree/main/workspace_react/frontend_shop)  
-[1회차 프로젝트 백엔드 코드 →](https://github.com/rush020114/workspace/tree/main/workspace_react/frontend_shop)  
-[2회차 프로젝트 프론트엔드 코드 →](링크)
-[2회차 프로젝트 프론트엔드 코드 →](링크)
+[1회차 프로젝트 프론트엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_react/frontend_shop)  
+[1회차 프로젝트 백엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_spring/backend_shop)  
+[2회차 프로젝트 프론트엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_react_home/frontend_shop)  
+[2회차 프로젝트 백엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_spring_home/backend_shop)  
+[3회차 프로젝트 프론트엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_react_home/mem)  
+[2회차 프로젝트 백엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_spring_home/mem)  
 
 ---
 
 ## 🎯 주요 기능
 
 ### 회원 관리
-![회원관리](이미지)
+![회원관리](MIRICANVAS_ITEM_COPY_KEY)
 - 회원가입, 로그인/로그아웃
 - 회원 정보 수정, 탈퇴
 

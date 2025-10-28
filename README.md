@@ -1,62 +1,30 @@
 # 도서 쇼핑몰 - 개인 프로젝트 (3회차)
 
 ## 📌 프로젝트 소개
-Spring Boot + React로 구현한 도서 쇼핑몰 웹 애플리케이션
+Spring Boot + React로 구현한 게임 아이템 기반의 쇼핑몰 웹 애플리케이션
 
 **개발 기간:** 2025.08.13 ~ 2025.09.09  
 **개발 인원:** 1명 (개인)
 
 ## 📈 학습 과정 (1회차 → 2회차 → 3회차)
 
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>1회차</th>
-      <th>2회차</th>
-      <th>3회차</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>기간</td>
-      <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;2025.08.13~09.09</td>
-    </tr>
-    <tr>
-      <td>백엔드</td>
-      <td>Spring Boot</td>
-      <td>Spring Boot</td>
-      <td>Spring Boot</td>
-    </tr>
-    <tr>
-      <td>프론트엔드</td>
-      <td>React</td>
-      <td>React</td>
-      <td>React</td>
-    </tr>
-    <tr>
-      <td>DB</td>
-      <td>-</td>
-      <td>MariaDB</td>
-      <td>MariaDB</td>
-    </tr>
-    <tr>
-      <td>특징</td>
-      <td>도서 쇼핑 기본 구현</td>
-      <td>REST API 설계</td>
-      <td>QnA, 상세 페이지 추가</td>
-    </tr>
-  </tbody>
-</table>
+| 구분 | 1회차 | 2회차 | 3회차 |
+|------|-------|-------|-------|
+| 기간 | 초기 학습 | 중간 복습 | 2025.08.13~09.09 |
+| 백엔드 | Spring Boot | Spring Boot | Spring Boot |
+| 프론트엔드 | React | React | React |
+| DB | MariaDB | MariaDB | MariaDB |
+| 특징 | 기본 CRUD | 반복 구현 | 각종 라이브러리 및 실시간 연습 |
 
 > 같은 프로젝트를 3번 반복하며 **기술 내재화**와 **깊이 있는 학습**에 집중했습니다.
 
-[1회차 프로젝트 프론트엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_react/frontend_shop)  
-[1회차 프로젝트 백엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_spring/backend_shop)  
-[2회차 프로젝트 프론트엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_react_home/frontend_shop)  
-[2회차 프로젝트 백엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_spring_home/backend_shop)  
-[3회차 프로젝트 프론트엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_react_home/mem)  
-[2회차 프로젝트 백엔드 코드 링크](https://github.com/rush020114/workspace/tree/main/workspace_spring_home/mem)  
+
+## 🛍️ 회차별 프로젝트 GIT링크
+| 회차 | 프론트엔드 (React) | 백엔드 (Spring Boot) |
+|------|--------------------|----------------------|
+| 🧩 **1회차** | [🔗 frontend_shop](https://github.com/rush020114/workspace/tree/main/workspace_react/frontend_shop) | [🔗 backend_shop](https://github.com/rush020114/workspace/tree/main/workspace_spring/backend_shop) | 
+| ⚙️ **2회차** | [🔗 frontend_shop (home)](https://github.com/rush020114/workspace/tree/main/workspace_react_home/frontend_shop) | [🔗 backend_shop (home)](https://github.com/rush020114/workspace/tree/main/workspace_spring_home/backend_shop) | 
+| 🚀 **3회차** | [🔗 frontend_mem](https://github.com/rush020114/workspace/tree/main/workspace_react_home/mem) | [🔗 backend_mem](https://github.com/rush020114/workspace/tree/main/workspace_spring_home/mem) | 
 
 ---
 
@@ -116,30 +84,3 @@ Spring Boot + React로 구현한 도서 쇼핑몰 웹 애플리케이션
 **Tools**
 - GitHub
 - Notion
-
----
-
-## 💡 배운 점
-
-### 1. 반복 학습을 통한 기술 내재화
-- 150일 연속 NOTION 작업일지 작성
-- 같은 프로젝트를 3번 반복하며 핵심 개념 완전 습득
-- 기능별 흐름과 구현 패턴을 몸으로 체화
-
-### 2. 효율적인 코드 작성
-- 중복 코드 50% 제거
-- 변수명 통일로 80% 일관성 확보
-- 문제 해결 능력 향상
-
-### 3. 완성도 있는 프로젝트 추구
-- 기본 실력을 아니라 소통 능력 중시
-- 데이터베이스 설계 및 SQL 작성 능숙
-- 알고리즘 문제 100점 달성
-
----
-
-## 📂 코드 저장소
-
-- **[3차 프로젝트 (현재)](링크)**
-- [2차 프로젝트](링크)
-- [1차 프로젝트](링크)

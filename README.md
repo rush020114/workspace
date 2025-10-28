@@ -60,6 +60,15 @@ Spring Boot + React로 구현한 도서 쇼핑몰 웹 애플리케이션
 
 ---
 
+## 🗂️ ERD (Entity Relationship Diagram)
+
+프로젝트의 전체 데이터 구조를 시각적으로 표현한 ERD입니다.  
+회원, 상품, 주문, 결제 등 주요 테이블 간의 관계를 한눈에 파악할 수 있습니다.  
+
+![ERD 다이어그램](https://github.com/user-attachments/assets/예시이미지주소.png)
+
+---
+
 ## 🎯 주요 기능
 
 ### 회원 관리

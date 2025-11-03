@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- spring 프로젝트의 css는 resource/static 폴더를 기준으로 찾아감 -->
+   <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/board-list.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>회원가입</div>
+      <div>로그인</div>
+    </div>
+    <div class="board-list-div">
+      <table class="list-table">
+        <thead>
+          <tr>
+            <td>No</td>
+            <td>제목</td>
+            <td>작성자</td>
+            <td>작성일</td>
+            <td>조회수</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="board: ${boardList}">
+            <td th:text="${board.boardNum}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.writer}"></td>
+            <td th:text="${board.createDate}"></td>
+            <td th:text="${board.readCnt}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="btn-div">
+      <button type="button">
+        글쓰기
+      </button>
+    </div>
+  </div>
+</body>
+</html>

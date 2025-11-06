@@ -1,7 +1,13 @@
 
 public class SolutionTest {
   public static void main(String[] args) {
-    Solution solution = new Solution();
-    System.out.println(solution.solution("threetwo"));
+    int n = 10;
+    name(n);
+    System.out.println(n);
+  }
+
+  public static void name (int n) {
+    n += 1;
+
   }
 }

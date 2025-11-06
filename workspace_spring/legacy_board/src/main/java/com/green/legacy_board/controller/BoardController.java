@@ -56,4 +56,27 @@ public class BoardController {
     // 게시글 목록 페이지로 이동
     return "redirect:/boards";
   }
+
+  // 게시글 삭제
+  @GetMapping("/delete/{boardNum}")
+  public String deleteBoard(@PathVariable("boardNum") int boardNum){
+    boardService.deleteBoard(boardNum);
+    return "redirect:/boards";
+  }
+
+  // 게시글 수정 페이지 이동
+  @GetMapping("/update/{boardNum}")
+  public String goUpdateBoard(@PathVariable("boardNum") int boardNum, Model model){
+    model.addAttribute("boardDetail", boardService.getBoard(boardNum));
+    return "board-update";
+  }
+
+  // 게시글 수정
+  @PostMapping("/update")
+  public String updateBoard(@ModelAttribute BoardDTO boardDTO){
+
+    boardService.updateBoard(boardDTO);
+
+    return "redirect:/boards/detail/" + boardDTO.getBoardNum();
+  }
 }

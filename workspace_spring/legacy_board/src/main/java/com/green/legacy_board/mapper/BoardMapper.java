@@ -13,4 +13,10 @@ public interface BoardMapper {
 
   // 게시글 상세 조회
   BoardDTO getBoard(int boardNum);
+
+  // 게시글 삭제
+  void deleteBoard(int boardNum);
+
+  // 게시글 수정
+  void updateBoard(BoardDTO boardDTO);
 }

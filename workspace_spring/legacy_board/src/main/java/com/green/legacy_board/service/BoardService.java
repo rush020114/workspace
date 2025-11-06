@@ -24,4 +24,14 @@ public class BoardService {
   public BoardDTO getBoard(int boardNum){
     return boardMapper.getBoard(boardNum);
   }
+
+  // 게시글 삭제
+  public void deleteBoard(int boardNum){
+    boardMapper.deleteBoard(boardNum);
+  }
+
+  // 게시글 수정
+  public void updateBoard(BoardDTO boardDTO){
+    boardMapper.updateBoard(boardDTO);
+  }
 }

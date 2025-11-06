@@ -19,10 +19,10 @@ implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16' //쿼리 �
 implementation("org.mybatis:mybatis-typehandlers-jsr310:1.0.2") //LocalDateTime사용을위해 추가
 
 #Security 연결 시 build.gradle 파일에 추가
-implementation 'org.springframework.boot:spring-boot-starter-security’
-testImplementation 'org.springframework.security:spring-security-test’
-implementation 'io.jsonwebtoken:jjwt-api:0.12.3’
-implementation 'io.jsonwebtoken:jjwt-impl:0.12.3’
+implementation 'org.springframework.boot:spring-boot-starter-security'
+testImplementation 'org.springframework.security:spring-security-test'
+implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
 implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
 
 

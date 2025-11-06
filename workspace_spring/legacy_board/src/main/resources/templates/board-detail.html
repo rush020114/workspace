@@ -7,5 +7,37 @@
 </head>
 <body>
   <h3>게시글 상세 페이지</h3>
+
+  <table border="1">
+    <tbody>
+      <tr>
+        <td>글번호</td>
+        <td>[[${boardDetail.boardNum}]]</td>
+        <td>제목</td>
+        <td>[[${boardDetail.title}]]</td>
+        <td>작성자</td>
+        <td>[[${boardDetail.writer}]]</td>
+        <td>조회수</td>
+        <td>[[${boardDetail.readCnt}]]</td>
+        <td>작성일</td>
+        <td>[[${#temporals.format(boardDetail.createDate, 'yyyy-MM-dd HH:mm:ss')}]]</td>
+      </tr>
+      <tr>
+        <td>
+          내용
+        </td>
+        <td colspan="9">
+          [[${boardDetail.content}]]
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button type="button">목록</button>
+    <th:block th:if="${session.loginInfo?.name == boardDetail.writer or session.loginInfo?.role == 'ADMIN'}">
+      <button type="button">수정</button>
+      <button type="button">삭제</button>
+    </th:block>
+  </div>
 </body>
 </html>

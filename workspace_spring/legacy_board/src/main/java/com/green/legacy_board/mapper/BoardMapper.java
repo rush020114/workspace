@@ -8,4 +8,9 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
   List<BoardDTO> getBoardList();
+
+  void write(BoardDTO boardDTO);
+
+  // 게시글 상세 조회
+  BoardDTO getBoard(int boardNum);
 }

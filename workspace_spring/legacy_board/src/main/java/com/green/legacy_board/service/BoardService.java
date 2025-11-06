@@ -15,4 +15,13 @@ public class BoardService {
   public List<BoardDTO> getBoardList(){
     return boardMapper.getBoardList();
   }
+
+  public void write(BoardDTO boardDTO){
+    boardMapper.write(boardDTO);
+  }
+
+  // 게시글 상세 조회
+  public BoardDTO getBoard(int boardNum){
+    return boardMapper.getBoard(boardNum);
+  }
 }

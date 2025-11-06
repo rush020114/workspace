@@ -11,8 +11,23 @@
 <body>
   <div class="container">
     <div class="header">
-      <div>회원가입</div>
-      <div>로그인</div>
+      <!-- th:block은 화면 디자인에 영향을 주지 않음. -->
+      <th:block th:if="${session.loginInfo == null}">
+        <div>
+          <a href="/members/join">회원가입</a>
+        </div>
+        <div>
+          <a href="/members/login">로그인</a>
+        </div>
+      </th:block>
+      <th:block th:unless="${session.loginInfo == null}">
+        <div>
+          [[${session.loginInfo.id}]]님 반갑습니다.
+        </div>
+        <div>
+          <a href="/members/logout">로그아웃</a>
+        </div>
+      </th:block>
     </div>
     <div class="board-list-div">
       <table class="list-table">
@@ -26,21 +41,29 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="board: ${boardList}">
-            <td th:text="${board.boardNum}"></td>
-            <td th:text="${board.title}"></td>
+          <!-- each문의 두번째 데이터(state)는 반복 상태 정보를 가짐 -->
+          <tr th:each="board, state: ${boardList}">
+            <td>[[${boardList.size() - state.index}]]</td>
+            <td>
+              <span th:onclick="goDetail([[${board.boardNum}]])">
+                [[${board.title}]]
+              </span>
+            </td>
             <td th:text="${board.writer}"></td>
-            <td th:text="${board.createDate}"></td>
+            <td>[[${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}]]</td>
             <td th:text="${board.readCnt}"></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="btn-div">
-      <button type="button">
+    <div class="btn-div" th:if="${session.loginInfo != null}">
+      <button type="button" onclick="goWriteForm()">
         글쓰기
       </button>
     </div>
   </div>
+  <script src="/js/board-list.js">
+    
+  </script>
 </body>
 </html>

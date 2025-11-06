@@ -23,4 +23,28 @@
         FROM BOARD
         ORDER BY CREATE_DATE DESC
     </select>
+
+    <insert id="write">
+        INSERT INTO BOARD(
+            TITLE
+            , WRITER
+            , CONTENT
+        ) VALUES(
+            #{title}
+            , #{writer}
+            , #{content}
+        )
+    </insert>
+
+    <!-- 게시글 상세 조회 -->
+    <select id="getBoard" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
+            , WRITER
+            , READ_CNT
+            , CREATE_DATE
+            , CONTENT
+        FROM BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
 </mapper>

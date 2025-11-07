@@ -1,0 +1,19 @@
+.container{
+  width: 1000px;
+  height: 600px;
+  margin: 30px auto;
+  display: flex;
+}
+
+.container > div{
+  width: 50%;
+  border: 1px solid black;
+}
+
+.list-table{
+  width: 80%;
+}
+
+.list-table tr, .list-table td{
+  border: 1px solid black;
+}

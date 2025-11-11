@@ -1,0 +1,7 @@
+.header_container{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: 20px;
+}

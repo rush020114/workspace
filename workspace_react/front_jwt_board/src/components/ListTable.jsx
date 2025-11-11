@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from './ListTable.module.css'
+import { useNavigate } from 'react-router-dom'
 
-const ListTable = ({cols=[], dataList=[], dataName=[]}) => {
+const ListTable = ({cols=[], dataList=[], dataName=[], link, indexName}) => {
+  const nav = useNavigate();
   
   return (
     <table className={styles.list_table}>
@@ -21,7 +23,10 @@ const ListTable = ({cols=[], dataList=[], dataName=[]}) => {
             </tr> :
             dataList.map((data, rowIndex) => {
               return(
-                <tr key={rowIndex}>
+                <tr 
+                  key={rowIndex}
+                  onClick={() => nav(`${link}/${data[indexName]}`)}
+                >
                   <td>
                     {dataList.length - rowIndex}
                   </td>

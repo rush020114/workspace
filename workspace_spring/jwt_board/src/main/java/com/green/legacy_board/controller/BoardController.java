@@ -30,14 +30,22 @@ public class BoardController {
   @PostMapping("")
   public ResponseEntity<?> write (@RequestBody BoardDTO boardDTO){
     // 게시글 등록 쿼리 실행
+    boardDTO.setWriter("imsi");
     boardService.write(boardDTO);
 
     // 게시글 목록 페이지로 이동
     return ResponseEntity.status(HttpStatus.CREATED).build();
   }
 
-  // 게시글 삭제
+  // 게시글 상세 조회
   @GetMapping("/{boardNum}")
+  public ResponseEntity<?> getBoard(@PathVariable("boardNum") int boardNum){
+
+    return ResponseEntity.status(HttpStatus.OK).body(boardService.getBoard(boardNum));
+  }
+
+  // 게시글 삭제
+  @DeleteMapping("/{boardNum}")
   public ResponseEntity<?> deleteBoard(@PathVariable("boardNum") int boardNum){
     boardService.deleteBoard(boardNum);
     return ResponseEntity.status(HttpStatus.OK).build();

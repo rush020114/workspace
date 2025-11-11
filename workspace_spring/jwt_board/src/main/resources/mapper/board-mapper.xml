@@ -19,7 +19,7 @@
             , TITLE
             , WRITER
             , READ_CNT
-            , CREATE_DATE
+            , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') CREATE_DATE
         FROM BOARD
         ORDER BY CREATE_DATE DESC
     </select>

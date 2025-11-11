@@ -16,9 +16,32 @@ export const getBoardListApi = async () => {
   
 }
 
-// 게시글 상세 조회
+/**
+ * 게시글 상세 조회 API
+ * @param {*} boardNum 게시글 번호 
+ */
+export const getBoardDetailApi = async boardNum => {
+  try {
+    const res = await axios.get(`/api/boards/${boardNum}`);
+    return res.data;
+  } catch (e) {
+    console.log('게시글 목록 조회 API 호출 시 오류 발생 : getBoardDetailApi');
+    console.log(e);
+  }
+}
 
-// 게시글 등록
+/**
+ * 게시글 등록 API
+ * @param {*} boardInfo {'title' : '제목데이터', 'content' : '내용데이터'}
+ */
+export const regBoardApi = async boardInfo => {
+  try{
+    await axios.post('/api/boards', boardInfo);
+  } catch (e) {
+    console.log('게시글 목록 조회 API 호출 시 오류 발생 : regBoardApi');
+    console.log(e);
+  }
+}
 
 // 게시글 삭제
 

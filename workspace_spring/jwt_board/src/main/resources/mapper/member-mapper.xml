@@ -5,21 +5,21 @@
 <!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
 <mapper namespace="com.green.legacy_board.mapper.MemberMapper">
 	<resultMap id="member" type="com.green.legacy_board.dto.MemberDTO">
-        <id     column="ID"   property="id" />
-        <result column="PW" property="pw" />
-        <result column="NAME" property="name" />
-        <result column="ROLE" property="role" />
+        <id     column="MEM_EMAIL"  property="memEmail" />
+        <result column="MEM_PW"     property="memPw" />
+        <result column="MEM_NAME"   property="memName" />
+        <result column="MEM_ROLE"   property="memRole" />
     </resultMap>
 
     <insert id="join">
-        INSERT INTO MEMBER2 (
-            ID
-            , PW
-            , NAME
+        INSERT INTO SECURITY_MEMBER (
+            MEM_EMAIL
+            , MEM_PW
+            , MEM_NAME
         ) VALUES (
-            #{id}
-            , #{pw}
-            , #{name}
+            #{memEmail}
+            , #{memPw}
+            , #{memName}
         );
     </insert>
 

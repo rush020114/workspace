@@ -8,9 +8,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MemberDTO {
-  private String id;
-  private String pw;
-  private String name;
-  private String role;
+  private String memEmail;
+  private String memPw;
+  private String memName;
+  private String memRole;
 
+  public MemberDTO(){
+  }
 }

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class FilterConfig {
 
   // 객체를 계속 생성하지 않고 하나만 생성해서 의존성을 주입하여 시스템 부담을 줄인다.
-  @Bean
+  /*@Bean
   public FilterRegistrationBean<Filter1> myFilterRegistration(){
     FilterRegistrationBean<Filter1> registrationBean = new FilterRegistrationBean<>();
 
@@ -30,5 +30,5 @@ public class FilterConfig {
     registrationBean.setOrder(1);
 
     return registrationBean;
-  }
+  }*/
 }

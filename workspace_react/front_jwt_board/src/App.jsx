@@ -8,11 +8,15 @@ import Header from './components/Header'
 import BoardDetail from './pages/BoardDetail'
 import BoardWrite from './pages/BoardWrite'
 import Join from './pages/join'
+import Login from './pages/Login'
+import { getToken } from './jwt/jwt_util'
 
 function App() {
+  const token = getToken();
 
   return (
     <>
+      {/* 토큰 전달 연습용 */}
       <Header />
       <Routes>
         {/* 게시글 목록 페이지 */}
@@ -22,6 +26,7 @@ function App() {
         {/* 글 등록 페이지 */}
         <Route path='/write' element={<BoardWrite />} />
         <Route path='/join' element={<Join />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </>
   )

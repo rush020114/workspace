@@ -23,13 +23,12 @@
         );
     </insert>
 
-    <!-- 로그인 검증 -->
-    <select id="login" resultMap="member">
-        SELECT ID
-            , NAME
-            , ROLE
-        FROM MEMBER2
-        WHERE ID = #{id}
-        AND PW = #{pw}
+    <!-- 로그인 검증을 위한 id, pw 조회 -->
+    <select id="getMemberInfoForLogin" resultMap="member">
+        SELECT MEM_EMAIL
+            , MEM_PW
+            , MEM_ROLE
+        FROM SECURITY_MEMBER
+        WHERE MEM_EMAIL = #{memEmail}
     </select>
 </mapper>

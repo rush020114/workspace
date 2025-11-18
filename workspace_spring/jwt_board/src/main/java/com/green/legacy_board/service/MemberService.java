@@ -19,7 +19,7 @@ public class MemberService {
   }
 
   // 로그인
-  public MemberDTO login(MemberDTO memberDTO){
-    return memberMapper.login(memberDTO);
+  public MemberDTO getMemberInfoForLogin(String memEmail){
+    return memberMapper.getMemberInfoForLogin(memEmail);
   }
 }

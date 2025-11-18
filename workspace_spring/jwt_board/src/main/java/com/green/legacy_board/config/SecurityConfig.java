@@ -1,5 +1,9 @@
 package com.green.legacy_board.config;
 
+import com.green.legacy_board.jwt.JwtConfirmFilter;
+import com.green.legacy_board.jwt.JwtUtil;
+import com.green.legacy_board.jwt.LoginFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -19,8 +24,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 // SpringSecurity의 인증과 인가에 대한 설정 파일
 @Configuration
 @EnableWebSecurity // springSecurity 설정 파일임을 인지
+@RequiredArgsConstructor
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig {
+  private final JwtUtil jwtUtil;
 
   // 인증과 인가에 대한 설정을 세팅하는 메서드
   // 리턴타입, 매개변수는 정해져 있음.
@@ -47,6 +54,10 @@ public class SecurityConfig {
                     auth ->
                             auth.anyRequest().permitAll()
             );
+    // 로그인 처리 필터인 UsernamePasswordAuthenticationFilter 자리를
+    // 우리가 만든 로그인 Filter로 교체
+    http.addFilterAt(new LoginFilter(authenticationManager, jwtUtil), UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(new JwtConfirmFilter(jwtUtil), LoginFilter.class);
 
     // 인증 및 인가에 대한 모든 정보를 가진 http 객체를 리턴
     return http.build();

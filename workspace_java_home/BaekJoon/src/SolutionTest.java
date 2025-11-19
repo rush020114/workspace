@@ -1,13 +1,13 @@
 
 public class SolutionTest {
   public static void main(String[] args) {
-    int n = 10;
-    name(n);
-    System.out.println(n);
-  }
-
-  public static void name (int n) {
-    n += 1;
-
+    String str1 = "HELloWorLD!";
+    String str2 = "heLLOwORld!";
+    if (str1.equals(str2))
+      System.out.print(str1.toUpperCase());
+    else if (str1.equalsIgnoreCase(str2))
+      System.out.print(str1.toLowerCase());
+    else
+      System.out.print(str2);
   }
 }

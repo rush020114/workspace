@@ -19,5 +19,28 @@ public class BoxGenericTest {
 
     System.out.println(ap);
     System.out.println(og);
+
+    Box<String> sBox = new Box<>();
+    sBox.set("I am so Happy");
+
+    Box<Box<String>> wBox = new Box<>();
+    wBox.set(sBox);
+
+    Box<Box<Box<String>>> zBox = new Box<>();
+    zBox.set(wBox);
+    System.out.println(zBox);
+
+    // 제네릭 메서드는 호출 시 타입 인자를 정해주면 된다.
+    Box<String> stringBox = BoxFactory.<String>makeBox("Sweet");
+    Box<Double> dBox = BoxFactory.<Double>makeBox(1.2);
+
+    // 타입인자를 생략가능하다.(매개변수 전달 시 컴파일러가 판단)
+    Box<String> stringBox1 = BoxFactory.makeBox("Sweet");
+    Box<Double> dBox1 = BoxFactory.makeBox(3.2);
+
+    // 제네릭 메서드는 매개변수를 전달할 때 타입 매개변수가 정해진다.
+    // makeBox2 제네릭 메서드에 makeBox2가 요구하는 매개변수를 전달하니
+    // 타입인자가 Double로 되어 기능을 수행한다.
+    BoxFactory.makeBox2(dBox1);
   }
 }

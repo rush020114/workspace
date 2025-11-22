@@ -13,7 +13,7 @@ public class BoxGenericTest {
     aBox.set(new Apple());
     obox.set(new Orange());
 
-    // 형변환을 하지 않아도 됨!
+    // 형변환을 하지 않아도 됨.
     Apple ap = aBox.get();
     Orange og = obox.get();
 

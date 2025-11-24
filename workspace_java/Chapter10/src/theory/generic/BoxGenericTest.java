@@ -42,5 +42,14 @@ public class BoxGenericTest {
     // makeBox2 제네릭 메서드에 makeBox2가 요구하는 매개변수를 전달하니
     // 타입인자가 Double로 되어 기능을 수행한다.
     BoxFactory.makeBox2(dBox1);
+
+    // 제네릭 메서드 타입인자 생략 가능! - 타켓 타입
+    // 사실상 메서드부터 호출되어 자료형 결정만으로는
+    // 뒤의 메서드의 타입인자를 결정하기엔 좀 이를 수도 있지만
+    // 컴파일러가 알아서 해석해주고 생략을 해줌.
+    // 위와 같은 생략 과정을 타겟타입이라고 한다.
+    Box<Integer> iBox = EmptyBoxFactory.makeBox();
+    iBox.set(123);
+    System.out.println(iBox.get());
   }
 }

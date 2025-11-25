@@ -1,0 +1,18 @@
+-폰트어썸 아이콘 사용-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+-부트스트랩 아이콘 사용-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+폰트 사용
+구글폰트
+구글폰트에 접속
+폰트 검색 후 get font 클릭 후 get embed font 클릭
+@import 클릭 후 첫번째 것은 style태그 빼고 복사 후 css에 붙여넣기
+밑에 것은 주석 빼고 복사 후 css에 붙여넣고 지정하고픈 선택자 설정
+
+눈누
+눈누에 접속
+모든 폰트 클릭 후 폰트 형태 클릭하여 원하는 폰트 찾은 후 클릭
+나온 폰트에서 아무데나 들어가 웹폰트로 사용 복사 후 css에 붙여넣기
+그리고 선택자를 정하기 위해 선택자를 정한 후 font-family줄만 복사 후 붙여넣기

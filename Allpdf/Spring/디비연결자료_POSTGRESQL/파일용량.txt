@@ -1,3 +1,5 @@
+spring.servlet.multipart.enabled=true
+
 # 한 파일의 용량을 5MB로 설정
 spring.servlet.multipart.max-file-size=5MB
 

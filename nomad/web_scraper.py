@@ -29,16 +29,12 @@ jobs = jobs = [job for job in jobs if "feature--ad" not in job.get("class", [])]
 
 for job in jobs:
   title = job.find("h3", class_="new-listing__header__title").text
-  job_categories = job.find_all("p", class_="new-listing__categories__category")
-  match len(job_categories):
-    # case 2:
-    #   position, region = job_categories
-    #   print(title, region)
-    # case 3:
-    #   _, position, region = job_categories
-    #   print(title, region)
-    # case 4:
-    #   _, _, position, region = job_categories
-    case 5:
-      _, _, _, position, region = job_categories
-  link = job.find("a", class_="listing-link--unlocked")
+  link = job.find("a", class_="listing-link--unlocked") 
+  url = f"https://weworkremotely.com{link.get('href')}"
+  job_data = {
+    "title": title,
+    "url": url
+  }
+
+
+print(job_data)

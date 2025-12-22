@@ -8,7 +8,8 @@ import requests
 
 all_jobs = []
 
-def scrape_page():
+def scrape_page(url):
+  print(f"Scrapping {url}...s")
   # url = "https://weworkremotely.com/categories/remote-full-stack-programming-jobs"
 
 
@@ -41,13 +42,18 @@ def scrape_page():
     }
     all_jobs.append(job_data)
 
-response = requests.get("https://weworkremotely.com/remote-full-time-jobs?page=1")
+def get_pages(url):
+  response = requests.get(url)
 
-soup = BeautifulSoup(response.content, "html.parser")
+  soup = BeautifulSoup(response.content, "html.parser")
 
-buttons = len(soup.find("div", class_="pagination").find_all("span", class_="page"))
-
-print(buttons)
-
-for x in range(buttons):
+  return len(soup.find("div", class_="pagination").find_all("span", class_="page"))
+  
+total_pages = get_pages("https://weworkremotely.com/remote-full-time-jobs?page=1")
+for x in range(total_pages):
   url = f"https://weworkremotely.com/remote-full-time-jobs?page={x + 1}"
+  scrape_page("https://weworkremotely.com/remote-full-time-jobs?page=1")
+
+
+
+print(len(all_jobs))

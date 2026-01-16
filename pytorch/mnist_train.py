@@ -1,7 +1,12 @@
+import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import datasets
+import torchvision.transforms as transforms
 from torchvision.transforms import ToTensor
 
 device = (
@@ -32,24 +37,24 @@ train_dataloader = DataLoader(training_data, batch_size=64)
 test_dataloader = DataLoader(test_data, batch_size=64)
 
 # 예측 모델 정의
-class NeuralNetwork(nn.Module):
+class CNN(nn.Module):
   def __init__(self):
     super().__init__()
-    self.flatten = nn.Flatten()
-    self.linear_relu_stack = nn.Sequential(
-      nn.Linear(28 * 28, 512),
+    self.conv_layers = nn.Sequential(
+      nn.Conv2d(1, 32, 3),  # 합성곱
       nn.ReLU(),
-      nn.Linear(512, 512),
+      nn.MaxPool2d(2),
+      nn.Conv2d(32, 64, 3),
       nn.ReLU(),
-      nn.Linear(512, 10), 
+      nn.MaxPool2d(2),
+      nn.Flatten(),
+      nn.Linear(1600, 10)
     )
-
-  def forward(self, x):
-    x = self.flatten(x)
-    logit = self.linear_relu_stack(x)
-    return logit
   
-model = NeuralNetwork().to(device)
+  def forward(self, x):
+    return self.conv_layers(x)
+  
+model = CNN().to(device)
 
 loss_fn = nn.CrossEntropyLoss()
 batch_size = 64
@@ -74,6 +79,7 @@ def train_loop(dataloader, model, loss_fn, optimizer):
       loss, current = loss.item(), batch * batch_size + len(X)
       print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
+
 def test_loop(dataloader, model, loss_fn):
   model.eval() # eval로 변경 (모범 사례)
   size = len(dataloader.dataset)
@@ -93,7 +99,11 @@ def test_loop(dataloader, model, loss_fn):
 
 epochs = 10
 for t in range(epochs):
-    print(f"Epoch {t+1}\n-------------------------------")
-    train_loop(train_dataloader, model, loss_fn, optimizer)
-    test_loop(test_dataloader, model, loss_fn)
+  print(f"Epoch {t+1}\n-------------------------------")
+  train_loop(train_dataloader, model, loss_fn, optimizer)
+  test_loop(test_dataloader, model, loss_fn)
 print("Done!")
+# 저장    
+torch.save(model.state_dict(), 'mnist_model.pth')
+print("모델 저장 완료!")
+

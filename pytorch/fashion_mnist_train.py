@@ -16,26 +16,25 @@ device = (
   else "cpu"
 )
 
-# 데이터 준비
-training_data = datasets.MNIST(
+training_data=  datasets.FashionMNIST(
   root="data",
   train=True,
   download=True,
   transform=ToTensor()
 )
 
-test_data = datasets.MNIST(
+test_data=  datasets.FashionMNIST(
   root="data",
   train=False,
   download=True,
   transform=ToTensor()
 )
 
-# batch로 메모리 지키기
-train_dataloader = DataLoader(training_data, batch_size=64)
-test_dataloader = DataLoader(test_data, batch_size=64)
+batch_size = 64
 
-# 예측 모델 정의
+train_dataloader = DataLoader(training_data, batch_size)
+test_dataloader = DataLoader(test_data, batch_size)
+
 class CNN(nn.Module):
   def __init__(self):
     super().__init__()
@@ -56,12 +55,10 @@ class CNN(nn.Module):
 model = CNN().to(device)
 
 loss_fn = nn.CrossEntropyLoss()
-batch_size = 64
-learning_rate = 1e-2
 
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+optimizer = torch.optim.SGD(model.parameters(), lr=1e-2)
 
-def train_loop(dataloader, model, loss_fn, optimizer):
+def train_loop (dataloader, model, loss_fn, optimizer):
   model.train() # train으로 변경 (모범 사례)
   size = len(dataloader.dataset)
 
@@ -103,6 +100,6 @@ for t in range(epochs):
   test_loop(test_dataloader, model, loss_fn)
 print("Done!")
 # 저장    
-torch.save(model.state_dict(), 'mnist_model.pth')
+torch.save(model.state_dict(), 'fashion_mnist_model.pth')
 print("모델 저장 완료!")
-
+    

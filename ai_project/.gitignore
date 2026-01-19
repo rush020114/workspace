@@ -1,0 +1,18 @@
+# AI 모델 (용량 큰 파일들)
+my_model/
+*.safetensors
+*.bin
+*.ckpt
+*.pth
+*.pt
+
+# 데이터
+data/
+*.jpg
+*.png
+*.jpeg
+
+# Python
+__pycache__/
+*.pyc
+*.pyo

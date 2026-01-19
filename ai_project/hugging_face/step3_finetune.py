@@ -10,7 +10,7 @@ import os
 
 # 1. 커스텀 데이터셋
 # Pytorch로 데이터셋을 구성하기 위해서는 많은 사전작업이 필요했지만
-# huggingface기반 데이터셋 커스터마이징은 processor가 복잡한 과정을 줄여준다.
+# huggingface기반 데이터셋 커스터마이징은 processor가 복잡한 과정(csv변환 등)을 줄여준다.
 class SimpleDataset(Dataset):
   def __init__(self, image_paths, labels, processor):
     self.image_paths = image_paths
@@ -28,8 +28,98 @@ class SimpleDataset(Dataset):
     pixel_values = inputs['pixel_values'].squeeze(0)
 
     return {
-      'pixel_values': pixel_values,
-      'labels': torch.tensor(self.labels[idx])
+      'pixel_values': pixel_values, # 텐서 픽셀 반환
+      'labels': torch.tensor(self.labels[idx]) 
     }
 
+# 2. 모델과 프로세서 준비
+print("🚀 모델 준비 중...")
+model_name = "google/vit-base-patch16-224"
+processor = AutoImageProcessor.from_pretrained(model_name)
+
+# 2개 클래스로 수정 (예: 티셔츠 vs 신발)
+model = AutoModelForImageClassification.from_pretrained(
+  model_name,
+  # 클래스를 2개로 마음대로 바꿔버림으로써 내 기준대로 정답을 커스터마이징할 수 있음.
+  num_labels=2,  # 클래스 개수!
+  ignore_mismatched_sizes=True  # 기존 헤드 무시
+)
+
+# 3. 데이터 준비 (예시: 이미지 2개로 테스트)
+# 실제론 100장 이상 필요!
+image_paths = [
+  "hugging_face/my_fashion.png",  # 티셔츠
+  "hugging_face/my_fashion.png",  # 임시로 같은 이미지
+]
+
+labels = [0, 0] # 0: 티셔츠, 1: 신발
+
+dataset = SimpleDataset(image_paths, labels, processor)
+dataloader = DataLoader(dataset, batch_size=2, shuffle=True)
+
+print(f"📊 데이터 준비: {len(dataset)}개\n")
+
+# 4. Fine-tuning (PyTorch 그대로!)
+print("🔥 Fine-tuning 시작!\n")
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = model.to(device)
+
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
+
+epochs = 3
+
+for epoch in range(epochs):
+  model.train()
+  total_loss = 0
+
+  for batch in dataloader:
+    # GPU로 이동
+    pixel_values = batch['pixel_values'].to(device)
+    labels = batch['labels'].to(device)
+
+    # Forward
+    outputs = model(pixel_values=pixel_values, labels=labels)
+    loss = outputs.loss
+
+    # Backward
+    loss.backward()
+    optimizer.step()
+    optimizer.zero_grad()
+
+    total_loss += loss.item()
   
+  avg_loss = total_loss / len(dataloader)
+  print(f"Epoch {epoch+1}/{epochs} - Loss: {avg_loss:.4f}")
+
+print("\n✅ Fine-tuning 완료!")
+
+# 5. 저장
+model.save_pretrained("my_model")
+processor.save_pretrained("my_model")
+print("💾 모델 저장 완료: my_model/")
+
+# ========== 6. 예측 (새로 추가!) ==========
+print("\n🔮 예측 테스트!\n")
+
+# 테스트할 이미지
+test_image_path = "hugging_face/my_fashion.png"  # ← 실제로는 새 이미지
+test_image = Image.open(test_image_path).convert("RGB")
+
+# 전처리
+inputs = processor(images=test_image, return_tensors="pt")
+pixel_values = inputs['pixel_values'].to(device)
+
+# 예측
+model.eval()
+with torch.no_grad():
+    outputs = model(pixel_values=pixel_values)
+    logits = outputs.logits
+    predicted_class = torch.argmax(logits, dim=1).item()
+    confidence = torch.softmax(logits, dim=1)[0][predicted_class].item()
+
+# 결과
+class_names = {0: "티셔츠", 1: "신발"}
+print(f"📸 이미지: {test_image_path}")
+print(f"🎯 예측 결과: {class_names[predicted_class]}")
+print(f"📊 신뢰도: {confidence:.2%}")

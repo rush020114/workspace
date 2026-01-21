@@ -11,11 +11,11 @@ import os
 # 1. 커스텀 데이터셋
 # Pytorch로 데이터셋을 구성하기 위해서는 많은 사전작업이 필요했지만
 # huggingface기반 데이터셋 커스터마이징은 processor가 복잡한 과정(csv변환 등)을 줄여준다.
-class SimpleDataset(Dataset):
+class SimpleDataset(Dataset): # Dataset으로 구현된 것을 명시적으로 보여주기 위한 상속
   def __init__(self, image_paths, labels, processor):
-    self.image_paths = image_paths
-    self.labels = labels
-    self.processor = processor
+    self.image_paths = image_paths # 이미지 경로 배열
+    self.labels = labels # 각 이미지의 정답 인덱스
+    self.processor = processor # processor?
 
   def __len__(self):
     return len(self.image_paths)
@@ -49,9 +49,9 @@ model = AutoModelForImageClassification.from_pretrained(
 # 실제론 100장 이상 필요!
 image_paths = [
   "hugging_face/my_fashion.png",  # 티셔츠
-  "hugging_face/my_fashion.png",  # 임시로 같은 이미지
+  "hugging_face/my_fashion.png", # 임시로 같은 이미지
 ]
-
+  # 
 labels = [0, 0] # 0: 티셔츠, 1: 신발
 
 dataset = SimpleDataset(image_paths, labels, processor)

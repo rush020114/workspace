@@ -15,7 +15,10 @@ class SimpleDataset(Dataset): # Dataset으로 구현된 것을 명시적으로 �
   def __init__(self, image_paths, labels, processor):
     self.image_paths = image_paths # 이미지 경로 배열
     self.labels = labels # 각 이미지의 정답 인덱스
-    self.processor = processor # processor?
+    # 전처리 = 이미지를 AI가 이해할 수 있는 형태로 바꾸는 과정
+    # processor = 이 전처리를 자동으로 해주는 도구
+    # pytorch로 하면 텐서로 변환하고 크기를 조정하고 
+    self.processor = processor # processor : 이미지를 모델이 읽을 수 있는 형태로 변환하는 설정이 들어있는 도구
 
   def __len__(self):
     return len(self.image_paths)
@@ -34,11 +37,15 @@ class SimpleDataset(Dataset): # Dataset으로 구현된 것을 명시적으로 �
 
 # 2. 모델과 프로세서 준비
 print("🚀 모델 준비 중...")
-model_name = "google/vit-base-patch16-224"
-processor = AutoImageProcessor.from_pretrained(model_name)
+model_name = "google/vit-base-patch16-224" # 구글이 만들어놓은 최신 이미지 AI 모델 이름
+# 해당 모델로 전처리기 설정 다운로드
+# 정규화를 어떻게 할지 이미지 크기를 어떻게 바꿀지 등
+# 이미지 크기는 줄어도 크게 상관은 없다.
+processor = AutoImageProcessor.from_pretrained(model_name) 
 
 # 2개 클래스로 수정 (예: 티셔츠 vs 신발)
 model = AutoModelForImageClassification.from_pretrained(
+  # 해당 모델로 AI 신경망 모델 다운로드 
   model_name,
   # 클래스를 2개로 마음대로 바꿔버림으로써 내 기준대로 정답을 커스터마이징할 수 있음.
   num_labels=2,  # 클래스 개수!

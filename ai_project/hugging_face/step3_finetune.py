@@ -25,14 +25,18 @@ class SimpleDataset(Dataset): # Dataset으로 구현된 것을 명시적으로 �
   
   def __getitem__(self, idx):
     image = Image.open(self.image_paths[idx]).convert("RGB")
+    # 전처리기로 픽셀을 텐서화한 키를 포함한 딕셔너리 형태로 반환
     inputs = self.processor(images=image, return_tensors="pt")
 
     # 텐서 차원 조절(크기가 1인 차원 자동 제거 - 매개변수가 0이므로 0번째 차원만)
+    # 모델 학습을 위해 픽셀을 꺼냄
+    # squeeze로 불필요한 차원이 제거된다.
+    # 신경망 모델은 4차원의 텐서를 기대하기 때문
     pixel_values = inputs['pixel_values'].squeeze(0)
 
     return {
-      'pixel_values': pixel_values, # 텐서 픽셀 반환
-      'labels': torch.tensor(self.labels[idx]) 
+      'pixel_values': pixel_values, # 학습 이미지의 픽셀 데이터 (텐서)
+      'labels': torch.tensor(self.labels[idx]) # 그 이미지의 정답 클래스 (0 또는 1)
     }
 
 # 2. 모델과 프로세서 준비
@@ -55,13 +59,18 @@ model = AutoModelForImageClassification.from_pretrained(
 # 3. 데이터 준비 (예시: 이미지 2개로 테스트)
 # 실제론 100장 이상 필요!
 image_paths = [
-  "hugging_face/my_fashion.png",  # 티셔츠
+  "hugging_face/my_fashion.png", # 티셔츠
   "hugging_face/my_fashion.png", # 임시로 같은 이미지
 ]
-  # 
+  
 labels = [0, 0] # 0: 티셔츠, 1: 신발
 
+# dataset 세팅
+# 2개의 이미지와 정답을 전달
+# 모델이 학습할 수 있는 형태로 이미지를 텐서화하는 전처리기도 매개변수로 전달
 dataset = SimpleDataset(image_paths, labels, processor)
+# dataset을 한 번에 2개씩 묶어서 처리하기 위한 반복자로 만들기 위한 batch_size 전달
+# shuffle로 매 epoch마다 순서를 섞어서 과적합 방지
 dataloader = DataLoader(dataset, batch_size=2, shuffle=True)
 
 print(f"📊 데이터 준비: {len(dataset)}개\n")
@@ -70,8 +79,11 @@ print(f"📊 데이터 준비: {len(dataset)}개\n")
 print("🔥 Fine-tuning 시작!\n")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# 신경망 모델 계산을 정해진 계산장치로 옮김.
 model = model.to(device)
 
+# optimizer는 가중치의 주소값을 알고 있기 때문에 학습 시에 가중치가 업데이트되어도 현재값을 바라볼 수 있다.
+# 그래서 parameter를 매번 전달하지 않고 한 번만 전달해도 정확한 학습이 가능하다.
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
 
 epochs = 3
@@ -81,7 +93,7 @@ for epoch in range(epochs):
   total_loss = 0
 
   for batch in dataloader:
-    # GPU로 이동
+    # GPU로 정해졌으면 GPU로 이동
     pixel_values = batch['pixel_values'].to(device)
     labels = batch['labels'].to(device)
 

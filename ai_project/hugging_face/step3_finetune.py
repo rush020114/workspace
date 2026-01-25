@@ -93,17 +93,39 @@ for epoch in range(epochs):
   total_loss = 0
 
   for batch in dataloader:
-    # GPU로 정해졌으면 GPU로 이동
+    # Python은 클래스를 반복 가능하게 커스터마이징할 수 있다.
+    # dataset은 dataloader에 감싸지면서 반복이 가능해진다.
+    # batch['pixel_values'] 형태가 가능한 이유는
+    # dataloader가 dataset을 batch로 감싸서 
+    # 모델이 읽을 수 있는 형태로 알아서 바꿔주기 때문이다.
+    # dataloader의 내부동작을 간단하게 설명하자면
+    # dataset을 batch만큼 반복하여 dataset의 getitem에서 pixel을 얻는다.
+    # 그 다음은 batch의 개수에 맞게 알아서 모델이 읽을 수 있는 형태로 잘 묶어준다.
+    # 그리고 dataset의 getitem의 형태처럼 이미지 픽셀과 정답을 반환하는 형태로 변형시킨다.
+    # 예를 들면 pixel_values 딕셔너리에 들어가는 batch의 반환 형태는
+    # [3,224,224] + [3,224,224] → [2,3,224,224] 이런 식이다.
+    # 추가로 클래스를 반복 돌릴 때 반복 돌려지는 것의 getitem이 없으면 반복할 때 
+    # 무엇을 꺼내야 할지 정의가 되어 있지 않기 때문에 반드시 필요하다.(dataset[0]이 뭐지?가 되어 버림)
+    # dataloader에서 dataset의 pixel값을 받을 수 있는 이유도 getitem이 있었기 때문이다.
     pixel_values = batch['pixel_values'].to(device)
+    # 모델이 계산을 진행하고 데이터가 모델에 의해서 계산되니까 같은 계산 장치에 있어야 함.
     labels = batch['labels'].to(device)
 
     # Forward
+    # 모델의 신경망에 의해 이미지와 정답을 입력하여 예측 수행
     outputs = model(pixel_values=pixel_values, labels=labels)
+    # 예측값과 정답의 손실(차이)을 계산
+    # hugginface는 loss도 지원
     loss = outputs.loss
 
     # Backward
+    # 손실을 줄이기 위해 모델 매개변수인 가중치를 얼마나 조정해야 할지 기울기 계산
     loss.backward()
+    # 최적화로 기울기에 기반한 가중치 업데이트
     optimizer.step()
+    # 기울기 초기화로 기울기 누적 방지
+    # 학습 잘 됨 = 기울기 자연스럽게 감소 
+    # 초기화 안 함 = 이상하게 누적됨 
     optimizer.zero_grad()
 
     total_loss += loss.item()
@@ -132,10 +154,10 @@ pixel_values = inputs['pixel_values'].to(device)
 # 예측
 model.eval()
 with torch.no_grad():
-    outputs = model(pixel_values=pixel_values)
-    logits = outputs.logits
-    predicted_class = torch.argmax(logits, dim=1).item()
-    confidence = torch.softmax(logits, dim=1)[0][predicted_class].item()
+  outputs = model(pixel_values=pixel_values)
+  logits = outputs.logits
+  predicted_class = torch.argmax(logits, dim=1).item()
+  confidence = torch.softmax(logits, dim=1)[0][predicted_class].item()
 
 # 결과
 class_names = {0: "티셔츠", 1: "신발"}

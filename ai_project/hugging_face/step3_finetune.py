@@ -32,6 +32,8 @@ class SimpleDataset(Dataset): # Dataset으로 구현된 것을 명시적으로 �
     # 모델 학습을 위해 픽셀을 꺼냄
     # squeeze로 불필요한 차원이 제거된다.
     # 신경망 모델은 4차원의 텐서를 기대하기 때문
+    # [1,3,224,224] → [3,224,224] 차원 축소
+    # (배치 차원 제거, DataLoader가 나중에 다시 묶어줌)
     pixel_values = inputs['pixel_values'].squeeze(0)
 
     return {
@@ -84,6 +86,8 @@ model = model.to(device)
 
 # optimizer는 가중치의 주소값을 알고 있기 때문에 학습 시에 가중치가 업데이트되어도 현재값을 바라볼 수 있다.
 # 그래서 parameter를 매번 전달하지 않고 한 번만 전달해도 정확한 학습이 가능하다.
+# Adam: 학습률을 자동 조정하는 최적화 알고리즘
+# lr=1e-5: Fine-tuning이므로 작은 학습률 사용 (기존 가중치 보존)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
 
 epochs = 3

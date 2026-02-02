@@ -27,3 +27,15 @@ class SimpleDataset(Dataset):
       'pixel_values': pixel_values,
       'labels': torch.tensor(self.labels[idx])
     }
+  
+# 모델과 프로세서 준비
+
+model_name = "google/vit-base-patch16-224"
+
+processor = AutoImageProcessor.from_pretrained(model_name)
+
+model = AutoModelForImageClassification.from_pretrained(
+  model_name,
+  num_labels=2,
+  ignore_mismatched_size=True
+)

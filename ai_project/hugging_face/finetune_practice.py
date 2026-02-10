@@ -74,4 +74,8 @@ for epoch in range(epochs):
 
     loss = output.loss
 
-    
+    loss.backward()
+
+    optimizer.step()
+
+    optimizer.zero_grad()

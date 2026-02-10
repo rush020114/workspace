@@ -29,7 +29,6 @@ class SimpleDataset(Dataset):
     }
   
 # 모델과 프로세서 준비
-
 model_name = "google/vit-base-patch16-224"
 
 processor = AutoImageProcessor.from_pretrained(model_name)
@@ -39,3 +38,40 @@ model = AutoModelForImageClassification.from_pretrained(
   num_labels=2,
   ignore_mismatched_size=True
 )
+
+# 데이터 준비
+
+image_paths = [
+  "hugging_face/my_fashion.png",
+  "hugging_face/my_fashion.png",
+]
+
+labels = [0, 0]
+
+dataset = SimpleDataset(image_paths, labels, processor)
+
+dataloader = DataLoader(dataset, batch_size=2, shuffle=True)
+
+# Fine-tuning
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+model = model.to(device)
+
+optimizer = torch.optim.Adam(model.parameter(), lr=1e-5)
+
+epochs = 3
+
+for epoch in range(epochs):
+  model.train()
+  total_loss = 0
+  
+  for batch in dataloader:
+
+    pixel_values = batch['pixel_values'].to(device)
+    labels = batch['labels'].to(device)
+
+    output = model(pixel_values=pixel_values, labels=labels)
+
+    loss = output.loss
+
+    

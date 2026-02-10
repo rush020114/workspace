@@ -93,6 +93,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
 epochs = 3
 
 for epoch in range(epochs):
+  # 학습 모드 설정
   model.train()
   total_loss = 0
 
@@ -117,6 +118,8 @@ for epoch in range(epochs):
 
     # Forward
     # 모델의 신경망에 의해 이미지와 정답을 입력하여 예측 수행
+    # 이미지를 한 개씩 학습하는 것보다 batch단위로 묶어 학습하는 것이
+    # 가중치 업데이트를 더 안정적으로 만들어 학습에 도움이 된다.
     outputs = model(pixel_values=pixel_values, labels=labels)
     # 예측값과 정답의 손실(차이)을 계산
     # hugginface는 loss도 지원
